@@ -20,7 +20,7 @@ print("🔑 Longitud:", len(GEMINI_API_KEY) if GEMINI_API_KEY else 0)
 
 # ============================================================
 
-MODELO_GEMINI = "gemini-3.5-flash"
+MODELO_GEMINI = "gemini-3.5-flash-lite"
 
 try:
     gemini_client = genai.Client(api_key=GEMINI_API_KEY)
