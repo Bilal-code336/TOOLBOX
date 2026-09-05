@@ -17,7 +17,7 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 # ============================================================
 
-MODELO_GEMINI = "gemini-3.5-flash-lite"
+MODELO_GEMINI = "gemini-2.5-flash"
 
 try:
     gemini_client = genai.Client(api_key=GEMINI_API_KEY)
