@@ -14,6 +14,9 @@ app = Flask(__name__, static_folder=".")
 # ============================================================
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+print("🔑 ¿API KEY encontrada?:", GEMINI_API_KEY is not None)
+print("🔑 Inicio de la clave:", GEMINI_API_KEY[:3] if GEMINI_API_KEY else "NO HAY CLAVE")
+print("🔑 Longitud:", len(GEMINI_API_KEY) if GEMINI_API_KEY else 0)
 
 # ============================================================
 
