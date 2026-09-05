@@ -13,7 +13,7 @@ app = Flask(__name__, static_folder=".")
 # CONFIGURACIÓN GEMINI (PÓNLA SOLO AQUÍ 👇)
 # ============================================================
 
-GEMINI_API_KEY = "AQ.Ab8RN6IWP_HHramtXxi1ekdgKam5dI9FztRqUpTS0ADMgM3yPA"
+GEMINI_API_KEY = os.environ.get"GEMINI_API_KEY"
 
 # ============================================================
 
