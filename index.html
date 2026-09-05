@@ -1,0 +1,6330 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TOOLBOX</title>
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+
+/* =========================================================
+   TOOLBOX — ESTILO PRINCIPAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #080b12;
+    --bg2: #0c111c;
+    --nav: rgba(8,11,18,.88);
+
+    --card: #111827;
+    --card2: #0d131f;
+    --panel: #101724;
+
+    --input: #080d16;
+
+    --border: #29344a;
+    --border2: #344158;
+
+    --text: #ffffff;
+    --muted: #8995aa;
+
+    --purple: #7c3aed;
+    --purple2: #8b5cf6;
+    --purple3: #a78bfa;
+
+    --button: #202a3d;
+
+    --green: #22c55e;
+}
+
+/* =========================================================
+   MODO CLARO
+========================================================= */
+
+body.light {
+
+    --bg: #f4f6f9;
+    --bg2: #ffffff;
+    --nav: rgba(255,255,255,.94);
+
+    --card: #ffffff;
+    --card2: #f4f6f8;
+    --panel: #ffffff;
+
+    --input: #f1f3f5;
+
+    --border: #d9dee7;
+    --border2: #c7ced9;
+
+    --text: #111827;
+    --muted: #5f6b7a;
+
+    --button: #e6eaf0;
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(124,58,237,.14),
+            transparent 45%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+button,
+input,
+textarea,
+select {
+
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav {
+
+    height: 70px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: var(--nav);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.logo {
+
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -.7px;
+}
+
+.logo span {
+    color: var(--purple2);
+}
+
+.nav-right {
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.nav-link {
+
+    color: var(--muted);
+
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.nav-link:hover {
+    color: var(--text);
+}
+
+.theme {
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--button);
+
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    text-align: center;
+
+    padding:
+        100px 20px 75px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(124,58,237,.40),
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(139,92,246,.10),
+            transparent 30%
+        );
+}
+
+.badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        9px 17px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(124,58,237,.12);
+
+    border:
+        1px solid rgba(139,92,246,.4);
+
+    color:
+        var(--purple3);
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(44px, 8vw, 82px);
+
+    line-height: 1;
+
+    margin-bottom: 22px;
+
+    letter-spacing:
+        -3px;
+}
+
+.hero h1 span {
+    color: var(--purple2);
+}
+
+.hero p {
+
+    color: var(--muted);
+
+    max-width: 700px;
+
+    margin:
+        auto auto 35px;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search {
+
+    width:
+        min(720px, 94%);
+
+    margin: auto;
+
+    display: flex;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    background:
+        rgba(17,24,39,.9);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.2);
+}
+
+.search input {
+
+    flex: 1;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    color: white;
+
+    padding: 15px;
+
+    font-size: 16px;
+}
+
+.search button {
+
+    border: none;
+
+    background:
+        var(--purple);
+
+    color: white;
+
+    padding:
+        0 25px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+}
+
+.search button:hover {
+    background: var(--purple2);
+}
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.container {
+
+    width:
+        min(1150px, 92%);
+
+    margin: auto;
+
+    padding-top: 50px;
+}
+
+.section-title {
+
+    font-size: 31px;
+
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+
+    color: var(--muted);
+
+    margin-bottom: 30px;
+}
+
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
+
+.categories {
+
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding-bottom: 8px;
+
+    margin-bottom: 30px;
+}
+
+.category {
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--card);
+
+    color:
+        var(--muted);
+
+    padding:
+        10px 16px;
+
+    border-radius:
+        50px;
+
+    white-space: nowrap;
+
+    transition: .2s;
+}
+
+.category:hover,
+.category.selected {
+
+    background:
+        var(--purple);
+
+    border-color:
+        var(--purple);
+
+    color:
+        white;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.tools-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(245px, 1fr));
+
+    gap: 18px;
+}
+
+/* =========================================================
+   TOOL CARDS
+========================================================= */
+
+.tool-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--card),
+            var(--card2)
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        20px;
+
+    padding:
+        25px;
+
+    min-height:
+        230px;
+
+    transition:
+        transform .25s,
+        border .25s,
+        box-shadow .25s;
+}
+
+.tool-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -60px;
+    top: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(124,58,237,.08);
+
+    filter:
+        blur(10px);
+}
+
+.tool-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(139,92,246,.7);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.28);
+}
+
+.icon {
+
+    font-size:
+        39px;
+
+    margin-bottom:
+        17px;
+}
+
+.tool-card h3 {
+
+    font-size:
+        19px;
+
+    margin-bottom:
+        9px;
+}
+
+.tool-card p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.5;
+
+    margin-bottom:
+        20px;
+}
+
+.open {
+
+    border: none;
+
+    background:
+        var(--button);
+
+    color:
+        white;
+
+    padding:
+        10px 17px;
+
+    border-radius:
+        10px;
+
+    transition:
+        .2s;
+}
+
+.open:hover {
+
+    background:
+        var(--purple);
+
+    transform:
+        translateY(-1px);
+}
+
+/* =========================================================
+   PANELES
+========================================================= */
+
+.tool-panel {
+
+    display: none;
+
+    margin-top:
+        30px;
+
+    padding:
+        30px;
+
+    background:
+        var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        22px;
+
+    animation:
+        panelIn .25s ease;
+}
+
+.tool-panel.active {
+    display: block;
+}
+
+@keyframes panelIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tool-head {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom:
+        25px;
+}
+
+.tool-head h2 {
+    font-size: 27px;
+}
+
+.close {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    font-size: 18px;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+textarea,
+select {
+
+    width: 100%;
+
+    background:
+        var(--input);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid var(--border2);
+
+    border-radius:
+        11px;
+
+    padding:
+        13px;
+
+    outline:
+        none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+
+    border-color:
+        var(--purple2);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.08);
+}
+
+textarea {
+
+    min-height:
+        180px;
+
+    resize:
+        vertical;
+
+    line-height:
+        1.6;
+}
+
+.row {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    flex-wrap:
+        wrap;
+}
+
+.row > * {
+    flex: 1;
+}
+
+.primary {
+
+    border: none;
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        10px;
+
+    margin-top:
+        15px;
+
+    font-weight:
+        600;
+}
+
+.primary:hover {
+    background: var(--purple2);
+}
+
+.secondary {
+
+    border: none;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        10px;
+
+    margin-top:
+        15px;
+}
+
+.result {
+
+    background:
+        var(--input);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        13px;
+
+    padding:
+        17px;
+
+    margin-top:
+        20px;
+
+    min-height:
+        55px;
+
+    word-break:
+        break-word;
+
+    white-space:
+        pre-wrap;
+}
+
+/* =========================================================
+   CALCULADORA
+========================================================= */
+
+.calculator {
+
+    width:
+        min(380px,100%);
+
+    margin:
+        auto;
+
+    background:
+        #050912;
+
+    padding:
+        20px;
+
+    border-radius:
+        22px;
+}
+
+#calcScreen {
+
+    height:
+        70px;
+
+    text-align:
+        right;
+
+    font-size:
+        29px;
+
+    margin-bottom:
+        12px;
+}
+
+.calc-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:
+        9px;
+}
+
+.calc-grid button {
+
+    height:
+        58px;
+
+    border:
+        none;
+
+    border-radius:
+        11px;
+
+    background:
+        #1c2637;
+
+    color:
+        white;
+
+    font-size:
+        18px;
+}
+
+.calc-grid button:hover {
+    background: #303c52;
+}
+
+.calc-op {
+    background:
+        #6d28d9 !important;
+}
+
+.calc-equal {
+    background:
+        #16a34a !important;
+}
+
+/* =========================================================
+   GENERADOR DE COLOR
+========================================================= */
+
+.color-preview {
+
+    height:
+        230px;
+
+    border-radius:
+        20px;
+
+    background:
+        #8b5cf6;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        28px;
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        20px;
+
+    transition:
+        .2s;
+}
+
+/* =========================================================
+   ESTILIZADOR
+========================================================= */
+
+.styler-preview {
+
+    margin-top:
+        20px;
+
+    padding:
+        25px;
+
+    min-height:
+        100px;
+
+    background:
+        var(--input);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        16px;
+
+    font-size:
+        25px;
+
+    word-break:
+        break-word;
+}
+
+.style-buttons {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(130px,1fr));
+
+    gap:
+        10px;
+
+    margin-top:
+        15px;
+}
+
+.style-buttons button {
+
+    padding:
+        12px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    border-radius:
+        10px;
+}
+
+.style-buttons button:hover {
+
+    border-color:
+        var(--purple2);
+
+    background:
+        rgba(124,58,237,.2);
+}
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-result {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.password-result input {
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size:
+        18px;
+}
+
+.option-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap:
+        10px;
+
+    margin-top:
+        15px;
+}
+
+.check-option {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        12px;
+
+    background:
+        var(--input);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+
+    color:
+        var(--muted);
+}
+
+.check-option input {
+    width: auto;
+}
+
+/* =========================================================
+   CONVERSOR DE IMAGEN
+========================================================= */
+
+.drop-zone {
+
+    border:
+        2px dashed var(--border2);
+
+    border-radius:
+        18px;
+
+    padding:
+        40px 20px;
+
+    text-align:
+        center;
+
+    transition:
+        .2s;
+}
+
+.drop-zone:hover {
+
+    border-color:
+        var(--purple2);
+
+    background:
+        rgba(124,58,237,.05);
+}
+
+.image-preview {
+
+    display:
+        none;
+
+    max-width:
+        100%;
+
+    max-height:
+        420px;
+
+    margin:
+        25px auto;
+
+    border-radius:
+        15px;
+}
+
+/* =========================================================
+   EDITOR DE IMAGEN
+========================================================= */
+
+.image-editor {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0,1fr) 270px;
+
+    gap:
+        20px;
+}
+
+.canvas-area {
+
+    min-height:
+        450px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #05080e;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        17px;
+
+    overflow:
+        hidden;
+
+    padding:
+        20px;
+}
+
+#editorCanvas {
+
+    max-width:
+        100%;
+
+    max-height:
+        550px;
+
+    display:
+        none;
+
+    border-radius:
+        8px;
+}
+
+.editor-controls {
+
+    background:
+        var(--card2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        17px;
+
+    padding:
+        18px;
+}
+
+.control-group {
+
+    margin-bottom:
+        18px;
+}
+
+.control-group label {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        8px;
+}
+
+.control-group input[type="range"] {
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    box-shadow:
+        none;
+}
+
+/* =========================================================
+   SIMPLIFICADOR
+========================================================= */
+
+.ai-mini {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.15),
+            rgba(17,24,39,.8)
+        );
+
+    border:
+        1px solid
+        rgba(139,92,246,.35);
+
+    padding:
+        20px;
+
+    border-radius:
+        17px;
+
+    margin-bottom:
+        20px;
+}
+
+/* =========================================================
+   TOOLBOX AI — PANTALLA COMPLETA
+========================================================= */
+
+.toolbox-ai-button {
+
+    position:
+        fixed;
+
+    right:
+        24px;
+
+    bottom:
+        24px;
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:
+        19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #20283a,
+            #0b1019
+        );
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.45),
+
+        0 0 35px
+        rgba(124,58,237,.12);
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    z-index:
+        99999;
+
+    transition:
+        .2s;
+}
+
+.toolbox-ai-button:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.05);
+
+    box-shadow:
+        0 20px 55px
+        rgba(0,0,0,.5),
+
+        0 0 45px
+        rgba(124,58,237,.25);
+}
+
+.ai-star {
+
+    position:
+        absolute;
+
+    line-height:
+        1;
+
+    color:
+        white;
+
+    text-shadow:
+        0 0 12px
+        rgba(255,255,255,.5);
+}
+
+.star-one {
+    font-size: 29px;
+    transform: translate(-5px,-5px);
+}
+
+.star-two {
+    font-size: 14px;
+    transform: translate(11px,10px);
+}
+
+/* =========================================================
+   APP IA
+========================================================= */
+
+.toolbox-ai-app {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        90000;
+
+    display:
+        none;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+}
+
+.toolbox-ai-app.open {
+    display:
+        flex;
+}
+
+/* =========================================================
+   SIDEBAR IA
+========================================================= */
+
+.toolbox-ai-sidebar {
+
+    width:
+        285px;
+
+    flex-shrink:
+        0;
+
+    background:
+        #0b1019;
+
+    border-right:
+        1px solid var(--border);
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    padding:
+        18px;
+}
+
+.ai-sidebar-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        20px;
+}
+
+.ai-sidebar-brand {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-brand-logo {
+
+    width:
+        39px;
+
+    height:
+        39px;
+
+    border-radius:
+        12px;
+
+    background:
+        #171e2d;
+
+    border:
+        1px solid var(--border);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+}
+
+.ai-brand-logo span {
+    position: absolute;
+}
+
+.ai-brand-logo span:first-child {
+    transform: translate(-3px,-3px);
+}
+
+.ai-brand-logo span:last-child {
+    transform: translate(8px,8px);
+    font-size: 11px;
+}
+
+.ai-sidebar-brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.ai-sidebar-brand small {
+    display: block;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.ai-close-sidebar {
+
+    width:
+        36px;
+
+    height:
+        36px;
+
+    border:
+        none;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    border-radius:
+        10px;
+
+    font-size:
+        22px;
+}
+
+.new-chat-button {
+
+    width:
+        100%;
+
+    border:
+        1px solid
+        rgba(139,92,246,.35);
+
+    background:
+        rgba(124,58,237,.12);
+
+    color:
+        var(--text);
+
+    padding:
+        12px;
+
+    border-radius:
+        12px;
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-weight:
+        600;
+}
+
+.new-chat-button:hover {
+    background:
+        rgba(124,58,237,.22);
+}
+
+.conversation-search {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    margin:
+        14px 0;
+
+    padding:
+        0 10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        11px;
+
+    background:
+        var(--input);
+}
+
+.conversation-search input {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    box-shadow:
+        none;
+
+    padding:
+        10px 5px;
+}
+
+.conversation-list {
+
+    flex:
+        1;
+
+    overflow-y:
+        auto;
+}
+
+.conversation-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        11px;
+
+    border-radius:
+        10px;
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--muted);
+
+    cursor:
+        pointer;
+}
+
+.conversation-item:hover,
+.conversation-item.active {
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+}
+
+.conversation-title {
+
+    flex:
+        1;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+    font-size:
+        13px;
+}
+
+.delete-conversation {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        #77839a;
+
+    font-size:
+        15px;
+}
+
+.delete-conversation:hover {
+    color:
+        #ef4444;
+}
+
+.ai-sidebar-footer {
+
+    padding-top:
+        15px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.ai-free-badge {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    margin-bottom:
+        8px;
+}
+
+.status-dot {
+
+    width:
+        9px;
+
+    height:
+        9px;
+
+    border-radius:
+        50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+        0 0 10px
+        rgba(34,197,94,.5);
+}
+
+.ai-free-badge strong {
+    display:
+        block;
+
+    font-size:
+        12px;
+}
+
+.ai-free-badge small {
+    color:
+        var(--muted);
+}
+
+.local-storage-info {
+
+    color:
+        #68758a;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.4;
+}
+
+/* =========================================================
+   MAIN IA
+========================================================= */
+
+.toolbox-ai-main {
+
+    flex:
+        1;
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+}
+
+.toolbox-ai-main-header {
+
+    min-height:
+        70px;
+
+    padding:
+        10px 20px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(8,11,18,.7);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+.ai-header-title {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-header-icon {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        11px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--button);
+}
+
+.ai-header-title strong {
+    display:
+        block;
+}
+
+.ai-header-title small {
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+}
+
+.ai-header-actions button,
+.mobile-menu-button {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    font-size:
+        18px;
+}
+
+.mobile-menu-button {
+    display:
+        none;
+}
+
+/* =========================================================
+   MENSAJES IA
+========================================================= */
+
+.toolbox-ai-messages {
+
+    flex:
+        1;
+
+    overflow-y:
+        auto;
+
+    padding:
+        35px;
+
+    scroll-behavior:
+        smooth;
+}
+
+.ai-welcome {
+
+    max-width:
+        780px;
+
+    margin:
+        10vh auto;
+
+    text-align:
+        center;
+}
+
+.ai-welcome-logo {
+
+    font-size:
+        54px;
+
+    margin-bottom:
+        20px;
+}
+
+.ai-welcome h1 {
+
+    font-size:
+        clamp(30px,5vw,48px);
+
+    margin-bottom:
+        13px;
+}
+
+.ai-welcome h1 span {
+    color:
+        var(--purple2);
+}
+
+.ai-welcome p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        25px;
+}
+
+.ai-suggestions {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(200px,1fr));
+
+    gap:
+        10px;
+}
+
+.ai-suggestion {
+
+    padding:
+        15px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border-radius:
+        13px;
+
+    text-align:
+        left;
+}
+
+.ai-suggestion:hover {
+
+    border-color:
+        var(--purple2);
+
+    background:
+        rgba(124,58,237,.08);
+}
+
+/* =========================================================
+   BURBUJAS
+========================================================= */
+
+.ai-chat-row {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto 25px;
+}
+
+.ai-chat-row.user {
+    justify-content:
+        flex-end;
+}
+
+.ai-chat-avatar {
+
+    width:
+        35px;
+
+    height:
+        35px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        11px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--button);
+
+    border:
+        1px solid var(--border);
+}
+
+.ai-chat-bubble {
+
+    max-width:
+        min(750px,80%);
+
+    padding:
+        14px 17px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        6px 17px 17px 17px;
+
+    background:
+        var(--card);
+
+    line-height:
+        1.65;
+
+    white-space:
+        pre-wrap;
+
+    word-break:
+        break-word;
+}
+
+.ai-chat-row.user .ai-chat-bubble {
+
+    background:
+        var(--button);
+
+    border-radius:
+        17px 6px 17px 17px;
+}
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.toolbox-ai-typing {
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 20px 15px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+.toolbox-ai-typing.active {
+    display:
+        flex;
+}
+
+.typing-dots {
+
+    display:
+        flex;
+
+    gap:
+        4px;
+}
+
+.typing-dots span {
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--muted);
+
+    animation:
+        typing .9s infinite;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay:
+        .15s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay:
+        .3s;
+}
+
+@keyframes typing {
+
+    0%,100% {
+        opacity: .3;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+/* =========================================================
+   COMPOSER IA
+========================================================= */
+
+.toolbox-ai-composer-wrapper {
+
+    padding:
+        12px 25px 20px;
+
+    background:
+        var(--bg);
+}
+
+.toolbox-ai-composer {
+
+    max-width:
+        900px;
+
+    margin:
+        auto;
+
+    border:
+        1px solid var(--border2);
+
+    border-radius:
+        18px;
+
+    background:
+        var(--input);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.18);
+
+    overflow:
+        hidden;
+}
+
+#toolboxAiInput {
+
+    width:
+        100%;
+
+    min-height:
+        65px;
+
+    max-height:
+        180px;
+
+    resize:
+        none;
+
+    border:
+        none;
+
+    border-radius:
+        0;
+
+    background:
+        transparent;
+
+    padding:
+        17px;
+
+    box-shadow:
+        none;
+
+    font-size:
+        15px;
+}
+
+.composer-bottom {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding:
+        0 10px 10px;
+}
+
+.composer-tool {
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    padding:
+        9px 13px;
+
+    border-radius:
+        10px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    font-size:
+        12px;
+}
+
+.composer-tool:hover {
+
+    border-color:
+        var(--purple2);
+
+    background:
+        rgba(124,58,237,.15);
+}
+
+.composer-right {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-char-counter {
+
+    color:
+        #68758a;
+
+    font-size:
+        11px;
+}
+
+.ai-send-button {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    font-size:
+        18px;
+}
+
+.ai-send-button:hover {
+    background:
+        var(--purple2);
+}
+
+.ai-composer-disclaimer {
+
+    max-width:
+        900px;
+
+    margin:
+        8px auto 0;
+
+    text-align:
+        center;
+
+    color:
+        #64748b;
+
+    font-size:
+        9px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    margin-top:
+        80px;
+
+    padding:
+        45px 20px;
+
+    text-align:
+        center;
+
+    border-top:
+        1px solid var(--border);
+
+    color:
+        var(--muted);
+}
+
+footer strong {
+    color:
+        var(--purple2);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:800px) {
+
+    .image-editor {
+        grid-template-columns:
+            1fr;
+    }
+
+    .toolbox-ai-sidebar {
+
+        position:
+            absolute;
+
+        left:
+            0;
+
+        top:
+            0;
+
+        bottom:
+            0;
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform .25s;
+
+        z-index:
+            5;
+    }
+
+    .toolbox-ai-sidebar.mobile-open {
+        transform:
+            translateX(0);
+    }
+
+    .mobile-menu-button {
+        display:
+            block;
+    }
+
+    .toolbox-ai-main-header {
+        gap:
+            10px;
+    }
+}
+
+@media(max-width:600px) {
+
+    .nav-link {
+        display:
+            none;
+    }
+
+    .hero {
+        padding-top:
+            70px;
+    }
+
+    .tool-panel {
+        padding:
+            20px;
+    }
+
+    .toolbox-ai-messages {
+        padding:
+            20px 14px;
+    }
+
+    .toolbox-ai-composer-wrapper {
+        padding:
+            10px;
+    }
+
+    .toolbox-ai-button {
+
+        right:
+            15px;
+
+        bottom:
+            15px;
+
+        width:
+            58px;
+
+        height:
+            58px;
+    }
+
+    .ai-chat-bubble {
+        max-width:
+            88%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav>
+
+    <div class="logo">
+        🧰 TOOL<span>BOX</span>
+    </div>
+
+    <div class="nav-right">
+
+        <a href="#herramientas" class="nav-link">
+            Herramientas
+        </a>
+
+        <button
+            id="themeButton"
+            class="theme"
+            onclick="tema()"
+        >
+            🌙
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="badge">
+        ✦ Muchas herramientas. Un solo lugar.
+    </div>
+
+    <h1>
+        Tu caja de herramientas
+        <span>digital.</span>
+    </h1>
+
+    <p>
+        TOOLBOX reúne herramientas útiles para estudiar,
+        crear, editar, convertir y trabajar con inteligencia
+        artificial desde un mismo sitio.
+    </p>
+
+    <div class="search">
+
+        <input
+            id="search"
+            type="text"
+            placeholder="Busca una herramienta..."
+            oninput="buscar()"
+        >
+
+        <button onclick="buscar()">
+            Buscar
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HERRAMIENTAS
+========================================================= -->
+
+<main
+    id="herramientas"
+    class="container"
+>
+
+    <h2 class="section-title">
+        Herramientas
+    </h2>
+
+    <p class="section-subtitle">
+        Elige una herramienta para empezar.
+    </p>
+
+
+    <!-- CATEGORÍAS -->
+
+    <div class="categories">
+
+        <button
+            class="category selected"
+            onclick="filtrar('all',this)"
+        >
+            Todas
+        </button>
+
+        <button
+            class="category"
+            onclick="filtrar('ia',this)"
+        >
+            🤖 IA
+        </button>
+
+        <button
+            class="category"
+            onclick="filtrar('texto',this)"
+        >
+            ✍️ Texto
+        </button>
+
+        <button
+            class="category"
+            onclick="filtrar('imagen',this)"
+        >
+            🖼️ Imagen
+        </button>
+
+        <button
+            class="category"
+            onclick="filtrar('utilidad',this)"
+        >
+            🧰 Utilidades
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         TARJETAS
+    ===================================================== -->
+
+    <div class="tools-grid">
+
+
+        <!-- CORRECTOR -->
+
+        <div
+            class="tool-card"
+            data-category="ia"
+            data-name="corrector texto ia ortografia gramatica"
+        >
+
+            <div class="icon">✨</div>
+
+            <h3>
+                Corrector de texto IA
+            </h3>
+
+            <p>
+                Corrige y mejora tus textos utilizando
+                la inteligencia artificial central de TOOLBOX.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('corrector')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- SIMPLIFICADOR -->
+
+        <div
+            class="tool-card"
+            data-category="ia"
+            data-name="simplificador textos ia wikipedia facil"
+        >
+
+            <div class="icon">📝</div>
+
+            <h3>
+                Simplificador IA
+            </h3>
+
+            <p>
+                Convierte textos difíciles en explicaciones
+                sencillas y fáciles de entender.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('simplificador')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- CALCULADORA -->
+
+        <div
+            class="tool-card"
+            data-category="utilidad"
+            data-name="calculadora matematicas"
+        >
+
+            <div class="icon">🧮</div>
+
+            <h3>
+                Calculadora
+            </h3>
+
+            <p>
+                Calculadora rápida para operaciones.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('calculator')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- ESTILIZADOR -->
+
+        <div
+            class="tool-card"
+            data-category="texto"
+            data-name="estilizador texto letras raras negrita cursiva gotica"
+        >
+
+            <div class="icon">✨</div>
+
+            <h3>
+                Estilizador de texto
+            </h3>
+
+            <p>
+                Convierte textos normales en estilos especiales
+                para perfiles y biografías.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('styler')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- EDITOR IMAGEN -->
+
+        <div
+            class="tool-card"
+            data-category="imagen"
+            data-name="editor imagen fotos brillo contraste saturacion"
+        >
+
+            <div class="icon">🎨</div>
+
+            <h3>
+                Editor de imágenes
+            </h3>
+
+            <p>
+                Ajusta brillo, contraste, saturación,
+                rotación y filtros.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('imageEditor')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- PNG JPG -->
+
+        <div
+            class="tool-card"
+            data-category="imagen"
+            data-name="png jpg convertir imagen conversor archivos"
+        >
+
+            <div class="icon">🔄</div>
+
+            <h3>
+                PNG → JPG
+            </h3>
+
+            <p>
+                Convierte imágenes directamente desde
+                tu navegador sin subirlas a ningún sitio.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pngjpg')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- CONTRASEÑAS -->
+
+        <div
+            class="tool-card"
+            data-category="utilidad"
+            data-name="generador contraseñas password seguras"
+        >
+
+            <div class="icon">🔐</div>
+
+            <h3>
+                Contraseñas seguras
+            </h3>
+
+            <p>
+                Genera contraseñas aleatorias con la longitud
+                y caracteres que quieras.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('password')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+        <!-- COLORES -->
+
+        <div
+            class="tool-card"
+            data-category="utilidad"
+            data-name="colores hexadecimal color picker"
+        >
+
+            <div class="icon">🎨</div>
+
+            <h3>
+                Generador de colores
+            </h3>
+
+            <p>
+                Crea colores y copia su código hexadecimal.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('color')"
+            >
+                Abrir
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         CORRECTOR IA
+    ===================================================== -->
+
+    <div
+        id="corrector"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                ✨ Corrector de texto IA
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div class="ai-mini">
+
+            <strong>
+                🤖 IA central de TOOLBOX
+            </strong>
+
+            <p style="color:var(--muted);margin-top:8px;">
+                No solo corrige faltas: también puede mejorar
+                claridad, puntuación, estructura y estilo.
+            </p>
+
+        </div>
+
+        <textarea
+            id="textoCorrector"
+            placeholder="Escribe aquí el texto que quieres mejorar..."
+        ></textarea>
+
+        <button
+            class="primary"
+            onclick="corregirConIA()"
+            id="correctorButton"
+        >
+            ✨ Mejorar con IA
+        </button>
+
+        <div
+            id="correctionResult"
+            class="result"
+        >
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SIMPLIFICADOR IA
+    ===================================================== -->
+
+    <div
+        id="simplificador"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                📝 Simplificador de textos IA
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div class="ai-mini">
+
+            <strong>
+                🧠 Modo profesor
+            </strong>
+
+            <p style="color:var(--muted);margin-top:8px;">
+                Convierte información complicada en una
+                explicación sencilla, con ejemplos y
+                una pequeña lección cuando sea útil.
+            </p>
+
+        </div>
+
+        <textarea
+            id="simplifierInput"
+            placeholder="Pega aquí un texto de Wikipedia, apuntes o cualquier explicación difícil..."
+        ></textarea>
+
+        <button
+            class="primary"
+            onclick="simplificar()"
+            id="simplifierButton"
+        >
+            🧠 Hacerlo fácil
+        </button>
+
+        <div
+            id="simplifierResult"
+            class="result"
+        >
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         CALCULADORA
+    ===================================================== -->
+
+    <div
+        id="calculator"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                🧮 Calculadora
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div class="calculator">
+
+            <input
+                id="calcScreen"
+                value="0"
+                readonly
+            >
+
+            <div class="calc-grid">
+
+                <button onclick="calcClear()">
+                    C
+                </button>
+
+                <button onclick="calcDelete()">
+                    ←
+                </button>
+
+                <button onclick="calcAdd('%')">
+                    %
+                </button>
+
+                <button
+                    class="calc-op"
+                    onclick="calcAdd('/')"
+                >
+                    ÷
+                </button>
+
+                <button onclick="calcAdd('7')">
+                    7
+                </button>
+
+                <button onclick="calcAdd('8')">
+                    8
+                </button>
+
+                <button onclick="calcAdd('9')">
+                    9
+                </button>
+
+                <button
+                    class="calc-op"
+                    onclick="calcAdd('*')"
+                >
+                    ×
+                </button>
+
+                <button onclick="calcAdd('4')">
+                    4
+                </button>
+
+                <button onclick="calcAdd('5')">
+                    5
+                </button>
+
+                <button onclick="calcAdd('6')">
+                    6
+                </button>
+
+                <button
+                    class="calc-op"
+                    onclick="calcAdd('-')"
+                >
+                    −
+                </button>
+
+                <button onclick="calcAdd('1')">
+                    1
+                </button>
+
+                <button onclick="calcAdd('2')">
+                    2
+                </button>
+
+                <button onclick="calcAdd('3')">
+                    3
+                </button>
+
+                <button
+                    class="calc-op"
+                    onclick="calcAdd('+')"
+                >
+                    +
+                </button>
+
+                <button onclick="calcAdd('0')">
+                    0
+                </button>
+
+                <button onclick="calcAdd('.')">
+                    .
+                </button>
+
+                <button
+                    style="grid-column:span 2"
+                    class="calc-equal"
+                    onclick="calcResult()"
+                >
+                    =
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ESTILIZADOR
+    ===================================================== -->
+
+    <div
+        id="styler"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                ✨ Estilizador de texto
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <p style="color:var(--muted);margin-bottom:15px;">
+            Escribe algo y elige un estilo.
+        </p>
+
+        <textarea
+            id="stylerInput"
+            style="min-height:120px"
+            placeholder="Hola, este es mi perfil..."
+            oninput="actualizarEstilo()"
+        ></textarea>
+
+        <div class="style-buttons">
+
+            <button onclick="aplicarEstilo('bold')">
+                𝗡𝗲𝗴𝗿𝗶𝘁𝗮
+            </button>
+
+            <button onclick="aplicarEstilo('italic')">
+                𝘐𝘵á𝘭𝘪𝘤𝘢
+            </button>
+
+            <button onclick="aplicarEstilo('bolditalic')">
+                𝙉𝙚𝙜𝙧𝙞𝙩𝙖
+            </button>
+
+            <button onclick="aplicarEstilo('gothic')">
+                𝔾ó𝕥𝕚𝕔𝕒
+            </button>
+
+            <button onclick="aplicarEstilo('double')">
+                𝔻𝕠𝕓𝕝𝕖
+            </button>
+
+            <button onclick="aplicarEstilo('mono')">
+                𝙼𝚘𝚗𝚘
+            </button>
+
+        </div>
+
+        <div
+            id="stylerResult"
+            class="styler-preview"
+        >
+            Tu texto aparecerá aquí.
+        </div>
+
+        <button
+            class="primary"
+            onclick="copiarEstilo()"
+        >
+            📋 Copiar
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         EDITOR DE IMAGEN
+    ===================================================== -->
+
+    <div
+        id="imageEditor"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                🎨 Editor de imágenes
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <input
+            id="editorFile"
+            type="file"
+            accept="image/*"
+            onchange="loadEditorImage(event)"
+        >
+
+        <br><br>
+
+        <div class="image-editor">
+
+            <div class="canvas-area">
+
+                <canvas
+                    id="editorCanvas"
+                ></canvas>
+
+                <span
+                    id="editorEmpty"
+                    style="color:#68758a"
+                >
+                    🖼️ Carga una imagen para comenzar
+                </span>
+
+            </div>
+
+            <div class="editor-controls">
+
+                <div class="control-group">
+
+                    <label>
+                        Brillo
+                        <span id="brightnessValue">100%</span>
+                    </label>
+
+                    <input
+                        id="brightnessControl"
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        oninput="updateEditor()"
+                    >
+
+                </div>
+
+                <div class="control-group">
+
+                    <label>
+                        Contraste
+                        <span id="contrastValue">100%</span>
+                    </label>
+
+                    <input
+                        id="contrastControl"
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        oninput="updateEditor()"
+                    >
+
+                </div>
+
+                <div class="control-group">
+
+                    <label>
+                        Saturación
+                        <span id="saturationValue">100%</span>
+                    </label>
+
+                    <input
+                        id="saturationControl"
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        oninput="updateEditor()"
+                    >
+
+                </div>
+
+                <button
+                    class="secondary"
+                    onclick="rotateEditor()"
+                >
+                    🔄 Rotar
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="flipEditor()"
+                >
+                    ↔️ Voltear
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="grayEditor()"
+                >
+                    ⚫ Blanco y negro
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="resetEditor()"
+                >
+                    ↩️ Restablecer
+                </button>
+
+                <button
+                    class="primary"
+                    onclick="downloadEditor()"
+                >
+                    💾 Descargar imagen
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PNG JPG
+    ===================================================== -->
+
+    <div
+        id="pngjpg"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                🔄 PNG → JPG
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div class="drop-zone">
+
+            <div style="font-size:45px">
+                🖼️
+            </div>
+
+            <h3 style="margin:12px 0">
+                Convierte tu imagen
+            </h3>
+
+            <p style="color:var(--muted);margin-bottom:15px;">
+                El archivo se procesa localmente en tu navegador.
+            </p>
+
+            <input
+                id="pngFile"
+                type="file"
+                accept="image/png,image/*"
+                onchange="convertPNG()"
+            >
+
+        </div>
+
+        <img
+            id="pngPreview"
+            class="image-preview"
+        >
+
+        <button
+            id="downloadJPG"
+            class="primary"
+            style="display:none"
+            onclick="downloadJPG()"
+        >
+            💾 Descargar JPG
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTRASEÑAS
+    ===================================================== -->
+
+    <div
+        id="password"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                🔐 Generador de contraseñas
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <label>
+            Longitud:
+        </label>
+
+        <input
+            id="passwordLength"
+            type="number"
+            min="4"
+            max="100"
+            value="20"
+        >
+
+        <div class="option-grid">
+
+            <label class="check-option">
+                <input
+                    id="passUpper"
+                    type="checkbox"
+                    checked
+                >
+                Mayúsculas
+            </label>
+
+            <label class="check-option">
+                <input
+                    id="passLower"
+                    type="checkbox"
+                    checked
+                >
+                Minúsculas
+            </label>
+
+            <label class="check-option">
+                <input
+                    id="passNumbers"
+                    type="checkbox"
+                    checked
+                >
+                Números
+            </label>
+
+            <label class="check-option">
+                <input
+                    id="passSymbols"
+                    type="checkbox"
+                    checked
+                >
+                Símbolos
+            </label>
+
+        </div>
+
+        <button
+            class="primary"
+            onclick="generatePassword()"
+        >
+            🔐 Generar contraseña
+        </button>
+
+        <div class="password-result result">
+
+            <input
+                id="passwordResult"
+                readonly
+                placeholder="Tu contraseña aparecerá aquí"
+            >
+
+            <button
+                class="secondary"
+                onclick="copyPassword()"
+            >
+                📋
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         COLOR
+    ===================================================== -->
+
+    <div
+        id="color"
+        class="tool-panel"
+    >
+
+        <div class="tool-head">
+
+            <h2>
+                🎨 Generador de colores
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            id="colorPreview"
+            class="color-preview"
+        >
+            #8B5CF6
+        </div>
+
+        <input
+            id="colorPicker"
+            type="color"
+            value="#8b5cf6"
+            oninput="updateColor()"
+        >
+
+        <div
+            id="colorCode"
+            class="result"
+        >
+            #8B5CF6
+        </div>
+
+        <button
+            class="primary"
+            onclick="copyColor()"
+        >
+            📋 Copiar color
+        </button>
+
+        <button
+            class="secondary"
+            onclick="randomColor()"
+        >
+            🎲 Color aleatorio
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div style="font-size:28px">
+        🧰 TOOLBOX
+    </div>
+
+    <br>
+
+    Todas tus herramientas en un solo sitio.
+
+    <br><br>
+
+    <strong>
+        Proyecto creado por ti 🚀
+    </strong>
+
+</footer>
+
+
+<!-- =========================================================
+     BOTÓN FLOTANTE IA
+========================================================= -->
+
+<button
+    id="toolboxAiButton"
+    class="toolbox-ai-button"
+    onclick="openToolboxAI()"
+    title="Abrir TOOLBOX AI"
+>
+
+    <span class="ai-star star-one">
+        ✦
+    </span>
+
+    <span class="ai-star star-two">
+        ✦
+    </span>
+
+</button>
+
+
+<!-- =========================================================
+     TOOLBOX AI COMPLETA
+========================================================= -->
+
+<div
+    id="toolboxAiApp"
+    class="toolbox-ai-app"
+>
+
+    <!-- SIDEBAR -->
+
+    <aside
+        id="toolboxAiSidebar"
+        class="toolbox-ai-sidebar"
+    >
+
+        <div class="ai-sidebar-top">
+
+            <div class="ai-sidebar-brand">
+
+                <div class="ai-brand-logo">
+
+                    <span>✦</span>
+                    <span>✦</span>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        TOOLBOX AI
+                    </strong>
+
+                    <small>
+                        Gemini
+                    </small>
+
+                </div>
+
+            </div>
+
+            <button
+                class="ai-close-sidebar"
+                onclick="closeToolboxAI()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <button
+            class="new-chat-button"
+            onclick="createNewConversation()"
+        >
+
+            <span>＋</span>
+
+            Nueva conversación
+
+        </button>
+
+
+        <div class="conversation-search">
+
+            <span>⌕</span>
+
+            <input
+                id="conversationSearch"
+                placeholder="Buscar conversaciones..."
+                oninput="filterConversations()"
+            >
+
+        </div>
+
+
+        <div
+            id="conversationList"
+            class="conversation-list"
+        ></div>
+
+
+        <div class="ai-sidebar-footer">
+
+            <div class="ai-free-badge">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        Gemini conectado
+                    </strong>
+
+                    <small>
+                        TOOLBOX AI
+                    </small>
+
+                </div>
+
+            </div>
+
+            <small class="local-storage-info">
+                Tus conversaciones se guardan
+                localmente en este dispositivo.
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="toolbox-ai-main">
+
+        <header
+            class="toolbox-ai-main-header"
+        >
+
+            <div
+                style="display:flex;align-items:center;gap:10px"
+            >
+
+                <button
+                    class="mobile-menu-button"
+                    onclick="toggleAISidebar()"
+                >
+                    ☰
+                </button>
+
+                <div class="ai-header-title">
+
+                    <div class="ai-header-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <strong
+                            id="currentConversationTitle"
+                        >
+                            Nueva conversación
+                        </strong>
+
+                        <small>
+                            TOOLBOX AI · Gemini
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    class="mobile-menu-button"
+                    style="display:flex"
+                    onclick="createNewConversation()"
+                    title="Nueva conversación"
+                >
+                    ＋
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MENSAJES -->
+
+        <section
+            id="toolboxAiMessages"
+            class="toolbox-ai-messages"
+        >
+
+            <div
+                id="aiWelcome"
+                class="ai-welcome"
+            >
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Hola, soy
+                    <span>TOOLBOX AI</span>
+                </h1>
+
+                <p>
+                    Tu asistente inteligente dentro de TOOLBOX.
+                    Puedo explicarte temas, ayudarte a estudiar,
+                    mejorar textos, programar contigo, darte
+                    ejemplos y mucho más.
+                </p>
+
+                <div class="ai-suggestions">
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Explícame la fotosíntesis de forma sencilla y después pregúntame si quiero aprenderla mejor.')"
+                    >
+                        🌱 Explícame algo
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.')"
+                    >
+                        🐍 Aprende conmigo
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Ayúdame a crear una página web moderna con HTML, CSS y JavaScript.')"
+                    >
+                        💻 Ayúdame a programar
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Dame un reto interesante para aprender algo nuevo.')"
+                    >
+                        🧠 Sorpréndeme
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TYPING -->
+
+        <div
+            id="toolboxAiTyping"
+            class="toolbox-ai-typing"
+        >
+
+            <div class="ai-chat-avatar">
+                ✦
+            </div>
+
+            <span>
+                TOOLBOX AI está pensando
+            </span>
+
+            <div class="typing-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPOSER -->
+
+        <div class="toolbox-ai-composer-wrapper">
+
+            <div class="toolbox-ai-composer">
+
+                <textarea
+                    id="toolboxAiInput"
+                    rows="1"
+                    maxlength="12000"
+                    placeholder="Escribe un mensaje para TOOLBOX AI..."
+                    onkeydown="toolboxAIKeyDown(event)"
+                    oninput="autoResizeAIInput(this);updateCharCounter()"
+                ></textarea>
+
+
+                <div class="composer-bottom">
+
+                    <button
+                        id="generateImageButton"
+                        class="composer-tool"
+                        onclick="generateToolboxImage()"
+                    >
+
+                        <span>
+                            ✨
+                        </span>
+
+                        Crear imagen
+
+                    </button>
+
+
+                    <div class="composer-right">
+
+                        <span
+                            id="aiCharCounter"
+                            class="ai-char-counter"
+                        >
+                            0
+                        </span>
+
+                        <button
+                            id="toolboxAiSend"
+                            class="ai-send-button"
+                            onclick="sendToolboxAI()"
+                        >
+                            ➤
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-composer-disclaimer">
+
+                TOOLBOX AI utiliza Gemini.
+                Puede cometer errores; comprueba la información importante.
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   ESTADO GENERAL
+========================================================= */
+
+let conversations =
+    JSON.parse(
+        localStorage.getItem("toolboxConversations") || "[]"
+    );
+
+let currentConversationId = null;
+
+
+/* =========================================================
+   ABRIR / CERRAR HERRAMIENTAS
+========================================================= */
+
+function abrir(id) {
+
+    cerrar();
+
+    const panel =
+        document.getElementById(id);
+
+    if (!panel) return;
+
+    panel.classList.add("active");
+
+    setTimeout(() => {
+
+        panel.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 50);
+}
+
+
+function cerrar() {
+
+    document
+        .querySelectorAll(".tool-panel")
+        .forEach(panel => {
+
+            panel.classList.remove("active");
+
+        });
+
+}
+
+
+/* =========================================================
+   TEMA
+========================================================= */
+
+function tema() {
+
+    document.body.classList.toggle("light");
+
+    const button =
+        document.getElementById("themeButton");
+
+    if (
+        document.body.classList.contains("light")
+    ) {
+
+        button.innerText = "☀️";
+
+    } else {
+
+        button.innerText = "🌙";
+
+    }
+
+}
+
+
+/* =========================================================
+   BUSCADOR
+========================================================= */
+
+function buscar() {
+
+    const texto =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+    document
+        .querySelectorAll(".tool-card")
+        .forEach(card => {
+
+            const nombre =
+                card.dataset.name.toLowerCase();
+
+            card.style.display =
+                nombre.includes(texto)
+                ? ""
+                : "none";
+
+        });
+
+}
+
+
+/* =========================================================
+   CATEGORÍAS
+========================================================= */
+
+function filtrar(categoria, boton) {
+
+    document
+        .querySelectorAll(".category")
+        .forEach(b => {
+
+            b.classList.remove("selected");
+
+        });
+
+    boton.classList.add("selected");
+
+    document
+        .querySelectorAll(".tool-card")
+        .forEach(card => {
+
+            if (
+                categoria === "all" ||
+                card.dataset.category === categoria
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+}
+
+
+/* =========================================================
+   CALCULADORA
+========================================================= */
+
+function calcAdd(valor) {
+
+    const screen =
+        document.getElementById("calcScreen");
+
+    if (
+        screen.value === "0" ||
+        screen.value === "Error"
+    ) {
+
+        screen.value = valor;
+
+    } else {
+
+        screen.value += valor;
+
+    }
+
+}
+
+
+function calcClear() {
+
+    document.getElementById(
+        "calcScreen"
+    ).value = "0";
+
+}
+
+
+function calcDelete() {
+
+    const screen =
+        document.getElementById("calcScreen");
+
+    screen.value =
+        screen.value.slice(0,-1);
+
+    if (!screen.value) {
+        screen.value = "0";
+    }
+
+}
+
+
+function calcResult() {
+
+    const screen =
+        document.getElementById("calcScreen");
+
+    try {
+
+        if (
+            !/^[0-9+\-*/%.() ]+$/
+            .test(screen.value)
+        ) {
+
+            throw new Error();
+
+        }
+
+        const resultado =
+            Function(
+                "return " + screen.value
+            )();
+
+        if (
+            !Number.isFinite(resultado)
+        ) {
+
+            throw new Error();
+
+        }
+
+        screen.value =
+            resultado;
+
+    } catch {
+
+        screen.value =
+            "Error";
+
+    }
+
+}
+
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+function updateColor() {
+
+    const color =
+        document.getElementById(
+            "colorPicker"
+        ).value;
+
+    document.getElementById(
+        "colorPreview"
+    ).style.background = color;
+
+    document.getElementById(
+        "colorPreview"
+    ).innerText =
+        color.toUpperCase();
+
+    document.getElementById(
+        "colorCode"
+    ).innerText =
+        color.toUpperCase();
+
+}
+
+
+function randomColor() {
+
+    const chars =
+        "0123456789ABCDEF";
+
+    let color = "#";
+
+    for (
+        let i = 0;
+        i < 6;
+        i++
+    ) {
+
+        color +=
+            chars[
+                Math.floor(
+                    Math.random() *
+                    chars.length
+                )
+            ];
+
+    }
+
+    document.getElementById(
+        "colorPicker"
+    ).value =
+        color;
+
+    updateColor();
+
+}
+
+
+async function copyColor() {
+
+    const text =
+        document.getElementById(
+            "colorCode"
+        ).innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Color copiado.");
+
+}
+
+
+/* =========================================================
+   ESTILIZADOR
+========================================================= */
+
+const unicodeStyles = {
+
+    bold: {
+
+        normal:
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+
+        styled:
+            "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭" +
+            "𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇"
+
+    },
+
+    italic: {
+
+        normal:
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+
+        styled:
+            "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡" +
+            "𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"
+
+    },
+
+    bolditalic: {
+
+        normal:
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+
+        styled:
+            "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕" +
+            "𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯"
+
+    },
+
+    gothic: {
+
+        normal:
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+
+        styled:
+            "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ" +
+            "𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷"
+
+    },
+
+    double: {
+
+        normal:
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+
+        styled:
+            "𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ" +
+            "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫"
+
+    },
+
+    mono: {
+
+        normal:
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+
+        styled:
+            "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉" +
+            "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣"
+
+    }
+
+};
+
+
+let currentStyle = "bold";
+
+
+function aplicarEstilo(style) {
+
+    currentStyle = style;
+
+    actualizarEstilo();
+
+}
+
+
+function actualizarEstilo() {
+
+    const input =
+        document.getElementById(
+            "stylerInput"
+        ).value;
+
+    if (!input) {
+
+        document.getElementById(
+            "stylerResult"
+        ).innerText =
+            "Tu texto aparecerá aquí.";
+
+        return;
+
+    }
+
+    const style =
+        unicodeStyles[currentStyle];
+
+    let result = "";
+
+    for (const char of input) {
+
+        const index =
+            style.normal.indexOf(char);
+
+        if (index >= 0) {
+
+            const styledChars = Array.from(style.styled);
+
+result +=
+    styledChars[index] || char;
+
+        } else {
+
+            result += char;
+
+        }
+
+    }
+
+    document.getElementById(
+        "stylerResult"
+    ).innerText =
+        result;
+
+}
+
+
+async function copiarEstilo() {
+
+    const text =
+        document.getElementById(
+            "stylerResult"
+        ).innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Texto copiado.");
+
+}
+
+
+/* =========================================================
+   GENERADOR CONTRASEÑAS
+========================================================= */
+
+function generatePassword() {
+
+    let length =
+        parseInt(
+            document.getElementById(
+                "passwordLength"
+            ).value
+        );
+
+    if (
+        isNaN(length) ||
+        length < 4
+    ) {
+
+        length = 4;
+
+    }
+
+    if (length > 100) {
+        length = 100;
+    }
+
+
+    let chars = "";
+
+    const upper =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    const lower =
+        "abcdefghijklmnopqrstuvwxyz";
+
+    const numbers =
+        "0123456789";
+
+    const symbols =
+        "!@#$%^&*()-_=+[]{};:,.?/";
+
+
+    if (
+        document.getElementById(
+            "passUpper"
+        ).checked
+    ) {
+        chars += upper;
+    }
+
+    if (
+        document.getElementById(
+            "passLower"
+        ).checked
+    ) {
+        chars += lower;
+    }
+
+    if (
+        document.getElementById(
+            "passNumbers"
+        ).checked
+    ) {
+        chars += numbers;
+    }
+
+    if (
+        document.getElementById(
+            "passSymbols"
+        ).checked
+    ) {
+        chars += symbols;
+    }
+
+
+    if (!chars) {
+
+        alert(
+            "Selecciona al menos un tipo de carácter."
+        );
+
+        return;
+
+    }
+
+
+    let password = "";
+
+    const randomArray =
+        new Uint32Array(length);
+
+    crypto.getRandomValues(
+        randomArray
+    );
+
+    for (
+        let i = 0;
+        i < length;
+        i++
+    ) {
+
+        password +=
+            chars[
+                randomArray[i] %
+                chars.length
+            ];
+
+    }
+
+
+    document.getElementById(
+        "passwordResult"
+    ).value =
+        password;
+
+}
+
+
+async function copyPassword() {
+
+    const input =
+        document.getElementById(
+            "passwordResult"
+        );
+
+    if (!input.value) {
+
+        generatePassword();
+
+    }
+
+    await navigator.clipboard.writeText(
+        input.value
+    );
+
+    alert("Contraseña copiada.");
+
+}
+
+
+/* =========================================================
+   CONVERSOR PNG → JPG
+========================================================= */
+
+let convertedJPG = null;
+
+
+function convertPNG() {
+
+    const file =
+        document.getElementById(
+            "pngFile"
+        ).files[0];
+
+    if (!file) return;
+
+
+    const reader =
+        new FileReader();
+
+    reader.onload = function(e) {
+
+        const img =
+            new Image();
+
+        img.onload = function() {
+
+            const canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+            canvas.width =
+                img.width;
+
+            canvas.height =
+                img.height;
+
+            const ctx =
+                canvas.getContext(
+                    "2d"
+                );
+
+            /* Fondo blanco para transparencias */
+
+            ctx.fillStyle =
+                "#ffffff";
+
+            ctx.fillRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            ctx.drawImage(
+                img,
+                0,
+                0
+            );
+
+            convertedJPG =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    .92
+                );
+
+
+            const preview =
+                document.getElementById(
+                    "pngPreview"
+                );
+
+            preview.src =
+                convertedJPG;
+
+            preview.style.display =
+                "block";
+
+
+            document.getElementById(
+                "downloadJPG"
+            ).style.display =
+                "inline-block";
+
+        };
+
+        img.src =
+            e.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+function downloadJPG() {
+
+    if (!convertedJPG) return;
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+    link.href =
+        convertedJPG;
+
+    link.download =
+        "toolbox-convertido.jpg";
+
+    link.click();
+
+}
+
+
+/* =========================================================
+   EDITOR DE IMAGEN
+========================================================= */
+
+let editorImage = null;
+
+let editorRotation = 0;
+
+let editorFlip = false;
+
+let editorGray = false;
+
+
+function loadEditorImage(event) {
+
+    const file =
+        event.target.files[0];
+
+    if (!file) return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(e) {
+
+        editorImage =
+            new Image();
+
+        editorImage.onload =
+            function() {
+
+                editorRotation =
+                    0;
+
+                editorFlip =
+                    false;
+
+                editorGray =
+                    false;
+
+                document.getElementById(
+                    "editorCanvas"
+                ).style.display =
+                    "block";
+
+                document.getElementById(
+                    "editorEmpty"
+                ).style.display =
+                    "none";
+
+                resetEditorControls();
+
+                drawEditor();
+
+            };
+
+        editorImage.src =
+            e.target.result;
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+function resetEditorControls() {
+
+    document.getElementById(
+        "brightnessControl"
+    ).value = 100;
+
+    document.getElementById(
+        "contrastControl"
+    ).value = 100;
+
+    document.getElementById(
+        "saturationControl"
+    ).value = 100;
+
+    updateEditorLabels();
+
+}
+
+
+function updateEditor() {
+
+    updateEditorLabels();
+
+    drawEditor();
+
+}
+
+
+function updateEditorLabels() {
+
+    document.getElementById(
+        "brightnessValue"
+    ).innerText =
+        document.getElementById(
+            "brightnessControl"
+        ).value + "%";
+
+
+    document.getElementById(
+        "contrastValue"
+    ).innerText =
+        document.getElementById(
+            "contrastControl"
+        ).value + "%";
+
+
+    document.getElementById(
+        "saturationValue"
+    ).innerText =
+        document.getElementById(
+            "saturationControl"
+        ).value + "%";
+
+}
+
+
+function drawEditor() {
+
+    if (!editorImage) return;
+
+
+    const canvas =
+        document.getElementById(
+            "editorCanvas"
+        );
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    const angle =
+        editorRotation *
+        Math.PI /
+        180;
+
+
+    const rotated =
+        editorRotation === 90 ||
+        editorRotation === 270;
+
+
+    canvas.width =
+        rotated
+        ? editorImage.height
+        : editorImage.width;
+
+    canvas.height =
+        rotated
+        ? editorImage.width
+        : editorImage.height;
+
+
+    ctx.save();
+
+
+    ctx.translate(
+        canvas.width / 2,
+        canvas.height / 2
+    );
+
+
+    ctx.rotate(angle);
+
+
+    if (editorFlip) {
+
+        ctx.scale(-1,1);
+
+    }
+
+
+    const brightness =
+        document.getElementById(
+            "brightnessControl"
+        ).value;
+
+    const contrast =
+        document.getElementById(
+            "contrastControl"
+        ).value;
+
+    const saturation =
+        document.getElementById(
+            "saturationControl"
+        ).value;
+
+
+    ctx.filter =
+        `brightness(${brightness}%)
+         contrast(${contrast}%)
+         saturate(${saturation}%)
+         ${editorGray ? "grayscale(100%)" : ""}`;
+
+
+    ctx.drawImage(
+        editorImage,
+        -editorImage.width / 2,
+        -editorImage.height / 2
+    );
+
+
+    ctx.restore();
+
+}
+
+
+function rotateEditor() {
+
+    if (!editorImage) return;
+
+    editorRotation =
+        (editorRotation + 90) % 360;
+
+    drawEditor();
+
+}
+
+
+function flipEditor() {
+
+    if (!editorImage) return;
+
+    editorFlip =
+        !editorFlip;
+
+    drawEditor();
+
+}
+
+
+function grayEditor() {
+
+    if (!editorImage) return;
+
+    editorGray =
+        !editorGray;
+
+    drawEditor();
+
+}
+
+
+function resetEditor() {
+
+    if (!editorImage) return;
+
+    editorRotation = 0;
+
+    editorFlip = false;
+
+    editorGray = false;
+
+    resetEditorControls();
+
+    drawEditor();
+
+}
+
+
+function downloadEditor() {
+
+    if (!editorImage) {
+
+        alert(
+            "Primero carga una imagen."
+        );
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.getElementById(
+            "editorCanvas"
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+    link.download =
+        "toolbox-imagen.png";
+
+    link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
+
+    link.click();
+
+}
+
+
+/* =========================================================
+   IA CENTRAL — PETICIÓN AL SERVIDOR
+========================================================= */
+async function askGemini(messages, mode = "normal") {
+
+    const response = await fetch(
+        "/api/ai",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                messages: messages,
+                mode: mode
+            })
+        }
+    );
+
+
+    let data;
+
+    try {
+
+        data = await response.json();
+
+    } catch {
+
+        throw new Error(
+            "El servidor no devolvió una respuesta válida."
+        );
+
+    }
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.error ||
+            "Error conectando con TOOLBOX AI."
+        );
+
+    }
+
+
+    if (!data.reply) {
+
+        throw new Error(
+            data.error ||
+            "TOOLBOX AI no devolvió ninguna respuesta."
+        );
+
+    }
+
+
+    return data.reply;
+}
+
+
+/* =========================================================
+   CORRECTOR CON IA
+========================================================= */
+
+async function corregirConIA() {
+
+    const input =
+        document.getElementById(
+            "textoCorrector"
+        ).value.trim();
+
+
+    if (!input) {
+
+        alert(
+            "Escribe un texto primero."
+        );
+
+        return;
+
+    }
+
+
+    const result =
+        document.getElementById(
+            "correctionResult"
+        );
+
+    const button =
+        document.getElementById(
+            "correctorButton"
+        );
+
+
+    button.disabled = true;
+
+    button.innerText =
+        "🤖 Mejorando...";
+
+
+    result.innerText =
+        "TOOLBOX AI está analizando tu texto...";
+
+
+    try {
+
+        const prompt = `
+Eres el corrector de textos de TOOLBOX.
+
+Corrige exclusivamente el texto proporcionado por el usuario.
+
+Corrige:
+- Ortografía
+- Tildes
+- Puntuación
+- Mayúsculas y minúsculas
+- Gramática
+- Concordancia
+- Errores de escritura
+
+REGLAS IMPORTANTES:
+
+1. Mantén exactamente el significado original.
+2. No añadas información nueva.
+3. No saludes al usuario.
+4. No expliques las correcciones.
+5. No pongas introducciones como "Aquí tienes".
+6. No pongas despedidas.
+7. No hagas comentarios.
+8. Devuelve ÚNICAMENTE el texto corregido.
+9. Conserva los párrafos y el formato del texto original cuando sea posible.
+
+TEXTO A CORREGIR:
+
+${input}
+        `;
+
+
+        const reply =
+    await askGemini(
+        [
+            {
+                role: "user",
+                content: prompt
+            }
+        ],
+        "corrector"
+    );
+
+result.innerText =
+    reply;
+
+    } catch(error) {
+
+        result.innerText =
+            "❌ " +
+            error.message;
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerText =
+            "✨ Mejorar con IA";
+
+    }
+
+}
+
+
+/* =========================================================
+   SIMPLIFICADOR IA
+========================================================= */
+
+async function simplificar() {
+
+    const input =
+        document.getElementById(
+            "simplifierInput"
+        ).value.trim();
+
+
+    if (!input) {
+
+        alert(
+            "Pega un texto primero."
+        );
+
+        return;
+
+    }
+
+
+    const result =
+        document.getElementById(
+            "simplifierResult"
+        );
+
+    const button =
+        document.getElementById(
+            "simplifierButton"
+        );
+
+
+    button.disabled = true;
+
+    button.innerText =
+        "🧠 Simplificando...";
+
+
+    result.innerText =
+        "TOOLBOX AI está preparando una explicación sencilla...";
+
+
+    try {
+
+const prompt = `
+Eres el Simplificador de Textos de TOOLBOX.
+
+Tu tarea es transformar el texto complicado del usuario
+en un texto mucho más fácil de entender.
+
+REGLAS IMPORTANTES:
+
+1. Explica el mismo contenido con palabras sencillas.
+2. Mantén TODA la información importante.
+3. No inventes información.
+4. No cambies el significado.
+5. Sustituye palabras difíciles por palabras fáciles.
+6. Divide las frases demasiado largas.
+7. Si hay conceptos complicados, explícalos de forma sencilla.
+8. Puedes utilizar ejemplos cotidianos cuando ayuden a entender el concepto.
+9. NO saludes al usuario.
+10. NO digas "Aquí tienes".
+11. NO expliques lo que has cambiado.
+12. NO hagas comentarios al final.
+13. Devuelve ÚNICAMENTE el texto simplificado.
+14. Mantén los párrafos y la estructura cuando sea posible.
+
+TEXTO A SIMPLIFICAR:
+
+
+${input}
+        `;
+
+
+        const reply =
+    await askGemini(
+        [
+            {
+                role: "user",
+                content: prompt
+            }
+        ],
+        "simplificador"
+    );
+
+
+        result.innerText =
+            reply;
+
+
+    } catch(error) {
+
+        result.innerText =
+            "❌ " +
+            error.message;
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerText =
+            "🧠 Hacerlo fácil";
+
+    }
+
+}
+
+
+/* =========================================================
+   TOOLBOX AI — CONVERSACIONES
+========================================================= */
+
+function saveConversations() {
+
+    localStorage.setItem(
+        "toolboxConversations",
+        JSON.stringify(
+            conversations
+        )
+    );
+
+}
+
+
+function createNewConversation() {
+
+    const conversation = {
+
+        id:
+            Date.now().toString(),
+
+        title:
+            "Nueva conversación",
+
+        messages:
+            []
+
+    };
+
+
+    conversations.unshift(
+        conversation
+    );
+
+
+    currentConversationId =
+        conversation.id;
+
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+    document.getElementById(
+        "currentConversationTitle"
+    ).innerText =
+        conversation.title;
+
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    input.value = "";
+
+    updateCharCounter();
+
+    input.focus();
+
+
+    closeMobileSidebar();
+
+}
+
+
+function getCurrentConversation() {
+
+    return conversations.find(
+        c =>
+            c.id ===
+            currentConversationId
+    );
+
+}
+
+
+/* =========================================================
+   ABRIR IA
+========================================================= */
+
+function openToolboxAI() {
+
+    document
+        .getElementById(
+            "toolboxAiApp"
+        )
+        .classList.add("open");
+
+
+    if (!currentConversationId) {
+
+        if (conversations.length) {
+
+            currentConversationId =
+                conversations[0].id;
+
+        } else {
+
+            createNewConversation();
+
+            return;
+
+        }
+
+    }
+
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+}
+
+
+function closeToolboxAI() {
+
+    document
+        .getElementById(
+            "toolboxAiApp"
+        )
+        .classList.remove("open");
+
+    closeMobileSidebar();
+
+}
+
+
+/* =========================================================
+   CONVERSACIONES
+========================================================= */
+
+function renderConversationList() {
+
+    const list =
+        document.getElementById(
+            "conversationList"
+        );
+
+    const search =
+        document.getElementById(
+            "conversationSearch"
+        ).value
+        .toLowerCase();
+
+
+    list.innerHTML = "";
+
+
+    conversations
+        .filter(c =>
+            c.title
+                .toLowerCase()
+                .includes(search)
+        )
+        .forEach(conversation => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "conversation-item" +
+                (
+                    conversation.id ===
+                    currentConversationId
+                    ? " active"
+                    : ""
+                );
+
+
+            const title =
+                document.createElement(
+                    "span"
+                );
+
+            title.className =
+                "conversation-title";
+
+            title.innerText =
+                conversation.title;
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "delete-conversation";
+
+            deleteButton.innerText =
+                "🗑";
+
+
+            deleteButton.onclick =
+                function(event) {
+
+                    event.stopPropagation();
+
+                    deleteConversation(
+                        conversation.id
+                    );
+
+                };
+
+
+            item.onclick =
+                function() {
+
+                    currentConversationId =
+                        conversation.id;
+
+                    renderConversationList();
+
+                    renderCurrentConversation();
+
+                    closeMobileSidebar();
+
+                };
+
+
+            item.appendChild(title);
+
+            item.appendChild(
+                deleteButton
+            );
+
+            list.appendChild(item);
+
+        });
+
+}
+
+
+function filterConversations() {
+
+    renderConversationList();
+
+}
+
+
+function deleteConversation(id) {
+
+    conversations =
+        conversations.filter(
+            c =>
+                c.id !== id
+        );
+
+
+    if (
+        currentConversationId === id
+    ) {
+
+        currentConversationId =
+            conversations.length
+            ? conversations[0].id
+            : null;
+
+    }
+
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+}
+
+
+/* =========================================================
+   RENDER CHAT
+========================================================= */
+
+function renderCurrentConversation() {
+
+    const container =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+
+    const conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        container.innerHTML = `
+            <div id="aiWelcome" class="ai-welcome">
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Hola, soy
+                    <span>TOOLBOX AI</span>
+                </h1>
+
+                <p>
+                    Tu asistente inteligente.
+                    Pregúntame lo que quieras.
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "currentConversationTitle"
+    ).innerText =
+        conversation.title;
+
+
+    if (
+        conversation.messages.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div id="aiWelcome" class="ai-welcome">
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Nueva
+                    <span>conversación</span>
+                </h1>
+
+                <p>
+                    ¿Qué quieres hacer hoy?
+                </p>
+
+                <div class="ai-suggestions">
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Explícame algo interesante y después hazme una pregunta para comprobar si lo entendí.')"
+                    >
+                        🧠 Aprender
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Ayúdame con programación y explícame los conceptos paso a paso.')"
+                    >
+                        💻 Programar
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    conversation.messages.forEach(
+        message => {
+
+            addMessageToDOM(
+                message.role,
+                message.content
+            );
+
+        }
+    );
+
+
+    scrollAIToBottom();
+
+}
+
+
+function addMessageToDOM(
+    role,
+    content
+) {
+
+    const container =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "ai-chat-row " +
+        (
+            role === "user"
+            ? "user"
+            : ""
+        );
+
+
+    if (role !== "user") {
+
+        const avatar =
+            document.createElement(
+                "div"
+            );
+
+        avatar.className =
+            "ai-chat-avatar";
+
+        avatar.innerText =
+            "✦";
+
+        row.appendChild(
+            avatar
+        );
+
+    }
+
+
+    const bubble =
+        document.createElement(
+            "div"
+        );
+
+    bubble.className =
+        "ai-chat-bubble";
+
+    bubble.innerText =
+        content;
+
+
+    row.appendChild(
+        bubble
+    );
+
+
+    container.appendChild(
+        row
+    );
+
+}
+
+
+/* =========================================================
+   ENVIAR MENSAJE
+========================================================= */
+async function sendToolboxAI() {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    let conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        createNewConversation();
+
+        conversation =
+            getCurrentConversation();
+
+    }
+
+
+    // =====================================================
+    // EVITAR DOS PETICIONES AL MISMO TIEMPO
+    // =====================================================
+
+    if (conversation.aiBusy) {
+
+        return;
+
+    }
+
+
+    conversation.aiBusy = true;
+
+
+    // =====================================================
+    // AÑADIR MENSAJE DEL USUARIO
+    // =====================================================
+
+    conversation.messages.push({
+
+        role: "user",
+
+        content: text
+
+    });
+
+
+    // =====================================================
+    // TÍTULO
+    // =====================================================
+
+    if (
+        conversation.messages.length === 1
+    ) {
+
+        conversation.title =
+            createConversationTitle(
+                text
+            );
+
+    }
+
+
+    // =====================================================
+    // LIMPIAR INPUT
+    // =====================================================
+
+    input.value = "";
+
+    updateCharCounter();
+
+    autoResizeAIInput(input);
+
+
+    // =====================================================
+    // GUARDAR
+    // =====================================================
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+
+    // =====================================================
+    // INDICADOR
+    // =====================================================
+
+    const typing =
+        document.getElementById(
+            "toolboxAiTyping"
+        );
+
+
+    typing.classList.add(
+        "active"
+    );
+
+
+    try {
+
+        // =================================================
+        // MANDAMOS TODO EL HISTORIAL
+        // INCLUIDO EL MENSAJE ACTUAL
+        // =================================================
+
+        const messages =
+            conversation.messages.map(
+                message => ({
+
+                    role:
+                        message.role,
+
+                    content:
+                        message.content
+
+                })
+            );
+
+
+        // =================================================
+        // GEMINI
+        // =================================================
+
+        const reply =
+            await askGemini(
+                messages,
+                "normal"
+            );
+
+
+        // =================================================
+        // RESPUESTA
+        // =================================================
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                reply
+
+        });
+
+
+        // =================================================
+        // GUARDAR
+        // =================================================
+
+        saveConversations();
+
+        renderConversationList();
+
+        renderCurrentConversation();
+
+
+    } catch (error) {
+
+        console.error(
+            "TOOLBOX AI ERROR:",
+            error
+        );
+
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                "❌ " + error.message
+
+        });
+
+
+        saveConversations();
+
+        renderCurrentConversation();
+
+
+    } finally {
+
+        conversation.aiBusy =
+            false;
+
+
+        typing.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+/* =========================================================
+   PROMPT CENTRAL
+========================================================= */
+
+function buildCentralPrompt(text) {
+
+    return `
+Eres TOOLBOX AI, el asistente central de una aplicación
+llamada TOOLBOX.
+
+Tu personalidad:
+- inteligente
+- clara
+- útil
+- cercana
+- creativa
+- paciente
+- ligeramente original
+- nunca innecesariamente complicada
+
+Tu función no es solamente responder preguntas.
+
+Cuando el usuario te pida EXPLICAR algo:
+
+1. Explica el concepto de forma clara.
+2. Adapta la explicación al nivel del usuario.
+3. Divide las ideas difíciles en partes.
+4. Usa ejemplos cuando ayuden.
+5. Si hay una comparación útil, utilízala.
+6. Al terminar, pregunta de forma natural si quiere
+   aprender el tema más a fondo.
+7. Si el usuario acepta, conviértete en su profesor:
+   - enseña paso a paso
+   - utiliza ejemplos
+   - haz pequeñas preguntas
+   - propón ejercicios
+   - da pistas antes de revelar soluciones
+   - comprueba si ha entendido
+
+Cuando el usuario quiera programar:
+- explica el código
+- ayuda a encontrar errores
+- proporciona código funcional cuando lo necesite
+- utiliza ejemplos sencillos
+- recuerda que el usuario puede ser principiante
+
+Cuando el usuario pida mejorar un texto:
+- conserva su significado
+- mejora claridad y corrección
+- no inventes información
+
+No digas que eres una persona.
+No afirmes tener experiencias personales.
+No inventes datos.
+
+IMPORTANTE:
+Responde directamente al mensaje del usuario.
+
+MENSAJE:
+
+${text}
+    `;
+
+}
+
+
+/* =========================================================
+   TÍTULOS AUTOMÁTICOS
+========================================================= */
+
+function createConversationTitle(text) {
+
+    let title =
+        text
+            .replace(/\s+/g," ")
+            .trim();
+
+
+    if (title.length > 38) {
+
+        title =
+            title.substring(
+                0,
+                38
+            ) + "...";
+
+    }
+
+
+    return title ||
+        "Nueva conversación";
+
+}
+
+
+/* =========================================================
+   SUGERENCIAS
+========================================================= */
+
+function useSuggestion(text) {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    input.value =
+        text;
+
+    updateCharCounter();
+
+    autoResizeAIInput(input);
+
+    input.focus();
+
+}
+
+
+/* =========================================================
+   INPUT IA
+========================================================= */
+
+function toolboxAIKeyDown(event) {
+
+    if (
+        event.key === "Enter" &&
+        !event.shiftKey
+    ) {
+
+        event.preventDefault();
+
+        sendToolboxAI();
+
+    }
+
+}
+
+
+function autoResizeAIInput(textarea) {
+
+    textarea.style.height =
+        "auto";
+
+    textarea.style.height =
+        Math.min(
+            textarea.scrollHeight,
+            180
+        ) + "px";
+
+}
+
+
+function updateCharCounter() {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    document.getElementById(
+        "aiCharCounter"
+    ).innerText =
+        input.value.length;
+
+}
+
+
+function scrollAIToBottom() {
+
+    const messages =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+/* =========================================================
+   SIDEBAR MÓVIL
+========================================================= */
+
+function toggleAISidebar() {
+
+    document
+        .getElementById(
+            "toolboxAiSidebar"
+        )
+        .classList.toggle(
+            "mobile-open"
+        );
+
+}
+
+
+function closeMobileSidebar() {
+
+    document
+        .getElementById(
+            "toolboxAiSidebar"
+        )
+        .classList.remove(
+            "mobile-open"
+        );
+
+}
+
+
+/* =========================================================
+   CREAR IMAGEN
+========================================================= */
+
+async function generateToolboxImage() {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    const prompt =
+        input.value.trim();
+
+
+    if (!prompt) {
+
+        alert(
+            "Describe primero la imagen que quieres crear."
+        );
+
+        return;
+
+    }
+
+
+    let conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        createNewConversation();
+
+        conversation =
+            getCurrentConversation();
+
+    }
+
+
+    conversation.messages.push({
+
+        role:
+            "user",
+
+        content:
+            "✨ Crear imagen: " +
+            prompt
+
+    });
+
+
+    input.value = "";
+
+    updateCharCounter();
+
+    saveConversations();
+
+    renderCurrentConversation();
+
+
+    const typing =
+        document.getElementById(
+            "toolboxAiTyping"
+        );
+
+    typing.classList.add(
+        "active"
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/image",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            prompt:
+                                prompt
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                "No se pudo crear la imagen."
+            );
+
+        }
+
+
+        if (!data.image) {
+
+            throw new Error(
+                "El servidor no devolvió una imagen."
+            );
+
+        }
+
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                "🖼️ Imagen creada por TOOLBOX AI:\n\n" +
+                data.image
+
+        });
+
+
+        saveConversations();
+
+        renderCurrentConversation();
+
+
+    } catch(error) {
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                "❌ " +
+                error.message
+
+        });
+
+
+        saveConversations();
+
+        renderCurrentConversation();
+
+    } finally {
+
+        typing.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIALIZACIÓN
+========================================================= */
+
+(function init() {
+
+    if (
+        conversations.length === 0
+    ) {
+
+        createNewConversation();
+
+    } else {
+
+        currentConversationId =
+            conversations[0].id;
+
+        renderConversationList();
+
+        renderCurrentConversation();
+
+    }
+
+
+    updateColor();
+
+})();
+
+</script>
+
+</body>
+</html>
