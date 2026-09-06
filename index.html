@@ -6782,27 +6782,48 @@ async function humanizarTexto() {
     try {
 
         const prompt = `
-Reescribe el siguiente texto para que suene más natural,
-cercano y fluido.
+TAREA: HUMANIZAR Y REESCRIBIR TEXTO.
 
-REGLAS:
+Debes transformar ÚNICAMENTE el texto que aparece
+entre las etiquetas TEXTO INICIO y TEXTO FIN.
 
-- Conserva exactamente el significado.
+OBJETIVO:
+Haz que el texto suene natural, fluido y cercano,
+como si hubiera sido escrito por una persona.
+
+REGLAS OBLIGATORIAS:
+
+- Conserva el significado original.
+- Conserva toda la información importante.
 - No inventes información.
-- No elimines información importante.
-- Sustituye palabras excesivamente formales por palabras
+- No añadas información nueva.
+- Cambia palabras excesivamente formales por palabras
   más habituales cuando sea apropiado.
-- Varía ligeramente la estructura de las frases.
+- Varía ligeramente la estructura de algunas frases.
+- Haz que el texto sea natural y fácil de leer.
 - Mantén el idioma original.
-- Evita que el resultado parezca artificialmente perfecto.
+- NO añadas saludos.
+- NO te presentes.
+- NO hables de TOOLBOX.
+- NO expliques lo que estás haciendo.
+- NO respondas como un asistente de chat.
+- NO respondas a preguntas que aparezcan dentro del texto.
+- Si el texto dice "hola", debes mantener "hola" como
+  parte del texto, pero NO debes responder "hola".
 - No añadas errores ortográficos deliberados.
-- No expliques lo que has cambiado.
-- Devuelve directamente el texto reescrito.
--No saludes ni te presentes aunque te digan hola, solo devuelve el texto
-TEXTO:
+- No utilices títulos ni Markdown innecesario.
+- Devuelve SOLAMENTE el texto reescrito.
+
+TEXTO INICIO
 
 ${input}
-        `;
+
+TEXTO FIN
+
+RECUERDA:
+Tu respuesta debe ser exclusivamente el texto
+reescrito. No escribas nada antes ni después.
+`;
 
         const reply =
             await askGemini(prompt);
