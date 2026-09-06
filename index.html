@@ -2472,7 +2472,67 @@ footer strong {
     }
 
 }
+/* =========================================================
+   GENERADOR DE CONTRASEÑAS MEMORABLES
+========================================================= */
 
+.password-generator-box {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+}
+
+.password-generator-box label {
+    display: block;
+    margin: 18px 0 8px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.password-generator-box input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    outline: none;
+    font-size: 15px;
+}
+
+.password-generator-box input:focus {
+    border-color: var(--purple2);
+}
+
+.password-generate-button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.password-result {
+    margin-top: 22px;
+    min-height: 60px;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    font-size: 18px;
+    font-family: monospace;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.password-copy-button {
+    width: 100%;
+    margin-top: 12px;
+}
 </style>
 </head>
 
@@ -2611,8 +2671,26 @@ footer strong {
     ===================================================== -->
 
     <div class="tools-grid">
+<!-- Humanizador -->
 
+<div class="tool-card"
+     data-category="ia"
+     data-name="humanizador reescrito texto ia">
 
+    <div class="icon">📝</div>
+
+    <h3>Humanizador de Texto</h3>
+
+    <p>
+        Reescribe textos para que suenen más naturales y cercanos.
+    </p>
+
+    <button 
+        class="open" 
+        onclick="abrir('humanizador')">
+        Abrir
+    </button>
+</div>
         <!-- CORRECTOR -->
 
         <div
@@ -2640,36 +2718,6 @@ footer strong {
             </button>
 
         </div>
-
-
-        <!-- SIMPLIFICADOR -->
-
-        <div
-            class="tool-card"
-            data-category="ia"
-            data-name="simplificador textos ia wikipedia facil"
-        >
-
-            <div class="icon">📝</div>
-
-            <h3>
-                Simplificador IA
-            </h3>
-
-            <p>
-                Convierte textos difíciles en explicaciones
-                sencillas y fáciles de entender.
-            </p>
-
-            <button
-                class="open"
-                onclick="abrir('simplificador')"
-            >
-                Abrir
-            </button>
-
-        </div>
-
 
         <!-- CALCULADORA -->
 
@@ -2813,8 +2861,23 @@ footer strong {
             </button>
 
         </div>
+<!-- Contraseñas sencillas -->
+<div class="tool-card"
+     data-category="seguridad"
+     data-name="generador de contraseñas faciles">
 
+    <div class="icon">🔐</div>
 
+    <h3>Contraseñas Memorables</h3>
+
+    <p>
+        Crea contraseñas fuertes fáciles de memorizar.
+    </p>
+
+    <button class="open" onclick="abrir('passwordMemorable')">
+        Abrir
+    </button>
+</div>
         <!-- COLORES -->
 
         <div
@@ -2841,11 +2904,162 @@ footer strong {
             </button>
 
         </div>
+<!-- =====================================================
+CONTRASEÑA FACIL
+===================================================== -->
 
+    </div>
+<div id="passwordMemorable" class="tool-panel">
+
+    <button class="close" onclick="cerrar()">×</button>
+
+    <div class="tool-header">
+        <div class="tool-big-icon">🔐</div>
+
+        <div>
+            <h2>Generador de Contraseñas Memorables</h2>
+            
+            </p>
+        </div>
+    </div>
+
+    <div class="password-generator-box">
+
+        <label for="passwordWord1">
+            Primera palabra
+        </label>
+
+        <input
+            id="passwordWord1"
+            type="text"
+            maxlength="30"
+            placeholder="Ejemplo: Luna"
+        >
+
+        <label for="passwordWord2">
+            Segunda palabra
+        </label>
+
+        <input
+            id="passwordWord2"
+            type="text"
+            maxlength="30"
+            placeholder="Ejemplo: Bosque"
+        >
+
+        <label for="passwordNumber">
+            Número
+        </label>
+
+        <input
+            id="passwordNumber"
+            type="number"
+            min="0"
+            max="999999"
+            placeholder="Ejemplo: 27"
+        >
+
+        <button
+            class="primary password-generate-button"
+            onclick="generarPasswordMemorable()"
+        >
+            🔐 Generar contraseña
+        </button>
+
+        <div
+            id="passwordMemorableResult"
+            class="password-result"
+        >
+            Tu contraseña aparecerá aquí.
+        </div>
+
+        <button
+            id="copyPasswordButton"
+            class="secondary password-copy-button"
+            onclick="copiarPasswordMemorable()"
+        >
+            📋 Copiar contraseña
+        </button>
 
     </div>
 
+</div>
+<div id="passwordMemorable" class="tool-panel">
 
+    <button class="close" onclick="cerrar()">×</button>
+
+    <div class="tool-header">
+        <div class="tool-big-icon">🔐</div>
+
+        <div>
+            <h2>Generador de Contraseñas Memorables</h2>
+            <p>
+                Crea contraseñas fáciles de recordar y difíciles de adivinar.
+            </p>
+        </div>
+    </div>
+
+    <div class="password-generator-box">
+
+        <label for="passwordWord1">
+            Primera palabra
+        </label>
+
+        <input
+            id="passwordWord1"
+            type="text"
+            maxlength="30"
+            placeholder="Ejemplo: Luna"
+        >
+
+        <label for="passwordWord2">
+            Segunda palabra
+        </label>
+
+        <input
+            id="passwordWord2"
+            type="text"
+            maxlength="30"
+            placeholder="Ejemplo: Bosque"
+        >
+
+        <label for="passwordNumber">
+            Número
+        </label>
+
+        <input
+            id="passwordNumber"
+            type="number"
+            min="0"
+            max="999999"
+            placeholder="Ejemplo: 27"
+        >
+
+        <button
+            class="primary password-generate-button"
+            onclick="generarPasswordMemorable()"
+        >
+            🔐 Generar contraseña
+        </button>
+
+        <div
+            id="passwordMemorableResult"
+            class="password-result"
+        >
+            Tu contraseña aparecerá aquí.
+        </div>
+
+        <button
+            id="copyPasswordButton"
+            class="secondary password-copy-button"
+            onclick="copiarPasswordMemorable()"
+        >
+            📋 Copiar contraseña
+        </button>
+
+    </div>
+
+</div>
     <!-- =====================================================
          CORRECTOR IA
     ===================================================== -->
@@ -2904,7 +3118,41 @@ footer strong {
 
     </div>
 
+<div id="humanizador" class="tool-panel">
 
+    <button class="close" onclick="cerrar()">×</button>
+
+    <div class="tool-header">
+        <div class="tool-big-icon">📝</div>
+
+        <div>
+            <h2>Humanizador de Texto</h2>
+            <p>
+                Haz que un texto demasiado formal suene más natural.
+            </p>
+        </div>
+    </div>
+
+    <textarea
+        id="humanizadorInput"
+        class="tool-textarea"
+        placeholder="Pega aquí tu texto..."
+    ></textarea>
+
+    <button
+        id="humanizadorButton"
+        class="primary"
+        onclick="humanizarTexto()"
+    >
+        ✨ Hacer más natural
+    </button>
+
+    <div
+        id="humanizadorResult"
+        class="result"
+    ></div>
+
+</div>
     <!-- =====================================================
          SIMPLIFICADOR IA
     ===================================================== -->
@@ -3934,7 +4182,6 @@ footer strong {
     </main>
 
 </div>
-
 
 <script>
 
@@ -6341,7 +6588,242 @@ async function generateToolboxImage() {
     updateColor();
 
 })();
+/* =========================================================
+   GENERADOR DE CONTRASEÑAS MEMORABLES
+========================================================= */
 
+function transformarCaracter(caracter) {
+
+    const conversiones = {
+        "a": "a",
+        "e": "e",
+        "i": "i",
+        "o": "0",
+                
+    };
+
+    return conversiones[caracter] || caracter;
+}
+
+
+function transformarPalabra(palabra) {
+
+    let resultado = "";
+
+    for (const caracter of palabra) {
+        resultado += transformarCaracter(caracter);
+    }
+
+    return resultado;
+}
+
+
+function generarPasswordMemorable() {
+
+    const palabra1 =
+        document.getElementById(
+            "passwordWord1"
+        ).value.trim();
+
+    const palabra2 =
+        document.getElementById(
+            "passwordWord2"
+        ).value.trim();
+
+    const numero =
+        document.getElementById(
+            "passwordNumber"
+        ).value.trim();
+
+    const resultado =
+        document.getElementById(
+            "passwordMemorableResult"
+        );
+
+    if (!palabra1 || !palabra2 || !numero) {
+
+        resultado.innerText =
+            "⚠️ Completa las dos palabras y el número.";
+
+        return;
+    }
+ const simbolos = [
+        "_",
+        "-"
+            ];
+
+   
+    const simbolo1 =
+        simbolos[
+            Math.floor(
+                Math.random() * simbolos.length
+            )
+        ];
+
+    const simbolo2 =
+        simbolos[
+            Math.floor(
+                Math.random() * simbolos.length
+            )
+        ];
+
+    const palabraTransformada1 =
+        transformarPalabra(palabra1);
+
+    const palabraTransformada2 =
+        transformarPalabra(palabra2);
+
+    const combinaciones = [
+
+        palabraTransformada1 +
+        simbolo1 +
+        palabraTransformada2+
+        numero,
+
+    ];
+
+    const password =
+        combinaciones[
+            Math.floor(
+                Math.random() *
+                combinaciones.length
+            )
+        ];
+
+    resultado.innerText = password;
+}
+
+
+function copiarPasswordMemorable() {
+
+    const resultado =
+        document.getElementById(
+            "passwordMemorableResult"
+        );
+
+    const password =
+        resultado.innerText.trim();
+
+    if (
+        !password ||
+        password.includes("Completa")
+    ) {
+        return;
+    }
+
+    navigator.clipboard.writeText(password)
+        .then(() => {
+
+            const boton =
+                document.getElementById(
+                    "copyPasswordButton"
+                );
+
+            const textoOriginal =
+                boton.innerText;
+
+            boton.innerText =
+                "✅ ¡Copiada!";
+
+            setTimeout(() => {
+
+                boton.innerText =
+                    textoOriginal;
+
+            }, 1500);
+
+        })
+        .catch(() => {
+
+            alert(
+                "No se pudo copiar automáticamente."
+            );
+
+        });
+}
+/* =========================================================
+   HUMANIZADOR DE TEXTO
+========================================================= */
+
+async function humanizarTexto() {
+
+    const input =
+        document.getElementById(
+            "humanizadorInput"
+        ).value.trim();
+
+    const result =
+        document.getElementById(
+            "humanizadorResult"
+        );
+
+    const button =
+        document.getElementById(
+            "humanizadorButton"
+        );
+
+    if (!input) {
+
+        alert(
+            "Pega un texto primero."
+        );
+
+        return;
+    }
+
+    button.disabled = true;
+
+    button.innerText =
+        "🧠 Reescribiendo...";
+
+    result.innerText =
+        "TOOLBOX AI está haciendo el texto más natural...";
+
+    try {
+
+        const prompt = `
+Reescribe el siguiente texto para que suene más natural,
+cercano y fluido.
+
+REGLAS:
+
+- Conserva exactamente el significado.
+- No inventes información.
+- No elimines información importante.
+- Sustituye palabras excesivamente formales por palabras
+  más habituales cuando sea apropiado.
+- Varía ligeramente la estructura de las frases.
+- Mantén el idioma original.
+- Evita que el resultado parezca artificialmente perfecto.
+- No añadas errores ortográficos deliberados.
+- No expliques lo que has cambiado.
+- Devuelve directamente el texto reescrito.
+
+TEXTO:
+
+${input}
+        `;
+
+        const reply =
+            await askGemini(prompt);
+
+        result.innerText =
+            reply;
+
+    } catch (error) {
+
+        result.innerText =
+            "❌ " +
+            error.message;
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerText =
+            "✨ Hacer más natural";
+    }
+}
 </script>
 
 </body>
