@@ -6826,7 +6826,15 @@ reescrito. No escribas nada antes ni después.
 `;
 
         const reply =
-            await askGemini(prompt);
+    await askGemini(
+        [
+            {
+                role: "user",
+                content: prompt
+            }
+        ],
+        "humanizador"
+    );
 
         result.innerText =
             reply;
