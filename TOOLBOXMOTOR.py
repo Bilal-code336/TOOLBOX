@@ -42,7 +42,24 @@ except Exception as error:
 @app.route("/")
 def inicio():
     return send_from_directory(".", "index.html")
-
+@app.route("/robots.txt")
+def robots():
+    return (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        "Sitemap: https://toolbox-zci6.onrender.com/sitemap.xml\n"
+    ), 200, {"Content-Type": "text/plain; charset=utf-8"}
+@app.route("/sitemap.xml")
+def sitemap():
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+        '<url>'
+        '<loc>https://toolbox-zci6.onrender.com/</loc>'
+        '</url>'
+        '</urlset>'
+    ), 200, {"Content-Type": "application/xml"}
 @app.route("/<path:filename>")
 def archivos(filename):
     return send_from_directory(".", filename)
