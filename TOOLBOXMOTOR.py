@@ -42,6 +42,12 @@ except Exception as error:
 @app.route("/")
 def inicio():
     return send_from_directory(".", "index.html")
+@app.route("/robots.txt")
+def robots():
+    return """User-agent: *
+Allow: /
+
+Sitemap: https://toolbox-zci6.onrender.com/sitemap.xml""", 200, {"Content-Type": "text/plain; charset=utf-8"}
 @app.route("/<path:filename>")
 def archivos(filename):
     return send_from_directory(".", filename)
