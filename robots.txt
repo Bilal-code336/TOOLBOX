@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://toolbox-zci6.onrender.com
