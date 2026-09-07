@@ -86,13 +86,7 @@ Eres TOOLBOX AI. Inteligencia artificial central de la app TOOLBOX.
 Responde normalmente en español, de forma amable, directa y práctica.
 Ayuda especialmente con programación (Python, Flask, HTML, CSS, JS).
 """
-@app.route("/robots.txt")
-def robots():
-    return """User-agent: *
-Allow: /
 
-Sitemap: https://toolbox-zci6.onrender.com/sitemap.xml
-""", 200, {"Content-Type": "text/plain; charset=utf-8"}
 @app.route("/api/ai", methods=["POST"])
 @app.route("/api/chat", methods=["POST"])
 def ai():
