@@ -42,6 +42,7 @@ except Exception as error:
 @app.route("/")
 def inicio():
     return send_from_directory(".", "index.html")
+    
 @app.route("/robots.txt")
 def robots():
     texto_robots = "User-agent: *\nDisallow:\n\nSitemap: https://toolbox-zci6.onrender.com/sitemap.xml"
