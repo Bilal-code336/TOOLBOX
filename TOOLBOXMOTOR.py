@@ -43,8 +43,7 @@ except Exception as error:
 def inicio():
     return send_from_directory(".", "index.html")
 @app.route("/robots.txt")
-def robots():
-    return (
+def robots():return (
         "User-agent: *\n"
         "Allow: /\n"
         "\n"
