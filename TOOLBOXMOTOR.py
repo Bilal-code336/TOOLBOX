@@ -44,10 +44,9 @@ def inicio():
     return send_from_directory(".", "index.html")
 @app.route("/robots.txt")
 def robots():
-    return """User-agent: *
-Allow: /
+    texto_robots = "User-agent: *\nDisallow:\n\nSitemap: https://toolbox-zci6.onrender.com/sitemap.xml"
+    return texto_robots, 200, {"Content-Type": "text/plain; charset=utf-8"}
 
-Sitemap: https://toolbox-zci6.onrender.com/sitemap.xml""", 200, {"Content-Type": "text/plain; charset=utf-8"}
 @app.route("/<path:filename>")
 def archivos(filename):
     return send_from_directory(".", filename)
