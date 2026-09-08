@@ -2548,10 +2548,12 @@ footer strong {
         🧰 TOOL<span>BOX</span>
     </div>
    
-<!-- ENLACE NATIVO QUE ABRE EL TRADUCTOR SÍ O SÍ -->
-<a href="https://google.com" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; font-size: 14px;">
+<button id="btn-idioma" class="notranslate" onclick="cambiarIdiomaManual()" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold;">
     🌐 EN
-</a>
+</button>
+
+<!-- Dejamos este hueco invisible donde Google inyectará su motor detrás de las cámaras -->
+<div id="google_translate_element" style="display:none;"></div>
 
 
     <div class="nav-right">
@@ -6920,12 +6922,37 @@ reescrito. No escribas nada antes ni después.
 }
 </script>
 
-<!-- FUNCIONAMIENTO DEL BOTÓN MANUAL DE IDIOMA -->
-<script>
-function cambiarIdioma() {
-    window.location.href = "https://google.com" + encodeURIComponent(window.location.href);
+<!-- TRADUCCIÓN INTERNA EN TU PROPIA WEB -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        includedLanguages: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+
+function cambiarIdiomaManual() {
+    // Busca el selector interno que Google mete en tu web de forma oculta
+    const selectGoogle = document.querySelector('#google_translate_element select');
+    const boton = document.getElementById('btn-idioma');
+    
+    if (selectGoogle) {
+        if (boton.innerText.includes('EN')) {
+            selectGoogle.value = 'en'; // Fuerza a tu web a cambiar a inglés ahí mismo
+            boton.innerHTML = '🌐 ES';  // Cambia el texto del botón para poder volver
+        } else {
+            selectGoogle.value = 'es'; // Vuelve a poner la web en español
+            boton.innerHTML = '🌐 EN';
+        }
+        // Avisa al navegador para que refresque los textos al instante
+        selectGoogle.dispatchEvent(new Event('change'));
+    }
 }
 </script>
+<script type="text/javascript" src="https://translate.google.com"></script>
+
 
 </body>
 </html>
