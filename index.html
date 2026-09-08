@@ -2548,13 +2548,13 @@ footer strong {
         🧰 TOOL<span>BOX</span>
     </div>
    
-<button id="btn-idioma" onclick="window.location.href='https://translate.google.com/?sl=es&tl=en&op=translate' + encodeURIComponent(window.location.href);" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; position: relative; z-index: 999999; cursor: pointer;">
+<button id="btn-idioma" onclick="cambiarIdiomaInterno()" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">
     🌐 EN
 </button>
-<!-- Dejamos este hueco invisible donde Google inyectará su motor detrás de las cámaras -->
+
+<!-- Este hueco es obligatorio para que Google inyecte su motor de traducción de forma invisible -->
 <div id="google_translate_element" style="display:none;"></div>
-
-
+   
     <div class="nav-right">
 
         <a href="#herramientas" class="nav-link">
@@ -6921,7 +6921,7 @@ reescrito. No escribas nada antes ni después.
 }
 </script>
 
-<!-- TRADUCCIÓN INTERNA EN TU PROPIA WEB -->
+<!-- TRADUCCIÓN INTERNA AUTOMÁTICA -->
 <script type="text/javascript">
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -6932,25 +6932,25 @@ function googleTranslateElementInit() {
     }, 'google_translate_element');
 }
 
-function cambiarIdiomaManual() {
-    // Busca el selector interno que Google mete en tu web de forma oculta
+function cambiarIdiomaInterno() {
+    // Buscamos el selector oculto que Google inyecta en el div invisible
     const selectGoogle = document.querySelector('#google_translate_element select');
     const boton = document.getElementById('btn-idioma');
     
     if (selectGoogle) {
         if (boton.innerText.includes('EN')) {
-            selectGoogle.value = 'en'; // Fuerza a tu web a cambiar a inglés ahí mismo
+            selectGoogle.value = 'en'; // Traduce tu propia web al inglés al instante
             boton.innerHTML = '🌐 ES';  // Cambia el texto del botón para poder volver
         } else {
-            selectGoogle.value = 'es'; // Vuelve a poner la web en español
+            selectGoogle.value = 'es'; // Devuelve la web al español
             boton.innerHTML = '🌐 EN';
         }
-        // Avisa al navegador para que refresque los textos al instante
+        // Le avisa al navegador que aplique el cambio de idioma ya mismo
         selectGoogle.dispatchEvent(new Event('change'));
     }
 }
 </script>
-<script type="text/javascript" src="https://translate.google.com/?sl=es&tl=en&op=translate"></script>
+<script type="text/javascript" src="https://google.com"></script>
 
 
 </body>
