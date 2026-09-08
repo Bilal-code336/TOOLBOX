@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>TOOLBOX</title>
-
+<script>
+document.title = "TOOLBOX";
+</script>
 <link rel="icon" type="image/png" href="/favicon.png">
 
 <style>
@@ -3856,7 +3858,7 @@ CONTRASEÑA FACIL
 <footer>
 
     <div style="font-size:30px">
-        🧰 TOOLBOX 2.0
+       <span class="notranslate">🧰 TOOLBOX 2.0</span>
     </div>
 
     <br>
@@ -6937,6 +6939,7 @@ reescrito. No escribas nada antes ni después.
 }
 </script>
 <script>
+
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'es',
@@ -6954,12 +6957,16 @@ function forzarTraduccionGoogle() {
         return;
     }
 
-    if (select.value === 'en') {
-        select.value = 'es';
-        boton.innerHTML = '🌐 EN';
-    } else {
+    if (select.value !== 'en') {
+        // Pasar al inglés
         select.value = 'en';
+        select.dispatchEvent(new Event('change'));
         boton.innerHTML = '🌐 ES';
+        } else {
+        // Volver al contenido original de TOOLBOX
+        select.value = 'es';
+        select.dispatchEvent(new Event('change'));
+        boton.innerHTML = '🌐 EN';
     }
 
     select.dispatchEvent(new Event('change'));
@@ -6967,5 +6974,27 @@ function forzarTraduccionGoogle() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ESTILOS PÚRPURA DE TU BOTÓN DE IDIOMA -->
+<style>
+    .btn-lang {
+        background: var(--button);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 8px 16px;
+        border-radius: 11px;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+    .btn-lang:hover {
+        border-color: var(--purple2) !important;
+        color: var(--purple3) !important;
+        background: rgba(124, 58, 237, 0.08);
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        transform: translateY(-1px);
+    }
+</style>
+
 </body>
 </html>
