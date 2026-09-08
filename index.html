@@ -2548,7 +2548,9 @@ footer strong {
         🧰 TOOL<span>BOX</span>
     </div>
    
-    <div id="google_translate_element"></div>
+    <button id="btn-idioma" onclick="cambiarIdioma()" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold;">
+        🌐 EN
+    </button>
 
     <div class="nav-right">
 
@@ -6915,7 +6917,13 @@ reescrito. No escribas nada antes ni después.
     }
 }
 </script>
-<script src="traductor.js"></script>
+
+<!-- FUNCIONAMIENTO DEL BOTÓN MANUAL DE IDIOMA -->
+<script>
+function cambiarIdioma() {
+    window.location.href = "https://google.com" + encodeURIComponent(window.location.href);
+}
+</script>
 
 </body>
 </html>
