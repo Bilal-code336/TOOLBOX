@@ -10,7 +10,25 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 
 <style>
+#google_translate_element {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
 /* =========================================================
    TOOLBOX — ESTILO PRINCIPAL
 ========================================================= */
@@ -2550,11 +2568,9 @@ footer strong {
    <!-- Probamos con la URL alternativa directa de Google Translate 👇 -->
     <button id="btn-idioma" class="btn-lang" onclick="forzarTraduccionGoogle()">
     🌐 EN
-</button>
-    <!-- Hueco invisible obligatorio para el motor de Google -->
-    <div id="google_translate_element" style="display:none !important;"></div>
+   </button>
 
-    </div>
+<div id="google_translate_element"></div>
    
     <div class="nav-right">
 
@@ -6920,64 +6936,33 @@ reescrito. No escribas nada antes ni después.
     }
 }
 </script>
-<style>
-.btn-lang {
-    background: var(--button);
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 8px 16px;
-    border-radius: 11px;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.btn-lang:hover {
-    border-color: var(--purple2) !important;
-    color: var(--purple3) !important;
-    background: rgba(124, 58, 237, 0.08);
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-    transform: translateY(-1px);
-}
-
-.skiptranslate,
-.goog-te-banner-frame {
-    display: none !important;
-}
-
-body {
-    top: 0px !important;
-}
-</style>
-
 <script>
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'es',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        includedLanguages: 'es,en',
         autoDisplay: false
     }, 'google_translate_element');
 }
 
 function forzarTraduccionGoogle() {
-    const selectGoogle = document.querySelector('#google_translate_element select');
+    const select = document.querySelector('.goog-te-combo');
     const boton = document.getElementById('btn-idioma');
 
-    if (!selectGoogle) {
-        console.log("Google Translate todavía está cargando...");
+    if (!select) {
+        console.log("Google Translate todavía no ha cargado.");
         return;
     }
 
-    if (selectGoogle.value === 'en') {
-        selectGoogle.value = 'es';
+    if (select.value === 'en') {
+        select.value = 'es';
         boton.innerHTML = '🌐 EN';
     } else {
-        selectGoogle.value = 'en';
+        select.value = 'en';
         boton.innerHTML = '🌐 ES';
     }
 
-    selectGoogle.dispatchEvent(new Event('change'));
+    select.dispatchEvent(new Event('change'));
 }
 </script>
 
