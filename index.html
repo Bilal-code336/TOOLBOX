@@ -2547,11 +2547,10 @@ footer strong {
     <div class="logo">
         🧰 TOOL<span>BOX</span>
     </div>
-   <!-- Tu botón púrpura llamará a la función de Google 👇 -->
-    <button id="btn-idioma" onclick="forzarTraduccionGoogle()" class="btn-lang">
+   <!-- Probamos con la URL alternativa directa de Google Translate 👇 -->
+    <button id="btn-idioma" class="btn-lang" onclick="window.location.href='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit' + encodeURIComponent(window.location.href);">
         🌐 EN
     </button>
-
     <!-- Hueco invisible obligatorio para el motor de Google -->
     <div id="google_translate_element" style="display:none !important;"></div>
 
