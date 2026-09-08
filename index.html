@@ -2548,10 +2548,9 @@ footer strong {
         🧰 TOOL<span>BOX</span>
     </div>
    
-<button id="btn-idioma" class="notranslate" onclick="cambiarIdiomaManual()" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold;">
+<button id="btn-idioma" onclick="window.location.href='https://translate.google.com/?sl=es&tl=en&op=translate' + encodeURIComponent(window.location.href);" style="background: var(--button); color: var(--text); border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; position: relative; z-index: 999999; cursor: pointer;">
     🌐 EN
 </button>
-
 <!-- Dejamos este hueco invisible donde Google inyectará su motor detrás de las cámaras -->
 <div id="google_translate_element" style="display:none;"></div>
 
