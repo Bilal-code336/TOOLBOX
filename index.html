@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="yes">
 
 <head>
 <meta charset="UTF-8">
@@ -2547,7 +2547,15 @@ footer strong {
     <div class="logo">
         🧰 TOOL<span>BOX</span>
     </div>
-   
+   <!-- Tu botón púrpura llamará a la función de Google 👇 -->
+    <button id="btn-idioma" onclick="forzarTraduccionGoogle()" class="btn-lang">
+        🌐 EN
+    </button>
+
+    <!-- Hueco invisible obligatorio para el motor de Google -->
+    <div id="google_translate_element" style="display:none !important;"></div>
+
+    </div>
    
     <div class="nav-right">
 
@@ -3832,16 +3840,15 @@ CONTRASEÑA FACIL
 
 <footer>
 
-    <div style="font-size:28px">
-        🧰 TOOLBOX
+    <div style="font-size:30px">
+        🧰 TOOLBOX 2.0
     </div>
 
     <br>
-
+<div style="font-size:20px">
     Todas tus herramientas en un solo sitio.
-
-    <br><br>
-
+</div>
+    <br>
     <strong>
         Sin pagos, sin complicaciones
     </strong>
@@ -6914,6 +6921,63 @@ reescrito. No escribas nada antes ni después.
     }
 }
 </script>
+<style>
+    /* Estilo de tu botón púrpura con brillo */
+    .btn-lang {
+        background: var(--button);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 8px 16px;
+        border-radius: 11px;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+    .btn-lang:hover {
+        border-color: var(--purple2) !important;
+        color: var(--purple3) !important;
+        background: rgba(124, 58, 237, 0.08);
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        transform: translateY(-1px);
+    }
+    /* Ocultar elementos feos de Google en la web */
+    .skiptranslate, .goog-te-banner-frame { display: none !important; }
+    body { top: 0px !important; }
+</style>
+
+<script type="text/javascript">
+// Inicializa el motor de Google oculto
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'es',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+
+// La función que hace la magia al pulsar tu botón
+function forzarTraduccionGoogle() {
+    const selectGoogle = document.querySelector('#google_translate_element select');
+    const boton = document.getElementById('btn-idioma');
+    
+    if (selectGoogle) {
+        if (boton.innerText.includes('EN')) {
+            selectGoogle.value = 'en'; // Google traduce toda tu web al inglés de golpe
+            boton.innerHTML = '🌐 ES';  // Cambia tu botón a Español
+        } else {
+            selectGoogle.value = 'es'; // Google devuelve tu web al español
+            boton.innerHTML = '🌐 EN';
+        }
+        // Lanza el evento para que Google se entere del cambio
+        selectGoogle.dispatchEvent(new Event('change'));
+    } else {
+        console.log("Esperando a que cargue el motor de Google...");
+    }
+}
+</script>
+<!-- Enlace de programación oficial que activa el traductor interno -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
