@@ -1,38 +1,48 @@
 import base64
 import os
 import traceback
+import requests
 from flask import Flask, jsonify, request, send_from_directory
-
-# Usamos la librería moderna oficial 'google-genai'
-from google import genai
-from google.genai import types
 
 app = Flask(__name__, static_folder=".")
 
 # ============================================================
-# CONFIGURACIÓN GEMINI (PÓNLA SOLO AQUÍ 👇)
+# CONFIGURACIÓN GROQ (PÓNLA SOLO AQUÍ 👇)
 # ============================================================
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-print("🔑 ¿API KEY encontrada?:", GEMINI_API_KEY is not None)
-print("🔑 Inicio de la clave:", GEMINI_API_KEY[:3] if GEMINI_API_KEY else "NO HAY CLAVE")
-print("🔑 Longitud:", len(GEMINI_API_KEY) if GEMINI_API_KEY else 0)
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+print("🔑 ¿API KEY encontrada?:", GROQ_API_KEY is not None)
+print("🔑 Inicio de la clave:", GROQ_API_KEY[:3] if GROQ_API_KEY else "NO HAY CLAVE")
+print("🔑 Longitud:", len(GROQ_API_KEY) if GROQ_API_KEY else 0)
 
 # ============================================================
 
-MODELO_GEMINI = "gemini-3.6-flash"
+MODELO_GROQ = "llama-3.3-70b-versatile"
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 try:
-    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
-    prueba = gemini_client.models.generate_content(
-        model=MODELO_GEMINI,
-        contents="Hola",
+    if not GROQ_API_KEY:
+        raise ValueError("No hay GROQ_API_KEY configurada")
+
+    respuesta_prueba = requests.post(
+        GROQ_URL,
+        headers={
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "model": MODELO_GROQ,
+            "messages": [{"role": "user", "content": "Hola"}],
+        },
+        timeout=15,
     )
-    print(f"\n📡 Prueba de conexión Gemini: CONECTADO")
-    print("✅ Cliente Gemini creado y validado correctamente.\n")
+    respuesta_prueba.raise_for_status()
+    groq_client_ok = True
+    print(f"\n📡 Prueba de conexión Groq: CONECTADO")
+    print("✅ Cliente Groq validado correctamente.\n")
 except Exception as error:
-    gemini_client = None
-    print(f"\n❌ ERROR CRÍTICO CONECTANDO CON GEMINI: {error}\n")
+    groq_client_ok = False
+    print(f"\n❌ ERROR CRÍTICO CONECTANDO CON GROQ: {error}\n")
 
 
 # ============================================================
@@ -58,7 +68,7 @@ def hola():
 
 @app.route("/api/status")
 def status():
-    return jsonify({"ok": True, "gemini": gemini_client is not None, "servidor": "online"})
+    return jsonify({"ok": True, "gemini": groq_client_ok, "servidor": "online"})
 
 
 def construir_conversacion(messages):
@@ -90,8 +100,8 @@ Ayuda especialmente con programación (Python, Flask, HTML, CSS, JS).
 @app.route("/api/ai", methods=["POST"])
 @app.route("/api/chat", methods=["POST"])
 def ai():
-    if gemini_client is None:
-        return jsonify({"ok": False, "error": "Gemini no configurado."}), 500
+    if not groq_client_ok:
+        return jsonify({"ok": False, "error": "Groq no configurado."}), 500
 
     try:
         data = request.get_json(silent=True) or {}
@@ -125,15 +135,32 @@ def ai():
         if not historial_texto.strip():
             historial_texto = f"\n\nUSUARIO:\n{ultimo_texto}"
 
-        prompt_final = f"{SYSTEM_PROMPT}\n\nHistorial de referencia de la conversación:{historial_texto}\n\nTOOLBOX AI:"
+        prompt_final = f"Historial de referencia de la conversación:{historial_texto}\n\nTOOLBOX AI:"
 
-        # Llamada oficial rápida a Gemini
-        respuesta = gemini_client.models.generate_content(
-            model=MODELO_GEMINI,
-            contents=prompt_final
+        # Llamada a Groq (formato OpenAI-compatible)
+        respuesta_http = requests.post(
+            GROQ_URL,
+            headers={
+                "Authorization": f"Bearer {GROQ_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": MODELO_GROQ,
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt_final},
+                ],
+            },
+            timeout=30,
         )
+        respuesta_http.raise_for_status()
+        respuesta_json = respuesta_http.json()
 
-        texto_ia = respuesta.text if respuesta.text else "No pude procesar la respuesta."
+        texto_ia = (
+            respuesta_json.get("choices", [{}])[0]
+            .get("message", {})
+            .get("content", "No pude procesar la respuesta.")
+        )
 
         # Inyectamos de vuelta la estructura exacta que tu JS necesita guardar en conversaciones
         messages.append({
@@ -165,7 +192,5 @@ def ai():
 
 if __name__ == "__main__":
     # Render nos asignará un puerto automático, por eso usamos os.environ
-    import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
-
