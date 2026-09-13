@@ -17,7 +17,7 @@ print("🔑 Longitud:", len(GROQ_API_KEY) if GROQ_API_KEY else 0)
 
 # ============================================================
 
-MODELO_GROQ = "llama-3.3-70b-versatile"
+MODELO_GROQ = "openai/gpt-oss-120b"
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 try:
