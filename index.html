@@ -1404,16 +1404,16 @@ textarea {
 .toolbox-ai-sidebar {
 
     width:
-        285px;
+        280px;
 
     flex-shrink:
         0;
 
     background:
-        #0b1019;
+        #0a0e17;
 
     border-right:
-        1px solid var(--border);
+        none;
 
     display:
         flex;
@@ -1455,19 +1455,19 @@ textarea {
 .ai-brand-logo {
 
     width:
-        39px;
+        38px;
 
     height:
-        39px;
+        38px;
 
     border-radius:
-        12px;
+        50%;
 
     background:
-        #171e2d;
+        #05070c;
 
     border:
-        1px solid var(--border);
+        none;
 
     display:
         flex;
@@ -1524,7 +1524,7 @@ textarea {
         var(--text);
 
     border-radius:
-        10px;
+        50%;
 
     font-size:
         22px;
@@ -1536,20 +1536,19 @@ textarea {
         100%;
 
     border:
-        1px solid
-        rgba(139,92,246,.35);
+        none;
 
     background:
-        rgba(124,58,237,.12);
+        var(--purple);
 
     color:
-        var(--text);
+        white;
 
     padding:
-        12px;
+        13px;
 
     border-radius:
-        12px;
+        50px;
 
     display:
         flex;
@@ -1569,7 +1568,7 @@ textarea {
 
 .new-chat-button:hover {
     background:
-        rgba(124,58,237,.22);
+        var(--purple2);
 }
 
 .conversation-search {
@@ -1584,16 +1583,16 @@ textarea {
         7px;
 
     margin:
-        14px 0;
+        16px 0;
 
     padding:
-        0 10px;
+        0 14px;
 
     border:
-        1px solid var(--border);
+        none;
 
     border-radius:
-        11px;
+        50px;
 
     background:
         var(--input);
@@ -1635,13 +1634,13 @@ textarea {
         8px;
 
     padding:
-        11px;
+        11px 14px;
 
     border-radius:
-        10px;
+        14px;
 
     margin-bottom:
-        5px;
+        4px;
 
     color:
         var(--muted);
@@ -1803,7 +1802,7 @@ textarea {
         space-between;
 
     border-bottom:
-        1px solid var(--border);
+        none;
 
     background:
         rgba(8,11,18,.7);
@@ -1833,7 +1832,7 @@ textarea {
         38px;
 
     border-radius:
-        11px;
+        50%;
 
     display:
         flex;
@@ -1874,7 +1873,7 @@ textarea {
         none;
 
     border-radius:
-        10px;
+        50%;
 
     background:
         var(--button);
@@ -1975,7 +1974,7 @@ textarea {
         15px;
 
     border:
-        1px solid var(--border);
+        none;
 
     background:
         var(--card);
@@ -1984,19 +1983,19 @@ textarea {
         var(--text);
 
     border-radius:
-        13px;
+        18px;
 
     text-align:
         left;
+
+    transition:
+        background .15s;
 }
 
 .ai-suggestion:hover {
 
-    border-color:
-        var(--purple2);
-
     background:
-        rgba(124,58,237,.08);
+        var(--button);
 }
 
 /* =========================================================
@@ -2026,16 +2025,16 @@ textarea {
 .ai-chat-avatar {
 
     width:
-        35px;
+        32px;
 
     height:
-        35px;
+        32px;
 
     flex-shrink:
         0;
 
     border-radius:
-        11px;
+        50%;
 
     display:
         flex;
@@ -2047,10 +2046,13 @@ textarea {
         center;
 
     background:
-        var(--button);
+        #05070c;
+
+    color:
+        white;
 
     border:
-        1px solid var(--border);
+        none;
 }
 
 .ai-chat-bubble {
@@ -2059,13 +2061,13 @@ textarea {
         min(750px,80%);
 
     padding:
-        14px 17px;
+        14px 19px;
 
     border:
-        1px solid var(--border);
+        none;
 
     border-radius:
-        6px 17px 17px 17px;
+        22px;
 
     background:
         var(--card);
@@ -2083,10 +2085,78 @@ textarea {
 .ai-chat-row.user .ai-chat-bubble {
 
     background:
-        var(--button);
+        var(--purple);
+
+    color:
+        white;
 
     border-radius:
-        17px 6px 17px 17px;
+        22px;
+}
+
+.ai-chat-content {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    gap:
+        6px;
+}
+
+.ai-message-actions {
+
+    display:
+        flex;
+
+    opacity:
+        0;
+
+    transition:
+        opacity .15s;
+}
+
+.ai-chat-row:hover .ai-message-actions {
+    opacity:
+        1;
+}
+
+.ai-copy-button {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    padding:
+        4px 10px;
+
+    border-radius:
+        50px;
+
+    cursor:
+        pointer;
+}
+
+.ai-copy-button:hover {
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
 }
 
 /* =========================================================
@@ -2197,10 +2267,10 @@ textarea {
         auto;
 
     border:
-        1px solid var(--border2);
+        none;
 
     border-radius:
-        18px;
+        28px;
 
     background:
         var(--input);
@@ -2251,19 +2321,19 @@ textarea {
         flex;
 
     justify-content:
-        space-between;
+        flex-end;
 
     align-items:
         center;
 
     padding:
-        0 10px 10px;
+        0 14px 12px;
 }
 
 .composer-tool {
 
     border:
-        1px solid var(--border);
+        none;
 
     background:
         var(--button);
@@ -2272,10 +2342,10 @@ textarea {
         var(--text);
 
     padding:
-        9px 13px;
+        9px 15px;
 
     border-radius:
-        10px;
+        50px;
 
     display:
         flex;
@@ -2288,15 +2358,15 @@ textarea {
 
     font-size:
         12px;
+
+    transition:
+        background .15s;
 }
 
 .composer-tool:hover {
 
-    border-color:
-        var(--purple2);
-
     background:
-        rgba(124,58,237,.15);
+        var(--purple);
 }
 
 .composer-right {
@@ -2332,7 +2402,7 @@ textarea {
         none;
 
     border-radius:
-        12px;
+        50%;
 
     background:
         var(--purple);
@@ -2342,6 +2412,9 @@ textarea {
 
     font-size:
         18px;
+
+    transition:
+        background .15s;
 }
 
 .ai-send-button:hover {
@@ -4211,21 +4284,6 @@ CONTRASEÑA FACIL
 
                 <div class="composer-bottom">
 
-                    <button
-                        id="generateImageButton"
-                        class="composer-tool"
-                        onclick="generateToolboxImage()"
-                    >
-
-                        <span>
-                            ✨
-                        </span>
-
-                        Crear imagen
-
-                    </button>
-
-
                     <div class="composer-right">
 
                         <span
@@ -6024,9 +6082,87 @@ function addMessageToDOM(
         content;
 
 
-    row.appendChild(
-        bubble
-    );
+    if (role === "user") {
+
+        row.appendChild(
+            bubble
+        );
+
+    } else {
+
+        const contentWrap =
+            document.createElement(
+                "div"
+            );
+
+        contentWrap.className =
+            "ai-chat-content";
+
+        contentWrap.appendChild(
+            bubble
+        );
+
+
+        const actions =
+            document.createElement(
+                "div"
+            );
+
+        actions.className =
+            "ai-message-actions";
+
+
+        const copyButton =
+            document.createElement(
+                "button"
+            );
+
+        copyButton.className =
+            "ai-copy-button";
+
+        copyButton.type =
+            "button";
+
+        copyButton.title =
+            "Copiar respuesta";
+
+        copyButton.innerText =
+            "📋 Copiar";
+
+        copyButton.onclick =
+            function() {
+
+                navigator.clipboard
+                    .writeText(content);
+
+                copyButton.innerText =
+                    "✅ Copiado";
+
+                setTimeout(
+                    function() {
+
+                        copyButton.innerText =
+                            "📋 Copiar";
+
+                    },
+                    1500
+                );
+
+            };
+
+        actions.appendChild(
+            copyButton
+        );
+
+        contentWrap.appendChild(
+            actions
+        );
+
+        row.appendChild(
+            contentWrap
+        );
+
+    }
 
 
     container.appendChild(
@@ -6472,174 +6608,6 @@ function closeMobileSidebar() {
 
 }
 
-
-/* =========================================================
-   CREAR IMAGEN
-========================================================= */
-
-async function generateToolboxImage() {
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    const prompt =
-        input.value.trim();
-
-
-    if (!prompt) {
-
-        alert(
-            "Describe primero la imagen que quieres crear."
-        );
-
-        return;
-
-    }
-
-
-    let conversation =
-        getCurrentConversation();
-
-
-    if (!conversation) {
-
-        createNewConversation();
-
-        conversation =
-            getCurrentConversation();
-
-    }
-
-
-    conversation.messages.push({
-
-        role:
-            "user",
-
-        content:
-            "✨ Crear imagen: " +
-            prompt
-
-    });
-
-
-    input.value = "";
-
-    updateCharCounter();
-
-    saveConversations();
-
-    renderCurrentConversation();
-
-
-    const typing =
-        document.getElementById(
-            "toolboxAiTyping"
-        );
-
-    typing.classList.add(
-        "active"
-    );
-
-
-    try {
-
-        const response =
-            await fetch(
-                "/api/image",
-                {
-
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-                    body:
-                        JSON.stringify({
-
-                            prompt:
-                                prompt
-
-                        })
-
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.error ||
-                "No se pudo crear la imagen."
-            );
-
-        }
-
-
-        if (!data.image) {
-
-            throw new Error(
-                "El servidor no devolvió una imagen."
-            );
-
-        }
-
-
-        conversation.messages.push({
-
-            role:
-                "assistant",
-
-            content:
-                "🖼️ Imagen creada por TOOLBOX AI:\n\n" +
-                data.image
-
-        });
-
-
-        saveConversations();
-
-        renderCurrentConversation();
-
-
-    } catch(error) {
-
-        conversation.messages.push({
-
-            role:
-                "assistant",
-
-            content:
-                "❌ " +
-                error.message
-
-        });
-
-
-        saveConversations();
-
-        renderCurrentConversation();
-
-    } finally {
-
-        typing.classList.remove(
-            "active"
-        );
-
-    }
-
-}
 
 
 /* =========================================================
