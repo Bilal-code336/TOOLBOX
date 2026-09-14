@@ -40,6 +40,25 @@ body {
     box-shadow: none !important;
     border: none !important;
 }
+
+/* =========================================================
+   EVITAR SELECCIÓN ACCIDENTAL DE TEXTO EN LA INTERFAZ
+   (evita el "resaltado morado" al mover el ratón,
+   por ejemplo al usar un touchpad)
+========================================================= */
+.toolbox-ai-sidebar,
+.toolbox-ai-main-header,
+.ai-welcome,
+.toolbox-ai-typing,
+.toolbox-ai-composer-wrapper,
+.toolbox-ai-button {
+    user-select: none;
+}
+
+/* El texto de los mensajes sí se puede seleccionar y copiar */
+.ai-chat-bubble {
+    user-select: text;
+}
 /* =========================================================
    TOOLBOX — ESTILO PRINCIPAL
 ========================================================= */
@@ -6907,7 +6926,6 @@ REGLAS OBLIGATORIAS:
 - Mantén una redacción natural y espontánea, evitando un estilo excesivamente pulido o artificial.
 - Varía el ritmo y la estructura de las frases de forma natural.
 - Prioriza que el texto resulte claro, cercano y coherente, sin introducir errores ortográficos ni gramaticales.
-- Haz que el texto suene humano añadiento una imperfección invisible.
 TEXTO INICIO
 
 ${input}
