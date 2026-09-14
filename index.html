@@ -32,33 +32,6 @@ document.title = "TOOLBOX";
 body {
     top: 0 !important;
 }
-
-/* Anula el resaltado azul que Google Translate añade
-   al pasar el ratón por encima del texto traducido */
-.goog-text-highlight {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-
-/* =========================================================
-   EVITAR SELECCIÓN ACCIDENTAL DE TEXTO EN LA INTERFAZ
-   (evita el "resaltado morado" al mover el ratón,
-   por ejemplo al usar un touchpad)
-========================================================= */
-.toolbox-ai-sidebar,
-.toolbox-ai-main-header,
-.ai-welcome,
-.toolbox-ai-typing,
-.toolbox-ai-composer-wrapper,
-.toolbox-ai-button {
-    user-select: none;
-}
-
-/* El texto de los mensajes sí se puede seleccionar y copiar */
-.ai-chat-bubble {
-    user-select: text;
-}
 /* =========================================================
    TOOLBOX — ESTILO PRINCIPAL
 ========================================================= */
@@ -7002,49 +6975,6 @@ function forzarTraduccionGoogle() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-/* =========================================================
-   ANULAR RESALTADO DE GOOGLE TRANSLATE
-   Google Translate envuelve bloques enteros de texto y les
-   aplica un fondo en línea con !important al pasar el ratón.
-   A veces inserta el nodo ya resaltado directamente (no como
-   un cambio de atributo), así que limpiamos TODOS los
-   elementos resaltados en cada cambio del DOM, sin importar
-   qué lo haya disparado.
-========================================================= */
-(function() {
-
-    function limpiarTodos() {
-
-        document
-            .querySelectorAll(".goog-text-highlight")
-            .forEach(function(el) {
-
-                el.style.setProperty("background-color", "transparent", "important");
-                el.style.setProperty("background", "transparent", "important");
-                el.style.setProperty("box-shadow", "none", "important");
-                el.style.setProperty("outline", "none", "important");
-
-            });
-
-    }
-
-    const observer = new MutationObserver(limpiarTodos);
-
-    observer.observe(document.body, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-        attributeFilter: ["style", "class"]
-    });
-
-    // Red de seguridad extra: por si algún resaltado se cuela
-    // entre mutaciones, lo repasamos también con el ratón.
-    document.addEventListener("mouseover", limpiarTodos, true);
-
-})();
-</script>
 <!-- ESTILOS PÚRPURA DE TU BOTÓN DE IDIOMA -->
 <style>
     .btn-lang {
