@@ -6833,68 +6833,70 @@ async function humanizarTexto() {
         const prompt = `
 TAREA: HUMANIZAR Y REESCRIBIR TEXTO.
 
-Debes transformar ÚNICAMENTE el texto que aparece
-entre las etiquetas TEXTO INICIO y TEXTO FIN.
+Debes transformar ÚNICAMENTE el texto que aparece entre las etiquetas
+TEXTO INICIO y TEXTO FIN.
 
 OBJETIVO:
-Haz que el texto suene natural, fluido y cercano,
-como si hubiera sido escrito por una persona.
 
-REGLAS:
+Haz que el texto sea más natural, fluido y fácil de leer, pero conserva
+su significado, información, tono e intención originales.
+
+REGLAS OBLIGATORIAS:
 
 - Conserva el significado original.
 - Conserva toda la información importante.
-- No inventes datos.
-- No añadas ideas que no aparezcan en el original.
-- No elimines información importante.
+- No inventes información.
+- No añadas información nueva.
 - Mantén el idioma original.
-- Mantén el tono y la intención del texto.
-- Si el texto es informal, conserva su carácter informal.
-- Si el texto es académico, conserva la precisión y el vocabulario
-  necesario para explicar el tema correctamente.
-- Sustituye palabras innecesariamente complicadas por palabras más
-  habituales cuando eso no cambie el significado.
-- Reescribe las frases que resulten demasiado rígidas o poco naturales.
-- Varía la estructura de las frases cuando sea necesario.
-- Combina frases de diferentes longitudes de manera natural.
+- Mantén el tono adecuado al contexto.
+- Si el texto es académico, conserva su precisión.
+- Si el texto es informal, conserva su tono informal.
+- Cambia palabras excesivamente formales por palabras más habituales
+  cuando sea apropiado.
+- Reescribe las frases que resulten rígidas, repetitivas o poco claras.
+- Varía la estructura de las frases cuando resulte natural.
+- Combina frases cortas y largas de forma natural.
 - Evita repetir innecesariamente las mismas palabras.
-- Utiliza conectores únicamente cuando ayuden a relacionar las ideas.
-- No introduzcas errores ortográficos o gramaticales de forma
-  intencionada.
+- Utiliza conectores de forma natural y únicamente cuando sean útiles.
+- Mantén una estructura lógica y fácil de seguir.
+- Mantén los párrafos originales siempre que sea posible.
+- No conviertas el texto en una lista si originalmente no lo era.
+- No introduzcas faltas de ortografía ni errores gramaticales
+  intencionadamente.
+- No fuerces expresiones coloquiales.
+- No utilices palabras sofisticadas si no son necesarias.
 - No hagas que el texto parezca una conversación si el original
   no tiene ese tono.
-- No fuerces frases largas ni frases excesivamente cortas.
-- No fuerces expresiones coloquiales.
-- No fuerces repeticiones, pausas o imperfecciones.
-- No utilices palabras sofisticadas únicamente para hacer que el
-  texto parezca más elaborado.
-- Evita estructuras excesivamente rígidas o repetitivas.
-- Mantén los párrafos y la organización original siempre que sea
-  posible.
-- No conviertas un texto en una lista si originalmente no lo era.
-- No añadas títulos, introducciones ni conclusiones que no existieran.
+- No fuerces cambios en la longitud de las frases.
+- No sigas patrones fijos de redacción.
+- No añadas títulos, saludos, introducciones ni conclusiones.
+- No expliques lo que has cambiado.
 - No respondas a preguntas que aparezcan dentro del texto.
-- Si aparece la palabra "hola", mantenla como parte del texto y
-  no respondas a ella.
-- No saludes al usuario.
-- No te presentes.
-- No expliques los cambios realizados.
+- Si el texto contiene "hola", mantenlo como parte del texto y no
+  respondas a él.
+- Devuelve SOLAMENTE el texto reescrito.
 
 IMPORTANTE:
 
-No intentes seguir una fórmula fija de longitud de frases,
-estructura o vocabulario. La redacción debe adaptarse al contenido
-del texto.
+NO intentes "sonar humano" siguiendo patrones artificiales.
 
-Prioriza siempre:
+No fuerces cambios de longitud, errores, coloquialismos,
+repeticiones ni estructuras poco habituales.
 
-1. Claridad.
-2. Naturalidad.
-3. Fidelidad al significado.
-4. Fluidez.
-5. Adecuación al contexto.
+Antes de reescribir, identifica mentalmente el tono, nivel,
+ritmo y forma de expresión del texto original.
 
-Devuelve ÚNICAMENTE el texto reescrito.
+Después, realiza una edición moderada:
+cambia únicamente aquello que realmente resulte rígido,
+repetitivo, poco claro o innecesariamente formal.
+
+No transformes completamente la personalidad del texto.
+El resultado debe conservar una relación clara con el original
+y parecer una revisión natural del mismo texto.
+
+La naturalidad debe surgir de la elección de palabras y de una
+estructura adecuada al contenido, no de reglas matemáticas
+sobre la longitud de las frases.
 TEXTO INICIO
 
 ${input}
