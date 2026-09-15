@@ -7531,86 +7531,77 @@ async function humanizarTexto() {
 
     try {
         const prompt = `
-TAREA: EDITAR Y REESCRIBIR UN TEXTO DE FORMA NATURAL.
-
-Edita ÚNICAMENTE el contenido situado entre TEXTO INICIO y TEXTO FIN.
+Reescribe el siguiente texto para que suene escrito por una persona real, de forma natural, clara y espontánea.
 
 OBJETIVO PRINCIPAL:
-Produce una versión mejor escrita, natural y fluida del mismo texto. La naturalidad debe proceder de una buena edición lingüística y de decisiones adecuadas al contexto, no de trucos, errores deliberados ni patrones artificiales.
-
-ESTILO ELEGIDO:
-${estilo}
-
-REGLAS DE CONTENIDO:
-1. Conserva el significado original.
-2. Conserva todos los datos, hechos, ideas, nombres, fechas, cifras y conceptos importantes.
-3. No inventes información ni añadas argumentos, ejemplos, fuentes o conclusiones.
-4. No elimines información relevante.
-5. Mantén el idioma original.
-6. Respeta la intención y el contexto del autor.
-7. Si hay una opinión, no la conviertas en un hecho.
-8. Si hay una pregunta, consérvala como pregunta; no la respondas.
-9. Conserva correctamente nombres propios, fórmulas, términos técnicos y citas.
+No te limites a cambiar palabras por sinónimos. Replantea las frases cuando sea necesario y toma decisiones de redacción propias de una persona que está intentando explicar algo de manera normal.
 
 REGLAS DE VOCABULARIO:
-10. Usa vocabulario habitual y preciso.
-11. Evita palabras rebuscadas cuando una palabra normal exprese mejor la misma idea.
-12. Evita repetir constantemente los mismos verbos, sustantivos o conectores cuando pueda variarse de forma natural.
-13. No sustituyas palabras por sinónimos solo para cambiarlas: cada elección debe mejorar la frase.
-14. Evita expresiones genéricas, clichés y fórmulas que no aporten nada.
-15. Conserva palabras técnicas cuando sean necesarias para la precisión.
-16. No introduzcas regionalismos o coloquialismos que no encajen con el texto.
+- No sustituyas automáticamente cada palabra por un sinónimo.
+- Mantén las palabras que ya funcionan bien.
+- Utiliza palabras habituales para el contexto y evita vocabulario innecesariamente rebuscado.
+- Combina palabras sencillas con términos más precisos cuando el tema lo necesite.
+- Evita repetir constantemente las mismas palabras si existe una alternativa natural.
+- No utilices sinónimos raros únicamente para conseguir variedad.
+- Evita expresiones excesivamente genéricas como "cabe destacar", "en este sentido", "es importante señalar", "por otro lado" o similares cuando no aporten nada.
+- No hagas que todas las frases tengan el mismo nivel de formalidad.
+- Si el texto es académico, conserva los términos técnicos necesarios.
 
-REGLAS DE FRASES Y RITMO:
-17. Reescribe las frases que sean rígidas, pesadas, ambiguas o poco naturales.
-18. Varía la estructura sintáctica cuando resulte útil, sin aplicar una fórmula fija.
-19. Combina frases de distinta longitud de manera orgánica, según lo que pida el contenido.
-20. Evita encadenar demasiadas frases con la misma estructura.
-21. Evita párrafos artificialmente uniformes.
-22. Usa conectores solo cuando exista una relación real entre las ideas.
-23. Evita empezar demasiadas frases de la misma manera.
-24. Evita nominalizaciones innecesarias cuando un verbo directo sea más natural.
-25. Prefiere construcciones claras y directas cuando no se pierda precisión.
-26. No fuerces pausas, frases cortas, frases largas ni cambios de estructura.
+REGLAS DE ESTRUCTURA:
+- No conserves necesariamente el orden exacto de las palabras del original.
+- Reorganiza las frases cuando eso haga que la explicación sea más natural.
+- Combina frases cortas, medias y largas de manera espontánea.
+- No hagas que todos los párrafos tengan una estructura idéntica.
+- Evita empezar varias frases consecutivas de la misma manera.
+- No utilices constantemente estructuras como "En primer lugar...", "Además...", "Por último...".
+- Une algunas ideas cuando pertenezcan claramente a la misma explicación y separa otras cuando necesiten respirar.
+- Evita listas artificiales si el contenido funciona mejor explicado en una frase.
+- No fuerces una estructura matemática o perfectamente simétrica entre párrafos.
 
-REGLAS DE COHERENCIA:
-27. Mantén la relación lógica entre las ideas.
-28. Mantén una progresión natural entre frases y párrafos.
-29. No cambies el orden de las ideas salvo que sea necesario para corregir una construcción confusa.
-30. Mantén los párrafos originales cuando funcionen bien.
-31. No conviertas un texto continuo en una lista.
-32. No añadas títulos, saludos, despedidas ni explicaciones.
+REGLAS DE REDACCIÓN NATURAL:
+- Escribe pensando en cómo una persona explicaría realmente ese contenido.
+- Prioriza que el texto se entienda a la primera.
+- Si una frase resulta demasiado larga, divídela.
+- Si varias frases son excesivamente cortas y entrecortadas, puedes unirlas.
+- Evita construcciones que parezcan generadas a partir de una plantilla.
+- No hagas que todas las frases estén perfectamente equilibradas.
+- Permite pequeñas diferencias naturales en el ritmo de la explicación.
+- No añadas frases de relleno solo para hacer el texto más largo.
+- No introduzcas opiniones personales que no aparezcan en el original.
+- No añadas saludos, conclusiones genéricas ni comentarios sobre el propio proceso.
+- No uses expresiones coloquiales si el contexto no las requiere.
+- No conviertas un texto serio en uno informal sin motivo.
 
-REGLAS DE NATURALIDAD:
-33. No hagas que todo suene perfectamente uniforme o excesivamente pulido.
-34. Conserva, cuando sean correctas, pequeñas diferencias de ritmo y de construcción propias de una redacción normal.
-35. No introduzcas faltas ortográficas, errores gramaticales ni errores de puntuación deliberadamente.
-36. No añadas muletillas, repeticiones artificiales ni palabras innecesarias para intentar parecer una persona.
-37. No fuerces expresiones coloquiales.
-38. No imites a una persona concreta.
-39. No sigas patrones matemáticos de longitud de frase o número de palabras.
-40. No hagas sustituciones palabra por palabra. Reescribe unidades completas cuando sea necesario.
-41. Si una frase ya está bien escrita, déjala prácticamente igual.
-42. Prioriza siempre claridad, precisión, coherencia y naturalidad sobre cambios llamativos.
+REGLAS SEGÚN EL TIPO DE TEXTO:
+${estilo}
 
-CONTROL FINAL:
-Antes de responder, comprueba internamente que:
-- no falta información del original;
-- no has inventado nada;
-- el significado sigue siendo el mismo;
-- el vocabulario encaja con el contexto;
-- no hay repeticiones innecesarias;
-- la estructura no sigue una plantilla rígida;
-- la puntuación y ortografía son correctas;
-- el resultado se lee como una revisión normal del texto.
+MUY IMPORTANTE:
+- Conserva exactamente el significado original.
+- Conserva todos los datos, nombres, fechas, cifras, conceptos y ejemplos importantes.
+- No inventes información.
+- No elimines información relevante.
+- No cambies hechos.
+- Mantén el idioma original.
+- No introduzcas errores ortográficos, gramaticales o de puntuación de forma intencionada.
+- No intentes engañar sistemas de detección de IA.
+- La prioridad es conseguir una redacción auténtica, clara y de buena calidad.
 
-SALIDA:
-Devuelve SOLAMENTE el texto reescrito.
-No escribas explicaciones, comentarios, etiquetas ni comillas alrededor del resultado.
+ANTES DE DEVOLVER EL RESULTADO:
+Comprueba internamente que:
+1. El significado sigue siendo el mismo.
+2. No falta información importante.
+3. No has cambiado datos.
+4. El vocabulario no suena forzado.
+5. No hay repeticiones innecesarias.
+6. Las frases no siguen todas el mismo patrón.
+7. El texto se lee como una explicación normal y fluida.
+8. No has añadido información que no estaba originalmente.
 
-TEXTO INICIO
+Devuelve únicamente el texto reescrito.
+
+--- INICIO DEL TEXTO ---
 ${input}
-TEXTO FIN
+--- FIN DEL TEXTO ---
 `;
 
         const reply = await askGemini(
