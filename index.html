@@ -7531,63 +7531,96 @@ async function humanizarTexto() {
 
     try {
         const prompt = `
-Reescribe completamente el texto siguiente con libertad de redacción.
+Reescribe el texto con total libertad de redacción. No quiero una simple sustitución de palabras:
+quiero que construyas una versión nueva, natural y coherente del texto.
 
-No hagas una sustitución palabra por palabra. Quiero una NUEVA REDACCIÓN que conserve las ideas y la información del original, pero que pueda cambiar considerablemente la forma de expresarlas.
+DICCIONARIO DE ESTILO NATURAL:
 
-LIBERTAD DE REESCRITURA:
-- Puedes reconstruir frases enteras.
-- Puedes cambiar el orden de las ideas dentro de un párrafo cuando mejore la comprensión.
-- Puedes dividir una frase en varias o unir varias cuando resulte natural.
-- Puedes cambiar la estructura de los párrafos.
-- Puedes elegir un vocabulario diferente cuando sea más apropiado.
-- No mantengas expresiones del original simplemente por mantenerlas.
-- No busques un sinónimo para cada palabra: decide cómo expresarías tú esa idea.
-- Si una frase original resulta rígida, pesada o artificial, vuelve a escribirla desde cero.
-- No intentes conservar la misma longitud de cada frase.
-- No intentes conservar la misma estructura sintáctica.
-- No intentes que cada párrafo siga el mismo patrón.
+Evita abusar de:
+- "En primer lugar"
+- "En segundo lugar"
+- "Por otro lado"
+- "Asimismo"
+- "Cabe destacar que"
+- "Es importante señalar que"
+- "En este sentido"
+- "Por consiguiente"
+- "De este modo"
+- "En conclusión"
+- "En definitiva"
+- "A modo de conclusión"
+- "Resulta fundamental"
+- "Es necesario destacar"
+- "No cabe duda de que"
+- "En la actualidad"
+- "A lo largo de la historia"
+- "Como se ha mencionado anteriormente"
+- "Por último"
 
-VOCABULARIO:
-- Prioriza palabras que una persona utilizaría normalmente en ese contexto.
-- Evita palabras excesivamente cultas cuando una alternativa sencilla expresa lo mismo.
-- No abuses de sinónimos.
-- No repitas una palabra innecesariamente, pero tampoco sustituyas una palabra solo para evitar repetirla.
-- Evita fórmulas prefabricadas y conectores repetitivos.
-- Conserva los términos técnicos que sean necesarios para entender correctamente el tema.
-- Utiliza expresiones naturales propias del idioma del texto.
+No están prohibidas. Úsalas únicamente cuando realmente encajen.
 
-RITMO:
-- Varía la longitud de las frases de manera natural.
-- Algunas ideas pueden explicarse de forma breve y otras necesitar algo más de desarrollo.
-- Evita que todas las frases tengan una construcción similar.
-- Evita párrafos excesivamente uniformes.
-- No fuerces una cantidad determinada de palabras por frase.
-- No hagas que el texto parezca seguir una plantilla.
+PREFERENCIAS DE VOCABULARIO:
 
-CALIDAD:
-- El resultado debe poder leerse como un texto normal escrito por una persona.
-- Debe ser claro y fácil de seguir.
-- No añadas relleno.
-- No añadas opiniones que no estén en el original.
-- No inventes ejemplos, datos ni información.
-- Mantén las relaciones entre las ideas.
-- Mantén nombres, fechas, cifras y conceptos importantes.
-- Conserva el significado general.
+En lugar de buscar constantemente palabras más sofisticadas:
+- "utilizar" → "usar" cuando el contexto lo permita
+- "realizar" → "hacer" cuando sea natural
+- "efectuar" → "hacer" o "llevar a cabo"
+- "adquirir" → "obtener" o "conseguir" según el contexto
+- "posteriormente" → "después"
+- "previamente" → "antes"
+- "numerosos" → "muchos" cuando no se necesite formalidad
+- "aproximadamente" → "más o menos" solo en contextos informales
+- "debido a que" → "porque" cuando no cambie el tono
+- "con el objetivo de" → "para" cuando sea suficiente
+- "en relación con" → "sobre" o "respecto a" cuando suene mejor
+- "llevar a cabo" → "hacer" cuando no sea necesario mantener un registro formal
 
 IMPORTANTE:
-La reescritura puede ser bastante diferente del original en su forma.
-No tengas miedo de modificar frases, párrafos, vocabulario y estructura cuando sea necesario.
-La prioridad es que la nueva versión sea una buena redacción por sí misma, no que parezca una transformación automática del texto original.
+No hagas estas sustituciones automáticamente. Son ejemplos de preferencias, no reglas.
+Si la palabra original es la mejor opción, mantenla.
 
-TIPO DE REDACCIÓN:
+REGLAS DE ESCRITURA:
+
+1. Reescribe las frases desde cero cuando sea necesario.
+2. No conserves la estructura del original por obligación.
+3. Puedes cambiar el orden de las ideas dentro de una explicación si mejora la lectura.
+4. Puedes fusionar frases.
+5. Puedes dividir frases demasiado largas.
+6. Puedes cambiar completamente los conectores.
+7. Puedes eliminar repeticiones.
+8. Puedes conservar repeticiones cuando sean naturales o necesarias.
+9. No intentes utilizar un sinónimo diferente cada vez que aparece una palabra.
+10. No hagas que todas las frases tengan la misma longitud.
+11. No hagas que todos los párrafos tengan exactamente la misma estructura.
+12. No empieces todas las frases de forma parecida.
+13. No fuerces conectores entre todas las ideas.
+14. Deja que algunas ideas estén directamente relacionadas sin añadir un conector artificial.
+15. Evita frases excesivamente perfectas, genéricas o de plantilla.
+16. No añadas relleno.
+17. No añadas información nueva.
+18. No cambies datos, cifras, nombres o conceptos.
+19. Mantén el significado original.
+20. Mantén el idioma original.
+
+LIBERTAD:
+
+Tienes permiso para cambiar prácticamente toda la forma del texto:
+vocabulario, sintaxis, orden de las frases, longitud de las frases,
+conectores, estructura de los párrafos y manera de explicar las ideas.
+
+Lo único que debes conservar es la información y el significado.
+
+El resultado debe funcionar como un texto independiente.
+No debe parecer una versión palabra-por-palabra del original.
+
+TIPO DE TEXTO:
 ${estilo}
-
-Devuelve únicamente la versión reescrita.
 
 --- TEXTO ORIGINAL ---
 ${input}
 --- FIN DEL TEXTO ORIGINAL ---
+
+Devuelve únicamente la nueva versión del texto.
 `;
         const reply = await askGemini(
             [{ role: "user", content: prompt }],
