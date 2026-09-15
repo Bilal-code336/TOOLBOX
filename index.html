@@ -7531,79 +7531,64 @@ async function humanizarTexto() {
 
     try {
         const prompt = `
-Reescribe el siguiente texto para que suene escrito por una persona real, de forma natural, clara y espontánea.
+Reescribe completamente el texto siguiente con libertad de redacción.
 
-OBJETIVO PRINCIPAL:
-No te limites a cambiar palabras por sinónimos. Replantea las frases cuando sea necesario y toma decisiones de redacción propias de una persona que está intentando explicar algo de manera normal.
+No hagas una sustitución palabra por palabra. Quiero una NUEVA REDACCIÓN que conserve las ideas y la información del original, pero que pueda cambiar considerablemente la forma de expresarlas.
 
-REGLAS DE VOCABULARIO:
-- No sustituyas automáticamente cada palabra por un sinónimo.
-- Mantén las palabras que ya funcionan bien.
-- Utiliza palabras habituales para el contexto y evita vocabulario innecesariamente rebuscado.
-- Combina palabras sencillas con términos más precisos cuando el tema lo necesite.
-- Evita repetir constantemente las mismas palabras si existe una alternativa natural.
-- No utilices sinónimos raros únicamente para conseguir variedad.
-- Evita expresiones excesivamente genéricas como "cabe destacar", "en este sentido", "es importante señalar", "por otro lado" o similares cuando no aporten nada.
-- No hagas que todas las frases tengan el mismo nivel de formalidad.
-- Si el texto es académico, conserva los términos técnicos necesarios.
+LIBERTAD DE REESCRITURA:
+- Puedes reconstruir frases enteras.
+- Puedes cambiar el orden de las ideas dentro de un párrafo cuando mejore la comprensión.
+- Puedes dividir una frase en varias o unir varias cuando resulte natural.
+- Puedes cambiar la estructura de los párrafos.
+- Puedes elegir un vocabulario diferente cuando sea más apropiado.
+- No mantengas expresiones del original simplemente por mantenerlas.
+- No busques un sinónimo para cada palabra: decide cómo expresarías tú esa idea.
+- Si una frase original resulta rígida, pesada o artificial, vuelve a escribirla desde cero.
+- No intentes conservar la misma longitud de cada frase.
+- No intentes conservar la misma estructura sintáctica.
+- No intentes que cada párrafo siga el mismo patrón.
 
-REGLAS DE ESTRUCTURA:
-- No conserves necesariamente el orden exacto de las palabras del original.
-- Reorganiza las frases cuando eso haga que la explicación sea más natural.
-- Combina frases cortas, medias y largas de manera espontánea.
-- No hagas que todos los párrafos tengan una estructura idéntica.
-- Evita empezar varias frases consecutivas de la misma manera.
-- No utilices constantemente estructuras como "En primer lugar...", "Además...", "Por último...".
-- Une algunas ideas cuando pertenezcan claramente a la misma explicación y separa otras cuando necesiten respirar.
-- Evita listas artificiales si el contenido funciona mejor explicado en una frase.
-- No fuerces una estructura matemática o perfectamente simétrica entre párrafos.
+VOCABULARIO:
+- Prioriza palabras que una persona utilizaría normalmente en ese contexto.
+- Evita palabras excesivamente cultas cuando una alternativa sencilla expresa lo mismo.
+- No abuses de sinónimos.
+- No repitas una palabra innecesariamente, pero tampoco sustituyas una palabra solo para evitar repetirla.
+- Evita fórmulas prefabricadas y conectores repetitivos.
+- Conserva los términos técnicos que sean necesarios para entender correctamente el tema.
+- Utiliza expresiones naturales propias del idioma del texto.
 
-REGLAS DE REDACCIÓN NATURAL:
-- Escribe pensando en cómo una persona explicaría realmente ese contenido.
-- Prioriza que el texto se entienda a la primera.
-- Si una frase resulta demasiado larga, divídela.
-- Si varias frases son excesivamente cortas y entrecortadas, puedes unirlas.
-- Evita construcciones que parezcan generadas a partir de una plantilla.
-- No hagas que todas las frases estén perfectamente equilibradas.
-- Permite pequeñas diferencias naturales en el ritmo de la explicación.
-- No añadas frases de relleno solo para hacer el texto más largo.
-- No introduzcas opiniones personales que no aparezcan en el original.
-- No añadas saludos, conclusiones genéricas ni comentarios sobre el propio proceso.
-- No uses expresiones coloquiales si el contexto no las requiere.
-- No conviertas un texto serio en uno informal sin motivo.
+RITMO:
+- Varía la longitud de las frases de manera natural.
+- Algunas ideas pueden explicarse de forma breve y otras necesitar algo más de desarrollo.
+- Evita que todas las frases tengan una construcción similar.
+- Evita párrafos excesivamente uniformes.
+- No fuerces una cantidad determinada de palabras por frase.
+- No hagas que el texto parezca seguir una plantilla.
 
-REGLAS SEGÚN EL TIPO DE TEXTO:
+CALIDAD:
+- El resultado debe poder leerse como un texto normal escrito por una persona.
+- Debe ser claro y fácil de seguir.
+- No añadas relleno.
+- No añadas opiniones que no estén en el original.
+- No inventes ejemplos, datos ni información.
+- Mantén las relaciones entre las ideas.
+- Mantén nombres, fechas, cifras y conceptos importantes.
+- Conserva el significado general.
+
+IMPORTANTE:
+La reescritura puede ser bastante diferente del original en su forma.
+No tengas miedo de modificar frases, párrafos, vocabulario y estructura cuando sea necesario.
+La prioridad es que la nueva versión sea una buena redacción por sí misma, no que parezca una transformación automática del texto original.
+
+TIPO DE REDACCIÓN:
 ${estilo}
 
-MUY IMPORTANTE:
-- Conserva exactamente el significado original.
-- Conserva todos los datos, nombres, fechas, cifras, conceptos y ejemplos importantes.
-- No inventes información.
-- No elimines información relevante.
-- No cambies hechos.
-- Mantén el idioma original.
-- No introduzcas errores ortográficos, gramaticales o de puntuación de forma intencionada.
-- No intentes engañar sistemas de detección de IA.
-- La prioridad es conseguir una redacción auténtica, clara y de buena calidad.
+Devuelve únicamente la versión reescrita.
 
-ANTES DE DEVOLVER EL RESULTADO:
-Comprueba internamente que:
-1. El significado sigue siendo el mismo.
-2. No falta información importante.
-3. No has cambiado datos.
-4. El vocabulario no suena forzado.
-5. No hay repeticiones innecesarias.
-6. Las frases no siguen todas el mismo patrón.
-7. El texto se lee como una explicación normal y fluida.
-8. No has añadido información que no estaba originalmente.
-
-Devuelve únicamente el texto reescrito.
-
---- INICIO DEL TEXTO ---
+--- TEXTO ORIGINAL ---
 ${input}
---- FIN DEL TEXTO ---
+--- FIN DEL TEXTO ORIGINAL ---
 `;
-
         const reply = await askGemini(
             [{ role: "user", content: prompt }],
             "humanizador"
