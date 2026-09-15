@@ -2843,52 +2843,55 @@ footer strong {
 
 
 /* =========================================================
-   HUMANIZADOR — MEJORAS
+   HUMANIZADOR — INTERFAZ LIMPIA
 ========================================================= */
 
 .humanizador-panel {
-    max-width: 1100px;
+    max-width: 1080px;
 }
 
 .humanizador-options {
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:14px;
-    margin:18px 0;
+    display:flex;
+    gap:8px;
+    margin:16px 0;
+    padding:4px;
+    width:max-content;
+    max-width:100%;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--card2);
 }
 
 .humanizador-option {
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+    position:relative;
+}
+
+.humanizador-option input {
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
 }
 
 .humanizador-option label {
-    font-size:.85rem;
+    display:block;
+    padding:9px 14px;
+    border-radius:9px;
     color:var(--muted);
+    font-size:.86rem;
     font-weight:600;
+    cursor:pointer;
+    transition:.18s ease;
 }
 
-.humanizador-option select {
-    width:100%;
-    padding:12px 14px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:var(--input);
+.humanizador-option input:checked + label {
+    background:var(--button);
     color:var(--text);
-    outline:none;
-    font:inherit;
-}
-
-.humanizador-option select:focus {
-    border-color:#7c3aed;
-    box-shadow:0 0 0 3px rgba(124,58,237,.12);
 }
 
 .humanizador-columns {
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:16px;
+    gap:14px;
 }
 
 .humanizador-box {
@@ -2906,16 +2909,16 @@ footer strong {
 
 .humanizador-box-head span {
     color:var(--muted);
-    font-size:.78rem;
+    font-size:.76rem;
     white-space:nowrap;
 }
 
 .humanizador-textarea,
 .humanizador-result {
     width:100%;
-    min-height:330px;
+    min-height:340px;
     border:1px solid var(--border);
-    border-radius:14px;
+    border-radius:13px;
     background:var(--input);
     color:var(--text);
     padding:16px;
@@ -2924,6 +2927,12 @@ footer strong {
 
 .humanizador-textarea {
     resize:vertical;
+    outline:none;
+}
+
+.humanizador-textarea:focus {
+    border-color:#7c3aed;
+    box-shadow:0 0 0 3px rgba(124,58,237,.10);
 }
 
 .humanizador-result {
@@ -2938,27 +2947,37 @@ footer strong {
 
 .humanizador-actions {
     display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:16px;
+    gap:9px;
+    margin-top:14px;
 }
 
 .humanizador-actions button {
-    min-width:150px;
+    min-width:0;
+}
+
+.humanizador-actions #humanizadorButton {
+    flex:1;
 }
 
 .humanizador-status {
-    margin-top:13px;
-    padding:11px 13px;
-    border:1px solid var(--border);
-    border-radius:12px;
+    margin-top:10px;
     color:var(--muted);
-    background:var(--card2);
-    font-size:.86rem;
+    font-size:.82rem;
 }
 
 @media (max-width:760px) {
-    .humanizador-options,
+    .humanizador-options {
+        width:100%;
+    }
+
+    .humanizador-option {
+        flex:1;
+    }
+
+    .humanizador-option label {
+        text-align:center;
+    }
+
     .humanizador-columns {
         grid-template-columns:1fr;
     }
@@ -3851,47 +3870,28 @@ CONTRASEÑA FACIL
         <div class="tool-big-icon">📝</div>
         <div>
             <h2>Humanizador de Texto</h2>
-            <p>
-                Reescribe un texto para que suene natural, claro y propio,
-                sin cambiar lo que quiere decir.
-            </p>
+            <p>Reescribe para que el texto sea claro, natural y fácil de leer, manteniendo su significado.</p>
         </div>
     </div>
 
-    <div class="humanizador-options">
+    <div class="humanizador-options" aria-label="Tipo de redacción">
         <div class="humanizador-option">
-            <label for="humanizadorStyle">Estilo</label>
-            <select id="humanizadorStyle">
-                <option value="natural">Natural y equilibrado</option>
-                <option value="cercano">Más cercano</option>
-                <option value="academico">Académico pero natural</option>
-                <option value="profesional">Profesional y fluido</option>
-            </select>
+            <input type="radio" id="humanizadorProfesional" name="humanizadorTipo" value="profesional" checked>
+            <label for="humanizadorProfesional">Profesional / académico</label>
         </div>
-
         <div class="humanizador-option">
-            <label for="humanizadorIntensity">Intensidad</label>
-            <select id="humanizadorIntensity">
-                <option value="suave">Suave — cambia solo lo necesario</option>
-                <option value="media" selected>Media — reescritura natural</option>
-                <option value="alta">Alta — reorganiza frases rígidas</option>
-            </select>
+            <input type="radio" id="humanizadorSencillo" name="humanizadorTipo" value="sencillo">
+            <label for="humanizadorSencillo">Sencillo</label>
         </div>
     </div>
 
     <div class="humanizador-columns">
-
         <div class="humanizador-box">
             <div class="humanizador-box-head">
-                <strong>Texto original</strong>
+                <strong>Original</strong>
                 <span id="humanizadorInputCount">0 palabras</span>
             </div>
-
-            <textarea
-                id="humanizadorInput"
-                class="tool-textarea humanizador-textarea"
-                placeholder="Pega aquí el texto que quieres hacer más natural..."
-            ></textarea>
+            <textarea id="humanizadorInput" class="tool-textarea humanizador-textarea" placeholder="Pega aquí el texto que quieres reescribir..."></textarea>
         </div>
 
         <div class="humanizador-box">
@@ -3899,45 +3899,17 @@ CONTRASEÑA FACIL
                 <strong>Resultado</strong>
                 <span id="humanizadorOutputCount">0 palabras</span>
             </div>
-
-            <div
-                id="humanizadorResult"
-                class="result humanizador-result"
-            >Aquí aparecerá el texto reescrito.</div>
+            <div id="humanizadorResult" class="result humanizador-result is-empty">Aquí aparecerá el resultado.</div>
         </div>
-
     </div>
 
     <div class="humanizador-actions">
-        <button
-            id="humanizadorButton"
-            class="primary"
-            onclick="humanizarTexto()"
-        >
-            ✨ Hacer más natural
-        </button>
-
-        <button
-            id="humanizadorCopy"
-            class="secondary"
-            onclick="copiarHumanizador()"
-            disabled
-        >
-            📋 Copiar resultado
-        </button>
-
-        <button
-            id="humanizadorClear"
-            class="secondary"
-            onclick="limpiarHumanizador()"
-        >
-            🗑️ Limpiar
-        </button>
+        <button id="humanizadorButton" class="primary" onclick="humanizarTexto()">✨ Humanizar texto</button>
+        <button id="humanizadorCopy" class="secondary" onclick="copiarHumanizador()" disabled>📋 Copiar</button>
+        <button id="humanizadorClear" class="secondary" onclick="limpiarHumanizador()">Limpiar</button>
     </div>
 
-    <div id="humanizadorStatus" class="humanizador-status">
-        Mantiene el significado y mejora claridad, ritmo, variedad y naturalidad.
-    </div>
+    <div id="humanizadorStatus" class="humanizador-status">Mantiene el contenido y trabaja vocabulario, ritmo, estructura y claridad.</div>
 </div>
 
     <!-- =====================================================
@@ -7523,29 +7495,13 @@ async function copiarHumanizador() {
 
 async function humanizarTexto() {
 
-    const inputElement =
-        document.getElementById("humanizadorInput");
+    const inputElement = document.getElementById("humanizadorInput");
+    const result = document.getElementById("humanizadorResult");
+    const button = document.getElementById("humanizadorButton");
+    const copyButton = document.getElementById("humanizadorCopy");
+    const status = document.getElementById("humanizadorStatus");
 
-    const result =
-        document.getElementById("humanizadorResult");
-
-    const button =
-        document.getElementById("humanizadorButton");
-
-    const copyButton =
-        document.getElementById("humanizadorCopy");
-
-    const status =
-        document.getElementById("humanizadorStatus");
-
-    const styleElement =
-        document.getElementById("humanizadorStyle");
-
-    const intensityElement =
-        document.getElementById("humanizadorIntensity");
-
-    const input =
-        inputElement.value.trim();
+    const input = inputElement.value.trim();
 
     if (!input) {
         alert("Pega un texto primero.");
@@ -7554,165 +7510,138 @@ async function humanizarTexto() {
     }
 
     if (input.length < 20) {
-        alert("Pega un texto un poco más largo para que la reescritura pueda trabajar bien.");
+        alert("Pega un texto un poco más largo para obtener una reescritura útil.");
         inputElement.focus();
         return;
     }
 
-    const estilos = {
-        natural: "natural y equilibrado, como una persona que escribe con claridad sin intentar sonar artificialmente informal",
-        cercano: "cercano y sencillo, manteniendo un tono apropiado y sin convertirlo en una conversación forzada",
-        academico: "académico pero natural, preciso y claro, evitando frases excesivamente rígidas",
-        profesional: "profesional y fluido, directo y fácil de leer, sin sonar mecánico"
-    };
+    const tipo = document.querySelector('input[name="humanizadorTipo"]:checked')?.value || "profesional";
 
-    const intensidades = {
-        suave: "Haz cambios mínimos. Corrige únicamente frases rígidas, repeticiones y expresiones innecesariamente formales.",
-        media: "Haz una reescritura moderada. Mejora frases rígidas, ritmo, conectores, variedad sintáctica y elección de palabras cuando sea necesario.",
-        alta: "Puedes reorganizar con más libertad las frases y párrafos que estén mal construidos o sean demasiado rígidos, pero sin cambiar el contenido ni la intención."
-    };
-
-    const estilo =
-        estilos[styleElement.value] ||
-        estilos.natural;
-
-    const intensidad =
-        intensidades[intensityElement.value] ||
-        intensidades.media;
+    const estilo = tipo === "sencillo"
+        ? "Usa un español sencillo, directo y natural. Prioriza palabras habituales, frases claras y una lectura fácil. No rebajes la precisión ni elimines información."
+        : "Usa una redacción profesional y, cuando corresponda, académica. Debe ser precisa, clara y seria, pero sin sonar rígida, excesivamente formal o mecánica.";
 
     button.disabled = true;
     copyButton.disabled = true;
-
     button.innerText = "🧠 Reescribiendo...";
     result.classList.remove("is-empty");
-    result.textContent = "TOOLBOX AI está analizando el texto y preparando una versión más natural...";
-
-    status.textContent =
-        "Analizando tono, estructura, repeticiones, ritmo y claridad...";
-
+    result.textContent = "Analizando el texto...";
+    status.textContent = "Revisando vocabulario, estructura, ritmo, repeticiones y claridad...";
     humanizadorActualizarContadores();
 
     try {
-
         const prompt = `
-TAREA: REESCRITURA Y EDICIÓN NATURAL DE TEXTO.
+TAREA: EDITAR Y REESCRIBIR UN TEXTO DE FORMA NATURAL.
 
-Vas a editar únicamente el texto situado entre TEXTO INICIO y TEXTO FIN.
+Edita ÚNICAMENTE el contenido situado entre TEXTO INICIO y TEXTO FIN.
 
-OBJETIVO:
-Crear una versión clara, fluida y natural del mismo texto. La naturalidad debe salir de una buena edición, no de trucos ni de cambios artificiales.
+OBJETIVO PRINCIPAL:
+Produce una versión mejor escrita, natural y fluida del mismo texto. La naturalidad debe proceder de una buena edición lingüística y de decisiones adecuadas al contexto, no de trucos, errores deliberados ni patrones artificiales.
 
-PERFIL DE ESTILO:
+ESTILO ELEGIDO:
 ${estilo}
 
-NIVEL DE REESCRITURA:
-${intensidad}
+REGLAS DE CONTENIDO:
+1. Conserva el significado original.
+2. Conserva todos los datos, hechos, ideas, nombres, fechas, cifras y conceptos importantes.
+3. No inventes información ni añadas argumentos, ejemplos, fuentes o conclusiones.
+4. No elimines información relevante.
+5. Mantén el idioma original.
+6. Respeta la intención y el contexto del autor.
+7. Si hay una opinión, no la conviertas en un hecho.
+8. Si hay una pregunta, consérvala como pregunta; no la respondas.
+9. Conserva correctamente nombres propios, fórmulas, términos técnicos y citas.
 
-REGLAS IMPORTANTES:
+REGLAS DE VOCABULARIO:
+10. Usa vocabulario habitual y preciso.
+11. Evita palabras rebuscadas cuando una palabra normal exprese mejor la misma idea.
+12. Evita repetir constantemente los mismos verbos, sustantivos o conectores cuando pueda variarse de forma natural.
+13. No sustituyas palabras por sinónimos solo para cambiarlas: cada elección debe mejorar la frase.
+14. Evita expresiones genéricas, clichés y fórmulas que no aporten nada.
+15. Conserva palabras técnicas cuando sean necesarias para la precisión.
+16. No introduzcas regionalismos o coloquialismos que no encajen con el texto.
 
-1. Conserva exactamente el significado, los hechos, los datos, las ideas y la intención del original.
-2. No inventes información, ejemplos, fuentes, datos ni argumentos.
-3. No elimines información importante.
-4. Mantén el idioma original.
-5. Mantén el nivel de formalidad adecuado al contenido.
-6. Sustituye palabras innecesariamente rebuscadas por alternativas normales cuando mejore la lectura.
-7. Reescribe frases rígidas o poco naturales.
-8. Varía la estructura de las oraciones cuando sea útil.
-9. Combina frases cortas y largas de forma natural, sin seguir una proporción fija.
-10. Evita repeticiones innecesarias de palabras y estructuras.
-11. Usa conectores solo cuando aporten claridad.
-12. Mantén una progresión lógica entre las ideas.
-13. Respeta los párrafos originales siempre que tengan sentido.
-14. No conviertas un texto en una lista si originalmente no lo era.
-15. No introduzcas faltas de ortografía, errores gramaticales o errores deliberados.
-16. No fuerces expresiones coloquiales, muletillas ni palabras de moda.
-17. No añadas títulos, introducciones, conclusiones o comentarios que no existan.
-18. No expliques los cambios realizados.
-19. Si el texto contiene preguntas, responde NO a ellas: solo reescribe las preguntas como parte del texto.
-20. Si hay nombres propios, cifras, fechas, fórmulas, citas o términos técnicos, consérvalos correctamente.
-21. Si una frase ya suena natural, no la cambies sin necesidad.
-22. No hagas una sustitución palabra por palabra. Reescribe la oración completa cuando eso produzca una expresión más natural.
-23. Evita estructuras repetitivas, plantillas y frases genéricas.
-24. El resultado debe seguir siendo reconociblemente el mismo texto, solo mejor escrito.
+REGLAS DE FRASES Y RITMO:
+17. Reescribe las frases que sean rígidas, pesadas, ambiguas o poco naturales.
+18. Varía la estructura sintáctica cuando resulte útil, sin aplicar una fórmula fija.
+19. Combina frases de distinta longitud de manera orgánica, según lo que pida el contenido.
+20. Evita encadenar demasiadas frases con la misma estructura.
+21. Evita párrafos artificialmente uniformes.
+22. Usa conectores solo cuando exista una relación real entre las ideas.
+23. Evita empezar demasiadas frases de la misma manera.
+24. Evita nominalizaciones innecesarias cuando un verbo directo sea más natural.
+25. Prefiere construcciones claras y directas cuando no se pierda precisión.
+26. No fuerces pausas, frases cortas, frases largas ni cambios de estructura.
 
-PROCESO INTERNO:
-Antes de escribir, identifica mentalmente:
-- el tono original;
-- la intención;
-- las ideas principales;
-- el nivel de formalidad;
-- las repeticiones;
-- las frases rígidas;
-- las relaciones entre párrafos.
+REGLAS DE COHERENCIA:
+27. Mantén la relación lógica entre las ideas.
+28. Mantén una progresión natural entre frases y párrafos.
+29. No cambies el orden de las ideas salvo que sea necesario para corregir una construcción confusa.
+30. Mantén los párrafos originales cuando funcionen bien.
+31. No conviertas un texto continuo en una lista.
+32. No añadas títulos, saludos, despedidas ni explicaciones.
 
-Después, edita solo lo necesario para conseguir una lectura natural y coherente.
+REGLAS DE NATURALIDAD:
+33. No hagas que todo suene perfectamente uniforme o excesivamente pulido.
+34. Conserva, cuando sean correctas, pequeñas diferencias de ritmo y de construcción propias de una redacción normal.
+35. No introduzcas faltas ortográficas, errores gramaticales ni errores de puntuación deliberadamente.
+36. No añadas muletillas, repeticiones artificiales ni palabras innecesarias para intentar parecer una persona.
+37. No fuerces expresiones coloquiales.
+38. No imites a una persona concreta.
+39. No sigas patrones matemáticos de longitud de frase o número de palabras.
+40. No hagas sustituciones palabra por palabra. Reescribe unidades completas cuando sea necesario.
+41. Si una frase ya está bien escrita, déjala prácticamente igual.
+42. Prioriza siempre claridad, precisión, coherencia y naturalidad sobre cambios llamativos.
+
+CONTROL FINAL:
+Antes de responder, comprueba internamente que:
+- no falta información del original;
+- no has inventado nada;
+- el significado sigue siendo el mismo;
+- el vocabulario encaja con el contexto;
+- no hay repeticiones innecesarias;
+- la estructura no sigue una plantilla rígida;
+- la puntuación y ortografía son correctas;
+- el resultado se lee como una revisión normal del texto.
 
 SALIDA:
-Devuelve exclusivamente el texto reescrito.
-No uses comillas alrededor del resultado.
-No escribas explicaciones antes ni después.
+Devuelve SOLAMENTE el texto reescrito.
+No escribas explicaciones, comentarios, etiquetas ni comillas alrededor del resultado.
 
 TEXTO INICIO
 ${input}
 TEXTO FIN
 `;
 
-        const reply =
-            await askGemini(
-                [
-                    {
-                        role: "user",
-                        content: prompt
-                    }
-                ],
-                "humanizador"
-            );
+        const reply = await askGemini(
+            [{ role: "user", content: prompt }],
+            "humanizador"
+        );
 
         const limpio = (reply || "").trim();
 
         if (!limpio) {
-            throw new Error(
-                "La IA no devolvió un texto. Inténtalo de nuevo."
-            );
+            throw new Error("La IA no devolvió un texto. Inténtalo de nuevo.");
         }
 
         result.textContent = limpio;
         copyButton.disabled = false;
-
-        status.textContent =
-            "✅ Texto reescrito. Revisa el resultado antes de utilizarlo.";
-
+        status.textContent = "✅ Texto reescrito. Revísalo antes de utilizarlo.";
         humanizadorActualizarContadores();
 
     } catch (error) {
-
-        result.textContent =
-            "❌ " + error.message;
-
-        result.classList.remove("is-empty");
-
-        status.textContent =
-            "No se pudo completar la reescritura.";
-
+        result.textContent = "❌ " + error.message;
+        status.textContent = "No se pudo completar la reescritura.";
     } finally {
-
         button.disabled = false;
-        button.innerText = "✨ Hacer más natural";
-
+        button.innerText = "✨ Humanizar texto";
         humanizadorActualizarContadores();
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("humanizadorInput");
-
-    if (input) {
-        input.addEventListener(
-            "input",
-            humanizadorActualizarContadores
-        );
-    }
-
+    if (input) input.addEventListener("input", humanizadorActualizarContadores);
     humanizadorActualizarContadores();
 });
 
