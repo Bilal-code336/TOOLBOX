@@ -2649,6 +2649,198 @@ footer strong {
 .toolbox-ai-app .toolbox-ai-messages:active {
     background: #080b12 !important;
 }
+
+/* =========================================================
+   POMODORO
+========================================================= */
+
+.pomodoro-box {
+    max-width: 760px;
+    margin: 10px auto 0;
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    text-align: center;
+    transition: background .25s, border-color .25s;
+}
+
+.pomodoro-box.focus-mode {
+    background: #4a171b;
+}
+
+.pomodoro-box.short-break-mode {
+    background: #173d2b;
+}
+
+.pomodoro-box.long-break-mode {
+    background: #123326;
+}
+
+.pomodoro-mode {
+    color: rgba(255,255,255,.78);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.pomodoro-time {
+    font-size: clamp(60px, 12vw, 105px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: #fff;
+    margin: 12px 0 25px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pomodoro-sessions {
+    color: rgba(255,255,255,.78);
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.pomodoro-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pomodoro-controls button {
+    min-width: 105px;
+}
+
+.pomodoro-settings {
+    margin-top: 25px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    text-align: left;
+}
+
+.pomodoro-settings-title {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.pomodoro-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pomodoro-settings-grid label {
+    display: block;
+    color: rgba(255,255,255,.68);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.pomodoro-settings-grid input {
+    background: rgba(0,0,0,.18);
+    color: #fff;
+    border-color: rgba(255,255,255,.14);
+}
+
+.pomodoro-note {
+    margin-top: 14px;
+    color: rgba(255,255,255,.55);
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+@media(max-width:600px) {
+    .pomodoro-box {
+        padding: 22px 15px;
+    }
+
+    .pomodoro-settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pomodoro-time {
+        letter-spacing: -2px;
+    }
+}
+
+/* =========================================================
+   DETECTOR DE TEXTO DE IMAGEN / OCR
+========================================================= */
+
+.ocr-box {
+    max-width: 850px;
+    margin: 10px auto 0;
+}
+
+.ocr-drop {
+    border: 2px dashed var(--border2);
+    border-radius: 18px;
+    padding: 35px 20px;
+    text-align: center;
+    transition: .2s;
+}
+
+.ocr-drop:hover {
+    border-color: var(--purple2);
+    background: rgba(124,58,237,.05);
+}
+
+.ocr-preview {
+    display: none;
+    max-width: 100%;
+    max-height: 430px;
+    margin: 25px auto;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+}
+
+.ocr-progress-wrap {
+    display: none;
+    margin-top: 20px;
+}
+
+.ocr-progress-bar {
+    width: 100%;
+    height: 9px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: var(--button);
+}
+
+.ocr-progress {
+    width: 0%;
+    height: 100%;
+    background: var(--purple);
+    transition: width .15s;
+}
+
+.ocr-status {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 9px;
+    text-align: center;
+}
+
+.ocr-result {
+    min-height: 220px;
+    margin-top: 20px;
+}
+
+.ocr-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ocr-actions button {
+    flex: 1;
+    min-width: 150px;
+}
+
 </style>
 </head>
 
@@ -2840,6 +3032,53 @@ footer strong {
             </button>
 
         </div>
+
+        <!-- POMODORO -->
+
+        <div
+            class="tool-card"
+            data-category="utilidad"
+            data-name="pomodoro temporizador estudio trabajo descanso productividad"
+        >
+            <div class="icon">🍅</div>
+
+            <h3>Temporizador Pomodoro</h3>
+
+            <p>
+                Organiza tus sesiones de estudio o trabajo con descansos automáticos.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pomodoro')"
+            >
+                Abrir
+            </button>
+        </div>
+
+        <!-- DETECTOR DE TEXTO DE IMAGEN -->
+
+        <div
+            class="tool-card"
+            data-category="imagen"
+            data-name="detector texto imagen ocr extraer texto foto copiar"
+        >
+            <div class="icon">🔎</div>
+
+            <h3>Texto de imagen</h3>
+
+            <p>
+                Extrae el texto de una imagen y conviértelo en texto copiable.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('ocr')"
+            >
+                Abrir
+            </button>
+        </div>
+
         <!-- CALCULADORA -->
 
         <div
@@ -3258,6 +3497,222 @@ CONTRASEÑA FACIL
         >
         </div>
 
+    </div>
+
+
+    <!-- =====================================================
+         POMODORO
+    ===================================================== -->
+
+    <div
+        id="pomodoro"
+        class="tool-panel"
+    >
+        <div class="tool-head">
+            <h2>🍅 Temporizador Pomodoro</h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+        </div>
+
+        <div id="pomodoroBox" class="pomodoro-box focus-mode">
+
+            <div id="pomodoroMode" class="pomodoro-mode">
+                Momento de estudiar
+            </div>
+
+            <div id="pomodoroTime" class="pomodoro-time">
+                25:00
+            </div>
+
+            <div id="pomodoroSessions" class="pomodoro-sessions">
+                Sesión 1 de 4
+            </div>
+
+            <div class="pomodoro-controls">
+                <button
+                    id="pomodoroPlay"
+                    class="primary"
+                    onclick="pomodoroPlayPause()"
+                >
+                    ▶️ Empezar
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="pomodoroReset()"
+                >
+                    ↩️ Reiniciar
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="pomodoroSkip()"
+                >
+                    ⏭️ Saltar
+                </button>
+            </div>
+
+            <div class="pomodoro-settings">
+                <div class="pomodoro-settings-title">
+                    ⚙️ Duraciones
+                </div>
+
+                <div class="pomodoro-settings-grid">
+
+                    <div>
+                        <label for="pomodoroFocusMinutes">
+                            Estudio / trabajo (min)
+                        </label>
+                        <input
+                            id="pomodoroFocusMinutes"
+                            type="number"
+                            min="1"
+                            max="180"
+                            value="25"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="pomodoroShortMinutes">
+                            Descanso corto (min)
+                        </label>
+                        <input
+                            id="pomodoroShortMinutes"
+                            type="number"
+                            min="1"
+                            max="60"
+                            value="5"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="pomodoroLongMinutes">
+                            Descanso largo (min)
+                        </label>
+                        <input
+                            id="pomodoroLongMinutes"
+                            type="number"
+                            min="1"
+                            max="120"
+                            value="15"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="pomodoro-note">
+                    Después de 4 sesiones de estudio se activa automáticamente el descanso largo.
+                    Puedes saltar cualquier fase cuando quieras.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         DETECTOR DE TEXTO DE IMAGEN / OCR
+    ===================================================== -->
+
+    <div
+        id="ocr"
+        class="tool-panel"
+    >
+        <div class="tool-head">
+            <h2>🔎 Texto de imagen</h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+        </div>
+
+        <div class="ocr-box">
+
+            <div class="ocr-drop">
+                <div style="font-size:45px">🖼️</div>
+
+                <h3 style="margin:12px 0">
+                    Extrae texto de una imagen
+                </h3>
+
+                <p style="color:var(--muted);margin-bottom:15px;">
+                    Selecciona una foto, captura o imagen con texto.
+                </p>
+
+                <input
+                    id="ocrFile"
+                    type="file"
+                    accept="image/*"
+                    onchange="procesarOCR(event)"
+                >
+            </div>
+
+            <img
+                id="ocrPreview"
+                class="ocr-preview"
+                alt="Vista previa de la imagen"
+            >
+
+            <div
+                id="ocrProgressWrap"
+                class="ocr-progress-wrap"
+            >
+                <div class="ocr-progress-bar">
+                    <div
+                        id="ocrProgress"
+                        class="ocr-progress"
+                    ></div>
+                </div>
+
+                <div
+                    id="ocrStatus"
+                    class="ocr-status"
+                >
+                    Preparando reconocimiento...
+                </div>
+            </div>
+
+            <textarea
+                id="ocrResult"
+                class="ocr-result"
+                readonly
+                placeholder="El texto detectado aparecerá aquí..."
+            ></textarea>
+
+            <div class="ocr-actions">
+
+                <button
+                    id="ocrCopyButton"
+                    class="primary"
+                    onclick="copiarOCR()"
+                    disabled
+                >
+                    📋 Copiar texto
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="limpiarOCR()"
+                >
+                    🗑️ Limpiar
+                </button>
+
+            </div>
+
+            <p style="color:var(--muted);font-size:11px;margin-top:15px;text-align:center;">
+                El reconocimiento se realiza en tu navegador. Necesitas conexión a internet
+                para cargar el motor de OCR y sus datos de idioma.
+            </p>
+
+        </div>
     </div>
 
 <div id="humanizador" class="tool-panel">
@@ -3954,7 +4409,7 @@ CONTRASEÑA FACIL
 <footer>
 
     <div style="font-size:30px">
-       <span class="notranslate">🧰 TOOLBOX 2.0</span>
+       <span class="notranslate">🧰 TOOLBOX 2.5</span>
     </div>
 
     <br>
@@ -4059,7 +4514,7 @@ CONTRASEÑA FACIL
             onclick="createNewConversation()"
         >
 
-            <span>＋</span>
+            <span> ＋ </span>
 
             Nueva conversación
 
@@ -6994,6 +7449,551 @@ function forzarTraduccionGoogle() {
         transform: translateY(-1px);
     }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@6/dist/tesseract.min.js"></script>
+
+
+<script>
+/* =========================================================
+   TEMPORIZADOR POMODORO
+========================================================= */
+
+let pomodoroInterval = null;
+let pomodoroRunning = false;
+let pomodoroMode = "focus";
+let pomodoroSeconds = 25 * 60;
+let pomodoroSession = 1;
+
+const pomodoroTotalSessions = 4;
+
+
+function pomodoroGetMinutes(id, fallback) {
+
+    const value =
+        parseInt(
+            document.getElementById(id).value,
+            10
+        );
+
+    if (Number.isNaN(value) || value < 1) {
+        return fallback;
+    }
+
+    return value;
+}
+
+
+function pomodoroDurationForMode() {
+
+    if (pomodoroMode === "focus") {
+
+        return pomodoroGetMinutes(
+            "pomodoroFocusMinutes",
+            25
+        ) * 60;
+
+    }
+
+    if (pomodoroMode === "short") {
+
+        return pomodoroGetMinutes(
+            "pomodoroShortMinutes",
+            5
+        ) * 60;
+
+    }
+
+    return pomodoroGetMinutes(
+        "pomodoroLongMinutes",
+        15
+    ) * 60;
+}
+
+
+function pomodoroUpdateDisplay() {
+
+    const minutes =
+        Math.floor(
+            pomodoroSeconds / 60
+        )
+        .toString()
+        .padStart(2, "0");
+
+    const seconds =
+        (pomodoroSeconds % 60)
+        .toString()
+        .padStart(2, "0");
+
+    document.getElementById("pomodoroTime").innerText =
+        `${minutes}:${seconds}`;
+
+
+    const modeElement =
+        document.getElementById("pomodoroMode");
+
+    const box =
+        document.getElementById("pomodoroBox");
+
+
+    box.classList.remove(
+        "focus-mode",
+        "short-break-mode",
+        "long-break-mode"
+    );
+
+
+    if (pomodoroMode === "focus") {
+
+        modeElement.innerText =
+            "Momento de estudiar / trabajar";
+
+        box.classList.add("focus-mode");
+
+    } else if (pomodoroMode === "short") {
+
+        modeElement.innerText =
+            "Descanso corto";
+
+        box.classList.add("short-break-mode");
+
+    } else {
+
+        modeElement.innerText =
+            "Descanso largo";
+
+        box.classList.add("long-break-mode");
+    }
+
+
+    document.getElementById("pomodoroSessions").innerText =
+        `Sesión ${pomodoroSession} de ${pomodoroTotalSessions}`;
+
+
+    document.getElementById("pomodoroPlay").innerText =
+        pomodoroRunning
+        ? "⏸️ Pausar"
+        : "▶️ Empezar";
+}
+
+
+function pomodoroPlayPause() {
+
+    if (pomodoroRunning) {
+
+        clearInterval(pomodoroInterval);
+
+        pomodoroInterval = null;
+        pomodoroRunning = false;
+
+        pomodoroUpdateDisplay();
+
+        return;
+    }
+
+
+    if (
+        "Notification" in window &&
+        Notification.permission === "default"
+    ) {
+
+        Notification.requestPermission();
+
+    }
+
+
+    pomodoroRunning = true;
+
+    pomodoroUpdateDisplay();
+
+
+    pomodoroInterval =
+        setInterval(
+            pomodoroTick,
+            1000
+        );
+}
+
+
+function pomodoroTick() {
+
+    if (pomodoroSeconds > 0) {
+
+        pomodoroSeconds--;
+
+        pomodoroUpdateDisplay();
+
+        return;
+    }
+
+
+    pomodoroFinishPhase();
+}
+
+
+function pomodoroFinishPhase() {
+
+    clearInterval(pomodoroInterval);
+
+    pomodoroInterval = null;
+    pomodoroRunning = false;
+
+
+    let title = "";
+    let message = "";
+
+
+    if (pomodoroMode === "focus") {
+
+        if (pomodoroSession >= pomodoroTotalSessions) {
+
+            title = "🍅 ¡Has terminado las sesiones!";
+            message =
+                "Puedes hacer tu descanso largo.";
+
+            pomodoroMode = "long";
+
+        } else {
+
+            title = "🍅 ¡Sesión terminada!";
+            message =
+                "Puedes descansar unos minutos.";
+
+            pomodoroMode = "short";
+        }
+
+    } else if (pomodoroMode === "short") {
+
+        title = "⏰ ¡Descanso terminado!";
+        message =
+            "Toca volver a estudiar o trabajar.";
+
+        pomodoroSession++;
+        pomodoroMode = "focus";
+
+    } else {
+
+        title = "🌿 ¡Descanso largo terminado!";
+        message =
+            "Puedes ponerte a trabajar de nuevo.";
+
+        pomodoroSession = 1;
+        pomodoroMode = "focus";
+    }
+
+
+    if (
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ) {
+
+        new Notification(
+            title,
+            {
+                body: message
+            }
+        );
+
+    }
+
+
+    if (document.visibilityState === "visible") {
+
+        alert(
+            `${title}\n\n${message}`
+        );
+
+    }
+
+
+    pomodoroSeconds =
+        pomodoroDurationForMode();
+
+    pomodoroUpdateDisplay();
+
+
+    // La siguiente fase empieza automáticamente.
+    pomodoroRunning = true;
+
+    pomodoroUpdateDisplay();
+
+    pomodoroInterval =
+        setInterval(
+            pomodoroTick,
+            1000
+        );
+}
+
+
+function pomodoroReset() {
+
+    clearInterval(pomodoroInterval);
+
+    pomodoroInterval = null;
+    pomodoroRunning = false;
+    pomodoroMode = "focus";
+    pomodoroSession = 1;
+
+    pomodoroSeconds =
+        pomodoroDurationForMode();
+
+    pomodoroUpdateDisplay();
+}
+
+
+function pomodoroSkip() {
+
+    clearInterval(pomodoroInterval);
+
+    pomodoroInterval = null;
+
+    const wasRunning =
+        pomodoroRunning;
+
+    pomodoroRunning = false;
+
+
+    if (pomodoroMode === "focus") {
+
+        if (pomodoroSession >= pomodoroTotalSessions) {
+
+            pomodoroMode = "long";
+
+        } else {
+
+            pomodoroMode = "short";
+        }
+
+    } else if (pomodoroMode === "short") {
+
+        pomodoroSession++;
+        pomodoroMode = "focus";
+
+    } else {
+
+        pomodoroSession = 1;
+        pomodoroMode = "focus";
+    }
+
+
+    pomodoroSeconds =
+        pomodoroDurationForMode();
+
+    pomodoroUpdateDisplay();
+
+
+    if (wasRunning) {
+
+        pomodoroRunning = true;
+
+        pomodoroUpdateDisplay();
+
+        pomodoroInterval =
+            setInterval(
+                pomodoroTick,
+                1000
+            );
+    }
+}
+
+
+/* =========================================================
+   DETECTOR DE TEXTO DE IMAGEN — OCR
+========================================================= */
+
+async function procesarOCR(event) {
+
+    const file =
+        event.target.files[0];
+
+    if (!file) return;
+
+
+    const preview =
+        document.getElementById("ocrPreview");
+
+    const progressWrap =
+        document.getElementById("ocrProgressWrap");
+
+    const progress =
+        document.getElementById("ocrProgress");
+
+    const status =
+        document.getElementById("ocrStatus");
+
+    const result =
+        document.getElementById("ocrResult");
+
+    const copyButton =
+        document.getElementById("ocrCopyButton");
+
+
+    result.value = "";
+    copyButton.disabled = true;
+
+    progress.style.width = "0%";
+
+    progressWrap.style.display = "block";
+
+
+    preview.src =
+        URL.createObjectURL(file);
+
+    preview.style.display = "block";
+
+
+    status.innerText =
+        "Preparando reconocimiento...";
+
+
+    try {
+
+        const worker =
+            await Tesseract.createWorker(
+                "spa+eng",
+                1,
+                {
+                    logger: function(info) {
+
+                        if (info.status) {
+
+                            status.innerText =
+                                info.status;
+
+                        }
+
+                        if (
+                            typeof info.progress === "number"
+                        ) {
+
+                            progress.style.width =
+                                `${Math.round(info.progress * 100)}%`;
+                        }
+                    }
+                }
+            );
+
+
+        const resultOCR =
+            await worker.recognize(file);
+
+
+        await worker.terminate();
+
+
+        result.value =
+            resultOCR.data.text.trim();
+
+
+        progress.style.width =
+            "100%";
+
+
+        if (result.value) {
+
+            status.innerText =
+                "✅ Texto detectado correctamente.";
+
+            copyButton.disabled = false;
+
+        } else {
+
+            status.innerText =
+                "No se ha encontrado texto en la imagen.";
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.innerText =
+            "❌ No se pudo reconocer el texto. Prueba con otra imagen.";
+
+    }
+}
+
+
+async function copiarOCR() {
+
+    const text =
+        document
+            .getElementById("ocrResult")
+            .value;
+
+
+    if (!text.trim()) {
+
+        alert(
+            "Primero detecta algún texto."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert(
+            "✅ Texto copiado."
+        );
+
+    } catch {
+
+        const textarea =
+            document.getElementById("ocrResult");
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        alert(
+            "✅ Texto copiado."
+        );
+    }
+}
+
+
+function limpiarOCR() {
+
+    const file =
+        document.getElementById("ocrFile");
+
+    const preview =
+        document.getElementById("ocrPreview");
+
+    const progressWrap =
+        document.getElementById("ocrProgressWrap");
+
+    const progress =
+        document.getElementById("ocrProgress");
+
+    const status =
+        document.getElementById("ocrStatus");
+
+    const result =
+        document.getElementById("ocrResult");
+
+    const copyButton =
+        document.getElementById("ocrCopyButton");
+
+
+    file.value = "";
+
+    preview.src = "";
+    preview.style.display = "none";
+
+    progressWrap.style.display = "none";
+    progress.style.width = "0%";
+
+    status.innerText =
+        "Preparando reconocimiento...";
+
+    result.value = "";
+
+    copyButton.disabled = true;
+}
+</script>
 
 </body>
 </html>
