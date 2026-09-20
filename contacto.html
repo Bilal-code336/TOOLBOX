@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-adsense-account" content="ca-pub-1369473611696992">
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1369473611696992"
      crossorigin="anonymous"></script>
+
 <title>Contacto — TOOLBOX</title>
 
 <style>
@@ -45,49 +47,141 @@ header {
 
 .card {
     background: #111827;
-    border: 1px solid rgba(139,92,246,.25);
+    border: 1px solid rgba(139, 92, 246, .25);
     border-radius: 18px;
     padding: 35px;
     margin-bottom: 25px;
-    text-align: center;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
 }
 
 .icon {
     font-size: 55px;
+    text-align: center;
     margin-bottom: 20px;
 }
 
 h1 {
+    text-align: center;
     margin-bottom: 15px;
+    font-size: 32px;
 }
 
-p {
+.intro {
     color: #b8bec9;
     line-height: 1.7;
-    margin-bottom: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* FORMULARIO */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field label {
+    font-weight: bold;
+    color: #f5f5f5;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    background: #080d16;
+    color: #ffffff;
+    border: 1px solid #29344a;
+    border-radius: 12px;
+    padding: 14px 15px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: .2s;
+}
+
+.field input {
+    height: 50px;
+}
+
+.field textarea {
+    min-height: 170px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, .12);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #667085;
+}
+
+.send-button {
+    border: none;
+    background: #7c3aed;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    margin-top: 5px;
+}
+
+.send-button:hover {
+    background: #6d28d9;
+    transform: translateY(-1px);
+}
+
+.send-button:active {
+    transform: translateY(0);
 }
 
 .notice {
-    background: rgba(124,58,237,.12);
-    border: 1px solid rgba(139,92,246,.3);
+    background: rgba(124, 58, 237, .10);
+    border: 1px solid rgba(139, 92, 246, .25);
     border-radius: 14px;
-    padding: 20px;
+    padding: 18px;
     margin-top: 25px;
+    color: #b8bec9;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.notice strong {
+    color: #ffffff;
+}
+
+.back-container {
+    text-align: center;
 }
 
 .back {
     display: inline-block;
     margin-top: 25px;
     padding: 12px 20px;
-    background: #7c3aed;
+    background: #202a3d;
     color: white;
     text-decoration: none;
     border-radius: 10px;
     font-weight: bold;
+    border: 1px solid #29344a;
+    transition: .2s;
 }
 
 .back:hover {
-    background: #6d28d9;
+    background: #29344a;
 }
 
 footer {
@@ -95,6 +189,36 @@ footer {
     color: #6b7280;
     margin-top: 35px;
     font-size: 14px;
+}
+
+/* MÓVIL */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 14px;
+    }
+
+    .card {
+        padding: 25px 20px;
+    }
+
+    .logo {
+        font-size: 28px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .icon {
+        font-size: 48px;
+    }
+
+    .field input,
+    .field textarea {
+        font-size: 16px;
+    }
 }
 </style>
 </head>
@@ -105,7 +229,9 @@ footer {
 
     <header>
         <div class="logo">🧰 TOOLBOX</div>
-        <div class="subtitle">Todas tus herramientas en un solo sitio.</div>
+        <div class="subtitle">
+            Todas tus herramientas en un solo sitio.
+        </div>
     </header>
 
     <div class="card">
@@ -114,24 +240,59 @@ footer {
 
         <h1>Contacto</h1>
 
-        <p>
-            Actualmente, el sistema de contacto de TOOLBOX
-            todavía no está disponible.
+        <p class="intro">
+            ¿Tienes alguna pregunta, sugerencia o has encontrado algún problema?
+            Puedes ponerte en contacto con nosotros mediante este formulario.
         </p>
 
-        <div class="notice">
-            <strong>🚧 Próximamente</strong>
+        <form
+            class="contact-form"
+            action="https://formspree.io/f/mppwqgnz"
+            method="POST"
+        >
 
-            <p style="margin-top:10px;margin-bottom:0;">
-                Estamos trabajando para ofrecer un método de contacto
-                para que puedas comunicarte con nosotros.
-            </p>
+            <div class="field">
+                <label for="email">Tu email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="tuemail@ejemplo.com"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <label for="message">Mensaje</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Escribe aquí tu mensaje..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" class="send-button">
+                📤 Enviar mensaje
+            </button>
+
+        </form>
+
+        <div class="notice">
+            <strong>💡 ¿Qué puedes escribirnos?</strong><br>
+            Puedes enviarnos sugerencias para nuevas herramientas,
+            avisarnos de errores o simplemente hacernos llegar cualquier
+            comentario sobre TOOLBOX.
         </div>
 
+    </div>
+
+    <div class="back-container">
         <a href="/" class="back">
             ← Volver a TOOLBOX
         </a>
-
     </div>
 
     <footer>
