@@ -5600,19 +5600,69 @@ function drawEditor() {
     canvas.width=rotated?editorImage.height:editorImage.width;
     canvas.height=rotated?editorImage.width:editorImage.height;
     ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Paso 1: rotación, volteo y desenfoque.
+    // El desenfoque es el ÚNICO filtro que dejamos en manos del
+    // navegador, porque usado solo es fiable incluso en Safari
+    // antiguo (combinar varios filtros a la vez es lo que falla).
     ctx.save();
     ctx.translate(canvas.width/2,canvas.height/2);
     ctx.rotate(angle);
     if(editorFlip) ctx.scale(-1,1);
-    const b=document.getElementById("brightnessControl").value;
-    const c=document.getElementById("contrastControl").value;
-    const sat=document.getElementById("saturationControl").value;
-    const blur=document.getElementById("blurControl").value;
-    ctx.filter=`brightness(${b}%) contrast(${c}%) saturate(${sat}%) blur(${blur}px) ${editorGray?"grayscale(100%)":""}`;
+    const blur=parseFloat(document.getElementById("blurControl").value)||0;
+    ctx.filter = blur > 0 ? `blur(${blur}px)` : "none";
     ctx.drawImage(editorImage,-editorImage.width/2,-editorImage.height/2);
     ctx.restore();
-}
 
+    // Paso 2: brillo, contraste, saturación y blanco y negro,
+    // aplicados manualmente sobre los píxeles del canvas.
+    // Esto funciona igual en todos los navegadores (Chrome, Edge,
+    // Firefox y también Safari/iPhone), a diferencia de combinar
+    // varios ctx.filter a la vez.
+    const brightness=parseInt(document.getElementById("brightnessControl").value,10);
+    const contrast=parseInt(document.getElementById("contrastControl").value,10);
+    const saturation=parseInt(document.getElementById("saturationControl").value,10);
+
+    if (brightness!==100 || contrast!==100 || saturation!==100 || editorGray) {
+
+        const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+        const data=imageData.data;
+
+        const brightnessFactor=brightness/100;
+        const contrastAmount=(contrast-100)*2.55;
+        const contrastFactor=(259*(contrastAmount+255))/(255*(259-contrastAmount));
+        const saturationFactor=saturation/100;
+
+        for (let i=0;i<data.length;i+=4) {
+
+            let r=data[i];
+            let g=data[i+1];
+            let b=data[i+2];
+
+            r*=brightnessFactor; g*=brightnessFactor; b*=brightnessFactor;
+
+            r=contrastFactor*(r-128)+128;
+            g=contrastFactor*(g-128)+128;
+            b=contrastFactor*(b-128)+128;
+
+            const gray=0.299*r+0.587*g+0.114*b;
+            r=gray+(r-gray)*saturationFactor;
+            g=gray+(g-gray)*saturationFactor;
+            b=gray+(b-gray)*saturationFactor;
+
+            if (editorGray) {
+                const grayFinal=0.299*r+0.587*g+0.114*b;
+                r=g=b=grayFinal;
+            }
+
+            data[i]=Math.max(0,Math.min(255,r));
+            data[i+1]=Math.max(0,Math.min(255,g));
+            data[i+2]=Math.max(0,Math.min(255,b));
+        }
+
+        ctx.putImageData(imageData,0,0);
+    }
+}
 function rotateEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorRotation=(editorRotation+90)%360; drawEditor(); }
 function flipEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorFlip=!editorFlip; drawEditor(); }
 function grayEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorGray=!editorGray; drawEditor(); }
@@ -7947,17 +7997,6 @@ function limpiarOCR() {
     copyButton.disabled = true;
 }
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1369473611696992"
-     crossorigin="anonymous"></script>
-<!-- Anuncio fondo -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1369473611696992"
-     data-ad-slot="3707405120"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
 </body>
 </html>
