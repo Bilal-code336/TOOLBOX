@@ -5696,14 +5696,36 @@ function resetEditor() {
 }
 
 function downloadEditor() {
-    if(!editorImage){alert("Primero carga una imagen.");return;}
-    const canvas=document.getElementById("editorCanvas");
-    const format=document.getElementById("editorFormat").value;
-    const quality=parseFloat(document.getElementById("editorQuality").value);
-    let mime="image/png", ext="png";
-    if(format==="jpeg"){mime="image/jpeg";ext="jpg";}
-    if(format==="webp"){mime="image/webp";ext="webp";}
-    const link=document.createElement("a"); link.download=`toolbox-imagen.${ext}`; link.href=canvas.toDataURL(mime,quality); link.click();
+    if (!editorImage) { alert("Primero carga una imagen."); return; }
+
+    const canvas = document.getElementById("editorCanvas");
+    const format = document.getElementById("editorFormat").value;
+    const quality = parseFloat(document.getElementById("editorQuality").value);
+
+    let mime = "image/png", ext = "png";
+    if (format === "jpeg") { mime = "image/jpeg"; ext = "jpg"; }
+    if (format === "webp") { mime = "image/webp"; ext = "webp"; }
+
+    canvas.toBlob(function(blob) {
+
+        if (!blob) {
+            alert("No se pudo generar el archivo. Prueba con otro formato (PNG suele funcionar siempre).");
+            return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = `toolbox-imagen.${ext}`;
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(function() {
+            URL.revokeObjectURL(url);
+        }, 5000);
+
+    }, mime, quality);
 }
 
 
