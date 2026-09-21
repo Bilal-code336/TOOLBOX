@@ -1143,113 +1143,37 @@ textarea {
    EDITOR DE IMAGEN
 ========================================================= */
 
-.image-editor {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        minmax(0,1fr) 270px;
-
-    gap:
-        20px;
+.toolbox-image-upload {
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px;
+    padding:14px; background:var(--card2); border:1px solid var(--border); border-radius:15px;
 }
-
-.canvas-area {
-
-    min-height:
-        450px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        #05080e;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        17px;
-
-    overflow:
-        hidden;
-
-    padding:
-        20px;
+.toolbox-upload-button {
+    display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 17px;
+    border-radius:11px; background:var(--button); color:var(--text); cursor:pointer; font-weight:600; transition:.2s;
 }
-
-#editorCanvas {
-
-    max-width:
-        100%;
-
-    max-height:
-        550px;
-
-    display:
-        none;
-
-    border-radius:
-        8px;
+.toolbox-upload-button:hover { background:var(--purple); transform:translateY(-1px); }
+#editorFileName { color:var(--muted); font-size:13px; overflow:hidden; text-overflow:ellipsis; }
+.advanced-image-editor { display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:18px; }
+.advanced-editor-preview {
+    min-height:560px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding:25px;
+    background:linear-gradient(45deg,#111722 25%,#0d121c 25%,#0d121c 75%,#111722 75%);
+    background-size:24px 24px; border:1px solid var(--border); border-radius:18px;
 }
-
-.editor-controls {
-
-    background:
-        var(--card2);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        17px;
-
-    padding:
-        18px;
-}
-
-.control-group {
-
-    margin-bottom:
-        18px;
-}
-
-.control-group label {
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
-
-    margin-bottom:
-        8px;
-}
-
-.control-group input[type="range"] {
-
-    padding:
-        0;
-
-    border:
-        none;
-
-    box-shadow:
-        none;
-}
+#editorCanvas { display:none; max-width:100%; max-height:540px; border-radius:9px; box-shadow:0 15px 40px rgba(0,0,0,.35); }
+.advanced-editor-empty { display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center; color:var(--muted); }
+.advanced-editor-empty strong { color:var(--text); font-size:16px; }
+.advanced-editor-empty span { font-size:13px; }
+.advanced-editor-controls { background:var(--card2); border:1px solid var(--border); border-radius:18px; padding:18px; max-height:680px; overflow-y:auto; }
+.advanced-editor-section { padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--border); }
+.advanced-editor-section:last-of-type { border-bottom:none; }
+.advanced-editor-section h3 { font-size:15px; margin-bottom:15px; }
+.advanced-editor-buttons { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.editor-size-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+.editor-size-grid label { display:block; color:var(--muted); font-size:12px; margin-bottom:6px; }
+.editor-export-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.editor-export-grid select { width:100%; }
+@media (max-width:900px) { .advanced-image-editor{grid-template-columns:1fr;} .advanced-editor-controls{max-height:none;} .advanced-editor-preview{min-height:400px;} }
+@media (max-width:600px) { .advanced-editor-buttons{grid-template-columns:1fr;} .editor-size-grid,.editor-export-grid{grid-template-columns:1fr;} }
 
 /* =========================================================
    SIMPLIFICADOR
@@ -3321,7 +3245,7 @@ footer strong {
         <div
             class="tool-card"
             data-category="imagen"
-            data-name="editor imagen fotos brillo contraste saturacion"
+            data-name="editor imagen fotos editar recortar redimensionar filtros brillo contraste saturacion"
         >
 
             <div class="icon">🛠️</div>
@@ -3331,8 +3255,7 @@ footer strong {
             </h3>
 
             <p>
-                Ajusta brillo, contraste, saturación,
-                rotación y filtros.
+                Edita, mejora, recorta, transforma y exporta tus imágenes directamente desde TOOLBOX.
             </p>
 
             <button
@@ -4201,147 +4124,97 @@ CONTRASEÑA FACIL
          EDITOR DE IMAGEN
     ===================================================== -->
 
-    <div
-        id="imageEditor"
-        class="tool-panel"
-    >
+    <div id="imageEditor" class="tool-panel">
 
         <div class="tool-head">
-
-            <h2>
-                🛠️ Editor de imágenes
-            </h2>
-
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
-
+            <div>
+                <h2>🛠️ Editor de imágenes</h2>
+                <p style="color:var(--muted); margin-top:6px;">
+                    Edita y transforma tus imágenes directamente en tu navegador.
+                </p>
+            </div>
+            <button class="close" onclick="cerrar()">✕</button>
         </div>
 
-        <input
-            id="editorFile"
-            type="file"
-            accept="image/*"
-            onchange="loadEditorImage(event)"
-        >
-
-        <br><br>
-
-        <div class="image-editor">
-
-            <div class="canvas-area">
-
-                <canvas
-                    id="editorCanvas"
-                ></canvas>
-
-                <span
-                    id="editorEmpty"
-                    style="color:#68758a"
-                >
-                    🖼️ Carga una imagen para comenzar
-                </span>
-
-            </div>
-
-            <div class="editor-controls">
-
-                <div class="control-group">
-
-                    <label>
-                        Brillo
-                        <span id="brightnessValue">100%</span>
-                    </label>
-
-                    <input
-                        id="brightnessControl"
-                        type="range"
-                        min="0"
-                        max="200"
-                        value="100"
-                        oninput="updateEditor()"
-                    >
-
-                </div>
-
-                <div class="control-group">
-
-                    <label>
-                        Contraste
-                        <span id="contrastValue">100%</span>
-                    </label>
-
-                    <input
-                        id="contrastControl"
-                        type="range"
-                        min="0"
-                        max="200"
-                        value="100"
-                        oninput="updateEditor()"
-                    >
-
-                </div>
-
-                <div class="control-group">
-
-                    <label>
-                        Saturación
-                        <span id="saturationValue">100%</span>
-                    </label>
-
-                    <input
-                        id="saturationControl"
-                        type="range"
-                        min="0"
-                        max="200"
-                        value="100"
-                        oninput="updateEditor()"
-                    >
-
-                </div>
-
-                <button
-                    class="secondary"
-                    onclick="rotateEditor()"
-                >
-                    🔄 Rotar
-                </button>
-
-                <button
-                    class="secondary"
-                    onclick="flipEditor()"
-                >
-                    ↔️ Voltear
-                </button>
-
-                <button
-                    class="secondary"
-                    onclick="grayEditor()"
-                >
-                    ⚫ Blanco y negro
-                </button>
-
-                <button
-                    class="secondary"
-                    onclick="resetEditor()"
-                >
-                    ↩️ Restablecer
-                </button>
-
-                <button
-                    class="primary"
-                    onclick="downloadEditor()"
-                >
-                    💾 Descargar imagen
-                </button>
-
-            </div>
-
+        <div class="toolbox-image-upload">
+            <label for="editorFile" class="toolbox-upload-button">🖼️ Elegir imagen</label>
+            <input id="editorFile" type="file" accept="image/*" onchange="loadEditorImage(event)" hidden>
+            <span id="editorFileName">Ninguna imagen seleccionada</span>
         </div>
 
+        <div class="advanced-image-editor">
+            <div class="advanced-editor-preview">
+                <div id="editorEmpty" class="advanced-editor-empty">
+                    <div style="font-size:55px;">🖼️</div>
+                    <strong>Carga una imagen para comenzar</strong>
+                    <span>Tus imágenes se procesan en tu navegador.</span>
+                </div>
+                <canvas id="editorCanvas"></canvas>
+            </div>
+
+            <div class="advanced-editor-controls">
+                <div class="advanced-editor-section">
+                    <h3>🎚️ Ajustes</h3>
+                    <div class="control-group">
+                        <label>Brillo <span id="brightnessValue">100%</span></label>
+                        <input id="brightnessControl" type="range" min="0" max="200" value="100" oninput="updateEditor()">
+                    </div>
+                    <div class="control-group">
+                        <label>Contraste <span id="contrastValue">100%</span></label>
+                        <input id="contrastControl" type="range" min="0" max="200" value="100" oninput="updateEditor()">
+                    </div>
+                    <div class="control-group">
+                        <label>Saturación <span id="saturationValue">100%</span></label>
+                        <input id="saturationControl" type="range" min="0" max="200" value="100" oninput="updateEditor()">
+                    </div>
+                    <div class="control-group">
+                        <label>Desenfoque <span id="blurValue">0px</span></label>
+                        <input id="blurControl" type="range" min="0" max="12" value="0" oninput="updateEditor()">
+                    </div>
+                </div>
+
+                <div class="advanced-editor-section">
+                    <h3>🔄 Transformar</h3>
+                    <div class="advanced-editor-buttons">
+                        <button class="secondary" onclick="rotateEditor()">↻ Rotar</button>
+                        <button class="secondary" onclick="flipEditor()">↔️ Voltear</button>
+                        <button class="secondary" onclick="grayEditor()">⚫ Blanco y negro</button>
+                    </div>
+                </div>
+
+                <div class="advanced-editor-section">
+                    <h3>📐 Tamaño</h3>
+                    <div class="editor-size-grid">
+                        <div><label>Ancho</label><input id="editorWidth" type="number" min="1" placeholder="Automático"></div>
+                        <div><label>Alto</label><input id="editorHeight" type="number" min="1" placeholder="Automático"></div>
+                    </div>
+                    <button class="secondary" style="width:100%; margin-top:10px;" onclick="resizeEditor()">📐 Aplicar tamaño</button>
+                </div>
+
+                <div class="advanced-editor-section">
+                    <h3>✨ Filtros rápidos</h3>
+                    <div class="advanced-editor-buttons">
+                        <button class="secondary" onclick="applyEditorPreset('normal')">Normal</button>
+                        <button class="secondary" onclick="applyEditorPreset('vivid')">🌈 Vivo</button>
+                        <button class="secondary" onclick="applyEditorPreset('soft')">☁️ Suave</button>
+                        <button class="secondary" onclick="applyEditorPreset('dramatic')">🎬 Dramático</button>
+                        <button class="secondary" onclick="applyEditorPreset('warm')">🔥 Cálido</button>
+                        <button class="secondary" onclick="applyEditorPreset('cold')">❄️ Frío</button>
+                    </div>
+                </div>
+
+                <div class="advanced-editor-section">
+                    <h3>💾 Exportar</h3>
+                    <div class="editor-export-grid">
+                        <select id="editorFormat"><option value="png">PNG</option><option value="jpeg">JPG</option><option value="webp">WEBP</option></select>
+                        <select id="editorQuality"><option value="1">Calidad máxima</option><option value="0.9">Alta</option><option value="0.75">Media</option><option value="0.6">Baja</option></select>
+                    </div>
+                    <button class="primary" style="width:100%; margin-top:12px;" onclick="downloadEditor()">💾 Descargar imagen</button>
+                </div>
+
+                <button class="secondary" style="width:100%; margin-top:5px;" onclick="resetEditor()">↩️ Restablecer todo</button>
+            </div>
+        </div>
     </div>
 
 
@@ -5673,309 +5546,114 @@ function downloadJPG() {
 
 
 /* =========================================================
-   EDITOR DE IMAGEN
+   EDITOR DE IMAGEN — AVANZADO
 ========================================================= */
 
 let editorImage = null;
-
 let editorRotation = 0;
-
 let editorFlip = false;
-
 let editorGray = false;
 
-
 function loadEditorImage(event) {
-
-    const file =
-        event.target.files[0];
-
+    const file = event.target.files[0];
     if (!file) return;
-
-
-    const reader =
-        new FileReader();
-
-
+    document.getElementById("editorFileName").innerText = file.name;
+    const reader = new FileReader();
     reader.onload = function(e) {
-
-        editorImage =
-            new Image();
-
-        editorImage.onload =
-            function() {
-
-                editorRotation =
-                    0;
-
-                editorFlip =
-                    false;
-
-                editorGray =
-                    false;
-
-                document.getElementById(
-                    "editorCanvas"
-                ).style.display =
-                    "block";
-
-                document.getElementById(
-                    "editorEmpty"
-                ).style.display =
-                    "none";
-
-                resetEditorControls();
-
-                drawEditor();
-
-            };
-
-        editorImage.src =
-            e.target.result;
-
+        editorImage = new Image();
+        editorImage.onload = function() {
+            editorRotation=0; editorFlip=false; editorGray=false;
+            document.getElementById("editorCanvas").style.display="block";
+            document.getElementById("editorEmpty").style.display="none";
+            document.getElementById("editorWidth").value=editorImage.width;
+            document.getElementById("editorHeight").value=editorImage.height;
+            resetEditorControls(); drawEditor();
+        };
+        editorImage.src=e.target.result;
     };
-
-
     reader.readAsDataURL(file);
-
 }
-
 
 function resetEditorControls() {
-
-    document.getElementById(
-        "brightnessControl"
-    ).value = 100;
-
-    document.getElementById(
-        "contrastControl"
-    ).value = 100;
-
-    document.getElementById(
-        "saturationControl"
-    ).value = 100;
-
+    document.getElementById("brightnessControl").value=100;
+    document.getElementById("contrastControl").value=100;
+    document.getElementById("saturationControl").value=100;
+    document.getElementById("blurControl").value=0;
     updateEditorLabels();
-
 }
-
-
-function updateEditor() {
-
-    updateEditorLabels();
-
-    drawEditor();
-
-}
-
 
 function updateEditorLabels() {
-
-    document.getElementById(
-        "brightnessValue"
-    ).innerText =
-        document.getElementById(
-            "brightnessControl"
-        ).value + "%";
-
-
-    document.getElementById(
-        "contrastValue"
-    ).innerText =
-        document.getElementById(
-            "contrastControl"
-        ).value + "%";
-
-
-    document.getElementById(
-        "saturationValue"
-    ).innerText =
-        document.getElementById(
-            "saturationControl"
-        ).value + "%";
-
+    document.getElementById("brightnessValue").innerText=document.getElementById("brightnessControl").value+"%";
+    document.getElementById("contrastValue").innerText=document.getElementById("contrastControl").value+"%";
+    document.getElementById("saturationValue").innerText=document.getElementById("saturationControl").value+"%";
+    document.getElementById("blurValue").innerText=document.getElementById("blurControl").value+"px";
 }
 
+function updateEditor() { updateEditorLabels(); drawEditor(); }
 
 function drawEditor() {
-
     if (!editorImage) return;
-
-
-    const canvas =
-        document.getElementById(
-            "editorCanvas"
-        );
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const angle =
-        editorRotation *
-        Math.PI /
-        180;
-
-
-    const rotated =
-        editorRotation === 90 ||
-        editorRotation === 270;
-
-
-    canvas.width =
-        rotated
-        ? editorImage.height
-        : editorImage.width;
-
-    canvas.height =
-        rotated
-        ? editorImage.width
-        : editorImage.height;
-
-
+    const canvas=document.getElementById("editorCanvas");
+    const ctx=canvas.getContext("2d");
+    const angle=editorRotation*Math.PI/180;
+    const rotated=editorRotation===90 || editorRotation===270;
+    canvas.width=rotated?editorImage.height:editorImage.width;
+    canvas.height=rotated?editorImage.width:editorImage.height;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.save();
-
-
-    ctx.translate(
-        canvas.width / 2,
-        canvas.height / 2
-    );
-
-
+    ctx.translate(canvas.width/2,canvas.height/2);
     ctx.rotate(angle);
-
-
-    if (editorFlip) {
-
-        ctx.scale(-1,1);
-
-    }
-
-
-    const brightness =
-        document.getElementById(
-            "brightnessControl"
-        ).value;
-
-    const contrast =
-        document.getElementById(
-            "contrastControl"
-        ).value;
-
-    const saturation =
-        document.getElementById(
-            "saturationControl"
-        ).value;
-
-
-    ctx.filter =
-        `brightness(${brightness}%)
-         contrast(${contrast}%)
-         saturate(${saturation}%)
-         ${editorGray ? "grayscale(100%)" : ""}`;
-
-
-    ctx.drawImage(
-        editorImage,
-        -editorImage.width / 2,
-        -editorImage.height / 2
-    );
-
-
+    if(editorFlip) ctx.scale(-1,1);
+    const b=document.getElementById("brightnessControl").value;
+    const c=document.getElementById("contrastControl").value;
+    const sat=document.getElementById("saturationControl").value;
+    const blur=document.getElementById("blurControl").value;
+    ctx.filter=`brightness(${b}%) contrast(${c}%) saturate(${sat}%) blur(${blur}px) ${editorGray?"grayscale(100%)":""}`;
+    ctx.drawImage(editorImage,-editorImage.width/2,-editorImage.height/2);
     ctx.restore();
-
 }
 
+function rotateEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorRotation=(editorRotation+90)%360; drawEditor(); }
+function flipEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorFlip=!editorFlip; drawEditor(); }
+function grayEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorGray=!editorGray; drawEditor(); }
 
-function rotateEditor() {
-
-    if (!editorImage) return;
-
-    editorRotation =
-        (editorRotation + 90) % 360;
-
-    drawEditor();
-
+function resizeEditor() {
+    if(!editorImage){alert("Primero carga una imagen.");return;}
+    const width=parseInt(document.getElementById("editorWidth").value,10);
+    const height=parseInt(document.getElementById("editorHeight").value,10);
+    if(!width||!height||width<1||height<1){alert("Introduce un ancho y un alto válidos.");return;}
+    const temp=document.createElement("canvas"); temp.width=width; temp.height=height;
+    const ctx=temp.getContext("2d"); ctx.drawImage(editorImage,0,0,width,height);
+    const resized=new Image();
+    resized.onload=function(){editorImage=resized; editorRotation=0; editorFlip=false; drawEditor();};
+    resized.src=temp.toDataURL("image/png");
 }
 
-
-function flipEditor() {
-
-    if (!editorImage) return;
-
-    editorFlip =
-        !editorFlip;
-
-    drawEditor();
-
+function applyEditorPreset(preset) {
+    if(!editorImage){alert("Primero carga una imagen.");return;}
+    const presets={normal:[100,100,100,0],vivid:[105,112,145,0],soft:[108,92,88,0],dramatic:[95,135,110,0],warm:[105,108,118,0],cold:[98,108,105,0]};
+    const p=presets[preset]; if(!p) return;
+    document.getElementById("brightnessControl").value=p[0];
+    document.getElementById("contrastControl").value=p[1];
+    document.getElementById("saturationControl").value=p[2];
+    document.getElementById("blurControl").value=p[3];
+    updateEditor();
 }
-
-
-function grayEditor() {
-
-    if (!editorImage) return;
-
-    editorGray =
-        !editorGray;
-
-    drawEditor();
-
-}
-
 
 function resetEditor() {
-
-    if (!editorImage) return;
-
-    editorRotation = 0;
-
-    editorFlip = false;
-
-    editorGray = false;
-
-    resetEditorControls();
-
-    drawEditor();
-
+    if(!editorImage) return; editorRotation=0; editorFlip=false; editorGray=false; resetEditorControls();
+    document.getElementById("editorWidth").value=editorImage.width; document.getElementById("editorHeight").value=editorImage.height; drawEditor();
 }
 
-
 function downloadEditor() {
-
-    if (!editorImage) {
-
-        alert(
-            "Primero carga una imagen."
-        );
-
-        return;
-
-    }
-
-
-    const canvas =
-        document.getElementById(
-            "editorCanvas"
-        );
-
-
-    const link =
-        document.createElement(
-            "a"
-        );
-
-    link.download =
-        "toolbox-imagen.png";
-
-    link.href =
-        canvas.toDataURL(
-            "image/png"
-        );
-
-    link.click();
-
+    if(!editorImage){alert("Primero carga una imagen.");return;}
+    const canvas=document.getElementById("editorCanvas");
+    const format=document.getElementById("editorFormat").value;
+    const quality=parseFloat(document.getElementById("editorQuality").value);
+    let mime="image/png", ext="png";
+    if(format==="jpeg"){mime="image/jpeg";ext="jpg";}
+    if(format==="webp"){mime="image/webp";ext="webp";}
+    const link=document.createElement("a"); link.download=`toolbox-imagen.${ext}`; link.href=canvas.toDataURL(mime,quality); link.click();
 }
 
 
