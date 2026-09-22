@@ -3002,6 +3002,107 @@ footer strong {
 
 
 
+
+
+/* =========================================================
+   TOOLBOX AI — MARKDOWN VISUAL
+========================================================= */
+.toolbox-markdown {
+    line-height: 1.65;
+    word-break: break-word;
+}
+.toolbox-markdown p {
+    margin: 0 0 12px;
+}
+.toolbox-markdown p:last-child {
+    margin-bottom: 0;
+}
+.toolbox-markdown h1,
+.toolbox-markdown h2,
+.toolbox-markdown h3 {
+    margin: 18px 0 9px;
+    line-height: 1.3;
+    color: var(--text);
+}
+.toolbox-markdown h1 { font-size: 1.45rem; }
+.toolbox-markdown h2 { font-size: 1.25rem; }
+.toolbox-markdown h3 { font-size: 1.08rem; }
+.toolbox-markdown strong {
+    font-weight: 800;
+    color: var(--text);
+}
+.toolbox-markdown em { font-style: italic; }
+.toolbox-markdown hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 18px 0;
+}
+.toolbox-markdown ul,
+.toolbox-markdown ol {
+    margin: 8px 0 14px 24px;
+    padding: 0;
+}
+.toolbox-markdown li {
+    margin: 5px 0;
+}
+.toolbox-markdown blockquote {
+    margin: 12px 0;
+    padding: 8px 14px;
+    border-left: 3px solid #8b5cf6;
+    color: var(--muted);
+    background: rgba(139,92,246,.07);
+    border-radius: 0 9px 9px 0;
+}
+.toolbox-markdown code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .9em;
+    background: rgba(139,92,246,.12);
+    border: 1px solid rgba(139,92,246,.18);
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+.toolbox-markdown pre {
+    margin: 13px 0;
+    padding: 14px;
+    overflow-x: auto;
+    background: #080d16;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+.toolbox-markdown pre code {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    white-space: pre;
+}
+.toolbox-markdown a {
+    color: #a78bfa;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.toolbox-markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: .94em;
+}
+.toolbox-markdown th,
+.toolbox-markdown td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+}
+.toolbox-markdown th {
+    background: rgba(139,92,246,.10);
+    font-weight: 800;
+}
+.toolbox-markdown img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+
 /* =========================================================
    PLANIFICADOR INTELIGENTE TOOLBOX
 ========================================================= */
@@ -6890,6 +6991,156 @@ function deleteConversation(id) {
 
 
 /* =========================================================
+   MARKDOWN SEGURO PARA TOOLBOX AI
+========================================================= */
+
+function toolboxEscapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function toolboxInlineMarkdown(value) {
+    let text = value;
+
+    // Código inline primero para que sus símbolos no se interpreten como Markdown.
+    const codeParts = [];
+    text = text.replace(/`([^`]+)`/g, function(_, code) {
+        const token = "\u0000CODE" + codeParts.length + "\u0000";
+        codeParts.push("<code>" + code + "</code>");
+        return token;
+    });
+
+    // Enlaces: solamente protocolos seguros.
+    text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+    // Negrita y cursiva.
+    text = text.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+    text = text.replace(/__([^_\n]+)__/g, "<strong>$1</strong>");
+    text = text.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+    text = text.replace(/_([^_\n]+)_/g, "<em>$1</em>");
+
+    // Recuperar código inline.
+    text = text.replace(/\u0000CODE(\d+)\u0000/g, function(_, index) {
+        return codeParts[Number(index)];
+    });
+
+    return text;
+}
+
+function renderToolboxMarkdown(markdown) {
+    const source = String(markdown ?? "").replace(/\r\n?/g, "\n");
+    const escaped = toolboxEscapeHTML(source);
+    const lines = escaped.split("\n");
+    const html = [];
+    let paragraph = [];
+    let listType = null;
+    let inCode = false;
+    let codeLines = [];
+
+    function flushParagraph() {
+        if (!paragraph.length) return;
+        const content = paragraph.join("<br>");
+        html.push("<p>" + toolboxInlineMarkdown(content) + "</p>");
+        paragraph = [];
+    }
+
+    function closeList() {
+        if (!listType) return;
+        html.push("</" + listType + ">");
+        listType = null;
+    }
+
+    function closeEverything() {
+        flushParagraph();
+        closeList();
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        // Bloques de código con ```
+        if (/^\s*```/.test(line)) {
+            if (!inCode) {
+                closeEverything();
+                inCode = true;
+                codeLines = [];
+            } else {
+                html.push("<pre><code>" + codeLines.join("\n") + "</code></pre>");
+                inCode = false;
+                codeLines = [];
+            }
+            continue;
+        }
+
+        if (inCode) {
+            codeLines.push(line);
+            continue;
+        }
+
+        // Separadores reales, no cualquier conjunto de guiones dentro de una frase.
+        if (/^\s{0,3}((\*\s*){3,}|(-\s*){3,}|(_\s*){3,})$/.test(line)) {
+            closeEverything();
+            html.push("<hr>");
+            continue;
+        }
+
+        // Títulos Markdown.
+        const heading = line.match(/^\s{0,3}(#{1,3})\s+(.+?)\s*#*$/);
+        if (heading) {
+            closeEverything();
+            const level = heading[1].length;
+            html.push("<h" + level + ">" + toolboxInlineMarkdown(heading[2]) + "</h" + level + ">");
+            continue;
+        }
+
+        // Listas sin convertir los guiones de texto normal en listas.
+        const unordered = line.match(/^\s*[-*+]\s+(.+)$/);
+        const ordered = line.match(/^\s*\d+[.)]\s+(.+)$/);
+        if (unordered || ordered) {
+            flushParagraph();
+            const wanted = unordered ? "ul" : "ol";
+            if (listType !== wanted) {
+                closeList();
+                listType = wanted;
+                html.push("<" + listType + ">");
+            }
+            html.push("<li>" + toolboxInlineMarkdown((unordered || ordered)[1]) + "</li>");
+            continue;
+        }
+
+        // Citas.
+        const quote = line.match(/^\s*>\s?(.*)$/);
+        if (quote) {
+            closeEverything();
+            html.push("<blockquote>" + toolboxInlineMarkdown(quote[1]) + "</blockquote>");
+            continue;
+        }
+
+        if (!line.trim()) {
+            closeEverything();
+            continue;
+        }
+
+        closeList();
+        paragraph.push(line);
+    }
+
+    if (inCode) {
+        html.push("<pre><code>" + codeLines.join("\n") + "</code></pre>");
+    } else {
+        closeEverything();
+    }
+
+    return '<div class="toolbox-markdown">' + html.join("\n") + "</div>";
+}
+
+
+/* =========================================================
    RENDER CHAT
 ========================================================= */
 
@@ -7058,8 +7309,17 @@ function addMessageToDOM(
     bubble.className =
         "ai-chat-bubble";
 
-    bubble.innerText =
-        content;
+    if (role === "user") {
+
+        bubble.innerText =
+            content;
+
+    } else {
+
+        bubble.innerHTML =
+            renderToolboxMarkdown(content);
+
+    }
 
 
     if (role === "user") {
@@ -7402,7 +7662,10 @@ REGLAS IMPORTANTES:
 8. UTILIZA LISTAS SOLO CUANDO AYUDEN.
    No conviertas una respuesta sencilla en una lista de muchos puntos.
 
-9. ADAPTA LA RESPUESTA AL USUARIO.
+9. FORMATO VISUAL.
+   Puedes usar Markdown básico cuando realmente ayude a leer la respuesta: **negrita**, *cursiva*, títulos, listas, citas, separadores `---` y bloques de código con tres comillas invertidas. TOOLBOX AI mostrará ese formato visualmente, así que no escribas etiquetas HTML. No uses Markdown por obligación.
+
+10. ADAPTA LA RESPUESTA AL USUARIO.
    Si pregunta algo sencillo, responde de forma sencilla.
    Si pide una explicación profunda, puedes dar más detalles.
 
