@@ -3024,6 +3024,16 @@ footer strong {
     box-sizing: border-box;
 }
 
+/* La zona de configuración es más compacta que el calendario semanal. */
+.planner-setup {
+    width: min(1080px, 100%);
+    margin: 0 auto;
+}
+
+.planner-result {
+    width: 100%;
+}
+
 .planner-week-shell {
     width: 100%;
 }
@@ -8855,6 +8865,7 @@ REGLAS IMPORTANTES:
 12. Los bloques de una misma tarea pueden aparecer en varios días.
 13. Evita solapamientos. Ordena cronológicamente los bloques de cada día.
 14. Devuelve SOLO JSON válido, sin Markdown ni explicaciones fuera del JSON.
+15. Mantén el JSON compacto: no escribas textos largos en summary, note, insights o pending.
 
 FORMATO EXACTO:
 {
@@ -8875,15 +8886,29 @@ FORMATO EXACTO:
 `;
 
     try {
-        const reply=await askGemini([{role:'user',content:prompt}], 'normal');
-        const plan=plannerValidatePlan(plannerExtractJSON(reply),availability);
-        plan.availability=availability;
-        plannerLastPlan=plan;
-        localStorage.setItem('toolbox_planner_plan',JSON.stringify(plan));
-        plannerRender(plan,availability);
-        document.getElementById('plannerResult').style.display='block';
-        plannerSetStatus('✅ Semana organizada. Puedes volver a generarla cuando quieras.');
-        setTimeout(()=>document.getElementById('plannerResult').scrollIntoView({behavior:'smooth',block:'start'}),80);
+        // Reintentos automáticos para errores temporales o JSON incompleto.
+        let lastError = null;
+        for (let attempt = 0; attempt < 3; attempt++) {
+            try {
+                const reply = await askGemini([{role:'user',content:prompt}], 'normal');
+                const plan = plannerValidatePlan(plannerExtractJSON(reply), availability);
+                plan.availability = availability;
+                plannerLastPlan = plan;
+                localStorage.setItem('toolbox_planner_plan', JSON.stringify(plan));
+                plannerRender(plan, availability);
+                document.getElementById('plannerResult').style.display = 'block';
+                plannerSetStatus('✅ Semana organizada correctamente.');
+                setTimeout(() => document.getElementById('plannerResult').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+                return;
+            } catch (err) {
+                lastError = err;
+                if (attempt < 2) {
+                    plannerSetStatus(`🔄 TOOLBOX AI está reintentando (${attempt + 2}/3)...`);
+                    await new Promise(resolve => setTimeout(resolve, 900 * (attempt + 1)));
+                }
+            }
+        }
+        throw lastError || new Error('No se pudo generar el plan.');
     } catch(error) {
         console.error('TOOLBOX Planner:', error);
         const message = error?.message || 'Error desconocido.';
