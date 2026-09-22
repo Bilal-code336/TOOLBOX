@@ -1143,37 +1143,113 @@ textarea {
    EDITOR DE IMAGEN
 ========================================================= */
 
-.toolbox-image-upload {
-    display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px;
-    padding:14px; background:var(--card2); border:1px solid var(--border); border-radius:15px;
+.image-editor {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0,1fr) 270px;
+
+    gap:
+        20px;
 }
-.toolbox-upload-button {
-    display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 17px;
-    border-radius:11px; background:var(--button); color:var(--text); cursor:pointer; font-weight:600; transition:.2s;
+
+.canvas-area {
+
+    min-height:
+        450px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #05080e;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        17px;
+
+    overflow:
+        hidden;
+
+    padding:
+        20px;
 }
-.toolbox-upload-button:hover { background:var(--purple); transform:translateY(-1px); }
-#editorFileName { color:var(--muted); font-size:13px; overflow:hidden; text-overflow:ellipsis; }
-.advanced-image-editor { display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:18px; }
-.advanced-editor-preview {
-    min-height:560px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding:25px;
-    background:linear-gradient(45deg,#111722 25%,#0d121c 25%,#0d121c 75%,#111722 75%);
-    background-size:24px 24px; border:1px solid var(--border); border-radius:18px;
+
+#editorCanvas {
+
+    max-width:
+        100%;
+
+    max-height:
+        550px;
+
+    display:
+        none;
+
+    border-radius:
+        8px;
 }
-#editorCanvas { display:none; max-width:100%; max-height:540px; border-radius:9px; box-shadow:0 15px 40px rgba(0,0,0,.35); }
-.advanced-editor-empty { display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center; color:var(--muted); }
-.advanced-editor-empty strong { color:var(--text); font-size:16px; }
-.advanced-editor-empty span { font-size:13px; }
-.advanced-editor-controls { background:var(--card2); border:1px solid var(--border); border-radius:18px; padding:18px; max-height:680px; overflow-y:auto; }
-.advanced-editor-section { padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--border); }
-.advanced-editor-section:last-of-type { border-bottom:none; }
-.advanced-editor-section h3 { font-size:15px; margin-bottom:15px; }
-.advanced-editor-buttons { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.editor-size-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
-.editor-size-grid label { display:block; color:var(--muted); font-size:12px; margin-bottom:6px; }
-.editor-export-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.editor-export-grid select { width:100%; }
-@media (max-width:900px) { .advanced-image-editor{grid-template-columns:1fr;} .advanced-editor-controls{max-height:none;} .advanced-editor-preview{min-height:400px;} }
-@media (max-width:600px) { .advanced-editor-buttons{grid-template-columns:1fr;} .editor-size-grid,.editor-export-grid{grid-template-columns:1fr;} }
+
+.editor-controls {
+
+    background:
+        var(--card2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        17px;
+
+    padding:
+        18px;
+}
+
+.control-group {
+
+    margin-bottom:
+        18px;
+}
+
+.control-group label {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        8px;
+}
+
+.control-group input[type="range"] {
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    box-shadow:
+        none;
+}
 
 /* =========================================================
    SIMPLIFICADOR
@@ -2924,6 +3000,211 @@ footer strong {
     }
 }
 
+
+
+/* =========================================================
+   PLANIFICADOR INTELIGENTE TOOLBOX
+========================================================= */
+.planner-head {
+    align-items: flex-start;
+}
+.planner-head > div:first-child {
+    max-width: 900px;
+}
+.planner-head h2 {
+    margin-top: 2px;
+}
+.planner-head p {
+    color: var(--muted);
+    margin-top: 7px;
+    line-height: 1.55;
+}
+.planner-eyebrow {
+    color: var(--purple3);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+.planner-layout {
+    display: grid;
+    gap: 20px;
+}
+.planner-setup, .planner-result {
+    background: linear-gradient(180deg, rgba(17,24,39,.98), rgba(13,19,31,.98));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.16);
+}
+body.light .planner-setup, body.light .planner-result {
+    background: var(--card);
+}
+.planner-section-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 13px;
+}
+.planner-section-title > div:first-child {
+    display: flex;
+    gap: 12px;
+}
+.planner-section-title h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+.planner-section-title p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+    max-width: 760px;
+}
+.planner-number {
+    width: 31px;
+    height: 31px;
+    min-width: 31px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: rgba(124,58,237,.18);
+    border: 1px solid rgba(139,92,246,.4);
+    font-size: 11px;
+    font-weight: 800;
+}
+.planner-tasks {
+    width: 100%;
+    min-height: 165px;
+    resize: vertical;
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    outline: none;
+    line-height: 1.6;
+    font-size: 14px;
+    transition: .2s;
+}
+.planner-tasks:focus {
+    border-color: var(--purple2);
+    box-shadow: 0 0 0 3px rgba(124,58,237,.12);
+}
+.planner-availability-title {
+    margin-top: 25px;
+    align-items: center;
+}
+.planner-copy-hours {
+    border: 1px solid var(--border);
+    background: var(--button);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+.planner-copy-hours:hover, .planner-same-controls button:hover {
+    border-color: var(--purple2);
+    color: var(--purple3);
+}
+.planner-availability {
+    display: grid;
+    gap: 8px;
+}
+.planner-day-row {
+    display: grid;
+    grid-template-columns: 112px 48px minmax(120px,1fr) 22px minmax(120px,1fr);
+    align-items: center;
+    gap: 9px;
+    padding: 10px 11px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: rgba(8,13,22,.45);
+}
+body.light .planner-day-row { background: var(--card2); }
+.planner-day-name { font-weight: 800; font-size: 13px; }
+.planner-day-row input[type=time] {
+    width: 100%;
+    min-width: 0;
+    padding: 8px 9px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+}
+.planner-day-row input:disabled { opacity: .35; }
+.planner-switch { position: relative; width: 40px; height: 22px; }
+.planner-switch input { opacity: 0; width: 0; height: 0; }
+.planner-slider {
+    position: absolute; inset: 0; cursor: pointer; border-radius: 999px; background: #263044; transition: .2s;
+}
+.planner-slider:before {
+    content: ''; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; border-radius: 50%; background: #fff; transition: .2s;
+}
+.planner-switch input:checked + .planner-slider { background: var(--purple); }
+.planner-switch input:checked + .planner-slider:before { transform: translateX(18px); }
+.planner-same-hours {
+    display:flex; justify-content:space-between; align-items:center; gap:15px;
+    margin-top:12px; padding:13px 14px; border-radius:13px; border:1px solid var(--border); background:rgba(124,58,237,.06);
+}
+.planner-same-hours strong { display:block; font-size:13px; }
+.planner-same-hours span { color:var(--muted); font-size:12px; }
+.planner-same-controls { display:flex; align-items:center; gap:7px; }
+.planner-same-controls input { padding:8px 9px; border-radius:9px; border:1px solid var(--border); background:var(--input); color:var(--text); }
+.planner-same-controls button { border:1px solid var(--border); background:var(--button); color:var(--text); padding:8px 12px; border-radius:9px; font-weight:700; }
+.planner-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:16px; }
+.planner-generate { min-width:180px; }
+.planner-status { min-height:20px; color:var(--muted); font-size:12px; margin-top:10px; text-align:right; }
+.planner-result { padding: 20px; }
+.planner-result-top { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; }
+.planner-result-top h3 { font-size:22px; margin-bottom:5px; }
+.planner-result-top p { color:var(--muted); line-height:1.5; max-width:800px; }
+.planner-result-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.planner-insights { display:flex; flex-wrap:wrap; gap:8px; margin:17px 0 13px; }
+.planner-chip { padding:8px 11px; border-radius:999px; border:1px solid var(--border); background:var(--card2); color:var(--muted); font-size:12px; }
+.planner-chip strong { color:var(--text); }
+.planner-week-shell { border:1px solid var(--border); border-radius:18px; overflow:hidden; background:var(--input); }
+.planner-week-scroll { overflow:auto; padding:0; }
+.planner-week-grid {
+    min-width:1260px;
+    display:grid;
+    grid-template-columns:58px repeat(7, minmax(150px, 1fr));
+}
+.planner-time-head { height:78px; border-right:1px solid var(--border); border-bottom:1px solid var(--border); }
+.planner-day-head {
+    height:78px; padding:13px 10px; border-right:1px solid var(--border); border-bottom:1px solid var(--border); background:rgba(17,24,39,.75);
+}
+body.light .planner-day-head { background:var(--card2); }
+.planner-day-head strong { display:block; font-size:13px; }
+.planner-day-head small { display:block; margin-top:4px; color:var(--muted); font-size:11px; }
+.planner-day-head .planner-day-total { margin-top:8px; color:var(--purple3); font-weight:800; font-size:11px; }
+.planner-time-axis { position:relative; border-right:1px solid var(--border); background:rgba(8,13,22,.3); }
+.planner-time-label { position:absolute; left:7px; transform:translateY(-50%); color:var(--muted); font-size:10px; font-weight:700; }
+.planner-track { position:relative; border-right:1px solid var(--border); background:repeating-linear-gradient(to bottom, transparent 0, transparent 59px, rgba(137,149,170,.11) 60px); }
+.planner-track:last-child { border-right:0; }
+.planner-off-hours { position:absolute; left:0; right:0; background:repeating-linear-gradient(135deg, rgba(52,65,88,.18) 0, rgba(52,65,88,.18) 7px, transparent 7px, transparent 14px); pointer-events:none; }
+.planner-free-label { position:absolute; inset:0; display:grid; place-items:center; color:rgba(137,149,170,.28); font-size:11px; pointer-events:none; }
+.planner-block { position:absolute; left:7px; right:7px; padding:10px 10px 9px; border-radius:12px; background:linear-gradient(135deg, #7c3aed, #6d28d9); color:#fff; box-shadow:0 8px 22px rgba(0,0,0,.22); overflow:hidden; z-index:2; min-height:40px; cursor:default; transition:transform .15s, box-shadow .15s; }
+.planner-block:hover { transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,.28); }
+.planner-block.done { opacity:.45; text-decoration:line-through; }
+.planner-block.urgent { box-shadow:inset 3px 0 #f59e0b, 0 8px 22px rgba(0,0,0,.22); }
+.planner-block .planner-block-title { font-weight:800; font-size:12px; line-height:1.25; }
+.planner-block .planner-block-time { font-size:10px; opacity:.85; margin-top:4px; }
+.planner-block .planner-block-meta { display:flex; gap:5px; flex-wrap:wrap; margin-top:7px; }
+.planner-mini-btn { border:0; background:rgba(255,255,255,.16); color:#fff; border-radius:7px; padding:4px 6px; font-size:9px; font-weight:800; cursor:pointer; }
+.planner-mini-btn:hover { background:rgba(255,255,255,.27); }
+.planner-free { position:absolute; left:8px; right:8px; border:1px dashed rgba(137,149,170,.22); border-radius:10px; color:var(--muted); display:flex; align-items:center; justify-content:center; font-size:10px; }
+.planner-note { margin-top:13px; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(124,58,237,.05); color:var(--muted); font-size:12px; line-height:1.5; }
+@media (max-width:800px) {
+    .planner-day-row { grid-template-columns:90px 42px 1fr 14px 1fr; gap:6px; padding:8px; }
+    .planner-same-hours, .planner-result-top { flex-direction:column; align-items:stretch; }
+    .planner-same-controls { flex-wrap:wrap; }
+    .planner-actions { justify-content:stretch; }
+    .planner-actions button { flex:1; }
+}
+
 </style>
 </head>
 
@@ -3116,6 +3397,19 @@ footer strong {
 
         </div>
 
+
+        <!-- PLANIFICADOR IA -->
+        <div
+            class="tool-card"
+            data-category="ia"
+            data-name="planificador inteligente ia semana tareas horario productividad organizador"
+        >
+            <div class="icon">📅</div>
+            <h3>Planificador inteligente</h3>
+            <p>Indica todo lo que tienes que hacer y tu disponibilidad. TOOLBOX organiza tu semana de forma inteligente.</p>
+            <button class="open" onclick="abrir('planner')">Abrir</button>
+        </div>
+
         <!-- POMODORO -->
 
         <div
@@ -3245,7 +3539,7 @@ footer strong {
         <div
             class="tool-card"
             data-category="imagen"
-            data-name="editor imagen fotos editar recortar redimensionar filtros brillo contraste saturacion"
+            data-name="editor imagen fotos brillo contraste saturacion"
         >
 
             <div class="icon">🛠️</div>
@@ -3255,7 +3549,8 @@ footer strong {
             </h3>
 
             <p>
-                Edita, mejora, recorta, transforma y exporta tus imágenes directamente desde TOOLBOX.
+                Ajusta brillo, contraste, saturación,
+                rotación y filtros.
             </p>
 
             <button
@@ -3579,6 +3874,96 @@ CONTRASEÑA FACIL
         >
         </div>
 
+    </div>
+
+
+
+
+    <!-- =====================================================
+         PLANIFICADOR INTELIGENTE IA
+    ===================================================== -->
+    <div id="planner" class="tool-panel">
+        <div class="tool-head planner-head">
+            <div>
+                <div class="planner-eyebrow">TOOLBOX AI · PRODUCTIVIDAD</div>
+                <h2>📅 Planificador inteligente</h2>
+                <p>Cuéntame todo lo que tienes que hacer y cuándo tienes tiempo. TOOLBOX decide cómo repartirlo durante la semana.</p>
+            </div>
+            <button class="close" onclick="cerrar()">✕</button>
+        </div>
+
+        <div class="planner-layout">
+            <section class="planner-setup">
+                <div class="planner-section-title">
+                    <div>
+                        <span class="planner-number">01</span>
+                        <div>
+                            <h3>¿Qué tienes que hacer?</h3>
+                            <p>Escríbelo como quieras. La IA calculará una duración razonable y tendrá en cuenta fechas límite e importancia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <textarea id="plannerTasks" class="planner-tasks" placeholder="Ejemplo:
+Terminar el trabajo de historia para el jueves. Creo que me llevará unas 3 horas.
+Estudiar matemáticas para el examen del viernes.
+Preparar la presentación de ciencias, unas 2 horas.
+Responder unos correos y hacer la compra.
+También quiero dejar algo de tiempo libre esta semana."></textarea>
+
+                <div class="planner-section-title planner-availability-title">
+                    <div>
+                        <span class="planner-number">02</span>
+                        <div>
+                            <h3>¿Cuándo puedes hacerlo?</h3>
+                            <p>Activa los días y marca las horas disponibles. No hace falta que todos los días tengas el mismo tiempo.</p>
+                        </div>
+                    </div>
+                    <button class="planner-copy-hours" type="button" onclick="plannerCopyMonday()">↗ Copiar horario del lunes</button>
+                </div>
+
+                <div class="planner-availability" id="plannerAvailability"></div>
+
+                <div class="planner-same-hours">
+                    <div>
+                        <strong>⚡ Mismo horario</strong>
+                        <span>Aplica una franja a varios días de una vez.</span>
+                    </div>
+                    <div class="planner-same-controls">
+                        <input id="plannerSameStart" type="time" value="17:00">
+                        <span>→</span>
+                        <input id="plannerSameEnd" type="time" value="21:00">
+                        <button type="button" onclick="plannerApplySameHours()">Aplicar</button>
+                    </div>
+                </div>
+
+                <div class="planner-actions">
+                    <button class="secondary planner-clear" type="button" onclick="plannerClear()">Limpiar</button>
+                    <button class="primary planner-generate" id="plannerGenerate" type="button" onclick="generarPlanificador()">✨ Crear mi semana</button>
+                </div>
+                <div id="plannerStatus" class="planner-status"></div>
+            </section>
+
+            <section class="planner-result" id="plannerResult" style="display:none;">
+                <div class="planner-result-top">
+                    <div>
+                        <div class="planner-eyebrow">PLAN GENERADO</div>
+                        <h3 id="plannerResultTitle">Tu semana organizada</h3>
+                        <p id="plannerResultSummary"></p>
+                    </div>
+                    <div class="planner-result-actions">
+                        <button class="secondary" type="button" onclick="generarPlanificador()">↻ Reorganizar</button>
+                        <button class="secondary" type="button" onclick="plannerToggleSetup()">⚙️ Ajustar</button>
+                    </div>
+                </div>
+
+                <div class="planner-insights" id="plannerInsights"></div>
+                <div class="planner-week-shell">
+                    <div class="planner-week-scroll" id="plannerWeek"></div>
+                </div>
+                <div class="planner-note">💡 La planificación no usa Pomodoros. TOOLBOX decide qué tarea hacer, cuánto tiempo dedicarle y en qué momento de la semana. El Pomodoro sigue siendo una herramienta independiente.</div>
+            </section>
+        </div>
     </div>
 
 
@@ -4124,97 +4509,147 @@ CONTRASEÑA FACIL
          EDITOR DE IMAGEN
     ===================================================== -->
 
-    <div id="imageEditor" class="tool-panel">
+    <div
+        id="imageEditor"
+        class="tool-panel"
+    >
 
         <div class="tool-head">
-            <div>
-                <h2>🛠️ Editor de imágenes</h2>
-                <p style="color:var(--muted); margin-top:6px;">
-                    Edita y transforma tus imágenes directamente en tu navegador.
-                </p>
-            </div>
-            <button class="close" onclick="cerrar()">✕</button>
+
+            <h2>
+                🛠️ Editor de imágenes
+            </h2>
+
+            <button
+                class="close"
+                onclick="cerrar()"
+            >
+                ✕
+            </button>
+
         </div>
 
-        <div class="toolbox-image-upload">
-            <label for="editorFile" class="toolbox-upload-button">🖼️ Elegir imagen</label>
-            <input id="editorFile" type="file" accept="image/*" onchange="loadEditorImage(event)" hidden>
-            <span id="editorFileName">Ninguna imagen seleccionada</span>
-        </div>
+        <input
+            id="editorFile"
+            type="file"
+            accept="image/*"
+            onchange="loadEditorImage(event)"
+        >
 
-        <div class="advanced-image-editor">
-            <div class="advanced-editor-preview">
-                <div id="editorEmpty" class="advanced-editor-empty">
-                    <div style="font-size:55px;">🖼️</div>
-                    <strong>Carga una imagen para comenzar</strong>
-                    <span>Tus imágenes se procesan en tu navegador.</span>
-                </div>
-                <canvas id="editorCanvas"></canvas>
+        <br><br>
+
+        <div class="image-editor">
+
+            <div class="canvas-area">
+
+                <canvas
+                    id="editorCanvas"
+                ></canvas>
+
+                <span
+                    id="editorEmpty"
+                    style="color:#68758a"
+                >
+                    🖼️ Carga una imagen para comenzar
+                </span>
+
             </div>
 
-            <div class="advanced-editor-controls">
-                <div class="advanced-editor-section">
-                    <h3>🎚️ Ajustes</h3>
-                    <div class="control-group">
-                        <label>Brillo <span id="brightnessValue">100%</span></label>
-                        <input id="brightnessControl" type="range" min="0" max="200" value="100" oninput="updateEditor()">
-                    </div>
-                    <div class="control-group">
-                        <label>Contraste <span id="contrastValue">100%</span></label>
-                        <input id="contrastControl" type="range" min="0" max="200" value="100" oninput="updateEditor()">
-                    </div>
-                    <div class="control-group">
-                        <label>Saturación <span id="saturationValue">100%</span></label>
-                        <input id="saturationControl" type="range" min="0" max="200" value="100" oninput="updateEditor()">
-                    </div>
-                    <div class="control-group">
-                        <label>Desenfoque <span id="blurValue">0px</span></label>
-                        <input id="blurControl" type="range" min="0" max="12" value="0" oninput="updateEditor()">
-                    </div>
+            <div class="editor-controls">
+
+                <div class="control-group">
+
+                    <label>
+                        Brillo
+                        <span id="brightnessValue">100%</span>
+                    </label>
+
+                    <input
+                        id="brightnessControl"
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        oninput="updateEditor()"
+                    >
+
                 </div>
 
-                <div class="advanced-editor-section">
-                    <h3>🔄 Transformar</h3>
-                    <div class="advanced-editor-buttons">
-                        <button class="secondary" onclick="rotateEditor()">↻ Rotar</button>
-                        <button class="secondary" onclick="flipEditor()">↔️ Voltear</button>
-                        <button class="secondary" onclick="grayEditor()">⚫ Blanco y negro</button>
-                    </div>
+                <div class="control-group">
+
+                    <label>
+                        Contraste
+                        <span id="contrastValue">100%</span>
+                    </label>
+
+                    <input
+                        id="contrastControl"
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        oninput="updateEditor()"
+                    >
+
                 </div>
 
-                <div class="advanced-editor-section">
-                    <h3>📐 Tamaño</h3>
-                    <div class="editor-size-grid">
-                        <div><label>Ancho</label><input id="editorWidth" type="number" min="1" placeholder="Automático"></div>
-                        <div><label>Alto</label><input id="editorHeight" type="number" min="1" placeholder="Automático"></div>
-                    </div>
-                    <button class="secondary" style="width:100%; margin-top:10px;" onclick="resizeEditor()">📐 Aplicar tamaño</button>
+                <div class="control-group">
+
+                    <label>
+                        Saturación
+                        <span id="saturationValue">100%</span>
+                    </label>
+
+                    <input
+                        id="saturationControl"
+                        type="range"
+                        min="0"
+                        max="200"
+                        value="100"
+                        oninput="updateEditor()"
+                    >
+
                 </div>
 
-                <div class="advanced-editor-section">
-                    <h3>✨ Filtros rápidos</h3>
-                    <div class="advanced-editor-buttons">
-                        <button class="secondary" onclick="applyEditorPreset('normal')">Normal</button>
-                        <button class="secondary" onclick="applyEditorPreset('vivid')">🌈 Vivo</button>
-                        <button class="secondary" onclick="applyEditorPreset('soft')">☁️ Suave</button>
-                        <button class="secondary" onclick="applyEditorPreset('dramatic')">🎬 Dramático</button>
-                        <button class="secondary" onclick="applyEditorPreset('warm')">🔥 Cálido</button>
-                        <button class="secondary" onclick="applyEditorPreset('cold')">❄️ Frío</button>
-                    </div>
-                </div>
+                <button
+                    class="secondary"
+                    onclick="rotateEditor()"
+                >
+                    🔄 Rotar
+                </button>
 
-                <div class="advanced-editor-section">
-                    <h3>💾 Exportar</h3>
-                    <div class="editor-export-grid">
-                        <select id="editorFormat"><option value="png">PNG</option><option value="jpeg">JPG</option><option value="webp">WEBP</option></select>
-                        <select id="editorQuality"><option value="1">Calidad máxima</option><option value="0.9">Alta</option><option value="0.75">Media</option><option value="0.6">Baja</option></select>
-                    </div>
-                    <button class="primary" style="width:100%; margin-top:12px;" onclick="downloadEditor()">💾 Descargar imagen</button>
-                </div>
+                <button
+                    class="secondary"
+                    onclick="flipEditor()"
+                >
+                    ↔️ Voltear
+                </button>
 
-                <button class="secondary" style="width:100%; margin-top:5px;" onclick="resetEditor()">↩️ Restablecer todo</button>
+                <button
+                    class="secondary"
+                    onclick="grayEditor()"
+                >
+                    ⚫ Blanco y negro
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="resetEditor()"
+                >
+                    ↩️ Restablecer
+                </button>
+
+                <button
+                    class="primary"
+                    onclick="downloadEditor()"
+                >
+                    💾 Descargar imagen
+                </button>
+
             </div>
+
         </div>
+
     </div>
 
 
@@ -5546,186 +5981,309 @@ function downloadJPG() {
 
 
 /* =========================================================
-   EDITOR DE IMAGEN — AVANZADO
+   EDITOR DE IMAGEN
 ========================================================= */
 
 let editorImage = null;
+
 let editorRotation = 0;
+
 let editorFlip = false;
+
 let editorGray = false;
 
+
 function loadEditorImage(event) {
-    const file = event.target.files[0];
+
+    const file =
+        event.target.files[0];
+
     if (!file) return;
-    document.getElementById("editorFileName").innerText = file.name;
-    const reader = new FileReader();
+
+
+    const reader =
+        new FileReader();
+
+
     reader.onload = function(e) {
-        editorImage = new Image();
-        editorImage.onload = function() {
-            editorRotation=0; editorFlip=false; editorGray=false;
-            document.getElementById("editorCanvas").style.display="block";
-            document.getElementById("editorEmpty").style.display="none";
-            document.getElementById("editorWidth").value=editorImage.width;
-            document.getElementById("editorHeight").value=editorImage.height;
-            resetEditorControls(); drawEditor();
-        };
-        editorImage.src=e.target.result;
+
+        editorImage =
+            new Image();
+
+        editorImage.onload =
+            function() {
+
+                editorRotation =
+                    0;
+
+                editorFlip =
+                    false;
+
+                editorGray =
+                    false;
+
+                document.getElementById(
+                    "editorCanvas"
+                ).style.display =
+                    "block";
+
+                document.getElementById(
+                    "editorEmpty"
+                ).style.display =
+                    "none";
+
+                resetEditorControls();
+
+                drawEditor();
+
+            };
+
+        editorImage.src =
+            e.target.result;
+
     };
+
+
     reader.readAsDataURL(file);
+
 }
+
 
 function resetEditorControls() {
-    document.getElementById("brightnessControl").value=100;
-    document.getElementById("contrastControl").value=100;
-    document.getElementById("saturationControl").value=100;
-    document.getElementById("blurControl").value=0;
+
+    document.getElementById(
+        "brightnessControl"
+    ).value = 100;
+
+    document.getElementById(
+        "contrastControl"
+    ).value = 100;
+
+    document.getElementById(
+        "saturationControl"
+    ).value = 100;
+
     updateEditorLabels();
+
 }
+
+
+function updateEditor() {
+
+    updateEditorLabels();
+
+    drawEditor();
+
+}
+
 
 function updateEditorLabels() {
-    document.getElementById("brightnessValue").innerText=document.getElementById("brightnessControl").value+"%";
-    document.getElementById("contrastValue").innerText=document.getElementById("contrastControl").value+"%";
-    document.getElementById("saturationValue").innerText=document.getElementById("saturationControl").value+"%";
-    document.getElementById("blurValue").innerText=document.getElementById("blurControl").value+"px";
+
+    document.getElementById(
+        "brightnessValue"
+    ).innerText =
+        document.getElementById(
+            "brightnessControl"
+        ).value + "%";
+
+
+    document.getElementById(
+        "contrastValue"
+    ).innerText =
+        document.getElementById(
+            "contrastControl"
+        ).value + "%";
+
+
+    document.getElementById(
+        "saturationValue"
+    ).innerText =
+        document.getElementById(
+            "saturationControl"
+        ).value + "%";
+
 }
 
-function updateEditor() { updateEditorLabels(); drawEditor(); }
 
 function drawEditor() {
-    if (!editorImage) return;
-    const canvas=document.getElementById("editorCanvas");
-    const ctx=canvas.getContext("2d");
-    const angle=editorRotation*Math.PI/180;
-    const rotated=editorRotation===90 || editorRotation===270;
-    canvas.width=rotated?editorImage.height:editorImage.width;
-    canvas.height=rotated?editorImage.width:editorImage.height;
-    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    // Paso 1: rotación, volteo y desenfoque.
-    // El desenfoque es el ÚNICO filtro que dejamos en manos del
-    // navegador, porque usado solo es fiable incluso en Safari
-    // antiguo (combinar varios filtros a la vez es lo que falla).
+    if (!editorImage) return;
+
+
+    const canvas =
+        document.getElementById(
+            "editorCanvas"
+        );
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    const angle =
+        editorRotation *
+        Math.PI /
+        180;
+
+
+    const rotated =
+        editorRotation === 90 ||
+        editorRotation === 270;
+
+
+    canvas.width =
+        rotated
+        ? editorImage.height
+        : editorImage.width;
+
+    canvas.height =
+        rotated
+        ? editorImage.width
+        : editorImage.height;
+
+
     ctx.save();
-    ctx.translate(canvas.width/2,canvas.height/2);
+
+
+    ctx.translate(
+        canvas.width / 2,
+        canvas.height / 2
+    );
+
+
     ctx.rotate(angle);
-    if(editorFlip) ctx.scale(-1,1);
-    const blur=parseFloat(document.getElementById("blurControl").value)||0;
-    ctx.filter = blur > 0 ? `blur(${blur}px)` : "none";
-    ctx.drawImage(editorImage,-editorImage.width/2,-editorImage.height/2);
+
+
+    if (editorFlip) {
+
+        ctx.scale(-1,1);
+
+    }
+
+
+    const brightness =
+        document.getElementById(
+            "brightnessControl"
+        ).value;
+
+    const contrast =
+        document.getElementById(
+            "contrastControl"
+        ).value;
+
+    const saturation =
+        document.getElementById(
+            "saturationControl"
+        ).value;
+
+
+    ctx.filter =
+        `brightness(${brightness}%)
+         contrast(${contrast}%)
+         saturate(${saturation}%)
+         ${editorGray ? "grayscale(100%)" : ""}`;
+
+
+    ctx.drawImage(
+        editorImage,
+        -editorImage.width / 2,
+        -editorImage.height / 2
+    );
+
+
     ctx.restore();
 
-    // Paso 2: brillo, contraste, saturación y blanco y negro,
-    // aplicados manualmente sobre los píxeles del canvas.
-    // Esto funciona igual en todos los navegadores (Chrome, Edge,
-    // Firefox y también Safari/iPhone), a diferencia de combinar
-    // varios ctx.filter a la vez.
-    const brightness=parseInt(document.getElementById("brightnessControl").value,10);
-    const contrast=parseInt(document.getElementById("contrastControl").value,10);
-    const saturation=parseInt(document.getElementById("saturationControl").value,10);
-
-    if (brightness!==100 || contrast!==100 || saturation!==100 || editorGray) {
-
-        const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-        const data=imageData.data;
-
-        const brightnessFactor=brightness/100;
-        const contrastAmount=(contrast-100)*2.55;
-        const contrastFactor=(259*(contrastAmount+255))/(255*(259-contrastAmount));
-        const saturationFactor=saturation/100;
-
-        for (let i=0;i<data.length;i+=4) {
-
-            let r=data[i];
-            let g=data[i+1];
-            let b=data[i+2];
-
-            r*=brightnessFactor; g*=brightnessFactor; b*=brightnessFactor;
-
-            r=contrastFactor*(r-128)+128;
-            g=contrastFactor*(g-128)+128;
-            b=contrastFactor*(b-128)+128;
-
-            const gray=0.299*r+0.587*g+0.114*b;
-            r=gray+(r-gray)*saturationFactor;
-            g=gray+(g-gray)*saturationFactor;
-            b=gray+(b-gray)*saturationFactor;
-
-            if (editorGray) {
-                const grayFinal=0.299*r+0.587*g+0.114*b;
-                r=g=b=grayFinal;
-            }
-
-            data[i]=Math.max(0,Math.min(255,r));
-            data[i+1]=Math.max(0,Math.min(255,g));
-            data[i+2]=Math.max(0,Math.min(255,b));
-        }
-
-        ctx.putImageData(imageData,0,0);
-    }
-}
-function rotateEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorRotation=(editorRotation+90)%360; drawEditor(); }
-function flipEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorFlip=!editorFlip; drawEditor(); }
-function grayEditor() { if(!editorImage){alert("Primero carga una imagen.");return;} editorGray=!editorGray; drawEditor(); }
-
-function resizeEditor() {
-    if(!editorImage){alert("Primero carga una imagen.");return;}
-    const width=parseInt(document.getElementById("editorWidth").value,10);
-    const height=parseInt(document.getElementById("editorHeight").value,10);
-    if(!width||!height||width<1||height<1){alert("Introduce un ancho y un alto válidos.");return;}
-    const temp=document.createElement("canvas"); temp.width=width; temp.height=height;
-    const ctx=temp.getContext("2d"); ctx.drawImage(editorImage,0,0,width,height);
-    const resized=new Image();
-    resized.onload=function(){editorImage=resized; editorRotation=0; editorFlip=false; drawEditor();};
-    resized.src=temp.toDataURL("image/png");
 }
 
-function applyEditorPreset(preset) {
-    if(!editorImage){alert("Primero carga una imagen.");return;}
-    const presets={normal:[100,100,100,0],vivid:[105,112,145,0],soft:[108,92,88,0],dramatic:[95,135,110,0],warm:[105,108,118,0],cold:[98,108,105,0]};
-    const p=presets[preset]; if(!p) return;
-    document.getElementById("brightnessControl").value=p[0];
-    document.getElementById("contrastControl").value=p[1];
-    document.getElementById("saturationControl").value=p[2];
-    document.getElementById("blurControl").value=p[3];
-    updateEditor();
+
+function rotateEditor() {
+
+    if (!editorImage) return;
+
+    editorRotation =
+        (editorRotation + 90) % 360;
+
+    drawEditor();
+
 }
+
+
+function flipEditor() {
+
+    if (!editorImage) return;
+
+    editorFlip =
+        !editorFlip;
+
+    drawEditor();
+
+}
+
+
+function grayEditor() {
+
+    if (!editorImage) return;
+
+    editorGray =
+        !editorGray;
+
+    drawEditor();
+
+}
+
 
 function resetEditor() {
-    if(!editorImage) return; editorRotation=0; editorFlip=false; editorGray=false; resetEditorControls();
-    document.getElementById("editorWidth").value=editorImage.width; document.getElementById("editorHeight").value=editorImage.height; drawEditor();
+
+    if (!editorImage) return;
+
+    editorRotation = 0;
+
+    editorFlip = false;
+
+    editorGray = false;
+
+    resetEditorControls();
+
+    drawEditor();
+
 }
 
+
 function downloadEditor() {
-    if (!editorImage) { alert("Primero carga una imagen."); return; }
 
-    const canvas = document.getElementById("editorCanvas");
-    const format = document.getElementById("editorFormat").value;
-    const quality = parseFloat(document.getElementById("editorQuality").value);
+    if (!editorImage) {
 
-    let mime = "image/png", ext = "png";
-    if (format === "jpeg") { mime = "image/jpeg"; ext = "jpg"; }
-    if (format === "webp") { mime = "image/webp"; ext = "webp"; }
+        alert(
+            "Primero carga una imagen."
+        );
 
-    canvas.toBlob(function(blob) {
+        return;
 
-        if (!blob) {
-            alert("No se pudo generar el archivo. Prueba con otro formato (PNG suele funcionar siempre).");
-            return;
-        }
+    }
 
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.download = `toolbox-imagen.${ext}`;
-        link.href = url;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
 
-        setTimeout(function() {
-            URL.revokeObjectURL(url);
-        }, 5000);
+    const canvas =
+        document.getElementById(
+            "editorCanvas"
+        );
 
-    }, mime, quality);
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+    link.download =
+        "toolbox-imagen.png";
+
+    link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
+
+    link.click();
+
 }
 
 
@@ -8018,6 +8576,318 @@ function limpiarOCR() {
 
     copyButton.disabled = true;
 }
+
+
+/* =========================================================
+   PLANIFICADOR INTELIGENTE — TOOLBOX AI
+========================================================= */
+const plannerDays = [
+    {key:'lun', name:'Lunes', short:'Lun', enabled:true, start:'17:00', end:'21:00'},
+    {key:'mar', name:'Martes', short:'Mar', enabled:true, start:'16:00', end:'20:00'},
+    {key:'mie', name:'Miércoles', short:'Mié', enabled:true, start:'17:00', end:'21:00'},
+    {key:'jue', name:'Jueves', short:'Jue', enabled:true, start:'16:00', end:'21:00'},
+    {key:'vie', name:'Viernes', short:'Vie', enabled:true, start:'16:00', end:'19:00'},
+    {key:'sab', name:'Sábado', short:'Sáb', enabled:true, start:'10:00', end:'14:00'},
+    {key:'dom', name:'Domingo', short:'Dom', enabled:false, start:'10:00', end:'14:00'}
+];
+
+let plannerLastPlan = null;
+
+function plannerInit() {
+    const wrap = document.getElementById('plannerAvailability');
+    if (!wrap || wrap.dataset.ready === '1') return;
+    wrap.dataset.ready = '1';
+    wrap.innerHTML = plannerDays.map((d, i) => `
+        <div class="planner-day-row">
+            <span class="planner-day-name">${d.name}</span>
+            <label class="planner-switch" title="Activar ${d.name}">
+                <input type="checkbox" id="plannerEnabled_${i}" ${d.enabled ? 'checked' : ''} onchange="plannerSyncDay(${i})">
+                <span class="planner-slider"></span>
+            </label>
+            <input type="time" id="plannerStart_${i}" value="${d.start}" ${d.enabled ? '' : 'disabled'} onchange="plannerSyncDay(${i})">
+            <span style="color:var(--muted);text-align:center;">→</span>
+            <input type="time" id="plannerEnd_${i}" value="${d.end}" ${d.enabled ? '' : 'disabled'} onchange="plannerSyncDay(${i})">
+        </div>`).join('');
+}
+
+function plannerSyncDay(i) {
+    const en = document.getElementById(`plannerEnabled_${i}`);
+    const st = document.getElementById(`plannerStart_${i}`);
+    const ed = document.getElementById(`plannerEnd_${i}`);
+    if (!en || !st || !ed) return;
+    plannerDays[i].enabled = en.checked;
+    st.disabled = !en.checked;
+    ed.disabled = !en.checked;
+    if (en.checked && st.value >= ed.value) {
+        ed.value = st.value === '23:00' ? '23:59' : `${String(Number(st.value.slice(0,2))+1).padStart(2,'0')}:${st.value.slice(3)}`;
+    }
+    plannerDays[i].start = st.value;
+    plannerDays[i].end = ed.value;
+}
+
+function plannerReadAvailability() {
+    plannerDays.forEach((d, i) => plannerSyncDay(i));
+    return plannerDays.map(d => ({...d}));
+}
+
+function plannerCopyMonday() {
+    plannerInit();
+    const start = document.getElementById('plannerStart_0').value;
+    const end = document.getElementById('plannerEnd_0').value;
+    const enabled = document.getElementById('plannerEnabled_0').checked;
+    for (let i=1;i<plannerDays.length;i++) {
+        document.getElementById(`plannerEnabled_${i}`).checked = enabled;
+        document.getElementById(`plannerStart_${i}`).value = start;
+        document.getElementById(`plannerEnd_${i}`).value = end;
+        plannerSyncDay(i);
+    }
+    plannerSetStatus('Horario del lunes copiado al resto de la semana.');
+}
+
+function plannerApplySameHours() {
+    plannerInit();
+    const start = document.getElementById('plannerSameStart').value;
+    const end = document.getElementById('plannerSameEnd').value;
+    if (!start || !end || start >= end) { alert('La hora de inicio debe ser anterior a la hora de fin.'); return; }
+    for (let i=0;i<7;i++) {
+        document.getElementById(`plannerEnabled_${i}`).checked = true;
+        document.getElementById(`plannerStart_${i}`).value = start;
+        document.getElementById(`plannerEnd_${i}`).value = end;
+        plannerSyncDay(i);
+    }
+    plannerSetStatus('Mismo horario aplicado a todos los días.');
+}
+
+function plannerSetStatus(text) {
+    const el=document.getElementById('plannerStatus');
+    if(el) el.innerText=text || '';
+}
+
+function plannerToggleSetup() {
+    const setup=document.querySelector('.planner-setup');
+    if(setup) setup.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function plannerClear() {
+    if (!confirm('¿Quieres borrar las tareas y el plan generado?')) return;
+    document.getElementById('plannerTasks').value='';
+    document.getElementById('plannerResult').style.display='none';
+    document.getElementById('plannerInsights').innerHTML='';
+    document.getElementById('plannerWeek').innerHTML='';
+    plannerLastPlan=null;
+    localStorage.removeItem('toolbox_planner_plan');
+    plannerSetStatus('');
+}
+
+function plannerMinutes(t) {
+    const [h,m]=t.split(':').map(Number);
+    return h*60+m;
+}
+
+function plannerTime(min) {
+    const h=Math.floor(min/60).toString().padStart(2,'0');
+    const m=(min%60).toString().padStart(2,'0');
+    return `${h}:${m}`;
+}
+
+function plannerEsc(text) {
+    return String(text ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function plannerExtractJSON(text) {
+    let clean=String(text||'').trim();
+    clean=clean.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();
+    try { return JSON.parse(clean); } catch {}
+    const first=clean.indexOf('{'), last=clean.lastIndexOf('}');
+    if(first>=0 && last>first) {
+        try { return JSON.parse(clean.slice(first,last+1)); } catch {}
+    }
+    throw new Error('La IA no devolvió un plan con el formato esperado.');
+}
+
+function plannerValidatePlan(plan, availability) {
+    if(!plan || !Array.isArray(plan.days)) throw new Error('El plan recibido no contiene los días esperados.');
+    const allowed=new Set(availability.filter(d=>d.enabled).map(d=>d.name.toLowerCase()));
+    plan.days.forEach(day=>{
+        if(!Array.isArray(day.blocks)) day.blocks=[];
+        day.blocks=day.blocks.filter(b=>b && b.task && b.start && b.end).map(b=>({
+            task:String(b.task), start:String(b.start), end:String(b.end), priority:String(b.priority||'normal'), deadline:String(b.deadline||''), note:String(b.note||'')
+        }));
+    });
+    return plan;
+}
+
+async function generarPlanificador() {
+    plannerInit();
+    const tasks=document.getElementById('plannerTasks').value.trim();
+    if(!tasks) { alert('Escribe primero todo lo que tienes que hacer.'); return; }
+    const availability=plannerReadAvailability();
+    const active=availability.filter(d=>d.enabled && d.start<d.end);
+    if(!active.length) { alert('Activa al menos un día y define un horario disponible.'); return; }
+
+    const button=document.getElementById('plannerGenerate');
+    button.disabled=true;
+    button.innerText='🤖 Organizando semana...';
+    plannerSetStatus('TOOLBOX AI está calculando prioridades, duración y distribución...');
+
+    const availabilityText=availability.map(d=>`${d.name}: ${d.enabled ? d.start+' - '+d.end : 'NO DISPONIBLE'}`).join('\
+');
+    const today=new Date();
+    const dateText=today.toLocaleDateString('es-ES',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+    const prompt=`
+Eres el planificador inteligente de TOOLBOX. Tu trabajo NO es hacer una lista de tareas ni convertirlas en Pomodoros. Tu trabajo es DISTRIBUIR de forma realista las tareas durante la semana.
+
+FECHA ACTUAL: ${dateText}
+
+TAREAS DEL USUARIO:
+${tasks}
+
+DISPONIBILIDAD SEMANAL:
+${availabilityText}
+
+REGLAS IMPORTANTES:
+1. Interpreta las tareas escritas libremente.
+2. Detecta fechas límite, exámenes, reuniones o tareas urgentes cuando aparezcan.
+3. Si el usuario indica una duración, respétala aproximadamente. Si no la indica, estima una duración razonable según la tarea.
+4. REPARTE el trabajo entre los días disponibles. No repartas las horas de manera uniforme por obligación: un día puede tener más trabajo y otro menos si eso produce una semana más lógica.
+5. Respeta estrictamente las horas disponibles. Nunca programes fuera de ellas.
+6. Prioriza primero lo que tenga fecha límite cercana o mayor importancia.
+7. Divide las tareas grandes entre varios días cuando sea más realista.
+8. No llenes necesariamente todo el tiempo disponible. Deja margen razonable para imprevistos y descanso.
+9. No uses Pomodoros, sesiones ni descansos de 5/10/25 minutos. Cada bloque debe representar tiempo real dedicado a una tarea.
+10. No inventes reuniones ni obligaciones que el usuario no haya escrito.
+11. Si no cabe todo, distribuye lo máximo posible y explica qué queda pendiente.
+12. Los bloques de una misma tarea pueden aparecer en varios días.
+13. Evita solapamientos. Ordena cronológicamente los bloques de cada día.
+14. Devuelve SOLO JSON válido, sin Markdown ni explicaciones fuera del JSON.
+
+FORMATO EXACTO:
+{
+  "title":"Tu semana organizada",
+  "summary":"Explicación breve de cómo has distribuido la semana",
+  "days":[
+    {"day":"Lunes","blocks":[{"task":"...","start":"17:00","end":"18:30","priority":"alta","deadline":"jueves","note":"..."}]},
+    {"day":"Martes","blocks":[]},
+    {"day":"Miércoles","blocks":[]},
+    {"day":"Jueves","blocks":[]},
+    {"day":"Viernes","blocks":[]},
+    {"day":"Sábado","blocks":[]},
+    {"day":"Domingo","blocks":[]}
+  ],
+  "insights":["...","..."],
+  "pending":["..."]
+}
+`;
+
+    try {
+        const reply=await askGemini([{role:'user',content:prompt}], 'planner');
+        const plan=plannerValidatePlan(plannerExtractJSON(reply),availability);
+        plan.availability=availability;
+        plannerLastPlan=plan;
+        localStorage.setItem('toolbox_planner_plan',JSON.stringify(plan));
+        plannerRender(plan,availability);
+        document.getElementById('plannerResult').style.display='block';
+        plannerSetStatus('✅ Semana organizada. Puedes volver a generarla cuando quieras.');
+        setTimeout(()=>document.getElementById('plannerResult').scrollIntoView({behavior:'smooth',block:'start'}),80);
+    } catch(error) {
+        console.error(error);
+        plannerSetStatus('');
+        alert('No se pudo crear el plan: '+error.message);
+    } finally {
+        button.disabled=false;
+        button.innerText='✨ Crear mi semana';
+    }
+}
+
+function plannerRender(plan, availability) {
+    const active=availability.filter(d=>d.enabled && d.start<d.end);
+    const activeNames=new Set(active.map(d=>d.name.toLowerCase()));
+    const dayMap=new Map(active.map(d=>[d.name.toLowerCase(),d]));
+    const days=plannerDays.map(d=>({
+        ...d,
+        config:dayMap.get(d.name.toLowerCase()),
+        data:(plan.days||[]).find(x=>String(x.day||'').toLowerCase()===d.name.toLowerCase()) || {blocks:[]}
+    }));
+    const allBlocks=days.flatMap(d=>(d.data.blocks||[]).map(b=>({...b,day:d.name})));
+    const times=allBlocks.flatMap(b=>[plannerMinutes(b.start),plannerMinutes(b.end)]);
+    const starts=active.map(d=>plannerMinutes(d.start));
+    const ends=active.map(d=>plannerMinutes(d.end));
+    let minHour=Math.floor(Math.min(...(times.length?times:starts))/60);
+    let maxHour=Math.ceil(Math.max(...(times.length?times:ends))/60);
+    minHour=Math.max(6,Math.min(minHour,22));
+    maxHour=Math.min(24,Math.max(maxHour,minHour+6));
+    const totalMinutes=(maxHour-minHour)*60;
+    const pxPerMinute=1.05;
+    const trackHeight=Math.round(totalMinutes*pxPerMinute);
+
+    const insights=(plan.insights||[]).map(x=>`<div class="planner-chip">${plannerEsc(x)}</div>`).join('');
+    const pending=(plan.pending||[]).filter(Boolean);
+    const pendingHtml=pending.length?`<div class="planner-chip">📌 <strong>${pending.length}</strong> pendiente${pending.length===1?'':'s'}</div>`:'';
+    document.getElementById('plannerInsights').innerHTML=insights+pendingHtml+`<div class="planner-chip">⏱️ <strong>${Math.round(allBlocks.reduce((a,b)=>a+(plannerMinutes(b.end)-plannerMinutes(b.start)),0)/60*10)/10} h</strong> planificadas</div>`;
+    document.getElementById('plannerResultTitle').innerText=plan.title||'Tu semana organizada';
+    document.getElementById('plannerResultSummary').innerText=plan.summary||'He distribuido tus tareas teniendo en cuenta el tiempo disponible y sus prioridades.';
+
+    const header=`<div class="planner-time-head"></div>${days.map(d=>`<div class="planner-day-head"><strong>${d.short}</strong><small>${d.config?d.config.start+'–'+d.config.end:'No disponible'}</small><div class="planner-day-total">${Math.round((d.data.blocks||[]).reduce((a,b)=>a+(plannerMinutes(b.end)-plannerMinutes(b.start)),0)/6)/10} h</div></div>`).join('')}`;
+    const axis=Array.from({length:maxHour-minHour+1},(_,i)=>{const y=i*60*pxPerMinute;return `<span class="planner-time-label" style="top:${y}px">${String(minHour+i).padStart(2,'0')}:00</span>`;}).join('');
+
+    const tracks=days.map(d=>{
+        const cfg=d.config;
+        const before=cfg?Math.max(0,plannerMinutes(cfg.start)-minHour*60):0;
+        const after=cfg?Math.max(0,maxHour*60-plannerMinutes(cfg.end)):totalMinutes;
+        const dayBlocks=(d.data.blocks||[]).filter(b=>plannerMinutes(b.end)>plannerMinutes(b.start));
+        const blockHtml=dayBlocks.map((b,i)=>{
+            const top=(plannerMinutes(b.start)-minHour*60)*pxPerMinute;
+            const height=Math.max(40,(plannerMinutes(b.end)-plannerMinutes(b.start))*pxPerMinute-6);
+            const urgent=String(b.priority).toLowerCase().includes('alta')||String(b.priority).toLowerCase().includes('urg');
+            return `<div class="planner-block ${urgent?'urgent':''}" style="top:${top}px;height:${height}px" title="${plannerEsc(b.note||'')}" data-planner-day="${plannerEsc(d.name)}" data-planner-task="${plannerEsc(b.task)}">
+                <div class="planner-block-title">${plannerEsc(b.task)}</div>
+                <div class="planner-block-time">${plannerEsc(b.start)} – ${plannerEsc(b.end)}</div>
+                <div class="planner-block-meta">
+                    ${b.deadline?`<span class="planner-mini-btn">📌 ${plannerEsc(b.deadline)}</span>`:''}
+                    <button class="planner-mini-btn" onclick="plannerMarkDone(this)">✓ Hecho</button>
+                </div>
+            </div>`;
+        }).join('');
+        const offTop=before;
+        const offBottom=after;
+        return `<div class="planner-track" style="height:${trackHeight}px">
+            ${!cfg?`<div class="planner-free-label">Día libre</div>`:''}
+            ${cfg&&offTop>0?`<div class="planner-off-hours" style="top:0;height:${offTop*pxPerMinute}px"></div>`:''}
+            ${cfg&&offBottom>0?`<div class="planner-off-hours" style="bottom:0;height:${offBottom*pxPerMinute}px"></div>`:''}
+            ${cfg&&!dayBlocks.length?`<div class="planner-free" style="top:${before*pxPerMinute+10}px;height:${Math.max(44,(totalMinutes-before-offBottom)*pxPerMinute-20)}px">Tiempo libre</div>`:''}
+            ${blockHtml}
+        </div>`;
+    }).join('');
+    document.getElementById('plannerWeek').innerHTML=`<div class="planner-week-grid" style="grid-template-rows:78px ${trackHeight}px">${header}<div class="planner-time-axis" style="height:${trackHeight}px">${axis}</div>${tracks}</div>`;
+}
+
+function plannerMarkDone(button) {
+    const block=button.closest('.planner-block');
+    if(!block) return;
+    block.classList.toggle('done');
+    button.innerText=block.classList.contains('done')?'↶ Deshacer':'✓ Hecho';
+}
+
+function plannerLoadSaved() {
+    try {
+        const saved=JSON.parse(localStorage.getItem('toolbox_planner_plan')||'null');
+        if(saved && saved.days && saved.availability) {
+            plannerLastPlan=saved;
+            plannerRender(saved,saved.availability);
+            document.getElementById('plannerResult').style.display='block';
+        }
+    } catch(e) { console.warn('No se pudo cargar el plan guardado',e); }
+}
+
+const plannerOriginalAbrir = window.abrir;
+window.abrir = function(id) {
+    if(typeof plannerOriginalAbrir==='function') plannerOriginalAbrir(id);
+    if(id==='planner') {
+        setTimeout(()=>{ plannerInit(); plannerLoadSaved(); },60);
+    }
+};
+
 </script>
 
 </body>
