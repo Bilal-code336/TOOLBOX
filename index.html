@@ -3005,6 +3005,29 @@ footer strong {
 /* =========================================================
    PLANIFICADOR INTELIGENTE TOOLBOX
 ========================================================= */
+
+/* El planificador necesita más espacio que las herramientas normales.
+   Se ensancha solo este panel para que la semana pueda verse completa. */
+.tool-panel#planner {
+    width: min(1600px, calc(100vw - 80px));
+    margin-left: calc((1150px - min(1600px, calc(100vw - 80px))) / 2);
+    box-sizing: border-box;
+}
+
+.planner-layout {
+    width: 100%;
+}
+
+.planner-setup,
+.planner-result {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.planner-week-shell {
+    width: 100%;
+}
+
 .planner-head {
     align-items: flex-start;
 }
@@ -3168,9 +3191,9 @@ body.light .planner-day-row { background: var(--card2); }
 .planner-week-shell { border:1px solid var(--border); border-radius:18px; overflow:hidden; background:var(--input); }
 .planner-week-scroll { overflow:auto; padding:0; }
 .planner-week-grid {
-    min-width:1260px;
+    min-width:1450px;
     display:grid;
-    grid-template-columns:58px repeat(7, minmax(150px, 1fr));
+    grid-template-columns:64px repeat(7, minmax(190px, 1fr));
 }
 .planner-time-head { height:78px; border-right:1px solid var(--border); border-bottom:1px solid var(--border); }
 .planner-day-head {
@@ -3197,7 +3220,17 @@ body.light .planner-day-head { background:var(--card2); }
 .planner-mini-btn:hover { background:rgba(255,255,255,.27); }
 .planner-free { position:absolute; left:8px; right:8px; border:1px dashed rgba(137,149,170,.22); border-radius:10px; color:var(--muted); display:flex; align-items:center; justify-content:center; font-size:10px; }
 .planner-note { margin-top:13px; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:rgba(124,58,237,.05); color:var(--muted); font-size:12px; line-height:1.5; }
+@media (max-width:1180px) {
+    .tool-panel#planner {
+        width: calc(100vw - 40px);
+        margin-left: 0;
+    }
+}
+
 @media (max-width:800px) {
+    .tool-panel#planner {
+        width: 100%;
+    }
     .planner-day-row { grid-template-columns:90px 42px 1fr 14px 1fr; gap:6px; padding:8px; }
     .planner-same-hours, .planner-result-top { flex-direction:column; align-items:stretch; }
     .planner-same-controls { flex-wrap:wrap; }
@@ -8695,25 +8728,86 @@ function plannerEsc(text) {
 }
 
 function plannerExtractJSON(text) {
-    let clean=String(text||'').trim();
-    clean=clean.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();
-    try { return JSON.parse(clean); } catch {}
-    const first=clean.indexOf('{'), last=clean.lastIndexOf('}');
-    if(first>=0 && last>first) {
-        try { return JSON.parse(clean.slice(first,last+1)); } catch {}
+    let clean = String(text || '').trim();
+
+    // Quitar bloques Markdown si el modelo los añade aunque se le haya pedido JSON.
+    clean = clean.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+
+    try {
+        return JSON.parse(clean);
+    } catch {}
+
+    // Buscar el primer objeto JSON completo aunque haya texto antes/después.
+    const first = clean.indexOf('{');
+    if (first >= 0) {
+        let depth = 0;
+        let inString = false;
+        let escaped = false;
+        for (let i = first; i < clean.length; i++) {
+            const ch = clean[i];
+            if (inString) {
+                if (escaped) escaped = false;
+                else if (ch === '\\') escaped = true;
+                else if (ch === '"') inString = false;
+                continue;
+            }
+            if (ch === '"') { inString = true; continue; }
+            if (ch === '{') depth++;
+            else if (ch === '}') {
+                depth--;
+                if (depth === 0) {
+                    try { return JSON.parse(clean.slice(first, i + 1)); } catch {}
+                    break;
+                }
+            }
+        }
     }
-    throw new Error('La IA no devolvió un plan con el formato esperado.');
+
+    throw new Error('La IA devolvió una respuesta que no se pudo convertir en un plan. Inténtalo de nuevo.');
 }
 
 function plannerValidatePlan(plan, availability) {
-    if(!plan || !Array.isArray(plan.days)) throw new Error('El plan recibido no contiene los días esperados.');
-    const allowed=new Set(availability.filter(d=>d.enabled).map(d=>d.name.toLowerCase()));
-    plan.days.forEach(day=>{
-        if(!Array.isArray(day.blocks)) day.blocks=[];
-        day.blocks=day.blocks.filter(b=>b && b.task && b.start && b.end).map(b=>({
-            task:String(b.task), start:String(b.start), end:String(b.end), priority:String(b.priority||'normal'), deadline:String(b.deadline||''), note:String(b.note||'')
-        }));
+    if (!plan || !Array.isArray(plan.days)) {
+        throw new Error('La IA no devolvió la estructura de días esperada.');
+    }
+
+    const byDay = new Map(availability.map(d => [d.name.toLowerCase(), d]));
+
+    plan.days = plan.days.map(day => {
+        const dayName = String(day?.day || '').trim();
+        const cfg = byDay.get(dayName.toLowerCase());
+        const blocks = Array.isArray(day?.blocks) ? day.blocks : [];
+
+        return {
+            day: dayName,
+            blocks: blocks.filter(b => {
+                if (!b || !b.task || !b.start || !b.end) return false;
+                const start = String(b.start).slice(0, 5);
+                const end = String(b.end).slice(0, 5);
+                if (!/^\d{2}:\d{2}$/.test(start) || !/^\d{2}:\d{2}$/.test(end)) return false;
+                if (plannerMinutes(end) <= plannerMinutes(start)) return false;
+                // No permitimos bloques fuera del horario introducido por el usuario.
+                if (cfg?.enabled) {
+                    if (plannerMinutes(start) < plannerMinutes(cfg.start) || plannerMinutes(end) > plannerMinutes(cfg.end)) return false;
+                }
+                return true;
+            }).map(b => ({
+                task: String(b.task),
+                start: String(b.start).slice(0, 5),
+                end: String(b.end).slice(0, 5),
+                priority: String(b.priority || 'normal'),
+                deadline: String(b.deadline || ''),
+                note: String(b.note || '')
+            })).sort((a, b) => plannerMinutes(a.start) - plannerMinutes(b.start))
+        };
     });
+
+    // Si el modelo no devuelve alguno de los días, lo añadimos vacío.
+    const existing = new Set(plan.days.map(d => d.day.toLowerCase()));
+    availability.forEach(d => {
+        if (!existing.has(d.name.toLowerCase())) plan.days.push({ day: d.name, blocks: [] });
+    });
+
     return plan;
 }
 
@@ -8781,7 +8875,7 @@ FORMATO EXACTO:
 `;
 
     try {
-        const reply=await askGemini([{role:'user',content:prompt}], 'planner');
+        const reply=await askGemini([{role:'user',content:prompt}], 'normal');
         const plan=plannerValidatePlan(plannerExtractJSON(reply),availability);
         plan.availability=availability;
         plannerLastPlan=plan;
@@ -8791,9 +8885,10 @@ FORMATO EXACTO:
         plannerSetStatus('✅ Semana organizada. Puedes volver a generarla cuando quieras.');
         setTimeout(()=>document.getElementById('plannerResult').scrollIntoView({behavior:'smooth',block:'start'}),80);
     } catch(error) {
-        console.error(error);
-        plannerSetStatus('');
-        alert('No se pudo crear el plan: '+error.message);
+        console.error('TOOLBOX Planner:', error);
+        const message = error?.message || 'Error desconocido.';
+        plannerSetStatus('⚠️ ' + message);
+        alert('No se pudo crear el plan.\n\n' + message + '\n\nPuedes volver a intentarlo sin perder lo que has escrito.');
     } finally {
         button.disabled=false;
         button.innerText='✨ Crear mi semana';
