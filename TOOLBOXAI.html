@@ -984,7 +984,7 @@ button:disabled { opacity: .5; cursor: not-allowed; }
         none;
 
     border:
-        none;
+        none !important;
 
     border-radius:
         0;
@@ -992,14 +992,43 @@ button:disabled { opacity: .5; cursor: not-allowed; }
     background:
         transparent;
 
+    color:
+        var(--text);
+
+    caret-color:
+        var(--purple3);
+
     padding:
         17px;
 
     box-shadow:
+        none !important;
+
+    outline:
+        none !important;
+
+    -webkit-appearance:
+        none;
+
+    appearance:
         none;
 
     font-size:
         15px;
+}
+
+#toolboxAiInput:focus,
+#toolboxAiInput:focus-visible {
+    color: var(--text);
+    caret-color: var(--purple3);
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#toolboxAiInput::placeholder {
+    color: var(--muted);
+    opacity: 1;
 }
 
 .composer-bottom {
@@ -2721,6 +2750,10 @@ async function sendToolboxAI() {
         conversation.aiBusy =
             false;
 
+        // Guardamos también el estado final.
+        // Así, al salir de TOOLBOX y volver a entrar,
+        // la conversación no queda bloqueada como si la IA siguiera pensando.
+        saveConversations();
 
         typing.classList.remove(
             "active"
@@ -2967,10 +3000,20 @@ function closeMobileSidebar() {
 
 (function initToolboxAI() {
 
+    // Una conversación nunca debe conservar el bloqueo de una petición
+    // anterior después de recargar o volver a entrar en la página.
+    conversations.forEach(conversation => {
+        conversation.aiBusy = false;
+        if (!Array.isArray(conversation.messages)) {
+            conversation.messages = [];
+        }
+    });
+
     if (conversations.length === 0) {
         createNewConversation();
     } else {
         currentConversationId = conversations[0].id;
+        saveConversations();
         renderConversationList();
         renderCurrentConversation();
     }
