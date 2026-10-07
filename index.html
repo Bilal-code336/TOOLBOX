@@ -1278,9 +1278,12 @@ textarea {
         20px;
 }
 
+/* =========================================================
+   TOOLBOX AI — PANTALLA COMPLETA
+========================================================= */
+
 .toolbox-ai-button {
 
-    text-decoration: none;
     position:
         fixed;
 
@@ -1374,6 +1377,1289 @@ textarea {
 .star-two {
     font-size: 14px;
     transform: translate(11px,10px);
+}
+
+/* =========================================================
+   APP IA
+========================================================= */
+
+.toolbox-ai-app {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        90000;
+
+    display:
+        none;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+}
+
+.toolbox-ai-app.open {
+    display:
+        flex;
+}
+
+/* =========================================================
+   SIDEBAR IA
+========================================================= */
+
+.toolbox-ai-sidebar {
+
+    width:
+        280px;
+
+    flex-shrink:
+        0;
+
+    background:
+        #0a0e17;
+
+    border-right:
+        none;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    padding:
+        18px;
+}
+
+.ai-sidebar-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        20px;
+}
+
+.ai-sidebar-brand {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-brand-logo {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        50%;
+
+    background:
+        #05070c;
+
+    border:
+        none;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+}
+
+.ai-brand-logo span {
+    position: absolute;
+}
+
+.ai-brand-logo span:first-child {
+    transform: translate(-3px,-3px);
+}
+
+.ai-brand-logo span:last-child {
+    transform: translate(8px,8px);
+    font-size: 11px;
+}
+
+.ai-sidebar-brand strong {
+    display: block;
+    font-size: 14px;
+}
+
+.ai-sidebar-brand small {
+    display: block;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.ai-close-sidebar {
+
+    width:
+        36px;
+
+    height:
+        36px;
+
+    border:
+        none;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    border-radius:
+        50%;
+
+    font-size:
+        22px;
+}
+
+.new-chat-button {
+
+    width:
+        100%;
+
+    border:
+        none;
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    padding:
+        13px;
+
+    border-radius:
+        50px;
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-weight:
+        600;
+}
+
+.new-chat-button:hover {
+    background:
+        var(--purple2);
+}
+
+.conversation-search {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    margin:
+        16px 0;
+
+    padding:
+        0 14px;
+
+    border:
+        none;
+
+    border-radius:
+        50px;
+
+    background:
+        var(--input);
+}
+
+.conversation-search input {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    box-shadow:
+        none;
+
+    padding:
+        10px 5px;
+}
+
+.conversation-list {
+
+    flex:
+        1;
+
+    overflow-y:
+        auto;
+}
+
+.conversation-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        11px 14px;
+
+    border-radius:
+        14px;
+
+    margin-bottom:
+        4px;
+
+    color:
+        var(--muted);
+
+    cursor:
+        pointer;
+}
+
+.conversation-item:hover,
+.conversation-item.active {
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+}
+
+.conversation-title {
+
+    flex:
+        1;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+    font-size:
+        13px;
+}
+
+.delete-conversation {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        #77839a;
+
+    font-size:
+        15px;
+}
+
+.delete-conversation:hover {
+    color:
+        #ef4444;
+}
+
+.ai-sidebar-footer {
+
+    padding-top:
+        15px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.ai-free-badge {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    margin-bottom:
+        8px;
+}
+
+.status-dot {
+
+    width:
+        9px;
+
+    height:
+        9px;
+
+    border-radius:
+        50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+        0 0 10px
+        rgba(34,197,94,.5);
+}
+
+.ai-free-badge strong {
+    display:
+        block;
+
+    font-size:
+        12px;
+}
+
+.ai-free-badge small {
+    color:
+        var(--muted);
+}
+
+.local-storage-info {
+
+    color:
+        #68758a;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.4;
+}
+
+/* =========================================================
+   MAIN IA
+========================================================= */
+
+.toolbox-ai-main {
+
+    flex:
+        1;
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+}
+
+.toolbox-ai-main-header {
+
+    min-height:
+        70px;
+
+    padding:
+        10px 20px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    border-bottom:
+        none;
+
+    background:
+        rgba(8,11,18,.7);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+.ai-header-title {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-header-icon {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--button);
+}
+
+.ai-header-title strong {
+    display:
+        block;
+}
+
+.ai-header-title small {
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+}
+
+.ai-header-actions button,
+.mobile-menu-button {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    font-size:
+        18px;
+}
+
+.mobile-menu-button {
+    display:
+        none;
+}
+
+/* =========================================================
+   MENSAJES IA
+========================================================= */
+
+.toolbox-ai-messages {
+
+    flex:
+        1;
+
+    overflow-y:
+        auto;
+
+    padding:
+        35px;
+
+    scroll-behavior:
+        smooth;
+}
+
+.ai-welcome {
+
+    max-width:
+        780px;
+
+    margin:
+        10vh auto;
+
+    text-align:
+        center;
+}
+
+.ai-welcome-logo {
+
+    font-size:
+        54px;
+
+    margin-bottom:
+        20px;
+}
+
+.ai-welcome h1 {
+
+    font-size:
+        clamp(30px,5vw,48px);
+
+    margin-bottom:
+        13px;
+}
+
+.ai-welcome h1 span {
+    color:
+        var(--purple2);
+}
+
+.ai-welcome p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        25px;
+}
+
+.ai-suggestions {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(200px,1fr));
+
+    gap:
+        10px;
+}
+
+.ai-suggestion {
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border-radius:
+        18px;
+
+    text-align:
+        left;
+
+    transition:
+        background .15s;
+}
+
+.ai-suggestion:hover {
+
+    background:
+        var(--button);
+}
+
+/* =========================================================
+   BURBUJAS
+========================================================= */
+
+.ai-chat-row {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto 25px;
+}
+
+.ai-chat-row.user {
+    justify-content:
+        flex-end;
+}
+
+.ai-chat-avatar {
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #05070c;
+
+    color:
+        white;
+
+    border:
+        none;
+}
+
+.ai-chat-bubble {
+
+    max-width:
+        min(750px,80%);
+
+    padding:
+        14px 19px;
+
+    border:
+        none;
+
+    border-radius:
+        22px;
+
+    background:
+        var(--card);
+
+    line-height:
+        1.65;
+
+    white-space:
+        pre-wrap;
+
+    word-break:
+        break-word;
+}
+
+.ai-chat-row.user .ai-chat-bubble {
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    border-radius:
+        22px;
+}
+
+.ai-chat-content {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    gap:
+        6px;
+}
+
+.ai-message-actions {
+
+    display:
+        flex;
+
+    opacity:
+        0;
+
+    transition:
+        opacity .15s;
+}
+
+.ai-chat-row:hover .ai-message-actions {
+    opacity:
+        1;
+}
+
+.ai-copy-button {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    padding:
+        4px 10px;
+
+    border-radius:
+        50px;
+
+    cursor:
+        pointer;
+}
+
+.ai-copy-button:hover {
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+}
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.toolbox-ai-typing {
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 20px 15px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+.toolbox-ai-typing.active {
+    display:
+        flex;
+}
+
+.typing-dots {
+
+    display:
+        flex;
+
+    gap:
+        4px;
+}
+
+.typing-dots span {
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--muted);
+
+    animation:
+        typing .9s infinite;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay:
+        .15s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay:
+        .3s;
+}
+
+@keyframes typing {
+
+    0%,100% {
+        opacity: .3;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+/* =========================================================
+   COMPOSER IA
+========================================================= */
+
+.toolbox-ai-composer-wrapper {
+
+    padding:
+        12px 25px 20px;
+
+    background:
+        var(--bg);
+}
+
+.toolbox-ai-composer {
+
+    max-width:
+        900px;
+
+    margin:
+        auto;
+
+    border:
+        none;
+
+    border-radius:
+        28px;
+
+    background:
+        var(--input);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.18);
+
+    overflow:
+        hidden;
+}
+
+#toolboxAiInput {
+
+    width:
+        100%;
+
+    min-height:
+        65px;
+
+    max-height:
+        180px;
+
+    resize:
+        none;
+
+    border:
+        none;
+
+    border-radius:
+        0;
+
+    background:
+        transparent;
+
+    padding:
+        17px;
+
+    box-shadow:
+        none;
+
+    font-size:
+        15px;
+}
+
+.composer-bottom {
+
+    display:
+        flex;
+
+    justify-content:
+        flex-end;
+
+    align-items:
+        center;
+
+    padding:
+        0 14px 12px;
+}
+
+.composer-tool {
+
+    border:
+        none;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    padding:
+        9px 15px;
+
+    border-radius:
+        50px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    font-size:
+        12px;
+
+    transition:
+        background .15s;
+}
+
+.composer-tool:hover {
+
+    background:
+        var(--purple);
+}
+
+.composer-right {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-char-counter {
+
+    color:
+        #68758a;
+
+    font-size:
+        11px;
+}
+
+.ai-send-button {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    font-size:
+        18px;
+
+    transition:
+        background .15s;
+}
+
+.ai-send-button:hover {
+    background:
+        var(--purple2);
+}
+
+.ai-composer-disclaimer {
+
+    max-width:
+        900px;
+
+    margin:
+        8px auto 0;
+
+    text-align:
+        center;
+
+    color:
+        #64748b;
+
+    font-size:
+        9px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    margin-top:
+        80px;
+
+    padding:
+        45px 20px;
+
+    text-align:
+        center;
+
+    border-top:
+        1px solid var(--border);
+
+    color:
+        var(--muted);
+}
+
+footer strong {
+    color:
+        var(--purple2);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:800px) {
+
+    .image-editor {
+        grid-template-columns:
+            1fr;
+    }
+
+    .toolbox-ai-sidebar {
+
+        position:
+            absolute;
+
+        left:
+            0;
+
+        top:
+            0;
+
+        bottom:
+            0;
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform .25s;
+
+        z-index:
+            5;
+    }
+
+    .toolbox-ai-sidebar.mobile-open {
+        transform:
+            translateX(0);
+    }
+
+    .mobile-menu-button {
+        display:
+            block;
+    }
+
+    .toolbox-ai-main-header {
+        gap:
+            10px;
+    }
+}
+
+@media(max-width:600px) {
+
+    .nav-link {
+        display:
+            none;
+    }
+
+    .hero {
+        padding-top:
+            70px;
+    }
+
+    .tool-panel {
+        padding:
+            20px;
+    }
+
+    .toolbox-ai-messages {
+        padding:
+            20px 14px;
+    }
+
+    .toolbox-ai-composer-wrapper {
+        padding:
+            10px;
+    }
+
+    .toolbox-ai-button {
+
+        right:
+            15px;
+
+        bottom:
+            15px;
+
+        width:
+            58px;
+
+        height:
+            58px;
+    }
+
+    .ai-chat-bubble {
+        max-width:
+            88%;
+    }
+
+}
+/* =========================================================
+   GENERADOR DE CONTRASEÑAS MEMORABLES
+========================================================= */
+
+.password-generator-box {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+}
+
+.password-generator-box label {
+    display: block;
+    margin: 18px 0 8px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.password-generator-box input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    outline: none;
+    font-size: 15px;
+}
+
+.password-generator-box input:focus {
+    border-color: var(--purple2);
+}
+
+.password-generate-button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.password-result {
+    margin-top: 22px;
+    min-height: 60px;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    font-size: 18px;
+    font-family: monospace;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.password-copy-button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* =========================================================
+   FIX FONDO TOOLBOX AI
+========================================================= */
+
+.toolbox-ai-app {
+    background: #080b12 !important;
+}
+
+.toolbox-ai-app .toolbox-ai-main {
+    background: #080b12 !important;
+}
+
+.toolbox-ai-app .toolbox-ai-messages {
+    background: #080b12 !important;
+}
+
+.toolbox-ai-app .toolbox-ai-messages:hover,
+.toolbox-ai-app .toolbox-ai-messages:focus,
+.toolbox-ai-app .toolbox-ai-messages:active {
+    background: #080b12 !important;
 }
 
 /* =========================================================
@@ -1716,6 +3002,105 @@ textarea {
 
 
 
+
+
+/* =========================================================
+   TOOLBOX AI — MARKDOWN VISUAL
+========================================================= */
+.toolbox-markdown {
+    line-height: 1.65;
+    word-break: break-word;
+}
+.toolbox-markdown p {
+    margin: 0 0 12px;
+}
+.toolbox-markdown p:last-child {
+    margin-bottom: 0;
+}
+.toolbox-markdown h1,
+.toolbox-markdown h2,
+.toolbox-markdown h3 {
+    margin: 18px 0 9px;
+    line-height: 1.3;
+    color: var(--text);
+}
+.toolbox-markdown h1 { font-size: 1.45rem; }
+.toolbox-markdown h2 { font-size: 1.25rem; }
+.toolbox-markdown h3 { font-size: 1.08rem; }
+.toolbox-markdown strong {
+    font-weight: 800;
+    color: var(--text);
+}
+.toolbox-markdown em { font-style: italic; }
+.toolbox-markdown hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 18px 0;
+}
+.toolbox-markdown ul,
+.toolbox-markdown ol {
+    margin: 8px 0 14px 24px;
+    padding: 0;
+}
+.toolbox-markdown li {
+    margin: 5px 0;
+}
+.toolbox-markdown blockquote {
+    margin: 12px 0;
+    padding: 8px 14px;
+    border-left: 3px solid #8b5cf6;
+    color: var(--muted);
+    background: rgba(139,92,246,.07);
+    border-radius: 0 9px 9px 0;
+}
+.toolbox-markdown code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .9em;
+    background: rgba(139,92,246,.12);
+    border: 1px solid rgba(139,92,246,.18);
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+.toolbox-markdown pre {
+    margin: 13px 0;
+    padding: 14px;
+    overflow-x: auto;
+    background: #080d16;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+.toolbox-markdown pre code {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    white-space: pre;
+}
+.toolbox-markdown a {
+    color: #a78bfa;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.toolbox-markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: .94em;
+}
+.toolbox-markdown th,
+.toolbox-markdown td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+}
+.toolbox-markdown th {
+    background: rgba(139,92,246,.10);
+    font-weight: 800;
+}
+.toolbox-markdown img {
+    max-width: 100%;
+    border-radius: 10px;
+}
 
 
 /* =========================================================
@@ -3678,21 +5063,26 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 
 
 <!-- =========================================================
-     BOTÓN FLOTANTE IA — ENLACE A TOOLBOX AI
+     BOTÓN FLOTANTE IA
 ========================================================= -->
 
-<a
+<button
     id="toolboxAiButton"
     class="toolbox-ai-button"
-    href="/TOOLBOXAI"
+    onclick="window.location.href='/TOOLBOXAI'"
     title="Abrir TOOLBOX AI"
-    aria-label="Abrir TOOLBOX AI"
 >
 
-    <span class="ai-star star-one">✦</span>
-    <span class="ai-star star-two">✦</span>
+    <span class="ai-star star-one">
+        ✦
+    </span>
 
-</a>
+    <span class="ai-star star-two">
+        ✦
+    </span>
+
+</button>
+
 
 <script>
 
@@ -4996,15 +6386,6 @@ ${input}
 
 }
 
-
-/* =========================================================
-   INICIALIZACIÓN GENERAL
-========================================================= */
-document.addEventListener("DOMContentLoaded", function() {
-    if (typeof updateColor === "function") {
-        updateColor();
-    }
-});
 
 /* =========================================================
    GENERADOR DE CONTRASEÑAS MEMORABLES
@@ -6404,5 +7785,13 @@ window.abrir = function(id) {
 
 </script>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    if (typeof updateColor === "function") {
+        updateColor();
+    }
+});
+</script>
 </body>
 </html>
