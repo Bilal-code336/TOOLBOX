@@ -3376,6 +3376,10 @@ body.light .planner-day-head { background:var(--card2); }
             Herramientas
         </a>
 
+        <a href="/blog.html" class="nav-link">
+            Blog / Tutoriales
+        </a>
+
         <button
             id="themeButton"
             class="theme"
@@ -5069,7 +5073,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 <button
     id="toolboxAiButton"
     class="toolbox-ai-button"
-    onclick="window.location.href='/TOOLBOXAI'"
+    onclick="openToolboxAI()"
     title="Abrir TOOLBOX AI"
 >
 
@@ -5084,11 +5088,337 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 </button>
 
 
+<!-- =========================================================
+     TOOLBOX AI COMPLETA
+========================================================= -->
+
+<div
+    id="toolboxAiApp"
+    class="toolbox-ai-app"
+>
+
+    <!-- SIDEBAR -->
+
+    <aside
+        id="toolboxAiSidebar"
+        class="toolbox-ai-sidebar"
+    >
+
+        <div class="ai-sidebar-top">
+
+            <div class="ai-sidebar-brand">
+
+                <div class="ai-brand-logo">
+
+                    <span>✦</span>
+                    <span>✦</span>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        TOOLBOX AI
+                    </strong>
+
+                    <small>
+                        Groq
+                    </small>
+
+                </div>
+
+            </div>
+
+            <button
+                class="ai-close-sidebar"
+                onclick="closeToolboxAI()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <button
+            class="new-chat-button"
+            onclick="createNewConversation()"
+        >
+
+            <span>＋</span>
+
+            Nueva conversación
+
+        </button>
+
+
+        <div class="conversation-search">
+
+            <span>⌕</span>
+
+            <input
+                id="conversationSearch"
+                placeholder="Buscar conversaciones..."
+                oninput="filterConversations()"
+            >
+
+        </div>
+
+
+        <div
+            id="conversationList"
+            class="conversation-list"
+        ></div>
+
+
+        <div class="ai-sidebar-footer">
+
+            <div class="ai-free-badge">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        Groq conectado
+                    </strong>
+
+                    <small>
+                        TOOLBOX AI
+                    </small>
+
+                </div>
+
+            </div>
+
+            <small class="local-storage-info">
+                Tus conversaciones se guardan
+                localmente en este dispositivo.
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="toolbox-ai-main">
+
+        <header
+            class="toolbox-ai-main-header"
+        >
+
+            <div
+                style="display:flex;align-items:center;gap:10px"
+            >
+
+                <button
+                    class="mobile-menu-button"
+                    onclick="toggleAISidebar()"
+                >
+                    ☰
+                </button>
+
+                <div class="ai-header-title">
+
+                    <div class="ai-header-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <strong
+                            id="currentConversationTitle"
+                        >
+                            Nueva conversación
+                        </strong>
+
+                        <small>
+                            TOOLBOX AI · Groq
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    class="mobile-menu-button"
+                    style="display:flex"
+                    onclick="createNewConversation()"
+                    title="Nueva conversación"
+                >
+                    ＋
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MENSAJES -->
+
+        <section
+            id="toolboxAiMessages"
+            class="toolbox-ai-messages"
+        >
+
+            <div
+                id="aiWelcome"
+                class="ai-welcome"
+            >
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Hola, soy
+                    <span>TOOLBOX AI</span>
+                </h1>
+
+                <p>
+                    Tu asistente inteligente dentro de TOOLBOX.
+                    Puedo explicarte temas, ayudarte a estudiar,
+                    mejorar textos, programar contigo, darte
+                    ejemplos y mucho más.
+                </p>
+
+                <div class="ai-suggestions">
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Explícame la fotosíntesis de forma sencilla y después pregúntame si quiero aprenderla mejor.')"
+                    >
+                        🌱 Explícame algo
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.')"
+                    >
+                        🐍 Aprende conmigo
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Ayúdame a crear una página web moderna con HTML, CSS y JavaScript.')"
+                    >
+                        💻 Ayúdame a programar
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Dame un reto interesante para aprender algo nuevo.')"
+                    >
+                        🧠 Sorpréndeme
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TYPING -->
+
+        <div
+            id="toolboxAiTyping"
+            class="toolbox-ai-typing"
+        >
+
+            <div class="ai-chat-avatar">
+                ✦
+            </div>
+
+            <span>
+                TOOLBOX AI está pensando
+            </span>
+
+            <div class="typing-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPOSER -->
+
+        <div class="toolbox-ai-composer-wrapper">
+
+            <div class="toolbox-ai-composer">
+
+                <textarea
+                    id="toolboxAiInput"
+                    rows="1"
+                    maxlength="12000"
+                    placeholder="Escribe un mensaje para TOOLBOX AI..."
+                    onkeydown="toolboxAIKeyDown(event)"
+                    oninput="autoResizeAIInput(this);updateCharCounter()"
+                ></textarea>
+
+
+                <div class="composer-bottom">
+
+                    <div class="composer-right">
+
+                        <span
+                            id="aiCharCounter"
+                            class="ai-char-counter"
+                        >
+                            0
+                        </span>
+
+                        <button
+                            id="toolboxAiSend"
+                            class="ai-send-button"
+                            onclick="sendToolboxAI()"
+                        >
+                            ➤
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-composer-disclaimer">
+
+                TOOLBOX AI utiliza Groq.
+                Puede cometer errores; comprueba la información importante.
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
 <script>
 
 /* =========================================================
    ESTADO GENERAL
 ========================================================= */
+
+let conversations =
+    JSON.parse(
+        localStorage.getItem("toolboxConversations") || "[]"
+    );
+
+let currentConversationId = null;
+
 
 /* =========================================================
    ABRIR / CERRAR HERRAMIENTAS
@@ -6387,6 +6717,1173 @@ ${input}
 }
 
 
+/* =========================================================
+   TOOLBOX AI — CONVERSACIONES
+========================================================= */
+
+function saveConversations() {
+
+    localStorage.setItem(
+        "toolboxConversations",
+        JSON.stringify(
+            conversations
+        )
+    );
+
+}
+
+
+function createNewConversation() {
+
+    const conversation = {
+
+        id:
+            Date.now().toString(),
+
+        title:
+            "Nueva conversación",
+
+        messages:
+            []
+
+    };
+
+
+    conversations.unshift(
+        conversation
+    );
+
+
+    currentConversationId =
+        conversation.id;
+
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+    document.getElementById(
+        "currentConversationTitle"
+    ).innerText =
+        conversation.title;
+
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    input.value = "";
+
+    updateCharCounter();
+
+    input.focus();
+
+
+    closeMobileSidebar();
+
+}
+
+
+function getCurrentConversation() {
+
+    return conversations.find(
+        c =>
+            c.id ===
+            currentConversationId
+    );
+
+}
+
+
+/* =========================================================
+   ABRIR IA
+========================================================= */
+
+function openToolboxAI() {
+
+    document
+        .getElementById(
+            "toolboxAiApp"
+        )
+        .classList.add("open");
+
+
+    if (!currentConversationId) {
+
+        if (conversations.length) {
+
+            currentConversationId =
+                conversations[0].id;
+
+        } else {
+
+            createNewConversation();
+
+            return;
+
+        }
+
+    }
+
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+}
+
+
+function closeToolboxAI() {
+
+    document
+        .getElementById(
+            "toolboxAiApp"
+        )
+        .classList.remove("open");
+
+    closeMobileSidebar();
+
+}
+
+
+/* =========================================================
+   CONVERSACIONES
+========================================================= */
+
+function renderConversationList() {
+
+    const list =
+        document.getElementById(
+            "conversationList"
+        );
+
+    const search =
+        document.getElementById(
+            "conversationSearch"
+        ).value
+        .toLowerCase();
+
+
+    list.innerHTML = "";
+
+
+    conversations
+        .filter(c =>
+            c.title
+                .toLowerCase()
+                .includes(search)
+        )
+        .forEach(conversation => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "conversation-item" +
+                (
+                    conversation.id ===
+                    currentConversationId
+                    ? " active"
+                    : ""
+                );
+
+
+            const title =
+                document.createElement(
+                    "span"
+                );
+
+            title.className =
+                "conversation-title";
+
+            title.innerText =
+                conversation.title;
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "delete-conversation";
+
+            deleteButton.innerText =
+                "🗑";
+
+
+            deleteButton.onclick =
+                function(event) {
+
+                    event.stopPropagation();
+
+                    deleteConversation(
+                        conversation.id
+                    );
+
+                };
+
+
+            item.onclick =
+                function() {
+
+                    currentConversationId =
+                        conversation.id;
+
+                    renderConversationList();
+
+                    renderCurrentConversation();
+
+                    closeMobileSidebar();
+
+                };
+
+
+            item.appendChild(title);
+
+            item.appendChild(
+                deleteButton
+            );
+
+            list.appendChild(item);
+
+        });
+
+}
+
+
+function filterConversations() {
+
+    renderConversationList();
+
+}
+
+
+function deleteConversation(id) {
+
+    conversations =
+        conversations.filter(
+            c =>
+                c.id !== id
+        );
+
+
+    if (
+        currentConversationId === id
+    ) {
+
+        currentConversationId =
+            conversations.length
+            ? conversations[0].id
+            : null;
+
+    }
+
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+}
+
+
+/* =========================================================
+   MARKDOWN SEGURO PARA TOOLBOX AI
+========================================================= */
+
+function toolboxEscapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function toolboxInlineMarkdown(value) {
+    let text = value;
+
+    // Código inline primero para que sus símbolos no se interpreten como Markdown.
+    const codeParts = [];
+    text = text.replace(/`([^`]+)`/g, function(_, code) {
+        const token = "\u0000CODE" + codeParts.length + "\u0000";
+        codeParts.push("<code>" + code + "</code>");
+        return token;
+    });
+
+    // Enlaces: solamente protocolos seguros.
+    text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+    // Negrita y cursiva.
+    text = text.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+    text = text.replace(/__([^_\n]+)__/g, "<strong>$1</strong>");
+    text = text.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+    text = text.replace(/_([^_\n]+)_/g, "<em>$1</em>");
+
+    // Recuperar código inline.
+    text = text.replace(/\u0000CODE(\d+)\u0000/g, function(_, index) {
+        return codeParts[Number(index)];
+    });
+
+    return text;
+}
+
+function renderToolboxMarkdown(markdown) {
+    const source = String(markdown ?? "").replace(/\r\n?/g, "\n");
+    const escaped = toolboxEscapeHTML(source);
+    const lines = escaped.split("\n");
+    const html = [];
+    let paragraph = [];
+    let listType = null;
+    let inCode = false;
+    let codeLines = [];
+
+    function flushParagraph() {
+        if (!paragraph.length) return;
+        const content = paragraph.join("<br>");
+        html.push("<p>" + toolboxInlineMarkdown(content) + "</p>");
+        paragraph = [];
+    }
+
+    function closeList() {
+        if (!listType) return;
+        html.push("</" + listType + ">");
+        listType = null;
+    }
+
+    function closeEverything() {
+        flushParagraph();
+        closeList();
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        // Bloques de código con ```
+        if (/^\s*```/.test(line)) {
+            if (!inCode) {
+                closeEverything();
+                inCode = true;
+                codeLines = [];
+            } else {
+                html.push("<pre><code>" + codeLines.join("\n") + "</code></pre>");
+                inCode = false;
+                codeLines = [];
+            }
+            continue;
+        }
+
+        if (inCode) {
+            codeLines.push(line);
+            continue;
+        }
+
+        // Separadores reales, no cualquier conjunto de guiones dentro de una frase.
+        if (/^\s{0,3}((\*\s*){3,}|(-\s*){3,}|(_\s*){3,})$/.test(line)) {
+            closeEverything();
+            html.push("<hr>");
+            continue;
+        }
+
+        // Títulos Markdown.
+        const heading = line.match(/^\s{0,3}(#{1,3})\s+(.+?)\s*#*$/);
+        if (heading) {
+            closeEverything();
+            const level = heading[1].length;
+            html.push("<h" + level + ">" + toolboxInlineMarkdown(heading[2]) + "</h" + level + ">");
+            continue;
+        }
+
+        // Listas sin convertir los guiones de texto normal en listas.
+        const unordered = line.match(/^\s*[-*+]\s+(.+)$/);
+        const ordered = line.match(/^\s*\d+[.)]\s+(.+)$/);
+        if (unordered || ordered) {
+            flushParagraph();
+            const wanted = unordered ? "ul" : "ol";
+            if (listType !== wanted) {
+                closeList();
+                listType = wanted;
+                html.push("<" + listType + ">");
+            }
+            html.push("<li>" + toolboxInlineMarkdown((unordered || ordered)[1]) + "</li>");
+            continue;
+        }
+
+        // Citas.
+        const quote = line.match(/^\s*>\s?(.*)$/);
+        if (quote) {
+            closeEverything();
+            html.push("<blockquote>" + toolboxInlineMarkdown(quote[1]) + "</blockquote>");
+            continue;
+        }
+
+        if (!line.trim()) {
+            closeEverything();
+            continue;
+        }
+
+        closeList();
+        paragraph.push(line);
+    }
+
+    if (inCode) {
+        html.push("<pre><code>" + codeLines.join("\n") + "</code></pre>");
+    } else {
+        closeEverything();
+    }
+
+    return '<div class="toolbox-markdown">' + html.join("\n") + "</div>";
+}
+
+
+/* =========================================================
+   RENDER CHAT
+========================================================= */
+
+function renderCurrentConversation() {
+
+    const container =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+
+    const conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        container.innerHTML = `
+            <div id="aiWelcome" class="ai-welcome">
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Hola, soy
+                    <span>TOOLBOX AI</span>
+                </h1>
+
+                <p>
+                    Tu asistente inteligente.
+                    Pregúntame lo que quieras.
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "currentConversationTitle"
+    ).innerText =
+        conversation.title;
+
+
+    if (
+        conversation.messages.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div id="aiWelcome" class="ai-welcome">
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Nueva
+                    <span>conversación</span>
+                </h1>
+
+                <p>
+                    ¿Qué quieres hacer hoy?
+                </p>
+
+                <div class="ai-suggestions">
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Explícame algo interesante y después hazme una pregunta para comprobar si lo entendí.')"
+                    >
+                        🧠 Aprender
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Ayúdame con programación y explícame los conceptos paso a paso.')"
+                    >
+                        💻 Programar
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    conversation.messages.forEach(
+        message => {
+
+            addMessageToDOM(
+                message.role,
+                message.content
+            );
+
+        }
+    );
+
+
+    scrollAIToBottom();
+
+}
+
+
+function addMessageToDOM(
+    role,
+    content
+) {
+
+    const container =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "ai-chat-row " +
+        (
+            role === "user"
+            ? "user"
+            : ""
+        );
+
+
+    if (role !== "user") {
+
+        const avatar =
+            document.createElement(
+                "div"
+            );
+
+        avatar.className =
+            "ai-chat-avatar";
+
+        avatar.innerText =
+            "✦";
+
+        row.appendChild(
+            avatar
+        );
+
+    }
+
+
+    const bubble =
+        document.createElement(
+            "div"
+        );
+
+    bubble.className =
+        "ai-chat-bubble";
+
+    if (role === "user") {
+
+        bubble.innerText =
+            content;
+
+    } else {
+
+        bubble.innerHTML =
+            renderToolboxMarkdown(content);
+
+    }
+
+
+    if (role === "user") {
+
+        row.appendChild(
+            bubble
+        );
+
+    } else {
+
+        const contentWrap =
+            document.createElement(
+                "div"
+            );
+
+        contentWrap.className =
+            "ai-chat-content";
+
+        contentWrap.appendChild(
+            bubble
+        );
+
+
+        const actions =
+            document.createElement(
+                "div"
+            );
+
+        actions.className =
+            "ai-message-actions";
+
+
+        const copyButton =
+            document.createElement(
+                "button"
+            );
+
+        copyButton.className =
+            "ai-copy-button";
+
+        copyButton.type =
+            "button";
+
+        copyButton.title =
+            "Copiar respuesta";
+
+        copyButton.innerText =
+            "📋 Copiar";
+
+        copyButton.onclick =
+            function() {
+
+                navigator.clipboard
+                    .writeText(content);
+
+                copyButton.innerText =
+                    "✅ Copiado";
+
+                setTimeout(
+                    function() {
+
+                        copyButton.innerText =
+                            "📋 Copiar";
+
+                    },
+                    1500
+                );
+
+            };
+
+        actions.appendChild(
+            copyButton
+        );
+
+        contentWrap.appendChild(
+            actions
+        );
+
+        row.appendChild(
+            contentWrap
+        );
+
+    }
+
+
+    container.appendChild(
+        row
+    );
+
+}
+
+
+/* =========================================================
+   ENVIAR MENSAJE
+========================================================= */
+async function sendToolboxAI() {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    let conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        createNewConversation();
+
+        conversation =
+            getCurrentConversation();
+
+    }
+
+
+    // =====================================================
+    // EVITAR DOS PETICIONES AL MISMO TIEMPO
+    // =====================================================
+
+    if (conversation.aiBusy) {
+
+        return;
+
+    }
+
+
+    conversation.aiBusy = true;
+
+
+    // =====================================================
+    // AÑADIR MENSAJE DEL USUARIO
+    // =====================================================
+
+    conversation.messages.push({
+
+        role: "user",
+
+        content: text
+
+    });
+
+
+    // =====================================================
+    // TÍTULO
+    // =====================================================
+
+    if (
+        conversation.messages.length === 1
+    ) {
+
+        conversation.title =
+            createConversationTitle(
+                text
+            );
+
+    }
+
+
+    // =====================================================
+    // LIMPIAR INPUT
+    // =====================================================
+
+    input.value = "";
+
+    updateCharCounter();
+
+    autoResizeAIInput(input);
+
+
+    // =====================================================
+    // GUARDAR
+    // =====================================================
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+
+    // =====================================================
+    // INDICADOR
+    // =====================================================
+
+    const typing =
+        document.getElementById(
+            "toolboxAiTyping"
+        );
+
+
+    typing.classList.add(
+        "active"
+    );
+
+
+    try {
+
+        // =================================================
+        // MANDAMOS TODO EL HISTORIAL
+        // INCLUIDO EL MENSAJE ACTUAL
+        // =================================================
+
+        const messages =
+            conversation.messages.map(
+                message => ({
+
+                    role:
+                        message.role,
+
+                    content:
+                        message.content
+
+                })
+            );
+
+
+        // =================================================
+        // GROQ
+        // =================================================
+
+        const reply =
+            await askGemini(
+                messages,
+                "normal"
+            );
+
+
+        // =================================================
+        // RESPUESTA
+        // =================================================
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                reply
+
+        });
+
+
+        // =================================================
+        // GUARDAR
+        // =================================================
+
+        saveConversations();
+
+        renderConversationList();
+
+        renderCurrentConversation();
+
+
+    } catch (error) {
+
+        console.error(
+            "TOOLBOX AI ERROR:",
+            error
+        );
+
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                "❌ " + error.message
+
+        });
+
+
+        saveConversations();
+
+        renderCurrentConversation();
+
+
+    } finally {
+
+        conversation.aiBusy =
+            false;
+
+
+        typing.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+/* =========================================================
+   PROMPT CENTRAL
+========================================================= */
+
+function buildCentralPrompt(text) {
+    return `
+Eres TOOLBOX AI, un asistente de inteligencia artificial general integrado en TOOLBOX.
+
+Tu objetivo principal es responder de forma natural, útil, clara y coherente a lo que el usuario te diga.
+
+REGLAS IMPORTANTES:
+
+1. RESPONDE SOLO A LO QUE EL USUARIO ESTÁ HABLANDO.
+   No introduzcas temas que el usuario no haya mencionado ni pedido.
+
+2. NO HABLES DE PROGRAMACIÓN POR DEFECTO.
+   Solo habla de Python, HTML, CSS, JavaScript, programación, código o desarrollo de aplicaciones cuando el usuario pregunte por esos temas o cuando sean claramente necesarios para responder.
+
+3. NO MENCIONES LAS FUNCIONES DE TOOLBOX SIN MOTIVO.
+   No digas constantemente que puedes ayudar con programación, diseño, herramientas, etc.
+
+4. MANTÉN EL CONTEXTO.
+   Si el usuario continúa hablando del mismo tema, utiliza los mensajes anteriores para entender a qué se refiere.
+   Por ejemplo, si primero pregunta "¿qué es Marte?" y después dice "¿y cuánto tarda en llegar?", entiende que sigue hablando de Marte.
+
+5. SI EL USUARIO CAMBIA DE TEMA, CAMBIA DE TEMA.
+   No sigas hablando del tema anterior si el nuevo mensaje trata de algo diferente.
+
+6. HABLA DE FORMA NATURAL.
+   No conviertas todas las respuestas en documentos o apuntes.
+
+7. NO ABUSES DEL MARKDOWN.
+   Evita utilizar muchos asteriscos.
+   No utilices negritas constantemente.
+   No utilices hashtags (#, ##, ###) para crear títulos salvo que el usuario los pida o sean realmente necesarios.
+   No pongas títulos innecesarios.
+   Utiliza párrafos normales siempre que sea suficiente.
+
+8. UTILIZA LISTAS SOLO CUANDO AYUDEN.
+   No conviertas una respuesta sencilla en una lista de muchos puntos.
+
+9. FORMATO VISUAL.
+   Puedes usar Markdown básico cuando realmente ayude a leer la respuesta: **negrita**, *cursiva*, títulos, listas, citas, separadores de línea y bloques de código. TOOLBOX AI mostrará ese formato visualmente, así que no escribas etiquetas HTML. No uses Markdown por obligación.
+
+10. ADAPTA LA RESPUESTA AL USUARIO.
+   Si pregunta algo sencillo, responde de forma sencilla.
+   Si pide una explicación profunda, puedes dar más detalles.
+
+10. CUANDO TE PIDAN EXPLICAR ALGO:
+   Explica el concepto claramente.
+   Utiliza ejemplos si ayudan a entenderlo.
+   Si el tema es complicado, divídelo en partes sencillas.
+   Al final puedes preguntar de forma natural si quiere aprenderlo más a fondo.
+
+11. SI EL USUARIO QUIERE APRENDER:
+   Actúa como profesor.
+   Explica paso a paso, utiliza ejemplos y pequeñas preguntas para comprobar que entiende el concepto.
+
+12. SI EL USUARIO PIDE PROGRAMACIÓN:
+   Entonces sí puedes hablar de programación y proporcionar código.
+   Explica el código de forma comprensible y procura que funcione.
+
+13. SI EL USUARIO PIDE ESCRITURA:
+   Ayuda con poemas, historias, textos, ideas, correcciones o cualquier otro tipo de escritura que solicite.
+
+14. NO INVENTES INFORMACIÓN.
+   Si no estás seguro de algo, dilo claramente.
+
+15. NO REPITAS LA PREGUNTA DEL USUARIO SIN NECESIDAD.
+   Responde directamente.
+
+16. NO DIGAS QUE ERES UNA PERSONA.
+   No afirmes tener experiencias personales.
+
+17. RESPONDE EN EL IDIOMA DEL USUARIO.
+   Si el usuario escribe en español, responde en español.
+   Si cambia claramente a otro idioma, responde en ese idioma.
+
+La conversación puede contener mensajes anteriores. Utilízalos únicamente para comprender correctamente el mensaje actual y mantener el contexto.
+
+MENSAJE ACTUAL DEL USUARIO:
+
+${text}
+    `;
+}
+
+
+/* =========================================================
+   TÍTULOS AUTOMÁTICOS
+========================================================= */
+
+function createConversationTitle(text) {
+
+    let title =
+        text
+            .replace(/\s+/g," ")
+            .trim();
+
+
+    if (title.length > 38) {
+
+        title =
+            title.substring(
+                0,
+                38
+            ) + "...";
+
+    }
+
+
+    return title ||
+        "Nueva conversación";
+
+}
+
+
+/* =========================================================
+   SUGERENCIAS
+========================================================= */
+
+function useSuggestion(text) {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    input.value =
+        text;
+
+    updateCharCounter();
+
+    autoResizeAIInput(input);
+
+    input.focus();
+
+}
+
+
+/* =========================================================
+   INPUT IA
+========================================================= */
+
+function toolboxAIKeyDown(event) {
+
+    if (
+        event.key === "Enter" &&
+        !event.shiftKey
+    ) {
+
+        event.preventDefault();
+
+        sendToolboxAI();
+
+    }
+
+}
+
+
+function autoResizeAIInput(textarea) {
+
+    textarea.style.height =
+        "auto";
+
+    textarea.style.height =
+        Math.min(
+            textarea.scrollHeight,
+            180
+        ) + "px";
+
+}
+
+
+function updateCharCounter() {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+    document.getElementById(
+        "aiCharCounter"
+    ).innerText =
+        input.value.length;
+
+}
+
+
+function scrollAIToBottom() {
+
+    const messages =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+/* =========================================================
+   SIDEBAR MÓVIL
+========================================================= */
+
+function toggleAISidebar() {
+
+    document
+        .getElementById(
+            "toolboxAiSidebar"
+        )
+        .classList.toggle(
+            "mobile-open"
+        );
+
+}
+
+
+function closeMobileSidebar() {
+
+    document
+        .getElementById(
+            "toolboxAiSidebar"
+        )
+        .classList.remove(
+            "mobile-open"
+        );
+
+}
+
+
+
+/* =========================================================
+   INICIALIZACIÓN
+========================================================= */
+
+(function init() {
+
+    if (
+        conversations.length === 0
+    ) {
+
+        createNewConversation();
+
+    } else {
+
+        currentConversationId =
+            conversations[0].id;
+
+        renderConversationList();
+
+        renderCurrentConversation();
+
+    }
+
+
+    updateColor();
+
+})();
 /* =========================================================
    GENERADOR DE CONTRASEÑAS MEMORABLES
 ========================================================= */
@@ -7785,13 +9282,5 @@ window.abrir = function(id) {
 
 </script>
 
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    if (typeof updateColor === "function") {
-        updateColor();
-    }
-});
-</script>
 </body>
 </html>
