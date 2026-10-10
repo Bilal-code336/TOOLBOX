@@ -5,3019 +5,1230 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOOLBOX AI — Inteligencia artificial online</title>
 <meta name="description" content="TOOLBOX AI, el asistente de inteligencia artificial de TOOLBOX. Conversa, aprende, programa, escribe y resuelve dudas online.">
+<meta name="theme-color" content="#080b12">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="canonical" href="https://toolbox-zci6.onrender.com/TOOLBOXAI">
 <style>
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; height: 100%; }
-:root {
-    --bg: #080b12;
-    --bg2: #0c111c;
-    --nav: rgba(8,11,18,.88);
-    --card: #111827;
-    --card2: #0d131f;
-    --panel: #101724;
-    --input: #080d16;
-    --border: #29344a;
-    --border2: #344158;
-    --text: #ffffff;
-    --muted: #8995aa;
-    --purple: #7c3aed;
-    --purple2: #8b5cf6;
-    --purple3: #a78bfa;
-    --button: #202a3d;
-    --green: #22c55e;
-}
-body.light {
-    --bg: #f4f6f9;
-    --bg2: #ffffff;
-    --nav: rgba(255,255,255,.94);
-    --card: #ffffff;
-    --card2: #f4f6f8;
-    --panel: #ffffff;
-    --input: #f1f3f5;
-    --border: #d9dee7;
-    --border2: #c7ced9;
-    --text: #111827;
-    --muted: #5f6b7a;
-    --button: #e6eaf0;
-}
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow: hidden;
-}
-button, input, textarea, select { font-family: inherit; }
-button { cursor: pointer; }
-button:disabled { opacity: .5; cursor: not-allowed; }
-
-/* =========================================================
-   APP IA
-========================================================= */
-
-.toolbox-ai-app {
-
-    position:
-        fixed;
-
-    inset:
-        0;
-
-    z-index:
-        90000;
-
-    display:
-        none;
-
-    background:
-        var(--bg);
-
-    color:
-        var(--text);
-}
-
-.toolbox-ai-app.open {
-    display:
-        flex;
-}
-
-/* =========================================================
-   SIDEBAR IA
-========================================================= */
-
-.toolbox-ai-sidebar {
-
-    width:
-        280px;
-
-    flex-shrink:
-        0;
-
-    background:
-        #0a0e17;
-
-    border-right:
-        none;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    padding:
-        18px;
-}
-
-.ai-sidebar-top {
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    align-items:
-        center;
-
-    margin-bottom:
-        20px;
-}
-
-.ai-sidebar-brand {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-}
-
-.ai-brand-logo {
-
-    width:
-        38px;
-
-    height:
-        38px;
-
-    border-radius:
-        50%;
-
-    background:
-        #05070c;
-
-    border:
-        none;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    position:
-        relative;
-}
-
-.ai-brand-logo span {
-    position: absolute;
-}
-
-.ai-brand-logo span:first-child {
-    transform: translate(-3px,-3px);
-}
-
-.ai-brand-logo span:last-child {
-    transform: translate(8px,8px);
-    font-size: 11px;
-}
-
-.ai-sidebar-brand strong {
-    display: block;
-    font-size: 14px;
-}
-
-.ai-sidebar-brand small {
-    display: block;
-    color: var(--muted);
-    margin-top: 3px;
-}
-
-.ai-close-sidebar {
-
-    width:
-        36px;
-
-    height:
-        36px;
-
-    border:
-        none;
-
-    background:
-        var(--button);
-
-    color:
-        var(--text);
-
-    border-radius:
-        50%;
-
-    font-size:
-        22px;
-}
-
-.new-chat-button {
-
-    width:
-        100%;
-
-    border:
-        none;
-
-    background:
-        var(--purple);
-
-    color:
-        white;
-
-    padding:
-        13px;
-
-    border-radius:
-        50px;
-
-    display:
-        flex;
-
-    gap:
-        8px;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-weight:
-        600;
-}
-
-.new-chat-button:hover {
-    background:
-        var(--purple2);
-}
-
-.conversation-search {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        7px;
-
-    margin:
-        16px 0;
-
-    padding:
-        0 14px;
-
-    border:
-        none;
-
-    border-radius:
-        50px;
-
-    background:
-        var(--input);
-}
-
-.conversation-search input {
-
-    border:
-        none;
-
-    background:
-        transparent;
-
-    box-shadow:
-        none;
-
-    padding:
-        10px 5px;
-}
-
-.conversation-list {
-
-    flex:
-        1;
-
-    overflow-y:
-        auto;
-}
-
-.conversation-item {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        8px;
-
-    padding:
-        11px 14px;
-
-    border-radius:
-        14px;
-
-    margin-bottom:
-        4px;
-
-    color:
-        var(--muted);
-
-    cursor:
-        pointer;
-}
-
-.conversation-item:hover,
-.conversation-item.active {
-
-    background:
-        var(--button);
-
-    color:
-        var(--text);
-}
-
-.conversation-title {
-
-    flex:
-        1;
-
-    overflow:
-        hidden;
-
-    text-overflow:
-        ellipsis;
-
-    white-space:
-        nowrap;
-
-    font-size:
-        13px;
-}
-
-.delete-conversation {
-
-    border:
-        none;
-
-    background:
-        transparent;
-
-    color:
-        #77839a;
-
-    font-size:
-        15px;
-}
-
-.delete-conversation:hover {
-    color:
-        #ef4444;
-}
-
-.ai-sidebar-footer {
-
-    padding-top:
-        15px;
-
-    border-top:
-        1px solid var(--border);
-}
-
-.ai-free-badge {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        9px;
-
-    margin-bottom:
-        8px;
-}
-
-.status-dot {
-
-    width:
-        9px;
-
-    height:
-        9px;
-
-    border-radius:
-        50%;
-
-    background:
-        #22c55e;
-
-    box-shadow:
-        0 0 10px
-        rgba(34,197,94,.5);
-}
-
-.ai-free-badge strong {
-    display:
-        block;
-
-    font-size:
-        12px;
-}
-
-.ai-free-badge small {
-    color:
-        var(--muted);
-}
-
-.local-storage-info {
-
-    color:
-        #68758a;
-
-    font-size:
-        10px;
-
-    line-height:
-        1.4;
-}
-
-/* =========================================================
-   MAIN IA
-========================================================= */
-
-.toolbox-ai-main {
-
-    flex:
-        1;
-
-    min-width:
-        0;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-}
-
-.toolbox-ai-main-header {
-
-    min-height:
-        70px;
-
-    padding:
-        10px 20px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    border-bottom:
-        none;
-
-    background:
-        rgba(8,11,18,.7);
-
-    backdrop-filter:
-        blur(15px);
-}
-
-.ai-header-title {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-}
-
-.ai-header-icon {
-
-    width:
-        38px;
-
-    height:
-        38px;
-
-    border-radius:
-        50%;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        var(--button);
-}
-
-.ai-header-title strong {
-    display:
-        block;
-}
-
-.ai-header-title small {
-    color:
-        var(--muted);
-
-    font-size:
-        11px;
-}
-
-.ai-header-actions button,
-.mobile-menu-button {
-
-    width:
-        38px;
-
-    height:
-        38px;
-
-    border:
-        none;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--button);
-
-    color:
-        var(--text);
-
-    font-size:
-        18px;
-}
-
-.mobile-menu-button {
-    display:
-        none;
-}
-
-/* =========================================================
-   MENSAJES IA
-========================================================= */
-
-.toolbox-ai-messages {
-
-    flex:
-        1;
-
-    overflow-y:
-        auto;
-
-    padding:
-        35px;
-
-    scroll-behavior:
-        smooth;
-}
-
-.ai-welcome {
-
-    max-width:
-        780px;
-
-    margin:
-        10vh auto;
-
-    text-align:
-        center;
-}
-
-.ai-welcome-logo {
-
-    font-size:
-        54px;
-
-    margin-bottom:
-        20px;
-}
-
-.ai-welcome h1 {
-
-    font-size:
-        clamp(30px,5vw,48px);
-
-    margin-bottom:
-        13px;
-}
-
-.ai-welcome h1 span {
-    color:
-        var(--purple2);
-}
-
-.ai-welcome p {
-
-    color:
-        var(--muted);
-
-    line-height:
-        1.6;
-
-    margin-bottom:
-        25px;
-}
-
-.ai-suggestions {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(200px,1fr));
-
-    gap:
-        10px;
-}
-
-.ai-suggestion {
-
-    padding:
-        15px;
-
-    border:
-        none;
-
-    background:
-        var(--card);
-
-    color:
-        var(--text);
-
-    border-radius:
-        18px;
-
-    text-align:
-        left;
-
-    transition:
-        background .15s;
-}
-
-.ai-suggestion:hover {
-
-    background:
-        var(--button);
-}
-
-/* =========================================================
-   BURBUJAS
-========================================================= */
-
-.ai-chat-row {
-
-    display:
-        flex;
-
-    gap:
-        12px;
-
-    max-width:
-        900px;
-
-    margin:
-        0 auto 25px;
-}
-
-.ai-chat-row.user {
-    justify-content:
-        flex-end;
-}
-
-.ai-chat-avatar {
-
-    width:
-        32px;
-
-    height:
-        32px;
-
-    flex-shrink:
-        0;
-
-    border-radius:
-        50%;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        #05070c;
-
-    color:
-        white;
-
-    border:
-        none;
-}
-
-.ai-chat-bubble {
-
-    max-width:
-        min(750px,80%);
-
-    padding:
-        14px 19px;
-
-    border:
-        none;
-
-    border-radius:
-        22px;
-
-    background:
-        var(--card);
-
-    line-height:
-        1.65;
-
-    white-space:
-        pre-wrap;
-
-    word-break:
-        break-word;
-}
-
-.ai-chat-row.user .ai-chat-bubble {
-
-    background:
-        var(--purple);
-
-    color:
-        white;
-
-    border-radius:
-        22px;
-}
-
-.ai-chat-content {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        flex-start;
-
-    gap:
-        6px;
-}
-
-.ai-message-actions {
-
-    display:
-        flex;
-
-    opacity:
-        0;
-
-    transition:
-        opacity .15s;
-}
-
-.ai-chat-row:hover .ai-message-actions {
-    opacity:
-        1;
-}
-
-.ai-copy-button {
-
-    border:
-        none;
-
-    background:
-        transparent;
-
-    color:
-        var(--muted);
-
-    font-size:
-        12px;
-
-    padding:
-        4px 10px;
-
-    border-radius:
-        50px;
-
-    cursor:
-        pointer;
-}
-
-.ai-copy-button:hover {
-
-    background:
-        var(--button);
-
-    color:
-        var(--text);
-}
-
-/* =========================================================
-   TYPING
-========================================================= */
-
-.toolbox-ai-typing {
-
-    display:
-        none;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-
-    max-width:
-        900px;
-
-    margin:
-        0 auto;
-
-    padding:
-        0 20px 15px;
-
-    color:
-        var(--muted);
-
-    font-size:
-        12px;
-}
-
-.toolbox-ai-typing.active {
-    display:
-        flex;
-}
-
-.typing-dots {
-
-    display:
-        flex;
-
-    gap:
-        4px;
-}
-
-.typing-dots span {
-
-    width:
-        5px;
-
-    height:
-        5px;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--muted);
-
-    animation:
-        typing .9s infinite;
-}
-
-.typing-dots span:nth-child(2) {
-    animation-delay:
-        .15s;
-}
-
-.typing-dots span:nth-child(3) {
-    animation-delay:
-        .3s;
-}
-
-@keyframes typing {
-
-    0%,100% {
-        opacity: .3;
-        transform: translateY(0);
-    }
-
-    50% {
-        opacity: 1;
-        transform: translateY(-3px);
-    }
-}
-
-/* =========================================================
-   COMPOSER IA
-========================================================= */
-
-.toolbox-ai-composer-wrapper {
-
-    padding:
-        12px 25px 20px;
-
-    background:
-        var(--bg);
-}
-
-.toolbox-ai-composer {
-
-    max-width:
-        900px;
-
-    margin:
-        auto;
-
-    border:
-        none;
-
-    border-radius:
-        28px;
-
-    background:
-        var(--input);
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.18);
-
-    overflow:
-        hidden;
-}
-
-#toolboxAiInput {
-
-    width:
-        100%;
-
-    min-height:
-        65px;
-
-    max-height:
-        180px;
-
-    resize:
-        none;
-
-    border:
-        none !important;
-
-    border-radius:
-        0;
-
-    background:
-        transparent;
-
-    color:
-        var(--text);
-
-    caret-color:
-        var(--purple3);
-
-    padding:
-        17px;
-
-    box-shadow:
-        none !important;
-
-    outline:
-        none !important;
-
-    -webkit-appearance:
-        none;
-
-    appearance:
-        none;
-
-    font-size:
-        15px;
-}
-
-#toolboxAiInput:focus,
-#toolboxAiInput:focus-visible {
-    color: var(--text);
-    caret-color: var(--purple3);
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-#toolboxAiInput::placeholder {
-    color: var(--muted);
-    opacity: 1;
-}
-
-.composer-bottom {
-
-    display:
-        flex;
-
-    justify-content:
-        flex-end;
-
-    align-items:
-        center;
-
-    padding:
-        0 14px 12px;
-}
-
-.composer-tool {
-
-    border:
-        none;
-
-    background:
-        var(--button);
-
-    color:
-        var(--text);
-
-    padding:
-        9px 15px;
-
-    border-radius:
-        50px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        6px;
-
-    font-size:
-        12px;
-
-    transition:
-        background .15s;
-}
-
-.composer-tool:hover {
-
-    background:
-        var(--purple);
-}
-
-.composer-right {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-}
-
-.ai-char-counter {
-
-    color:
-        #68758a;
-
-    font-size:
-        11px;
-}
-
-.ai-send-button {
-
-    width:
-        42px;
-
-    height:
-        42px;
-
-    border:
-        none;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--purple);
-
-    color:
-        white;
-
-    font-size:
-        18px;
-
-    transition:
-        background .15s;
-}
-
-.ai-send-button:hover {
-    background:
-        var(--purple2);
-}
-
-.ai-composer-disclaimer {
-
-    max-width:
-        900px;
-
-    margin:
-        8px auto 0;
-
-    text-align:
-        center;
-
-    color:
-        #64748b;
-
-    font-size:
-        9px;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-
-    margin-top:
-        80px;
-
-    padding:
-        45px 20px;
-
-    text-align:
-        center;
-
-    border-top:
-        1px solid var(--border);
-
-    color:
-        var(--muted);
-}
-
-footer strong {
-    color:
-        var(--purple2);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:800px) {
-
-    .image-editor {
-        grid-template-columns:
-            1fr;
-    }
-
-    .toolbox-ai-sidebar {
-
-        position:
-            absolute;
-
-        left:
-            0;
-
-        top:
-            0;
-
-        bottom:
-            0;
-
-        transform:
-            translateX(-100%);
-
-        transition:
-            transform .25s;
-
-        z-index:
-            5;
-    }
-
-    .toolbox-ai-sidebar.mobile-open {
-        transform:
-            translateX(0);
-    }
-
-    .mobile-menu-button {
-        display:
-            block;
-    }
-
-    .toolbox-ai-main-header {
-        gap:
-            10px;
-    }
-}
-
-@media(max-width:600px) {
-
-    .nav-link {
-        display:
-            none;
-    }
-
-    .hero {
-        padding-top:
-            70px;
-    }
-
-    .tool-panel {
-        padding:
-            20px;
-    }
-
-    .toolbox-ai-messages {
-        padding:
-            20px 14px;
-    }
-
-    .toolbox-ai-composer-wrapper {
-        padding:
-            10px;
-    }
-
-    .toolbox-ai-button {
-
-        right:
-            15px;
-
-        bottom:
-            15px;
-
-        width:
-            58px;
-
-        height:
-            58px;
-    }
-
-    .ai-chat-bubble {
-        max-width:
-            88%;
-    }
-
-}
-/* =========================================================
-   GENERADOR DE CONTRASEÑAS MEMORABLES
-========================================================= */
-
-.password-generator-box {
-    max-width: 700px;
-    margin: 30px auto;
-    padding: 30px;
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-}
-
-.password-generator-box label {
-    display: block;
-    margin: 18px 0 8px;
-    color: var(--text);
-    font-weight: 600;
-}
-
-.password-generator-box input {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: var(--input);
-    color: var(--text);
-    outline: none;
-    font-size: 15px;
-}
-
-.password-generator-box input:focus {
-    border-color: var(--purple2);
-}
-
-.password-generate-button {
-    width: 100%;
-    margin-top: 25px;
-}
-
-.password-result {
-    margin-top: 22px;
-    min-height: 60px;
-    padding: 18px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    background: var(--input);
-    color: var(--text);
-    font-size: 18px;
-    font-family: monospace;
-    word-break: break-all;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.password-copy-button {
-    width: 100%;
-    margin-top: 12px;
-}
-
-/* =========================================================
-   FIX FONDO TOOLBOX AI
-========================================================= */
-
-.toolbox-ai-app {
-    background: #080b12 !important;
-}
-
-.toolbox-ai-app .toolbox-ai-main {
-    background: #080b12 !important;
-}
-
-.toolbox-ai-app .toolbox-ai-messages {
-    background: #080b12 !important;
-}
-
-.toolbox-ai-app .toolbox-ai-messages:hover,
-.toolbox-ai-app .toolbox-ai-messages:focus,
-.toolbox-ai-app .toolbox-ai-messages:active {
-    background: #080b12 !important;
-}
-
-
-/* =========================================================
-   TOOLBOX AI — MARKDOWN VISUAL
-========================================================= */
-.toolbox-markdown {
-    line-height: 1.65;
-    word-break: break-word;
-}
-.toolbox-markdown p {
-    margin: 0 0 12px;
-}
-.toolbox-markdown p:last-child {
-    margin-bottom: 0;
-}
-.toolbox-markdown h1,
-.toolbox-markdown h2,
-.toolbox-markdown h3 {
-    margin: 18px 0 9px;
-    line-height: 1.3;
-    color: var(--text);
-}
-.toolbox-markdown h1 { font-size: 1.45rem; }
-.toolbox-markdown h2 { font-size: 1.25rem; }
-.toolbox-markdown h3 { font-size: 1.08rem; }
-.toolbox-markdown strong {
-    font-weight: 800;
-    color: var(--text);
-}
-.toolbox-markdown em { font-style: italic; }
-.toolbox-markdown hr {
-    border: 0;
-    border-top: 1px solid var(--border);
-    margin: 18px 0;
-}
-.toolbox-markdown ul,
-.toolbox-markdown ol {
-    margin: 8px 0 14px 24px;
-    padding: 0;
-}
-.toolbox-markdown li {
-    margin: 5px 0;
-}
-.toolbox-markdown blockquote {
-    margin: 12px 0;
-    padding: 8px 14px;
-    border-left: 3px solid #8b5cf6;
-    color: var(--muted);
-    background: rgba(139,92,246,.07);
-    border-radius: 0 9px 9px 0;
-}
-.toolbox-markdown code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: .9em;
-    background: rgba(139,92,246,.12);
-    border: 1px solid rgba(139,92,246,.18);
-    border-radius: 6px;
-    padding: 2px 6px;
-}
-.toolbox-markdown pre {
-    margin: 13px 0;
-    padding: 14px;
-    overflow-x: auto;
-    background: #080d16;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-.toolbox-markdown pre code {
-    display: block;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    white-space: pre;
-}
-.toolbox-markdown a {
-    color: #a78bfa;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-.toolbox-markdown table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 14px 0;
-    font-size: .94em;
-}
-.toolbox-markdown th,
-.toolbox-markdown td {
-    border: 1px solid var(--border);
-    padding: 8px 10px;
-    text-align: left;
-}
-.toolbox-markdown th {
-    background: rgba(139,92,246,.10);
-    font-weight: 800;
-}
-.toolbox-markdown img {
-    max-width: 100%;
-    border-radius: 10px;
-}
-
-
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
+:root{
+  --bg:#080b12;--bg2:#0c111c;--card:#111827;--card2:#0d131f;--panel:#101724;--input:#080d16;
+  --border:#29344a;--border2:#344158;--text:#fff;--text2:#d5dbe6;--muted:#8995aa;
+  --purple:#7c3aed;--purple2:#8b5cf6;--purple3:#a78bfa;--button:#202a3d;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#38bdf8;
+  --shadow:0 18px 50px rgba(0,0,0,.35);--ease:cubic-bezier(.2,.8,.2,1);
+}
+body.light{
+  --bg:#f4f6f9;--bg2:#fff;--card:#fff;--card2:#f4f6f8;--panel:#fff;--input:#f1f3f5;
+  --border:#d9dee7;--border2:#c7ced9;--text:#111827;--text2:#374151;--muted:#5f6b7a;--button:#e6eaf0;
+  --shadow:0 18px 50px rgba(15,23,42,.14);
+}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;line-height:1.5;transition:background .25s,color .25s;-webkit-font-smoothing:antialiased}
+button,input,textarea{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{color:inherit}
+kbd{font-family:inherit;font-size:10px;padding:2px 6px;border:1px solid var(--border2);border-radius:6px;color:var(--muted);background:var(--card2)}
+:focus-visible{outline:2px solid var(--purple3);outline-offset:2px;border-radius:8px}
+[hidden]{display:none!important}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:9px;border:2px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background:var(--muted);background-clip:content-box;border:2px solid transparent}
+
+.app{display:flex;height:100vh;height:100dvh;position:relative;background:radial-gradient(circle at 70% -10%,rgba(124,58,237,.14),transparent 45%),var(--bg)}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{width:300px;flex-shrink:0;display:flex;flex-direction:column;padding:16px 14px 12px;background:var(--bg2);border-right:1px solid var(--border);z-index:30;transition:transform .3s var(--ease)}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand strong{display:block;font-size:15px;letter-spacing:.2px}
+.brand small{display:block;color:var(--muted);font-size:11px}
+.brand-logo{position:relative;width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,#20283a,#0b1019);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 0 22px rgba(124,58,237,.25)}
+.brand-logo span{position:absolute;line-height:1}.brand-logo span:first-child{font-size:19px;transform:translate(-3px,-3px)}.brand-logo span:last-child{font-size:9px;transform:translate(8px,7px);animation:twinkle 2.4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.45;transform:translate(8px,7px) scale(.8)}50%{opacity:1;transform:translate(8px,7px) scale(1.2)}}
+.icon-btn{width:36px;height:36px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;background:var(--button);color:var(--text);transition:transform .2s var(--ease),background .2s}
+.icon-btn:hover{background:var(--purple);color:#fff;transform:translateY(-1px)}
+.sb-close{display:none}
+.new-chat{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--purple),#6d28d9);box-shadow:0 8px 24px rgba(124,58,237,.3);transition:transform .2s var(--ease),box-shadow .2s}
+.new-chat:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.42)}
+.new-chat kbd{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.25);color:#fff}
+.search{display:flex;align-items:center;gap:6px;margin:14px 0 8px;padding:0 10px 0 13px;background:var(--input);border:1px solid var(--border);border-radius:13px;transition:border-color .2s,box-shadow .2s}
+.search:focus-within{border-color:var(--purple2);box-shadow:0 0 0 3px rgba(139,92,246,.12)}
+.search span{color:var(--muted)}
+.search input{flex:1;min-width:0;background:transparent;border:none;outline:none;padding:11px 2px;font-size:13px}
+.search button{color:var(--muted);font-size:12px;padding:4px}
+.conv-list{flex:1;overflow-y:auto;margin:0 -6px;padding:0 6px}
+.group-label{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;padding:14px 10px 6px}
+.conv-item{position:relative;display:flex;align-items:center;gap:6px;padding:9px 8px 9px 12px;border-radius:12px;color:var(--muted);cursor:pointer;transition:background .18s,color .18s;animation:slideIn .35s var(--ease) both;animation-delay:calc(var(--i,0)*18ms)}
+.conv-item::before{content:"";position:absolute;left:0;top:50%;width:3px;height:0;border-radius:3px;background:var(--purple2);transform:translateY(-50%);transition:height .25s var(--ease)}
+.conv-item:hover{background:var(--button);color:var(--text)}
+.conv-item.active{background:rgba(124,58,237,.16);color:var(--text)}
+.conv-item.active::before{height:55%}
+.conv-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}
+.conv-title.titling{background:linear-gradient(90deg,var(--muted) 20%,var(--purple3) 50%,var(--muted) 80%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 1.3s linear infinite}
+.conv-pin{font-size:11px;opacity:.8}
+.conv-actions{display:none;gap:2px;flex-shrink:0}
+.conv-item:hover .conv-actions,.conv-item:focus-within .conv-actions{display:flex}
+.conv-item:hover .conv-pin,.conv-item:focus-within .conv-pin{display:none}
+.mini{width:26px;height:26px;border-radius:8px;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+.mini:hover{background:var(--card);color:var(--text)}.mini.danger:hover{background:rgba(239,68,68,.16);color:var(--red)}
+.rename-input{flex:1;min-width:0;background:var(--input);border:1px solid var(--purple2);border-radius:8px;padding:5px 8px;font-size:13.5px;outline:none;box-shadow:0 0 0 3px rgba(139,92,246,.15)}
+.empty-list{padding:28px 10px;text-align:center;color:var(--muted);font-size:13px}
+.sb-foot{border-top:1px solid var(--border);padding-top:12px;margin-top:8px}
+.status{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.status strong{display:block;font-size:12px}.status small{color:var(--muted);font-size:11px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(34,197,94,.55);animation:pulse 2.2s ease-in-out infinite}
+.dot.off{background:var(--red);box-shadow:0 0 10px rgba(239,68,68,.55);animation:none}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.foot-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.foot-note{color:#68758a;font-size:10.5px;line-height:1.4}
+.link-btn{color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}.link-btn:hover{color:var(--red)}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px);z-index:25;opacity:0;pointer-events:none;transition:opacity .25s}
+
+/* ---------- MAIN / HEADER ---------- */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:10px 20px;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px);z-index:10}
+.head-left{display:flex;align-items:center;gap:12px;min-width:0}
+.menu-btn{display:none}
+.head-icon{width:38px;height:38px;border-radius:12px;background:var(--button);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--purple3)}
+.head-title{min-width:0}
+.title-row{display:flex;align-items:center;gap:6px;min-width:0}
+.title-text{font-weight:700;font-size:15.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:text;border-radius:7px;padding:1px 4px;margin-left:-4px;transition:background .15s}
+.title-text:hover{background:var(--button)}
+.title-text.titling{background:linear-gradient(90deg,var(--muted) 20%,var(--purple3) 50%,var(--muted) 80%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 1.3s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+.head-title small{color:var(--muted);font-size:11.5px}
+.head-right{display:flex;align-items:center;gap:8px;position:relative}
+.menu{position:absolute;right:0;top:46px;min-width:250px;padding:6px;background:var(--panel);border:1px solid var(--border2);border-radius:14px;box-shadow:var(--shadow);z-index:40;animation:pop .18s var(--ease)}
+.menu button{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:13.5px;text-align:left;color:var(--text2);transition:background .15s}
+.menu button:hover{background:var(--button);color:var(--text)}.menu button.danger:hover{background:rgba(239,68,68,.14);color:var(--red)}
+.menu hr{border:0;border-top:1px solid var(--border);margin:5px 4px}
+@keyframes pop{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+
+/* ---------- MENSAJES ---------- */
+.messages{flex:1;overflow-y:auto;padding:26px 24px 10px;scroll-behavior:smooth}
+.thread{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:16px;padding-bottom:10px}
+.ai-row{display:flex;gap:12px;align-items:flex-start;min-width:0}
+.ai-row.user{justify-content:flex-end}
+.ai-row.is-new{animation:msgIn .4s var(--ease) both}
+@keyframes msgIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.avatar{width:34px;height:34px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#20283a,#0b1019);color:#fff;border:1px solid rgba(255,255,255,.08);font-size:15px;box-shadow:0 0 18px rgba(124,58,237,.2)}
+.ai-col{min-width:0;max-width:min(780px,100%);display:flex;flex-direction:column;gap:5px}
+.ai-row.user .ai-col{align-items:flex-end;max-width:min(680px,88%)}
+.ai-bubble{padding:14px 18px;border-radius:20px;background:var(--card);border:1px solid var(--border);line-height:1.7;overflow-wrap:anywhere;min-width:0;box-shadow:0 6px 22px rgba(0,0,0,.12)}
+.ai-row.user .ai-bubble{background:linear-gradient(135deg,var(--purple),#6d28d9);border-color:transparent;color:#fff;white-space:pre-wrap;border-bottom-right-radius:7px}
+.ai-row.bot .ai-bubble{border-top-left-radius:7px}
+.ai-bubble.is-error{border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.ai-bubble.streaming::after{content:"";display:inline-block;width:8px;height:1.1em;margin-left:3px;vertical-align:-.2em;border-radius:2px;background:var(--purple3);animation:blink .8s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.ai-meta{display:flex;align-items:center;gap:4px;min-height:26px;opacity:0;transition:opacity .2s;color:var(--muted);font-size:11.5px;flex-wrap:wrap}
+.ai-row:hover .ai-meta,.ai-row:focus-within .ai-meta,.ai-row.show-meta .ai-meta{opacity:1}
+.ai-meta .time{margin:0 6px}
+.act{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;font-size:12px;color:var(--muted);transition:background .15s,color .15s}
+.act:hover{background:var(--button);color:var(--text)}
+.act.ok{color:var(--green)}
+.style-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(139,92,246,.18);color:var(--purple3);border:1px solid rgba(139,92,246,.35)}
+.typing-row .ai-bubble{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.dots{display:flex;gap:5px}.dots span{width:7px;height:7px;border-radius:50%;background:var(--purple3);animation:bounce 1s infinite ease-in-out}.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-5px)}}
+.typing-label{font-size:13px;color:var(--muted)}
+.fab{position:absolute;right:28px;bottom:150px;width:42px;height:42px;border-radius:50%;background:var(--panel);border:1px solid var(--border2);box-shadow:var(--shadow);color:var(--text);font-size:18px;z-index:12;animation:pop .2s var(--ease);transition:transform .2s,background .2s}
+.fab:hover{background:var(--purple);transform:translateY(-3px)}
+
+/* ---------- BIENVENIDA ---------- */
+.welcome{max-width:820px;margin:7vh auto 0;text-align:center}
+.welcome-logo{width:84px;height:84px;margin:0 auto 22px;border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff;background:linear-gradient(145deg,#26304a,#0b1019);border:1px solid rgba(255,255,255,.1);box-shadow:0 0 60px rgba(124,58,237,.35);animation:float 4.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(3deg)}}
+.welcome h1{font-size:clamp(30px,5vw,46px);letter-spacing:-1.2px;margin-bottom:12px;animation:msgIn .6s var(--ease) both}
+.welcome h1 span{background:linear-gradient(135deg,var(--purple3),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.welcome p{color:var(--muted);line-height:1.65;max-width:600px;margin:0 auto 30px;animation:msgIn .6s .08s var(--ease) both}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;text-align:left}
+.card-s{display:flex;gap:12px;align-items:flex-start;padding:15px;border-radius:16px;background:var(--card);border:1px solid var(--border);transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;animation:msgIn .55s var(--ease) both;animation-delay:calc(.12s + var(--i)*60ms)}
+.card-s:hover{transform:translateY(-4px);border-color:rgba(139,92,246,.7);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.card-s .ic{font-size:24px;line-height:1.2}
+.card-s strong{display:block;font-size:14px;margin-bottom:2px}.card-s small{color:var(--muted);font-size:12.5px;line-height:1.4}
+
+/* ---------- COMPOSER ---------- */
+.composer-wrap{padding:6px 24px 16px;background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.chips{max-width:860px;margin:0 auto 8px;display:flex;gap:7px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s var(--ease);white-space:nowrap}
+.chip:hover{color:var(--text);border-color:var(--purple2);transform:translateY(-2px)}
+.chip.on{color:#fff;background:linear-gradient(135deg,var(--purple),#6d28d9);border-color:transparent;box-shadow:0 6px 18px rgba(124,58,237,.35)}
+.composer{max-width:860px;margin:0 auto;border-radius:22px;background:var(--input);border:1px solid var(--border);box-shadow:0 10px 35px rgba(0,0,0,.18);transition:border-color .2s,box-shadow .2s;overflow:hidden}
+.composer:focus-within{border-color:var(--purple2);box-shadow:0 0 0 3px rgba(139,92,246,.14),0 10px 35px rgba(0,0,0,.18)}
+#aiInput{display:block;width:100%;min-height:58px;max-height:200px;resize:none;border:none;outline:none;background:transparent;padding:17px 18px 6px;font-size:15px;line-height:1.55}
+#aiInput::placeholder{color:#68758a}
+.composer-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 10px 10px 16px}
+.style-hint{font-size:12px;color:var(--purple3);min-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+#counter{color:#68758a;font-size:11px;font-variant-numeric:tabular-nums}#counter.warn{color:var(--amber)}#counter.max{color:var(--red)}
+.send{width:42px;height:42px;border-radius:50%;font-size:17px;color:#fff;background:linear-gradient(135deg,var(--purple),#6d28d9);display:flex;align-items:center;justify-content:center;transition:transform .2s var(--ease),box-shadow .2s;box-shadow:0 6px 18px rgba(124,58,237,.4)}
+.send:hover:not(:disabled){transform:scale(1.08) rotate(-6deg)}
+.send.stop{background:linear-gradient(135deg,#ef4444,#b91c1c);box-shadow:0 6px 18px rgba(239,68,68,.4);animation:pulseStop 1.6s infinite}
+@keyframes pulseStop{50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+.disclaimer{max-width:860px;margin:8px auto 0;text-align:center;color:#64748b;font-size:10.5px}
+
+/* ---------- TOASTS / MODAL ---------- */
+.toasts{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:100;pointer-events:none}
+.toast{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:13px;background:var(--panel);border:1px solid var(--border2);box-shadow:var(--shadow);font-size:13.5px;pointer-events:auto;animation:toastIn .3s var(--ease) both}
+.toast.out{animation:toastOut .25s ease forwards}
+.toast button{color:var(--purple3);font-weight:700;font-size:13px}.toast button:hover{text-decoration:underline}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px) scale(.96)}}
+.modal{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.dialog{width:min(420px,100%);padding:24px;border-radius:20px;background:var(--panel);border:1px solid var(--border2);box-shadow:var(--shadow);animation:pop .25s var(--ease)}
+.dialog h3{font-size:18px;margin-bottom:8px}.dialog p{color:var(--muted);font-size:14px;line-height:1.6}
+.dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+.btn{padding:10px 18px;border-radius:12px;font-weight:700;font-size:14px;background:var(--button);color:var(--text);transition:transform .2s,background .2s}.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,var(--purple),#6d28d9);color:#fff}.btn.danger{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff}
+
+/* ---------- MARKDOWN ---------- */
+.md{word-break:break-word}
+.md>*:first-child{margin-top:0!important}.md>*:last-child{margin-bottom:0!important}
+.md p{margin:0 0 12px}
+.md h1,.md h2,.md h3,.md h4{margin:22px 0 10px;line-height:1.3;color:var(--text)}
+.md h1{font-size:1.5rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.md h2{font-size:1.28rem;display:flex;align-items:center;gap:9px}
+.md h2::before{content:"";width:4px;height:1.1em;border-radius:3px;background:linear-gradient(var(--purple2),var(--purple));flex-shrink:0}
+.md h3{font-size:1.1rem;color:var(--purple3)}
+.md h4{font-size:1rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.md strong{font-weight:800;color:var(--text)}
+.md em{font-style:italic}
+.md del{color:var(--muted);text-decoration-thickness:2px}
+.md mark{background:linear-gradient(transparent 8%,rgba(250,204,21,.38) 8%);color:inherit;padding:0 3px;border-radius:4px}
+body.light .md mark{background:linear-gradient(transparent 8%,rgba(250,204,21,.6) 8%)}
+.md u.ul{text-decoration:underline;text-decoration-color:var(--purple2);text-decoration-thickness:2.5px;text-underline-offset:4px}
+.md hr{border:0;height:1px;margin:20px 0;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.md a{color:var(--purple3);text-decoration:underline;text-underline-offset:3px}.md a:hover{color:#c4b5fd}
+.md ul,.md ol{margin:6px 0 14px 4px;padding-left:22px}
+.md ul ul,.md ul ol,.md ol ul,.md ol ol{margin:4px 0 4px}
+.md li{margin:5px 0;padding-left:3px}.md li::marker{color:var(--purple3);font-weight:700}
+.md li.md-task{list-style:none;margin-left:-20px;display:flex;gap:9px;align-items:flex-start}
+.md-check{width:18px;height:18px;margin-top:3px;flex-shrink:0;border:2px solid var(--border2);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:900}
+.md li.md-task.done .md-check{background:var(--green);border-color:var(--green)}
+.md li.md-task.done{color:var(--muted)}
+.md code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.2);border-radius:6px;padding:2px 6px}
+.md-code{margin:14px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#070b12}
+body.light .md-code{background:#0f172a}
+.md-code-head{display:flex;align-items:center;justify-content:space-between;padding:7px 8px 7px 14px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07)}
+.md-lang{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#94a3b8;font-weight:700}
+.md-copy{padding:4px 10px;border-radius:8px;font-size:12px;color:#94a3b8;transition:background .15s,color .15s}.md-copy:hover{background:rgba(255,255,255,.1);color:#fff}.md-copy.ok{color:var(--green)}
+.md-code pre{margin:0;padding:14px 16px;overflow-x:auto}
+.md-code code{display:block;white-space:pre;background:none;border:0;padding:0;color:#e2e8f0;font-size:13px;line-height:1.65}
+.tok-c{color:#6b7a90;font-style:italic}.tok-s{color:#86efac}.tok-n{color:#fdba74}.tok-k{color:#c4b5fd;font-weight:600}.tok-f{color:#7dd3fc}.tok-t{color:#f9a8d4}.tok-p{color:#93c5fd}
+.md blockquote{margin:14px 0;padding:10px 16px;border-left:3px solid var(--purple2);background:rgba(139,92,246,.08);border-radius:0 12px 12px 0;color:var(--text2)}
+.md-callout{margin:16px 0;padding:12px 16px 12px 14px;border-radius:14px;border:1px solid var(--cc,var(--purple2));border-left-width:4px;background:color-mix(in srgb,var(--cc,var(--purple2)) 10%,transparent)}
+.md-callout-title{font-weight:800;font-size:13px;letter-spacing:.3px;margin-bottom:4px;color:var(--cc,var(--purple3))}
+.md-callout .md>p:last-child,.md-callout p:last-child{margin-bottom:0}
+.md-callout.note{--cc:var(--blue)}.md-callout.tip{--cc:var(--green)}.md-callout.warning{--cc:var(--amber)}.md-callout.danger{--cc:var(--red)}.md-callout.idea{--cc:var(--purple2)}
+.md-table-wrap{margin:16px 0;overflow-x:auto;border:1px solid var(--border);border-radius:13px}
+.md table{width:100%;border-collapse:collapse;font-size:.93em}
+.md th,.md td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.md tr:last-child td{border-bottom:0}
+.md th{background:rgba(139,92,246,.13);font-weight:800;white-space:nowrap}
+.md tbody tr:nth-child(even){background:rgba(255,255,255,.025)}body.light .md tbody tr:nth-child(even){background:rgba(0,0,0,.025)}
+.md tbody tr:hover{background:rgba(139,92,246,.08)}
+/* esquema visual */
+.md-scheme{margin:16px 0;padding:18px 16px;border-radius:16px;background:linear-gradient(145deg,var(--card2),var(--card));border:1px solid var(--border);overflow-x:auto}
+.md-scheme-label{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:12px}
+.md-tree,.md-tree ul{list-style:none;margin:0;padding:0}
+.md-tree ul{margin:2px 0 4px 16px;padding-left:22px;border-left:2px solid rgba(139,92,246,.4)}
+.md-tree li{position:relative;margin:7px 0;padding:0;animation:msgIn .45s var(--ease) both;animation-delay:calc(var(--d,0)*45ms)}
+.md-tree ul>li::before{content:"";position:absolute;left:-22px;top:15px;width:18px;border-top:2px solid rgba(139,92,246,.4)}
+.md-node{display:inline-block;padding:6px 13px;border-radius:11px;background:var(--card);border:1px solid var(--border2);font-size:.95em;line-height:1.45;transition:transform .2s,border-color .2s}
+.md-node:hover{transform:translateX(3px);border-color:var(--purple2)}
+.md-tree>li>.md-node{background:linear-gradient(135deg,var(--purple),#6d28d9);border-color:transparent;color:#fff;font-weight:800;font-size:1.02em;box-shadow:0 8px 22px rgba(124,58,237,.3)}
+.md-tree>li>ul>li>.md-node{border-color:rgba(139,92,246,.6);font-weight:700;background:rgba(139,92,246,.12)}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-102%);width:min(310px,86vw);box-shadow:var(--shadow)}
+  .sidebar.open{transform:none}
+  .scrim.show{opacity:1;pointer-events:auto}
+  .menu-btn,.sb-close{display:inline-flex}
+  .new-chat kbd{display:none}
+  .head{padding:8px 12px}.messages{padding:18px 12px 8px}.composer-wrap{padding:6px 12px 12px}
+  .ai-meta{opacity:1}
+  .fab{right:16px;bottom:170px}
+}
+@media(max-width:520px){
+  .ai-bubble{padding:12px 14px}.avatar{width:30px;height:30px;border-radius:10px}.ai-row{gap:8px}
+  .cards{grid-template-columns:1fr}.welcome{margin-top:3vh}.disclaimer{display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
 </style>
 </head>
 <body>
-<!-- =========================================================
-     TOOLBOX AI COMPLETA
-========================================================= -->
+<div class="app" id="app">
+  <div class="scrim" id="scrim"></div>
 
-<div
-    id="toolboxAiApp"
-    class="toolbox-ai-app open"
->
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar" aria-label="Conversaciones">
+    <div class="sb-top">
+      <a class="brand" href="/" title="Volver a TOOLBOX">
+        <div class="brand-logo"><span>✦</span><span>✦</span></div>
+        <div><strong>TOOLBOX AI</strong><small>Groq · ← volver a TOOLBOX</small></div>
+      </a>
+      <button class="icon-btn sb-close" id="sbClose" aria-label="Cerrar menú">✕</button>
+    </div>
 
-    <!-- SIDEBAR -->
+    <button class="new-chat" id="newChat"><span>＋</span> Nueva conversación <kbd>Alt N</kbd></button>
 
-    <aside
-        id="toolboxAiSidebar"
-        class="toolbox-ai-sidebar"
-    >
+    <div class="search">
+      <span>⌕</span>
+      <input id="convSearch" placeholder="Buscar conversaciones…  (Ctrl K)" autocomplete="off" aria-label="Buscar conversaciones">
+      <button id="searchClear" hidden aria-label="Limpiar búsqueda">✕</button>
+    </div>
 
-        <div class="ai-sidebar-top">
+    <nav class="conv-list" id="convList"></nav>
 
-            <div class="ai-sidebar-brand">
+    <div class="sb-foot">
+      <div class="status">
+        <span class="dot" id="statusDot"></span>
+        <div><strong id="statusText">Groq conectado</strong><small>TOOLBOX AI</small></div>
+      </div>
+      <div class="foot-row">
+        <small class="foot-note">Tus conversaciones se guardan solo en este dispositivo.</small>
+        <button class="link-btn" id="clearAll">Borrar todo</button>
+      </div>
+    </div>
+  </aside>
 
-                <div class="ai-brand-logo">
-
-                    <span>✦</span>
-                    <span>✦</span>
-
-                </div>
-
-                <div>
-
-                    <strong>
-                        TOOLBOX AI
-                    </strong>
-
-                    <small>
-                        Groq
-                    </small>
-
-                </div>
-
-            </div>
-
-            <button
-                class="ai-close-sidebar"
-                onclick="window.location.href='/'"
-            >
-                ×
-            </button>
-
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <header class="head">
+      <div class="head-left">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir conversaciones">☰</button>
+        <div class="head-icon">✦</div>
+        <div class="head-title">
+          <div class="title-row" id="titleRow"></div>
+          <small id="headSub">TOOLBOX AI · Groq</small>
         </div>
-
-
-        <button
-            class="new-chat-button"
-            onclick="createNewConversation()"
-        >
-
-            <span>＋</span>
-
-            Nueva conversación
-
-        </button>
-
-
-        <div class="conversation-search">
-
-            <span>⌕</span>
-
-            <input
-                id="conversationSearch"
-                placeholder="Buscar conversaciones..."
-                oninput="filterConversations()"
-            >
-
+      </div>
+      <div class="head-right">
+        <button class="icon-btn" id="newChatTop" title="Nueva conversación (Alt N)" aria-label="Nueva conversación">＋</button>
+        <button class="icon-btn" id="themeBtn" title="Cambiar tema" aria-label="Cambiar tema">🌙</button>
+        <button class="icon-btn" id="moreBtn" title="Más opciones" aria-label="Más opciones" aria-haspopup="true">⋯</button>
+        <div class="menu" id="headMenu" hidden role="menu">
+          <button data-menu="rename" role="menuitem">✏️ Cambiar nombre</button>
+          <button data-menu="retitle" role="menuitem">✨ Que la IA elija el mejor nombre</button>
+          <button data-menu="pin" role="menuitem" id="pinItem">📌 Fijar conversación</button>
+          <hr>
+          <button data-menu="copy" role="menuitem">📋 Copiar conversación</button>
+          <button data-menu="md" role="menuitem">⬇️ Exportar en Markdown (.md)</button>
+          <button data-menu="txt" role="menuitem">⬇️ Exportar en texto (.txt)</button>
+          <hr>
+          <button data-menu="delete" role="menuitem" class="danger">🗑 Eliminar conversación</button>
         </div>
+      </div>
+    </header>
 
+    <section class="messages" id="messages" aria-live="polite">
+      <div class="thread" id="thread"></div>
+    </section>
 
-        <div
-            id="conversationList"
-            class="conversation-list"
-        ></div>
+    <button class="fab" id="fab" hidden aria-label="Ir al último mensaje">↓</button>
 
-
-        <div class="ai-sidebar-footer">
-
-            <div class="ai-free-badge">
-
-                <span class="status-dot"></span>
-
-                <div>
-
-                    <strong>
-                        Groq conectado
-                    </strong>
-
-                    <small>
-                        TOOLBOX AI
-                    </small>
-
-                </div>
-
-            </div>
-
-            <small class="local-storage-info">
-                Tus conversaciones se guardan
-                localmente en este dispositivo.
-            </small>
-
+    <div class="composer-wrap">
+      <div class="chips" id="chips" role="group" aria-label="Formato de la respuesta"></div>
+      <div class="composer">
+        <textarea id="aiInput" rows="1" maxlength="12000" placeholder="Escribe un mensaje para TOOLBOX AI…" aria-label="Mensaje"></textarea>
+        <div class="composer-bar">
+          <span class="style-hint" id="styleHint"></span>
+          <div class="bar-right">
+            <span id="counter">0</span>
+            <button class="send" id="sendBtn" aria-label="Enviar mensaje" title="Enviar (Enter)">➤</button>
+          </div>
         </div>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="toolbox-ai-main">
-
-        <header
-            class="toolbox-ai-main-header"
-        >
-
-            <div
-                style="display:flex;align-items:center;gap:10px"
-            >
-
-                <button
-                    class="mobile-menu-button"
-                    onclick="toggleAISidebar()"
-                >
-                    ☰
-                </button>
-
-                <div class="ai-header-title">
-
-                    <div class="ai-header-icon">
-                        ✦
-                    </div>
-
-                    <div>
-
-                        <strong
-                            id="currentConversationTitle"
-                        >
-                            Nueva conversación
-                        </strong>
-
-                        <small>
-                            TOOLBOX AI · Groq
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div>
-
-                <button
-                    class="mobile-menu-button"
-                    style="display:flex"
-                    onclick="createNewConversation()"
-                    title="Nueva conversación"
-                >
-                    ＋
-                </button>
-
-            </div>
-
-        </header>
-
-
-        <!-- MENSAJES -->
-
-        <section
-            id="toolboxAiMessages"
-            class="toolbox-ai-messages"
-        >
-
-            <div
-                id="aiWelcome"
-                class="ai-welcome"
-            >
-
-                <div class="ai-welcome-logo">
-                    ✦
-                </div>
-
-                <h1>
-                    Hola, soy
-                    <span>TOOLBOX AI</span>
-                </h1>
-
-                <p>
-                    Tu asistente inteligente dentro de TOOLBOX.
-                    Puedo explicarte temas, ayudarte a estudiar,
-                    mejorar textos, programar contigo, darte
-                    ejemplos y mucho más.
-                </p>
-
-                <div class="ai-suggestions">
-
-                    <button
-                        class="ai-suggestion"
-                        onclick="useSuggestion('Explícame la fotosíntesis de forma sencilla y después pregúntame si quiero aprenderla mejor.')"
-                    >
-                        🌱 Explícame algo
-                    </button>
-
-                    <button
-                        class="ai-suggestion"
-                        onclick="useSuggestion('Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.')"
-                    >
-                        🐍 Aprende conmigo
-                    </button>
-
-                    <button
-                        class="ai-suggestion"
-                        onclick="useSuggestion('Ayúdame a crear una página web moderna con HTML, CSS y JavaScript.')"
-                    >
-                        💻 Ayúdame a programar
-                    </button>
-
-                    <button
-                        class="ai-suggestion"
-                        onclick="useSuggestion('Dame un reto interesante para aprender algo nuevo.')"
-                    >
-                        🧠 Sorpréndeme
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- TYPING -->
-
-        <div
-            id="toolboxAiTyping"
-            class="toolbox-ai-typing"
-        >
-
-            <div class="ai-chat-avatar">
-                ✦
-            </div>
-
-            <span>
-                TOOLBOX AI está pensando
-            </span>
-
-            <div class="typing-dots">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-
-        </div>
-
-
-        <!-- COMPOSER -->
-
-        <div class="toolbox-ai-composer-wrapper">
-
-            <div class="toolbox-ai-composer">
-
-                <textarea
-                    id="toolboxAiInput"
-                    rows="1"
-                    maxlength="12000"
-                    placeholder="Escribe un mensaje para TOOLBOX AI..."
-                    onkeydown="toolboxAIKeyDown(event)"
-                    oninput="autoResizeAIInput(this);updateCharCounter()"
-                ></textarea>
-
-
-                <div class="composer-bottom">
-
-                    <div class="composer-right">
-
-                        <span
-                            id="aiCharCounter"
-                            class="ai-char-counter"
-                        >
-                            0
-                        </span>
-
-                        <button
-                            id="toolboxAiSend"
-                            class="ai-send-button"
-                            onclick="sendToolboxAI()"
-                        >
-                            ➤
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="ai-composer-disclaimer">
-
-                TOOLBOX AI utiliza Groq.
-                Puede cometer errores; comprueba la información importante.
-
-            </div>
-
-        </div>
-
-    </main>
-
+      </div>
+      <div class="disclaimer">TOOLBOX AI utiliza Groq. Puede cometer errores; comprueba la información importante. · Enter envía, Shift+Enter salto de línea.</div>
+    </div>
+  </main>
 </div>
 
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true">
+  <div class="dialog">
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+    <div class="dialog-actions">
+      <button class="btn" id="modalCancel">Cancelar</button>
+      <button class="btn danger" id="modalOk">Aceptar</button>
+    </div>
+  </div>
+</div>
 
 <script>
 /* =========================================================
-   IA CENTRAL — PETICIÓN AL SERVIDOR
+   TOOLBOX AI — CONFIGURACIÓN
 ========================================================= */
-async function askGemini(messages, mode = "normal") {
+const CFG = {
+  endpoint: '/api/ai',      // tu servidor (TOOLBOXMOTOR.py)
+  mode: 'normal',           // modo que se envía al servidor
+  storageKey: 'toolboxConversations',
+  themeKey: 'toolboxTheme',
+  sendFormatHint: true,     // envía al modelo las reglas de formato (esquemas, tablas, resaltado…)
+  autoTitle: true,          // la IA elige el nombre de cada conversación
+  typewriter: true,         // efecto de escritura progresiva
+  maxHistory: 24            // mensajes anteriores enviados como contexto
+};
 
-    const response = await fetch(
-        "/api/ai",
-        {
-            method: "POST",
+const FORMAT_HINT =
+  'Puedes usar Markdown cuando mejore la lectura: títulos (## y ###), listas con sangría, **negrita**, ==resaltado== para lo más importante, ' +
+  '++subrayado++ para términos clave, ~~tachado~~, tablas, listas de tareas (- [ ] / - [x]), citas, avisos con esta forma ' +
+  '(> 💡 **Consejo:** …, > ⚠️ **Ojo:** …, > ℹ️ **Nota:** …), bloques de código indicando el lenguaje y esquemas visuales dentro de un bloque ```esquema ' +
+  '(tema central en la primera línea y ramas con sangría de 2 espacios, sin viñetas ni símbolos). ' +
+  'Si el usuario solo conversa o hace una pregunta corta, responde en texto natural sin formato pesado. No uses más de un esquema por respuesta salvo que lo pidan.';
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+const STYLES = [
+  { id: 'esquema', icon: '📋', label: 'Esquema',  hint: 'Se responderá en forma de esquema visual',
+    prompt: 'El usuario quiere un ESQUEMA: responde con un bloque ```esquema (tema central en la primera línea y ramas con sangría de 2 espacios) y, si hace falta, un breve resumen debajo con ==lo esencial resaltado==.' },
+  { id: 'resumen', icon: '📝', label: 'Resumen',  hint: 'Se responderá con un resumen claro',
+    prompt: 'Haz un RESUMEN claro: una frase con la idea principal y de 3 a 6 puntos clave, con ==lo más importante resaltado==.' },
+  { id: 'facil',   icon: '🧒', label: 'Explícamelo fácil', hint: 'Se explicará con palabras sencillas y un ejemplo',
+    prompt: 'Explícalo FÁCIL, como a alguien sin conocimientos previos: usa una analogía cotidiana y un ejemplo concreto. Resalta con ==marcador== las ideas clave.' },
+  { id: 'pasos',   icon: '🪜', label: 'Paso a paso', hint: 'Se responderá con pasos numerados',
+    prompt: 'Responde PASO A PASO con una lista numerada; cada paso debe ser una acción concreta. Añade un aviso final con > 💡 **Consejo:** si procede.' },
+  { id: 'tabla',   icon: '📊', label: 'Tabla',     hint: 'Se responderá con una tabla comparativa',
+    prompt: 'Responde con una TABLA comparativa en Markdown (columnas claras) y una conclusión breve debajo.' },
+  { id: 'test',    icon: '🧪', label: 'Test',      hint: 'Se creará un test para practicar',
+    prompt: 'Crea un pequeño TEST de 5 preguntas con opciones A-D. Pon las respuestas correctas al final, bajo un título "Soluciones".' }
+];
 
-            body: JSON.stringify({
-                messages: messages,
-                mode: mode
-            })
+const SUGGESTIONS = [
+  { icon: '📋', title: 'Hazme un esquema', hint: 'Organiza cualquier tema en un mapa visual', text: 'Hazme un esquema sobre el sistema solar', style: 'esquema', send: false },
+  { icon: '🌱', title: 'Explícame algo', hint: 'Con palabras sencillas y ejemplos', text: 'Explícame la fotosíntesis de forma sencilla.', style: 'facil' },
+  { icon: '🐍', title: 'Aprende conmigo', hint: 'Una clase paso a paso', text: 'Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.', style: 'pasos' },
+  { icon: '💻', title: 'Ayúdame a programar', hint: 'Código con colores y botón de copiar', text: 'Escríbeme una función en JavaScript que valide un email y explícame cómo funciona.' },
+  { icon: '📊', title: 'Compara opciones', hint: 'Tablas claras para decidir mejor', text: 'Compara PNG, JPG y WebP: cuándo conviene cada formato.', style: 'tabla' },
+  { icon: '🧠', title: 'Ponme a prueba', hint: 'Un test para practicar', text: 'Hazme un test sobre la Segunda Guerra Mundial.', style: 'test', send: false }
+];
+
+/* =========================================================
+   UTILIDADES
+========================================================= */
+const $ = id => document.getElementById(id);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const fmtTime = ts => ts ? new Date(ts).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) : '';
+
+/* =========================================================
+   MARKDOWN → HTML (seguro: todo se escapa antes)
+========================================================= */
+const MD = (() => {
+  const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  /* ---- resaltado de código ---- */
+  const KW = {
+    js: 'break case catch class const continue debugger default delete do else export extends finally for function if import in instanceof let new of return super switch this throw try typeof var void while with yield async await static get set null undefined true false',
+    py: 'and as assert async await break class continue def del elif else except False finally for from global if import in is lambda None nonlocal not or pass raise return True try while with yield self print',
+    java: 'abstract boolean break byte case catch char class const continue default do double else enum extends final finally float for if implements import instanceof int interface long new null package private protected public return short static super switch this throw throws try void volatile while true false var string bool',
+    c: 'auto break case char const continue default do double else enum extern float for goto if int long register return short signed sizeof static struct switch typedef union unsigned void volatile while NULL true false include define',
+    go: 'break case chan const continue default defer else fallthrough for func go goto if import interface map package range return select struct switch type var nil true false',
+    rust: 'as async await break const continue crate dyn else enum extern false fn for if impl in let loop match mod move mut pub ref return self Self static struct super trait true type unsafe use where while',
+    php: 'echo function return if else elseif foreach for while class new public private protected static null true false array use namespace',
+    sh: 'if then else elif fi for while do done case esac function in echo cd ls export source sudo apt git npm pip',
+    sql: 'select from where insert into values update set delete create table alter drop join left right inner outer on group by order having limit as and or not null primary key foreign references distinct union like in between is count sum avg max min'
+  };
+  const KWSET = {}; Object.keys(KW).forEach(k => KWSET[k] = new Set(KW[k].split(' ')));
+  const ALIAS = { javascript: 'js', js: 'js', jsx: 'js', ts: 'js', typescript: 'js', tsx: 'js', node: 'js', python: 'py', py: 'py', java: 'java', kotlin: 'java', cs: 'java', csharp: 'java', c: 'c', cpp: 'c', 'c++': 'c', h: 'c', go: 'go', rust: 'rust', rs: 'rust', php: 'php', bash: 'sh', sh: 'sh', shell: 'sh', zsh: 'sh', sql: 'sql', json: 'json', css: 'css', scss: 'css', html: 'markup', xml: 'markup', svg: 'markup', vue: 'markup' };
+  const RX = {
+    c: /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|`(?:[^`\\]|\\[\s\S])*`)|(\b\d+(?:\.\d+)?\b)|(\b[A-Za-z_$][\w$]*\b)(\s*\()?/g,
+    h: /(#[^\n]*)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*')|(\b\d+(?:\.\d+)?\b)|(\b[A-Za-z_$][\w$]*\b)(\s*\()?/g,
+    s: /(--[^\n]*|\/\*[\s\S]*?\*\/)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*')|(\b\d+(?:\.\d+)?\b)|(\b[A-Za-z_$][\w$]*\b)(\s*\()?/g,
+    json: /("(?:[^"\\\n]|\\.)*")(\s*:)?|\b(true|false|null)\b|(-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)/g,
+    markup: /(<!--[\s\S]*?-->)|(<\/?[\w:-]+)|(\/?>)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g,
+    css: /(\/\*[\s\S]*?\*\/)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*')|(#[0-9a-fA-F]{3,8}\b)|(-?\b\d+(?:\.\d+)?(?:px|em|rem|%|vh|vw|s|ms|deg)?)|([\w-]+)(?=\s*:)/g
+  };
+  const span = (c, t) => '<span class="' + c + '">' + esc(t) + '</span>';
+
+  function highlight(code, lang) {
+    const fam = ALIAS[lang];
+    if (!fam || code.length > 20000) return esc(code);
+    const rx = fam === 'json' ? RX.json : fam === 'markup' ? RX.markup : fam === 'css' ? RX.css : (fam === 'py' || fam === 'sh') ? RX.h : fam === 'sql' ? RX.s : RX.c;
+    const kws = KWSET[fam];
+    rx.lastIndex = 0;
+    let out = '', last = 0, m;
+    while ((m = rx.exec(code))) {
+      out += esc(code.slice(last, m.index));
+      last = m.index + m[0].length;
+      if (fam === 'json') {
+        if (m[1]) out += span(m[2] ? 'tok-p' : 'tok-s', m[1]) + esc(m[2] || '');
+        else if (m[3]) out += span('tok-k', m[3]);
+        else out += span('tok-n', m[4]);
+      } else if (fam === 'markup') {
+        out += m[1] ? span('tok-c', m[1]) : (m[2] || m[3]) ? span('tok-t', m[0]) : span('tok-s', m[4]);
+      } else if (fam === 'css') {
+        out += m[1] ? span('tok-c', m[1]) : m[2] ? span('tok-s', m[2]) : (m[3] || m[4]) ? span('tok-n', m[0]) : span('tok-p', m[5]);
+      } else {
+        if (m[1]) out += span('tok-c', m[1]);
+        else if (m[2]) out += span('tok-s', m[2]);
+        else if (m[3]) out += span('tok-n', m[3]);
+        else {
+          const w = fam === 'sql' ? m[4].toLowerCase() : m[4];
+          if (kws && kws.has(w)) out += span('tok-k', m[4]) + esc(m[5] || '');
+          else if (m[5]) out += span('tok-f', m[4]) + esc(m[5]);
+          else out += esc(m[4]);
         }
-    );
-
-
-    let data;
-
-    try {
-
-        data = await response.json();
-
-    } catch {
-
-        throw new Error(
-            "El servidor no devolvió una respuesta válida."
-        );
-
+      }
+      if (rx.lastIndex === m.index) rx.lastIndex++;
     }
+    return out + esc(code.slice(last));
+  }
 
+  /* ---- inline ---- */
+  function fmt(t) {
+    return t
+      .replace(/\*\*\*(?=\S)([^*\n]*?\S)\*\*\*/g, '<strong><em>$1</em></strong>')
+      .replace(/\*\*(?=\S)([^*\n]*?\S)\*\*/g, '<strong>$1</strong>')
+      .replace(/__(?=\S)([^_\n]*?\S)__/g, '<strong>$1</strong>')
+      .replace(/~~(?=\S)([^~\n]*?\S)~~/g, '<del>$1</del>')
+      .replace(/(^|[^\w=])==(?=\S)([^=\n]*?\S)==(?![\w=])/g, '$1<mark>$2</mark>')
+      .replace(/(^|[^\w+])\+\+(?=\S)([^+\n]*?\S)\+\+(?![\w+])/g, '$1<u class="ul">$2</u>')
+      .replace(/(^|[^\w*])\*(?=\S)([^*\n]*?\S)\*(?![\w*])/g, '$1<em>$2</em>')
+      .replace(/(^|[^\w_])_(?=\S)([^_\n]*?\S)_(?![\w_])/g, '$1<em>$2</em>');
+  }
+  function inline(raw) {
+    let t = esc(raw);
+    const st = [];
+    const keep = h => { st.push(h); return '\u0000' + (st.length - 1) + '\u0001'; };
+    t = t.replace(/`([^`\n]+)`/g, (_, c) => keep('<code>' + c + '</code>'));
+    t = t.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g, (_, txt, url) => keep('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + fmt(txt) + '</a>'));
+    t = t.replace(/(^|[\s(])(https?:\/\/[^\s<]*[^\s<.,;:!?)\]])/g, (_, p, url) => p + keep('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>'));
+    t = fmt(t);
+    for (let i = 0; i < 3 && /\u0000\d+\u0001/.test(t); i++) t = t.replace(/\u0000(\d+)\u0001/g, (_, n) => st[+n]);
+    return t.replace(/\n/g, '<br>');
+  }
 
-    if (!response.ok) {
+  /* ---- bloques ---- */
+  function codeBlock(code, lang) {
+    return '<div class="md-code"><div class="md-code-head"><span class="md-lang">' + esc(lang || 'código') + '</span>' +
+      '<button class="md-copy" type="button" data-act="copycode">Copiar</button></div><pre><code>' + highlight(code, lang) + '</code></pre></div>';
+  }
 
-        throw new Error(
-            data.error ||
-            "Error conectando con TOOLBOX AI."
-        );
+  function scheme(code) {
+    const rows = code.split('\n').map(l => l.replace(/\t/g, '    ')).filter(l => l.trim());
+    if (rows.length < 2) return null;
+    const items = rows.map(l => {
+      const m = l.match(/^([\s│├└─┬┴┼|`'\-*+•·>→▸▪◦●○]*)(.*)$/u);
+      return { indent: m[1].length, text: m[2].trim() };
+    }).filter(it => it.text);
+    const stack = [];
+    items.forEach(it => {
+      while (stack.length && stack[stack.length - 1] >= it.indent) stack.pop();
+      it.level = stack.length;
+      stack.push(it.indent);
+    });
+    let html = '', cur = -1;
+    items.forEach((it, i) => {
+      if (i === 0) html += '<ul class="md-tree"><li style="--d:0">';
+      else if (it.level > cur) html += '<ul><li style="--d:' + i + '">';
+      else html += '</li>' + '</ul></li>'.repeat(cur - it.level) + '<li style="--d:' + i + '">';
+      html += '<span class="md-node">' + inline(it.text) + '</span>';
+      cur = it.level;
+    });
+    html += '</li>' + '</ul></li>'.repeat(Math.max(cur, 0)) + '</ul>';
+    return '<div class="md-scheme"><div class="md-scheme-label">📋 Esquema</div>' + html + '</div>';
+  }
 
-    }
+  const SEP = { test: l => l.indexOf('|') >= 0 && /^[\s|:-]+$/.test(l) && l.indexOf('-') >= 0 };
+  const LIST = /^(\s*)([-*+•]|\d{1,3}[.)])\s+(.*)$/;
+  const HR = /^\s{0,3}([-*_])(?:\s*\1){2,}\s*$/;
+  const HEAD = /^\s{0,3}(#{1,4})\s+(.+?)\s*#*\s*$/;
+  const FENCE = /^\s*(?:```|~~~)\s*([\w+#.-]*)\s*$/;
+  const QUOTE = /^\s{0,3}>\s?(.*)$/;
+  const splitRow = l => l.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
 
+  const CALL = {
+    note: ['note', 'ℹ️', 'Nota'], info: ['note', 'ℹ️', 'Nota'], tip: ['tip', '💡', 'Consejo'], consejo: ['tip', '💡', 'Consejo'],
+    important: ['idea', '✨', 'Importante'], idea: ['idea', '✨', 'Idea'], warning: ['warning', '⚠️', 'Ojo'], caution: ['warning', '⚠️', 'Ojo'],
+    aviso: ['warning', '⚠️', 'Ojo'], danger: ['danger', '❗', 'Cuidado'], nota: ['note', 'ℹ️', 'Nota']
+  };
+  const EMOJI_CALL = [[/^(💡|✅)/u, 'tip'], [/^(⚠️|⚠)/u, 'warning'], [/^(ℹ️|ℹ)/u, 'note'], [/^(❗|🚨|❌)/u, 'danger'], [/^(📌|🧠|✨|🔥)/u, 'idea']];
 
-    if (!data.reply) {
+  function startsBlock(l, next) {
+    return FENCE.test(l) || HEAD.test(l) || HR.test(l) || QUOTE.test(l) || LIST.test(l) || (l.indexOf('|') >= 0 && next != null && SEP.test(next));
+  }
 
-        throw new Error(
-            data.error ||
-            "TOOLBOX AI no devolvió ninguna respuesta."
-        );
+  function buildList(items) {
+    let html = '';
+    const stack = [];
+    items.forEach(it => {
+      while (stack.length && it.indent < stack[stack.length - 1].indent) html += '</li></' + stack.pop().tag + '>';
+      const top = stack[stack.length - 1];
+      const tag = it.ordered ? 'ol' : 'ul';
+      if (!top || it.indent > top.indent) {
+        html += '<' + tag + (it.ordered && it.start > 1 ? ' start="' + it.start + '"' : '') + '>';
+        stack.push({ indent: it.indent, tag });
+      } else {
+        html += '</li>';
+        if (top.tag !== tag) { html += '</' + stack.pop().tag + '><' + tag + '>'; stack.push({ indent: it.indent, tag }); }
+      }
+      html += '<li' + (it.task ? ' class="md-task' + (it.done ? ' done' : '') + '"' : '') + '>' +
+        (it.task ? '<span class="md-check">' + (it.done ? '✓' : '') + '</span><span>' : '') + inline(it.text) + (it.task ? '</span>' : '');
+    });
+    while (stack.length) html += '</li></' + stack.pop().tag + '>';
+    return html;
+  }
 
-    }
+  function render(src) {
+    const lines = String(src == null ? '' : src).replace(/\r\n?/g, '\n').split('\n');
+    const n = lines.length, out = [];
+    let i = 0;
+    while (i < n) {
+      const line = lines[i];
+      if (!line.trim()) { i++; continue; }
 
+      let m = line.match(FENCE);
+      if (m) {
+        const lang = (m[1] || '').toLowerCase(), buf = [];
+        i++;
+        while (i < n && !/^\s*(?:```|~~~)\s*$/.test(lines[i])) buf.push(lines[i++]);
+        i++;
+        const code = buf.join('\n');
+        const sc = /^(esquema|schema|mapa|arbol|árbol|tree|mindmap)$/.test(lang) ? scheme(code) : null;
+        out.push(sc || codeBlock(code, sc === null && /^(esquema|schema|mapa|arbol|árbol|tree|mindmap)$/.test(lang) ? '' : lang));
+        continue;
+      }
+      if ((m = line.match(HEAD))) { out.push('<h' + m[1].length + '>' + inline(m[2]) + '</h' + m[1].length + '>'); i++; continue; }
+      if (HR.test(line)) { out.push('<hr>'); i++; continue; }
 
-    return data.reply;
-}
-
-
-
-let conversations = JSON.parse(
-    localStorage.getItem("toolboxConversations") || "[]"
-);
-
-let currentConversationId = null;
-
-/* =========================================================
-   TOOLBOX AI — CONVERSACIONES
-========================================================= */
-
-function saveConversations() {
-
-    localStorage.setItem(
-        "toolboxConversations",
-        JSON.stringify(
-            conversations
-        )
-    );
-
-}
-
-
-function createNewConversation() {
-
-    const conversation = {
-
-        id:
-            Date.now().toString(),
-
-        title:
-            "Nueva conversación",
-
-        messages:
-            []
-
-    };
-
-
-    conversations.unshift(
-        conversation
-    );
-
-
-    currentConversationId =
-        conversation.id;
-
-
-    saveConversations();
-
-    renderConversationList();
-
-    renderCurrentConversation();
-
-    document.getElementById(
-        "currentConversationTitle"
-    ).innerText =
-        conversation.title;
-
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    input.value = "";
-
-    updateCharCounter();
-
-    input.focus();
-
-
-    closeMobileSidebar();
-
-}
-
-
-function getCurrentConversation() {
-
-    return conversations.find(
-        c =>
-            c.id ===
-            currentConversationId
-    );
-
-}
-
-
-/* =========================================================
-   ABRIR IA
-========================================================= */
-
-function openToolboxAI() {
-
-    document
-        .getElementById(
-            "toolboxAiApp"
-        )
-        .classList.add("open");
-
-
-    if (!currentConversationId) {
-
-        if (conversations.length) {
-
-            currentConversationId =
-                conversations[0].id;
-
+      if (QUOTE.test(line)) {
+        const buf = [];
+        while (i < n && QUOTE.test(lines[i])) { buf.push(lines[i].match(QUOTE)[1]); i++; }
+        let first = (buf[0] || '').trim(), type = null, title = '', body = buf;
+        const mm = first.match(/^\[!(\w+)\]\s*(.*)$/);
+        if (mm && CALL[mm[1].toLowerCase()]) {
+          const c = CALL[mm[1].toLowerCase()];
+          type = c[0]; title = c[1] + ' ' + (mm[2] || c[2]); body = buf.slice(1);
         } else {
-
-            createNewConversation();
-
-            return;
-
+          const ec = EMOJI_CALL.find(e => e[0].test(first));
+          if (ec) type = ec[1];
         }
+        if (type) out.push('<div class="md-callout ' + type + '">' + (title ? '<div class="md-callout-title">' + esc(title) + '</div>' : '') + render(body.join('\n')) + '</div>');
+        else out.push('<blockquote>' + render(buf.join('\n')) + '</blockquote>');
+        continue;
+      }
 
+      if (line.indexOf('|') >= 0 && i + 1 < n && SEP.test(lines[i + 1])) {
+        const head = splitRow(line);
+        const aligns = splitRow(lines[i + 1]).map(c => /^:-+:$/.test(c) ? 'center' : /-:$/.test(c) ? 'right' : 'left');
+        i += 2;
+        const rows = [];
+        while (i < n && lines[i].trim() && lines[i].indexOf('|') >= 0) rows.push(splitRow(lines[i++]));
+        let h = '<div class="md-table-wrap"><table><thead><tr>' + head.map((c, k) => '<th style="text-align:' + (aligns[k] || 'left') + '">' + inline(c) + '</th>').join('') + '</tr></thead><tbody>';
+        rows.forEach(r => { h += '<tr>' + head.map((_, k) => '<td style="text-align:' + (aligns[k] || 'left') + '">' + inline(r[k] || '') + '</td>').join('') + '</tr>'; });
+        out.push(h + '</tbody></table></div>');
+        continue;
+      }
+
+      if ((m = line.match(LIST))) {
+        const items = [];
+        while (i < n) {
+          const l = lines[i], lm = l.match(LIST);
+          if (lm) {
+            let text = lm[3], task = false, done = false;
+            const tm = text.match(/^\[( |x|X)\]\s+(.*)$/);
+            if (tm) { task = true; done = tm[1].toLowerCase() === 'x'; text = tm[2]; }
+            const ordered = /\d/.test(lm[2]);
+            items.push({ indent: lm[1].replace(/\t/g, '    ').length, ordered, start: ordered ? parseInt(lm[2], 10) : 1, text, task, done });
+            i++;
+          } else if (!l.trim()) {
+            let j = i + 1; while (j < n && !lines[j].trim()) j++;
+            if (j < n && LIST.test(lines[j])) i = j; else break;
+          } else if (/^\s{2,}\S/.test(l) && items.length && !FENCE.test(l) && !HEAD.test(l)) {
+            items[items.length - 1].text += '\n' + l.trim(); i++;
+          } else break;
+        }
+        out.push(buildList(items));
+        continue;
+      }
+
+      const buf = [lines[i++]];
+      while (i < n && lines[i].trim() && !startsBlock(lines[i], lines[i + 1])) buf.push(lines[i++]);
+      out.push('<p>' + inline(buf.join('\n')) + '</p>');
     }
-
-
-    renderConversationList();
-
-    renderCurrentConversation();
-
-}
-
-
-function closeToolboxAI() {
-    window.location.href = "/";
-}
-
+    return out.join('');
+  }
+  return { render, esc };
+})();
 
 /* =========================================================
-   CONVERSACIONES
+   ESTADO + ALMACENAMIENTO
 ========================================================= */
+let conversations = [];
+let currentId = null;
+let renaming = null;           // { id, where: 'side' | 'head' }
+let pendingStyle = null;
+let lastDeleted = null;
+let stick = true;
+const rt = {};                 // estado temporal por conversación
+const R = id => rt[id] || (rt[id] = { busy: false, controller: null, reveal: null, titling: false, shown: null, tt: 0, typingTimer: 0 });
+const drafts = {};
 
-function renderConversationList() {
+function normalizeConv(c) {
+  const created = Number(c.created) || Number(c.id) || Date.now();
+  return {
+    id: String(c.id || created),
+    title: String(c.title || 'Nueva conversación'),
+    messages: (Array.isArray(c.messages) ? c.messages : []).filter(m => m && typeof m.content === 'string' && (m.role === 'user' || m.role === 'assistant')),
+    pinned: !!c.pinned, titleLocked: !!c.titleLocked, titleAuto: !!c.titleAuto,
+    created, updated: Number(c.updated) || created
+  };
+}
+function loadConversations() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(CFG.storageKey) || '[]');
+    return Array.isArray(raw) ? raw.filter(c => c && typeof c === 'object').map(normalizeConv) : [];
+  } catch (e) { return []; }
+}
+function save() {
+  try { localStorage.setItem(CFG.storageKey, JSON.stringify(conversations)); }
+  catch (e) { toast('No se pudo guardar (almacenamiento lleno)'); }
+}
+const getConv = id => conversations.find(c => c.id === id);
+const current = () => getConv(currentId);
+const touch = c => { c.updated = Date.now(); };
 
-    const list =
-        document.getElementById(
-            "conversationList"
-        );
+/* =========================================================
+   API
+========================================================= */
+async function askAI(messages, mode, signal) {
+  const res = await fetch(CFG.endpoint, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages, mode: mode || CFG.mode }), signal
+  });
+  let data;
+  try { data = await res.json(); } catch (e) { throw new Error('El servidor no devolvió una respuesta válida.'); }
+  if (!res.ok) throw new Error(data.error || 'Error conectando con TOOLBOX AI.');
+  if (!data.reply) throw new Error(data.error || 'TOOLBOX AI no devolvió ninguna respuesta.');
+  return String(data.reply);
+}
+const askGemini = askAI; // compatibilidad con el nombre antiguo
 
-    const search =
-        document.getElementById(
-            "conversationSearch"
-        ).value
-        .toLowerCase();
+function buildPayload(conv) {
+  const msgs = conv.messages.filter(m => !m.error).slice(-CFG.maxHistory).map(m => ({ role: m.role, content: m.content }));
+  const lastUser = [...conv.messages].reverse().find(m => m.role === 'user');
+  const hints = [];
+  if (CFG.sendFormatHint) hints.push(FORMAT_HINT);
+  const st = lastUser && STYLES.find(s => s.id === lastUser.style);
+  if (st) hints.push(st.prompt);
+  if (hints.length && msgs.length) {
+    for (let i = msgs.length - 1; i >= 0; i--) {
+      if (msgs[i].role === 'user') { msgs[i].content += '\n\n[Instrucciones internas de formato — no las menciones ni las repitas]\n' + hints.join('\n'); break; }
+    }
+  }
+  return msgs;
+}
 
+/* =========================================================
+   TÍTULOS
+========================================================= */
+function cleanTitle(t) { return String(t || '').replace(/\s+/g, ' ').trim().slice(0, 60); }
+function smartTitle(text) {
+  let t = String(text || '').replace(/```[\s\S]*?```/g, ' ').replace(/[`*_#>\[\]()]/g, '').replace(/\s+/g, ' ').trim();
+  t = t.replace(/^(hola|buenas|hey|oye|por favor|porfa)[,!.\s]+/i, '').replace(/^(puedes|podr[ií]as|me puedes|quiero que|necesito que|me ayudas a|ay[uú]dame a|dime|cu[eé]ntame)\s+/i, '');
+  t = (t.split(/[.?!\n]/)[0] || t).trim();
+  if (t.length > 38) t = t.slice(0, 38).replace(/\s+\S*$/, '') + '…';
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : 'Nueva conversación';
+}
+function sanitizeTitle(raw) {
+  let t = String(raw || '').split('\n').map(s => s.trim()).find(Boolean) || '';
+  t = t.replace(/^(t[ií]tulo|title)\s*[:：-]\s*/i, '').replace(/^[#>*_\-\s"'“”«»`]+|[*_"'“”«»`.\s]+$/g, '').replace(/\s+/g, ' ').trim();
+  if (!t || t.length > 70 || t.split(' ').length > 9) return '';
+  if (t.length > 48) t = t.slice(0, 48).replace(/\s+\S*$/, '') + '…';
+  return t.charAt(0).toUpperCase() + t.slice(1);
+}
+async function autoTitle(conv, force) {
+  if (!CFG.autoTitle) return;
+  if (!force && (conv.titleLocked || conv.titleAuto)) return;
+  const r = R(conv.id);
+  if (r.titling) return;
+  const u = conv.messages.find(m => m.role === 'user');
+  const a = conv.messages.find(m => m.role === 'assistant' && !m.error);
+  if (!u || !a) return;
+  r.titling = true; renderSidebar(); renderHeader();
+  const cut = (s, n) => String(s).replace(/\s+/g, ' ').slice(0, n);
+  const prompt = 'Eres un generador de títulos. Resume el tema de esta conversación en un título de 2 a 5 palabras, en español, ' +
+    'sin comillas, sin punto final y sin emojis. Responde ÚNICAMENTE con el título.\n\nUsuario: ' + cut(u.content, 400) + '\nAsistente: ' + cut(a.content, 400);
+  try {
+    const t = sanitizeTitle(await askAI([{ role: 'user', content: prompt }], CFG.mode)) || smartTitle(u.content);
+    if (conv.titleLocked && !force) return;
+    conv.title = t; conv.titleAuto = true; if (force) conv.titleLocked = false;
+    save(); animateTitle(conv.id, t);
+  } catch (e) {
+    if (force) toast('No se pudo generar el nombre. Inténtalo de nuevo.');
+  } finally { r.titling = false; renderSidebar(); renderHeader(); }
+}
+function animateTitle(id, full) {
+  const r = R(id); clearInterval(r.tt);
+  let n = 0;
+  r.tt = setInterval(() => {
+    n++; r.shown = full.slice(0, n); paintTitle(id);
+    if (n >= full.length) { clearInterval(r.tt); r.shown = null; paintTitle(id); }
+  }, 32);
+}
+function paintTitle(id) {
+  const c = getConv(id); if (!c) return;
+  const txt = R(id).shown != null ? R(id).shown : c.title;
+  document.querySelectorAll('.conv-title[data-id="' + id + '"]').forEach(e => e.textContent = txt);
+  if (id === currentId) { const h = document.querySelector('#titleRow .title-text'); if (h) h.textContent = txt; }
+}
 
-    list.innerHTML = "";
-
-
-    conversations
-        .filter(c =>
-            c.title
-                .toLowerCase()
-                .includes(search)
-        )
-        .forEach(conversation => {
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-            item.className =
-                "conversation-item" +
-                (
-                    conversation.id ===
-                    currentConversationId
-                    ? " active"
-                    : ""
-                );
-
-
-            const title =
-                document.createElement(
-                    "span"
-                );
-
-            title.className =
-                "conversation-title";
-
-            title.innerText =
-                conversation.title;
-
-
-            const deleteButton =
-                document.createElement(
-                    "button"
-                );
-
-            deleteButton.className =
-                "delete-conversation";
-
-            deleteButton.innerText =
-                "🗑";
-
-
-            deleteButton.onclick =
-                function(event) {
-
-                    event.stopPropagation();
-
-                    deleteConversation(
-                        conversation.id
-                    );
-
-                };
-
-
-            item.onclick =
-                function() {
-
-                    currentConversationId =
-                        conversation.id;
-
-                    renderConversationList();
-
-                    renderCurrentConversation();
-
-                    closeMobileSidebar();
-
-                };
-
-
-            item.appendChild(title);
-
-            item.appendChild(
-                deleteButton
-            );
-
-            list.appendChild(item);
-
+/* =========================================================
+   RENDER: SIDEBAR
+========================================================= */
+function groupOf(c) {
+  if (c.pinned) return '📌 Fijadas';
+  const d0 = new Date(); d0.setHours(0, 0, 0, 0);
+  const t = c.updated, day = 864e5, s = d0.getTime();
+  if (t >= s) return 'Hoy'; if (t >= s - day) return 'Ayer'; if (t >= s - 6 * day) return 'Últimos 7 días'; return 'Anteriores';
+}
+function renderSidebar() {
+  const list = $('convList'); const q = norm($('convSearch').value.trim());
+  list.innerHTML = '';
+  $('searchClear').hidden = !q;
+  const items = conversations.filter(c => !q || norm(c.title).includes(q) || c.messages.some(m => norm(m.content).includes(q)))
+    .sort((a, b) => (b.pinned - a.pinned) || (b.updated - a.updated));
+  if (!items.length) { list.appendChild(el('div', 'empty-list', q ? 'Sin resultados para “' + $('convSearch').value.trim() + '”' : 'Aún no tienes conversaciones')); return; }
+  const order = ['📌 Fijadas', 'Hoy', 'Ayer', 'Últimos 7 días', 'Anteriores'];
+  let idx = 0;
+  order.forEach(g => {
+    const grp = items.filter(c => groupOf(c) === g); if (!grp.length) return;
+    list.appendChild(el('div', 'group-label', g));
+    grp.forEach(c => {
+      const it = el('div', 'conv-item' + (c.id === currentId ? ' active' : '')); it.dataset.id = c.id; it.style.setProperty('--i', Math.min(idx++, 14));
+      it.tabIndex = 0; it.setAttribute('role', 'button');
+      if (renaming && renaming.id === c.id && renaming.where === 'side') {
+        it.appendChild(renameInput(c));
+      } else {
+        const t = el('span', 'conv-title' + (R(c.id).titling ? ' titling' : ''), R(c.id).shown != null ? R(c.id).shown : c.title);
+        t.dataset.id = c.id; t.title = c.title; it.appendChild(t);
+        if (c.pinned) it.appendChild(el('span', 'conv-pin', '📌'));
+        const ac = el('span', 'conv-actions');
+        [['rename', '✏️', 'Cambiar nombre'], ['pin', c.pinned ? '📍' : '📌', c.pinned ? 'Quitar de fijadas' : 'Fijar'], ['delete', '🗑', 'Eliminar']].forEach(a => {
+          const b = el('button', 'mini' + (a[0] === 'delete' ? ' danger' : ''), a[1]); b.dataset.a = a[0]; b.title = a[2]; b.setAttribute('aria-label', a[2]); b.type = 'button'; ac.appendChild(b);
         });
-
-}
-
-
-function filterConversations() {
-
-    renderConversationList();
-
-}
-
-
-function deleteConversation(id) {
-
-    conversations =
-        conversations.filter(
-            c =>
-                c.id !== id
-        );
-
-
-    if (
-        currentConversationId === id
-    ) {
-
-        currentConversationId =
-            conversations.length
-            ? conversations[0].id
-            : null;
-
-    }
-
-
-    saveConversations();
-
-    renderConversationList();
-
-    renderCurrentConversation();
-
-}
-
-
-/* =========================================================
-   MARKDOWN SEGURO PARA TOOLBOX AI
-========================================================= */
-
-function toolboxEscapeHTML(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-function toolboxInlineMarkdown(value) {
-    let text = value;
-
-    // Código inline primero para que sus símbolos no se interpreten como Markdown.
-    const codeParts = [];
-    text = text.replace(/`([^`]+)`/g, function(_, code) {
-        const token = "\u0000CODE" + codeParts.length + "\u0000";
-        codeParts.push("<code>" + code + "</code>");
-        return token;
+        it.appendChild(ac);
+      }
+      list.appendChild(it);
     });
-
-    // Enlaces: solamente protocolos seguros.
-    text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-
-    // Negrita y cursiva.
-    text = text.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
-    text = text.replace(/__([^_\n]+)__/g, "<strong>$1</strong>");
-    text = text.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
-    text = text.replace(/_([^_\n]+)_/g, "<em>$1</em>");
-
-    // Recuperar código inline.
-    text = text.replace(/\u0000CODE(\d+)\u0000/g, function(_, index) {
-        return codeParts[Number(index)];
-    });
-
-    return text;
+  });
+  focusRename();
 }
-
-function renderToolboxMarkdown(markdown) {
-    const source = String(markdown ?? "").replace(/\r\n?/g, "\n");
-    const escaped = toolboxEscapeHTML(source);
-    const lines = escaped.split("\n");
-    const html = [];
-    let paragraph = [];
-    let listType = null;
-    let inCode = false;
-    let codeLines = [];
-
-    function flushParagraph() {
-        if (!paragraph.length) return;
-        const content = paragraph.join("<br>");
-        html.push("<p>" + toolboxInlineMarkdown(content) + "</p>");
-        paragraph = [];
-    }
-
-    function closeList() {
-        if (!listType) return;
-        html.push("</" + listType + ">");
-        listType = null;
-    }
-
-    function closeEverything() {
-        flushParagraph();
-        closeList();
-    }
-
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-
-        // Bloques de código con ```
-        if (/^\s*```/.test(line)) {
-            if (!inCode) {
-                closeEverything();
-                inCode = true;
-                codeLines = [];
-            } else {
-                html.push("<pre><code>" + codeLines.join("\n") + "</code></pre>");
-                inCode = false;
-                codeLines = [];
-            }
-            continue;
-        }
-
-        if (inCode) {
-            codeLines.push(line);
-            continue;
-        }
-
-        // Separadores reales, no cualquier conjunto de guiones dentro de una frase.
-        if (/^\s{0,3}((\*\s*){3,}|(-\s*){3,}|(_\s*){3,})$/.test(line)) {
-            closeEverything();
-            html.push("<hr>");
-            continue;
-        }
-
-        // Títulos Markdown.
-        const heading = line.match(/^\s{0,3}(#{1,3})\s+(.+?)\s*#*$/);
-        if (heading) {
-            closeEverything();
-            const level = heading[1].length;
-            html.push("<h" + level + ">" + toolboxInlineMarkdown(heading[2]) + "</h" + level + ">");
-            continue;
-        }
-
-        // Listas sin convertir los guiones de texto normal en listas.
-        const unordered = line.match(/^\s*[-*+]\s+(.+)$/);
-        const ordered = line.match(/^\s*\d+[.)]\s+(.+)$/);
-        if (unordered || ordered) {
-            flushParagraph();
-            const wanted = unordered ? "ul" : "ol";
-            if (listType !== wanted) {
-                closeList();
-                listType = wanted;
-                html.push("<" + listType + ">");
-            }
-            html.push("<li>" + toolboxInlineMarkdown((unordered || ordered)[1]) + "</li>");
-            continue;
-        }
-
-        // Citas.
-        const quote = line.match(/^\s*>\s?(.*)$/);
-        if (quote) {
-            closeEverything();
-            html.push("<blockquote>" + toolboxInlineMarkdown(quote[1]) + "</blockquote>");
-            continue;
-        }
-
-        if (!line.trim()) {
-            closeEverything();
-            continue;
-        }
-
-        closeList();
-        paragraph.push(line);
-    }
-
-    if (inCode) {
-        html.push("<pre><code>" + codeLines.join("\n") + "</code></pre>");
-    } else {
-        closeEverything();
-    }
-
-    return '<div class="toolbox-markdown">' + html.join("\n") + "</div>";
+function renameInput(c) {
+  const inp = el('input', 'rename-input'); inp.value = c.title; inp.maxLength = 60; inp.setAttribute('aria-label', 'Nombre de la conversación');
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); commitRename(inp.value); } else if (e.key === 'Escape') { e.preventDefault(); cancelRename(); } e.stopPropagation(); });
+  inp.addEventListener('blur', () => commitRename(inp.value));
+  inp.addEventListener('click', e => e.stopPropagation());
+  return inp;
 }
-
+function focusRename() {
+  if (!renaming) return;
+  const inp = document.querySelector('.rename-input');
+  if (inp && document.activeElement !== inp) { inp.focus(); inp.select(); }
+}
+function startRename(id, where) { renaming = { id, where }; renderSidebar(); renderHeader(); }
+function cancelRename() { if (!renaming) return; renaming = null; renderSidebar(); renderHeader(); }
+function commitRename(value) {
+  if (!renaming) return;
+  const id = renaming.id; renaming = null;
+  const c = getConv(id), v = cleanTitle(value);
+  if (c && v && v !== c.title) { c.title = v; c.titleLocked = true; c.titleAuto = false; save(); toast('Nombre actualizado ✓'); }
+  renderSidebar(); renderHeader();
+}
 
 /* =========================================================
-   RENDER CHAT
+   RENDER: HEADER
 ========================================================= */
-
-function renderCurrentConversation() {
-
-    const container =
-        document.getElementById(
-            "toolboxAiMessages"
-        );
-
-
-    const conversation =
-        getCurrentConversation();
-
-
-    if (!conversation) {
-
-        container.innerHTML = `
-            <div id="aiWelcome" class="ai-welcome">
-
-                <div class="ai-welcome-logo">
-                    ✦
-                </div>
-
-                <h1>
-                    Hola, soy
-                    <span>TOOLBOX AI</span>
-                </h1>
-
-                <p>
-                    Tu asistente inteligente.
-                    Pregúntame lo que quieras.
-                </p>
-
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "currentConversationTitle"
-    ).innerText =
-        conversation.title;
-
-
-    if (
-        conversation.messages.length === 0
-    ) {
-
-        container.innerHTML = `
-            <div id="aiWelcome" class="ai-welcome">
-
-                <div class="ai-welcome-logo">
-                    ✦
-                </div>
-
-                <h1>
-                    Nueva
-                    <span>conversación</span>
-                </h1>
-
-                <p>
-                    ¿Qué quieres hacer hoy?
-                </p>
-
-                <div class="ai-suggestions">
-
-                    <button
-                        class="ai-suggestion"
-                        onclick="useSuggestion('Explícame algo interesante y después hazme una pregunta para comprobar si lo entendí.')"
-                    >
-                        🧠 Aprender
-                    </button>
-
-                    <button
-                        class="ai-suggestion"
-                        onclick="useSuggestion('Ayúdame con programación y explícame los conceptos paso a paso.')"
-                    >
-                        💻 Programar
-                    </button>
-
-                </div>
-
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML = "";
-
-
-    conversation.messages.forEach(
-        message => {
-
-            addMessageToDOM(
-                message.role,
-                message.content
-            );
-
-        }
-    );
-
-
-    scrollAIToBottom();
-
+function renderHeader() {
+  const row = $('titleRow'); row.innerHTML = '';
+  const c = current();
+  if (!c) { row.appendChild(el('span', 'title-text', 'TOOLBOX AI')); return; }
+  if (renaming && renaming.id === c.id && renaming.where === 'head') {
+    row.appendChild(renameInput(c)); focusRename();
+  } else {
+    const t = el('span', 'title-text' + (R(c.id).titling ? ' titling' : ''), R(c.id).shown != null ? R(c.id).shown : c.title);
+    t.title = 'Clic para cambiar el nombre'; t.tabIndex = 0; t.setAttribute('role', 'button');
+    t.addEventListener('click', () => startRename(c.id, 'head'));
+    t.addEventListener('keydown', e => { if (e.key === 'Enter') startRename(c.id, 'head'); });
+    row.appendChild(t);
+    if (c.pinned) row.appendChild(el('span', 'conv-pin', '📌'));
+  }
+  $('pinItem').textContent = c.pinned ? '📍 Quitar de fijadas' : '📌 Fijar conversación';
+  const n = c.messages.length;
+  $('headSub').textContent = n ? n + (n === 1 ? ' mensaje' : ' mensajes') + ' · TOOLBOX AI · Groq' : 'TOOLBOX AI · Groq';
 }
-
-
-function addMessageToDOM(
-    role,
-    content
-) {
-
-    const container =
-        document.getElementById(
-            "toolboxAiMessages"
-        );
-
-
-    const row =
-        document.createElement(
-            "div"
-        );
-
-
-    row.className =
-        "ai-chat-row " +
-        (
-            role === "user"
-            ? "user"
-            : ""
-        );
-
-
-    if (role !== "user") {
-
-        const avatar =
-            document.createElement(
-                "div"
-            );
-
-        avatar.className =
-            "ai-chat-avatar";
-
-        avatar.innerText =
-            "✦";
-
-        row.appendChild(
-            avatar
-        );
-
-    }
-
-
-    const bubble =
-        document.createElement(
-            "div"
-        );
-
-    bubble.className =
-        "ai-chat-bubble";
-
-    if (role === "user") {
-
-        bubble.innerText =
-            content;
-
-    } else {
-
-        bubble.innerHTML =
-            renderToolboxMarkdown(content);
-
-    }
-
-
-    if (role === "user") {
-
-        row.appendChild(
-            bubble
-        );
-
-    } else {
-
-        const contentWrap =
-            document.createElement(
-                "div"
-            );
-
-        contentWrap.className =
-            "ai-chat-content";
-
-        contentWrap.appendChild(
-            bubble
-        );
-
-
-        const actions =
-            document.createElement(
-                "div"
-            );
-
-        actions.className =
-            "ai-message-actions";
-
-
-        const copyButton =
-            document.createElement(
-                "button"
-            );
-
-        copyButton.className =
-            "ai-copy-button";
-
-        copyButton.type =
-            "button";
-
-        copyButton.title =
-            "Copiar respuesta";
-
-        copyButton.innerText =
-            "📋 Copiar";
-
-        copyButton.onclick =
-            function() {
-
-                navigator.clipboard
-                    .writeText(content);
-
-                copyButton.innerText =
-                    "✅ Copiado";
-
-                setTimeout(
-                    function() {
-
-                        copyButton.innerText =
-                            "📋 Copiar";
-
-                    },
-                    1500
-                );
-
-            };
-
-        actions.appendChild(
-            copyButton
-        );
-
-        contentWrap.appendChild(
-            actions
-        );
-
-        row.appendChild(
-            contentWrap
-        );
-
-    }
-
-
-    container.appendChild(
-        row
-    );
-
-}
-
 
 /* =========================================================
-   ENVIAR MENSAJE
+   RENDER: MENSAJES
 ========================================================= */
-async function sendToolboxAI() {
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-
-    const text =
-        input.value.trim();
-
-
-    if (!text) {
-        return;
-    }
-
-
-    let conversation =
-        getCurrentConversation();
-
-
-    if (!conversation) {
-
-        createNewConversation();
-
-        conversation =
-            getCurrentConversation();
-
-    }
-
-
-    // =====================================================
-    // EVITAR DOS PETICIONES AL MISMO TIEMPO
-    // =====================================================
-
-    if (conversation.aiBusy) {
-
-        return;
-
-    }
-
-
-    conversation.aiBusy = true;
-
-
-    // =====================================================
-    // AÑADIR MENSAJE DEL USUARIO
-    // =====================================================
-
-    conversation.messages.push({
-
-        role: "user",
-
-        content: text
-
-    });
-
-
-    // =====================================================
-    // TÍTULO
-    // =====================================================
-
-    if (
-        conversation.messages.length === 1
-    ) {
-
-        conversation.title =
-            createConversationTitle(
-                text
-            );
-
-    }
-
-
-    // =====================================================
-    // LIMPIAR INPUT
-    // =====================================================
-
-    input.value = "";
-
-    updateCharCounter();
-
-    autoResizeAIInput(input);
-
-
-    // =====================================================
-    // GUARDAR
-    // =====================================================
-
-    saveConversations();
-
-    renderConversationList();
-
-    renderCurrentConversation();
-
-
-    // =====================================================
-    // INDICADOR
-    // =====================================================
-
-    const typing =
-        document.getElementById(
-            "toolboxAiTyping"
-        );
-
-
-    typing.classList.add(
-        "active"
-    );
-
-
-    try {
-
-        // =================================================
-        // MANDAMOS TODO EL HISTORIAL
-        // INCLUIDO EL MENSAJE ACTUAL
-        // =================================================
-
-        const messages =
-            conversation.messages.map(
-                message => ({
-
-                    role:
-                        message.role,
-
-                    content:
-                        message.content
-
-                })
-            );
-
-
-        // =================================================
-        // GROQ
-        // =================================================
-
-        const reply =
-            await askGemini(
-                messages,
-                "normal"
-            );
-
-
-        // =================================================
-        // RESPUESTA
-        // =================================================
-
-        conversation.messages.push({
-
-            role:
-                "assistant",
-
-            content:
-                reply
-
-        });
-
-
-        // =================================================
-        // GUARDAR
-        // =================================================
-
-        saveConversations();
-
-        renderConversationList();
-
-        renderCurrentConversation();
-
-
-    } catch (error) {
-
-        console.error(
-            "TOOLBOX AI ERROR:",
-            error
-        );
-
-
-        conversation.messages.push({
-
-            role:
-                "assistant",
-
-            content:
-                "❌ " + error.message
-
-        });
-
-
-        saveConversations();
-
-        renderCurrentConversation();
-
-
-    } finally {
-
-        conversation.aiBusy =
-            false;
-
-        // Guardamos también el estado final.
-        // Así, al salir de TOOLBOX y volver a entrar,
-        // la conversación no queda bloqueada como si la IA siguiera pensando.
-        saveConversations();
-
-        typing.classList.remove(
-            "active"
-        );
-
-    }
-
+function buildWelcome() {
+  const w = el('div', 'welcome');
+  w.appendChild(el('div', 'welcome-logo', '✦'));
+  const h = el('h1'); h.append('Hola, soy '); h.appendChild(el('span', null, 'TOOLBOX AI')); w.appendChild(h);
+  w.appendChild(el('p', null, 'Tu asistente inteligente. Puedo explicarte temas, hacerte esquemas, resúmenes y tablas, ayudarte a estudiar, mejorar textos y programar contigo.'));
+  const cards = el('div', 'cards');
+  SUGGESTIONS.forEach((s, i) => {
+    const b = el('button', 'card-s'); b.type = 'button'; b.style.setProperty('--i', i); b.dataset.sug = i;
+    b.appendChild(el('span', 'ic', s.icon));
+    const d = el('span'); d.appendChild(el('strong', null, s.title)); d.appendChild(el('small', null, s.hint)); b.appendChild(d);
+    cards.appendChild(b);
+  });
+  w.appendChild(cards);
+  return w;
 }
-/* =========================================================
-   PROMPT CENTRAL
-========================================================= */
+function mkAct(act, label, icon) { const b = el('button', 'act'); b.type = 'button'; b.dataset.act = act; b.append(icon + ' '); b.appendChild(document.createTextNode(label)); return b; }
 
-function buildCentralPrompt(text) {
-    return `
-Eres TOOLBOX AI, un asistente de inteligencia artificial general integrado en TOOLBOX.
+function buildRow(conv, m, i, ctx) {
+  const isUser = m.role === 'user';
+  const row = el('div', 'ai-row ' + (isUser ? 'user' : 'bot') + (ctx.isNew ? ' is-new' : '')); row.dataset.idx = i;
+  if ((isUser && ctx.isLast && !R(conv.id).busy) || m.error) row.classList.add('show-meta');
+  if (!isUser) row.appendChild(el('div', 'avatar', '✦'));
+  const col = el('div', 'ai-col');
+  const bubble = el('div', 'ai-bubble' + (m.error ? ' is-error' : ''));
+  if (isUser) bubble.textContent = m.content;
+  else if (ctx.reveal && CFG.typewriter) { bubble.innerHTML = '<div class="md"></div>'; queueMicrotask(() => startReveal(conv.id, bubble, m.content)); }
+  else bubble.innerHTML = '<div class="md">' + MD.render(m.content) + '</div>';
+  col.appendChild(bubble);
 
-Tu objetivo principal es responder de forma natural, útil, clara y coherente a lo que el usuario te diga.
-
-REGLAS IMPORTANTES:
-
-1. RESPONDE SOLO A LO QUE EL USUARIO ESTÁ HABLANDO.
-   No introduzcas temas que el usuario no haya mencionado ni pedido.
-
-2. NO HABLES DE PROGRAMACIÓN POR DEFECTO.
-   Solo habla de Python, HTML, CSS, JavaScript, programación, código o desarrollo de aplicaciones cuando el usuario pregunte por esos temas o cuando sean claramente necesarios para responder.
-
-3. NO MENCIONES LAS FUNCIONES DE TOOLBOX SIN MOTIVO.
-   No digas constantemente que puedes ayudar con programación, diseño, herramientas, etc.
-
-4. MANTÉN EL CONTEXTO.
-   Si el usuario continúa hablando del mismo tema, utiliza los mensajes anteriores para entender a qué se refiere.
-   Por ejemplo, si primero pregunta "¿qué es Marte?" y después dice "¿y cuánto tarda en llegar?", entiende que sigue hablando de Marte.
-
-5. SI EL USUARIO CAMBIA DE TEMA, CAMBIA DE TEMA.
-   No sigas hablando del tema anterior si el nuevo mensaje trata de algo diferente.
-
-6. HABLA DE FORMA NATURAL.
-   No conviertas todas las respuestas en documentos o apuntes.
-
-7. NO ABUSES DEL MARKDOWN.
-   Evita utilizar muchos asteriscos.
-   No utilices negritas constantemente.
-   No utilices hashtags (#, ##, ###) para crear títulos salvo que el usuario los pida o sean realmente necesarios.
-   No pongas títulos innecesarios.
-   Utiliza párrafos normales siempre que sea suficiente.
-
-8. UTILIZA LISTAS SOLO CUANDO AYUDEN.
-   No conviertas una respuesta sencilla en una lista de muchos puntos.
-
-9. FORMATO VISUAL.
-   Puedes usar Markdown básico cuando realmente ayude a leer la respuesta: **negrita**, *cursiva*, títulos, listas, citas, separadores de línea y bloques de código. TOOLBOX AI mostrará ese formato visualmente, así que no escribas etiquetas HTML. No uses Markdown por obligación.
-
-10. ADAPTA LA RESPUESTA AL USUARIO.
-   Si pregunta algo sencillo, responde de forma sencilla.
-   Si pide una explicación profunda, puedes dar más detalles.
-
-10. CUANDO TE PIDAN EXPLICAR ALGO:
-   Explica el concepto claramente.
-   Utiliza ejemplos si ayudan a entenderlo.
-   Si el tema es complicado, divídelo en partes sencillas.
-   Al final puedes preguntar de forma natural si quiere aprenderlo más a fondo.
-
-11. SI EL USUARIO QUIERE APRENDER:
-   Actúa como profesor.
-   Explica paso a paso, utiliza ejemplos y pequeñas preguntas para comprobar que entiende el concepto.
-
-12. SI EL USUARIO PIDE PROGRAMACIÓN:
-   Entonces sí puedes hablar de programación y proporcionar código.
-   Explica el código de forma comprensible y procura que funcione.
-
-13. SI EL USUARIO PIDE ESCRITURA:
-   Ayuda con poemas, historias, textos, ideas, correcciones o cualquier otro tipo de escritura que solicite.
-
-14. NO INVENTES INFORMACIÓN.
-   Si no estás seguro de algo, dilo claramente.
-
-15. NO REPITAS LA PREGUNTA DEL USUARIO SIN NECESIDAD.
-   Responde directamente.
-
-16. NO DIGAS QUE ERES UNA PERSONA.
-   No afirmes tener experiencias personales.
-
-17. RESPONDE EN EL IDIOMA DEL USUARIO.
-   Si el usuario escribe en español, responde en español.
-   Si cambia claramente a otro idioma, responde en ese idioma.
-
-La conversación puede contener mensajes anteriores. Utilízalos únicamente para comprender correctamente el mensaje actual y mantener el contexto.
-
-MENSAJE ACTUAL DEL USUARIO:
-
-${text}
-    `;
+  const meta = el('div', 'ai-meta');
+  if (isUser && m.style) { const st = STYLES.find(s => s.id === m.style); if (st) meta.appendChild(el('span', 'style-badge', st.icon + ' ' + st.label)); }
+  if (m.ts) meta.appendChild(el('span', 'time', fmtTime(m.ts)));
+  if (isUser) {
+    meta.appendChild(mkAct('edit', 'Editar', '✏️'));
+    meta.appendChild(mkAct('copy', 'Copiar', '📋'));
+    if (ctx.isLast && !R(conv.id).busy) meta.appendChild(mkAct('retry', 'Generar respuesta', '↻'));
+  } else if (m.error) {
+    meta.appendChild(mkAct('retry-error', 'Reintentar', '↻'));
+  } else {
+    meta.appendChild(mkAct('copy', 'Copiar', '📋'));
+    if (ctx.isLast) meta.appendChild(mkAct('regen', 'Regenerar', '🔄'));
+  }
+  col.appendChild(meta);
+  row.appendChild(col);
+  return row;
 }
+function buildTyping() {
+  const row = el('div', 'ai-row bot typing-row is-new'); row.id = 'typingRow';
+  row.appendChild(el('div', 'avatar', '✦'));
+  const b = el('div', 'ai-bubble');
+  const d = el('div', 'dots'); d.innerHTML = '<span></span><span></span><span></span>';
+  b.appendChild(d); const l = el('span', 'typing-label', 'TOOLBOX AI está pensando…'); l.id = 'typingLabel'; b.appendChild(l);
+  row.appendChild(b); return row;
+}
+function renderThread(opts) {
+  opts = opts || {};
+  finishReveal();
+  const msgBox = $('messages'), prevTop = msgBox.scrollTop;
+  const conv = current(), th = $('thread'); th.innerHTML = '';
+  if (!conv || !conv.messages.length) { th.appendChild(buildWelcome()); $('messages').scrollTop = 0; updateSend(); renderHeader(); return; }
+  conv.messages.forEach((m, i) => {
+    const isLast = i === conv.messages.length - 1;
+    th.appendChild(buildRow(conv, m, i, { isNew: opts.animateLast && isLast, reveal: opts.revealLast && isLast && m.role === 'assistant' && !m.error, isLast }));
+  });
+  if (R(conv.id).busy) th.appendChild(buildTyping());
+  if (opts.keepScroll !== true) scrollBottom(false);
+  else msgBox.scrollTo({ top: stick ? msgBox.scrollHeight : prevTop, behavior: 'instant' });
+  updateSend(); renderHeader();
+}
+function startTypingRow() {
+  const th = $('thread'); if ($('typingRow')) return;
+  const w = th.querySelector('.welcome'); if (w) w.remove();
+  th.appendChild(buildTyping()); if (stick) scrollBottom(false);
+  const r = R(currentId); clearTimeout(r.typingTimer);
+  r.typingTimer = setTimeout(() => { const l = $('typingLabel'); if (l) l.textContent = 'Sigue pensando… puedes pulsar ■ para cancelar'; }, 9000);
+}
+function stopTypingRow(id) { const t = $('typingRow'); if (t) t.remove(); if (id) clearTimeout(R(id).typingTimer); }
 
+function startReveal(id, bubble, text) {
+  const r = R(id);
+  const total = text.length, frames = Math.min(200, Math.max(24, Math.round(total / 11))), step = Math.max(2, Math.ceil(total / frames));
+  let pos = 0, raf = 0, done = false;
+  bubble.classList.add('streaming');
+  const content = bubble.querySelector('.md');
+  const finish = () => {
+    if (done) return; done = true; cancelAnimationFrame(raf);
+    bubble.classList.remove('streaming'); content.innerHTML = MD.render(text);
+    if (r.reveal && r.reveal.finish === finish) r.reveal = null;
+    updateSend(); if (stick) scrollBottom(false);
+  };
+  const tick = () => {
+    if (done) return;
+    pos = Math.min(total, pos + step); content.innerHTML = MD.render(text.slice(0, pos));
+    if (stick) scrollBottom(false);
+    if (pos >= total) finish(); else raf = requestAnimationFrame(tick);
+  };
+  r.reveal = { finish }; updateSend();
+  raf = requestAnimationFrame(tick);
+}
+function finishReveal() { Object.keys(rt).forEach(id => { if (rt[id].reveal) rt[id].reveal.finish(); }); }
+
+function scrollBottom(smooth) { const m = $('messages'); m.scrollTo({ top: m.scrollHeight, behavior: smooth ? 'smooth' : 'instant' }); }
+function onScroll() {
+  const m = $('messages'); const gap = m.scrollHeight - m.scrollTop - m.clientHeight;
+  stick = gap < 90; $('fab').hidden = gap < 260;
+}
 
 /* =========================================================
-   TÍTULOS AUTOMÁTICOS
+   CHIPS DE FORMATO + COMPOSER
 ========================================================= */
+function renderChips() {
+  const box = $('chips'); box.innerHTML = '';
+  STYLES.forEach(s => {
+    const b = el('button', 'chip' + (pendingStyle === s.id ? ' on' : ''), s.icon + ' ' + s.label);
+    b.type = 'button'; b.dataset.style = s.id; b.setAttribute('aria-pressed', pendingStyle === s.id); box.appendChild(b);
+  });
+  const st = STYLES.find(s => s.id === pendingStyle);
+  $('styleHint').textContent = st ? '✦ ' + st.hint : '';
+}
+function setStyle(id) { pendingStyle = (pendingStyle === id) ? null : id; renderChips(); $('aiInput').focus(); }
+function resizeInput() { const t = $('aiInput'); t.style.height = 'auto'; t.style.height = Math.min(t.scrollHeight, 200) + 'px'; }
+function updateCounter() {
+  const n = $('aiInput').value.length, c = $('counter');
+  c.textContent = n; c.className = n > 11000 ? 'max' : n > 9000 ? 'warn' : '';
+}
+function updateSend() {
+  const c = current(), r = c ? R(c.id) : null, b = $('sendBtn');
+  const working = !!(r && (r.busy || r.reveal));
+  b.classList.toggle('stop', working);
+  b.textContent = working ? '■' : '➤';
+  b.title = working ? 'Detener' : 'Enviar (Enter)'; b.setAttribute('aria-label', working ? 'Detener respuesta' : 'Enviar mensaje');
+}
 
-function createConversationTitle(text) {
-
-    let title =
-        text
-            .replace(/\s+/g," ")
-            .trim();
-
-
-    if (title.length > 38) {
-
-        title =
-            title.substring(
-                0,
-                38
-            ) + "...";
-
+/* =========================================================
+   ACCIONES
+========================================================= */
+function createConversation(focus) {
+  const cur = current();
+  if (cur && !cur.messages.length) { selectConv(cur.id); if (focus !== false) $('aiInput').focus(); return cur; }
+  const now = Date.now();
+  const c = normalizeConv({ id: String(now), title: 'Nueva conversación', messages: [], created: now, updated: now });
+  conversations.unshift(c); save(); selectConv(c.id);
+  if (focus !== false) $('aiInput').focus();
+  return c;
+}
+function selectConv(id) {
+  const prev = current(); if (prev) drafts[prev.id] = $('aiInput').value;
+  finishReveal();
+  currentId = id; renaming = null;
+  $('aiInput').value = drafts[id] || ''; resizeInput(); updateCounter();
+  stick = true;
+  renderSidebar(); renderHeader(); renderThread(); closeSidebar();
+}
+async function send(textOverride) {
+  const input = $('aiInput');
+  const text = (typeof textOverride === 'string' ? textOverride : input.value).trim();
+  if (!text) return;
+  let c = current() || createConversation(false);
+  const r = R(c.id);
+  if (r.busy) return;
+  if (r.reveal) r.reveal.finish();
+  c.messages.push({ role: 'user', content: text, ts: Date.now(), style: pendingStyle || undefined });
+  if (c.messages.filter(m => m.role === 'user').length === 1 && !c.titleLocked) { c.title = smartTitle(text); c.titleAuto = false; }
+  touch(c); input.value = ''; delete drafts[c.id]; resizeInput(); updateCounter();
+  pendingStyle = null; renderChips(); stick = true;
+  save(); renderSidebar(); renderThread({ animateLast: true });
+  await requestReply(c);
+}
+async function requestReply(c) {
+  const r = R(c.id);
+  r.busy = true; r.controller = new AbortController();
+  if (c.id === currentId) startTypingRow(); updateSend();
+  try {
+    const reply = await askAI(buildPayload(c), CFG.mode, r.controller.signal);
+    c.messages.push({ role: 'assistant', content: reply, ts: Date.now() }); touch(c); save();
+    r.busy = false; r.controller = null;
+    if (c.id === currentId) renderThread({ revealLast: true, keepScroll: true });
+    else toast('✦ Nueva respuesta en “' + c.title + '”');
+    renderSidebar();
+    autoTitle(c, false);
+  } catch (e) {
+    r.busy = false; r.controller = null;
+    if (e && e.name === 'AbortError') { toast('Respuesta detenida'); if (c.id === currentId) renderThread({ keepScroll: true }); }
+    else {
+      c.messages.push({ role: 'assistant', content: '❌ ' + (e && e.message ? e.message : 'Ha ocurrido un error.'), ts: Date.now(), error: true }); save();
+      if (c.id === currentId) renderThread();
     }
-
-
-    return title ||
-        "Nueva conversación";
-
+  } finally { stopTypingRow(c.id); updateSend(); renderHeader(); }
+}
+function stopWork() {
+  const c = current(); if (!c) return; const r = R(c.id);
+  if (r.reveal) { r.reveal.finish(); return; }
+  if (r.controller) r.controller.abort();
+}
+function regenerate() {
+  const c = current(); if (!c || R(c.id).busy) return;
+  const last = c.messages[c.messages.length - 1];
+  if (last && last.role === 'assistant') c.messages.pop();
+  save(); requestReply(c);
+}
+function retryError() {
+  const c = current(); if (!c || R(c.id).busy) return;
+  const last = c.messages[c.messages.length - 1];
+  if (last && last.error) c.messages.pop();
+  save(); requestReply(c);
+}
+function editMessage(idx) {
+  const c = current(); if (!c || R(c.id).busy) return;
+  const m = c.messages[idx]; if (!m || m.role !== 'user') return;
+  c.messages = c.messages.slice(0, idx); touch(c); save();
+  pendingStyle = m.style || null; renderChips();
+  const inp = $('aiInput'); inp.value = m.content; resizeInput(); updateCounter();
+  renderThread(); renderSidebar(); inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length);
+  toast('Editando mensaje — pulsa Enter para reenviar');
+}
+async function copyText(text, btn) {
+  try { await navigator.clipboard.writeText(text); }
+  catch (e) { const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (_) {} t.remove(); }
+  if (btn) { const old = btn.innerHTML; btn.classList.add('ok'); btn.textContent = '✓ Copiado'; setTimeout(() => { btn.classList.remove('ok'); btn.innerHTML = old; }, 1400); }
+}
+function togglePin(id) { const c = getConv(id); if (!c) return; c.pinned = !c.pinned; save(); renderSidebar(); renderHeader(); toast(c.pinned ? '📌 Conversación fijada' : 'Conversación desfijada'); }
+async function deleteConv(id) {
+  const c = getConv(id); if (!c) return;
+  const ok = await confirmBox('¿Eliminar conversación?', '“' + c.title + '” se eliminará de este dispositivo. Podrás deshacerlo unos segundos.', 'Eliminar');
+  if (!ok) return;
+  const index = conversations.indexOf(c);
+  conversations.splice(index, 1); lastDeleted = { c, index };
+  if (currentId === id) { currentId = conversations.length ? [...conversations].sort((a, b) => b.updated - a.updated)[0].id : null; if (!currentId) { createConversation(false); } else selectConv(currentId); }
+  save(); renderSidebar(); renderHeader(); renderThread();
+  toast('Conversación eliminada', { action: 'Deshacer', onAction: () => { if (!lastDeleted) return; conversations.splice(Math.min(lastDeleted.index, conversations.length), 0, lastDeleted.c); const id2 = lastDeleted.c.id; lastDeleted = null; save(); selectConv(id2); toast('Conversación restaurada ✓'); } });
+}
+async function clearAll() {
+  if (!conversations.length) return;
+  const ok = await confirmBox('¿Borrar todas las conversaciones?', 'Se eliminarán las ' + conversations.length + ' conversaciones guardadas en este dispositivo. Esta acción no se puede deshacer.', 'Borrar todo');
+  if (!ok) return;
+  conversations = []; currentId = null; save(); createConversation(false); toast('Todo borrado');
+}
+function convToMarkdown(c) {
+  const head = '# ' + c.title + '\n\n_Exportado de TOOLBOX AI · ' + new Date().toLocaleString('es-ES') + '_\n\n';
+  return head + c.messages.filter(m => !m.error).map(m => (m.role === 'user' ? '### 🧑 Tú' : '### ✦ TOOLBOX AI') + '\n\n' + m.content).join('\n\n---\n\n') + '\n';
+}
+function convToText(c) { return c.title + '\n' + '='.repeat(Math.min(c.title.length, 60)) + '\n\n' + c.messages.filter(m => !m.error).map(m => (m.role === 'user' ? 'TÚ' : 'TOOLBOX AI') + ':\n' + m.content).join('\n\n----------\n\n') + '\n'; }
+function download(name, text, mime) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: mime + ';charset=utf-8' })); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+const slug = s => norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'conversacion';
+function menuAction(act) {
+  const c = current(); closeMenu(); if (!c) return;
+  if (act === 'rename') startRename(c.id, 'head');
+  else if (act === 'retitle') { if (!c.messages.some(m => m.role === 'assistant' && !m.error)) toast('Haz primero una pregunta para poder titularla'); else { toast('✨ Buscando el mejor nombre…'); autoTitle(c, true); } }
+  else if (act === 'pin') togglePin(c.id);
+  else if (act === 'copy') { if (!c.messages.length) return toast('La conversación está vacía'); copyText(convToMarkdown(c)); toast('Conversación copiada ✓'); }
+  else if (act === 'md') { if (!c.messages.length) return toast('La conversación está vacía'); download(slug(c.title) + '.md', convToMarkdown(c), 'text/markdown'); }
+  else if (act === 'txt') { if (!c.messages.length) return toast('La conversación está vacía'); download(slug(c.title) + '.txt', convToText(c), 'text/plain'); }
+  else if (act === 'delete') deleteConv(c.id);
 }
 
-
 /* =========================================================
-   SUGERENCIAS
+   UI: toasts, modal, menús, tema, sidebar móvil
 ========================================================= */
-
-function useSuggestion(text) {
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    input.value =
-        text;
-
-    updateCharCounter();
-
-    autoResizeAIInput(input);
-
-    input.focus();
-
+function toast(msg, opt) {
+  opt = opt || {};
+  const t = el('div', 'toast'); t.appendChild(el('span', null, msg));
+  if (opt.action) { const b = el('button', null, opt.action); b.type = 'button'; b.addEventListener('click', () => { opt.onAction && opt.onAction(); kill(); }); t.appendChild(b); }
+  $('toasts').appendChild(t);
+  const kill = () => { if (!t.parentNode) return; t.classList.add('out'); setTimeout(() => t.remove(), 260); };
+  setTimeout(kill, opt.action ? 7000 : 2600);
 }
-
+let modalResolve = null;
+function confirmBox(title, text, okLabel) {
+  $('modalTitle').textContent = title; $('modalText').textContent = text; $('modalOk').textContent = okLabel || 'Aceptar';
+  $('modal').hidden = false; $('modalOk').focus();
+  return new Promise(res => { modalResolve = res; });
+}
+function closeModal(v) { $('modal').hidden = true; if (modalResolve) { modalResolve(v); modalResolve = null; } }
+function closeMenu() { $('headMenu').hidden = true; $('moreBtn').setAttribute('aria-expanded', 'false'); }
+function openSidebar() { $('sidebar').classList.add('open'); $('scrim').classList.add('show'); }
+function closeSidebar() { $('sidebar').classList.remove('open'); $('scrim').classList.remove('show'); }
+function setTheme(light) {
+  document.body.classList.toggle('light', light); $('themeBtn').textContent = light ? '☀️' : '🌙';
+  try { localStorage.setItem(CFG.themeKey, light ? 'light' : 'dark'); } catch (e) {}
+}
+function setOnline(on) { $('statusDot').classList.toggle('off', !on); $('statusText').textContent = on ? 'Groq conectado' : 'Sin conexión'; }
 
 /* =========================================================
-   INPUT IA
+   EVENTOS
 ========================================================= */
+function bind() {
+  $('newChat').addEventListener('click', () => createConversation());
+  $('newChatTop').addEventListener('click', () => createConversation());
+  $('menuBtn').addEventListener('click', openSidebar);
+  $('sbClose').addEventListener('click', closeSidebar);
+  $('scrim').addEventListener('click', closeSidebar);
+  $('themeBtn').addEventListener('click', () => setTheme(!document.body.classList.contains('light')));
+  $('moreBtn').addEventListener('click', e => { e.stopPropagation(); const h = $('headMenu').hidden; $('headMenu').hidden = !h; $('moreBtn').setAttribute('aria-expanded', String(h)); });
+  $('headMenu').addEventListener('click', e => { const b = e.target.closest('[data-menu]'); if (b) menuAction(b.dataset.menu); });
+  document.addEventListener('click', e => { if (!e.target.closest('#headMenu') && !e.target.closest('#moreBtn')) closeMenu(); });
+  $('clearAll').addEventListener('click', clearAll);
+  $('modalOk').addEventListener('click', () => closeModal(true));
+  $('modalCancel').addEventListener('click', () => closeModal(false));
+  $('modal').addEventListener('click', e => { if (e.target === $('modal')) closeModal(false); });
 
-function toolboxAIKeyDown(event) {
+  $('convSearch').addEventListener('input', renderSidebar);
+  $('searchClear').addEventListener('click', () => { $('convSearch').value = ''; renderSidebar(); $('convSearch').focus(); });
 
-    if (
-        event.key === "Enter" &&
-        !event.shiftKey
-    ) {
+  $('convList').addEventListener('click', e => {
+    const item = e.target.closest('.conv-item'); if (!item) return;
+    const id = item.dataset.id, a = e.target.closest('[data-a]');
+    if (a) { e.stopPropagation(); if (a.dataset.a === 'rename') startRename(id, 'side'); else if (a.dataset.a === 'pin') togglePin(id); else if (a.dataset.a === 'delete') deleteConv(id); return; }
+    if (e.target.closest('.rename-input')) return;
+    if (id !== currentId) selectConv(id); else closeSidebar();
+  });
+  $('convList').addEventListener('dblclick', e => { const t = e.target.closest('.conv-title'); if (t) startRename(t.dataset.id, 'side'); });
+  $('convList').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.classList.contains('conv-item')) selectConv(e.target.dataset.id); });
 
-        event.preventDefault();
-
-        sendToolboxAI();
-
+  $('thread').addEventListener('click', e => {
+    const sug = e.target.closest('[data-sug]');
+    if (sug) {
+      const s = SUGGESTIONS[+sug.dataset.sug]; pendingStyle = s.style || null; renderChips();
+      const inp = $('aiInput'); inp.value = s.text; resizeInput(); updateCounter(); inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length);
+      if (s.send !== false) send(); return;
     }
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const c = current(); if (!c) return;
+    if (b.dataset.act === 'copycode') { const code = b.closest('.md-code').querySelector('code').textContent; copyText(code, b); return; }
+    const row = b.closest('.ai-row'); const idx = row ? +row.dataset.idx : -1; const m = c.messages[idx];
+    if (b.dataset.act === 'copy' && m) copyText(m.content, b);
+    else if (b.dataset.act === 'regen') regenerate();
+    else if (b.dataset.act === 'retry') { if (!R(c.id).busy) requestReply(c); }
+    else if (b.dataset.act === 'retry-error') retryError();
+    else if (b.dataset.act === 'edit') editMessage(idx);
+  });
 
+  $('chips').addEventListener('click', e => { const b = e.target.closest('[data-style]'); if (b) setStyle(b.dataset.style); });
+  const inp = $('aiInput');
+  inp.addEventListener('input', () => { resizeInput(); updateCounter(); });
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); const c = current(); if (c && (R(c.id).busy || R(c.id).reveal)) return; send(); } });
+  $('sendBtn').addEventListener('click', () => { const c = current(); if (c && (R(c.id).busy || R(c.id).reveal)) stopWork(); else send(); });
+  $('messages').addEventListener('scroll', onScroll, { passive: true });
+  $('fab').addEventListener('click', () => { stick = true; scrollBottom(true); });
+
+  document.addEventListener('keydown', e => {
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && e.key.toLowerCase() === 'k') { e.preventDefault(); openSidebar(); $('convSearch').focus(); $('convSearch').select(); }
+    else if (e.altKey && e.key.toLowerCase() === 'n') { e.preventDefault(); createConversation(); }
+    else if (e.key === 'Escape') { if (!$('modal').hidden) closeModal(false); else { closeMenu(); closeSidebar(); } }
+    else if (e.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); $('aiInput').focus(); }
+  });
+  window.addEventListener('online', () => setOnline(true));
+  window.addEventListener('offline', () => { setOnline(false); toast('Sin conexión a internet'); });
 }
-
-
-function autoResizeAIInput(textarea) {
-
-    textarea.style.height =
-        "auto";
-
-    textarea.style.height =
-        Math.min(
-            textarea.scrollHeight,
-            180
-        ) + "px";
-
-}
-
-
-function updateCharCounter() {
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    document.getElementById(
-        "aiCharCounter"
-    ).innerText =
-        input.value.length;
-
-}
-
-
-function scrollAIToBottom() {
-
-    const messages =
-        document.getElementById(
-            "toolboxAiMessages"
-        );
-
-    messages.scrollTop =
-        messages.scrollHeight;
-
-}
-
 
 /* =========================================================
-   SIDEBAR MÓVIL
+   INICIO
 ========================================================= */
-
-function toggleAISidebar() {
-
-    document
-        .getElementById(
-            "toolboxAiSidebar"
-        )
-        .classList.toggle(
-            "mobile-open"
-        );
-
-}
-
-
-function closeMobileSidebar() {
-
-    document
-        .getElementById(
-            "toolboxAiSidebar"
-        )
-        .classList.remove(
-            "mobile-open"
-        );
-
-}
-
-
-
-/* =========================================================
-   INICIALIZACIÓN TOOLBOX AI
-========================================================= */
-
-(function initToolboxAI() {
-
-    // Una conversación nunca debe conservar el bloqueo de una petición
-    // anterior después de recargar o volver a entrar en la página.
-    conversations.forEach(conversation => {
-        conversation.aiBusy = false;
-        if (!Array.isArray(conversation.messages)) {
-            conversation.messages = [];
-        }
-    });
-
-    if (conversations.length === 0) {
-        createNewConversation();
-    } else {
-        currentConversationId = conversations[0].id;
-        saveConversations();
-        renderConversationList();
-        renderCurrentConversation();
-    }
-
+(function init() {
+  let light = false;
+  try { light = localStorage.getItem(CFG.themeKey) === 'light'; } catch (e) {}
+  setTheme(light); setOnline(navigator.onLine !== false);
+  conversations = loadConversations();
+  bind(); renderChips();
+  if (!conversations.length) { createConversation(false); }
+  else { const first = [...conversations].sort((a, b) => b.updated - a.updated)[0]; selectConv(first.id); }
+  updateCounter(); resizeInput();
 })();
 
 </script>
