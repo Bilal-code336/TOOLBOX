@@ -1278,7 +1278,10 @@ textarea {
         20px;
 }
 
-/* Botón flotante que abre la página independiente de TOOLBOX AI */
+/* =========================================================
+   TOOLBOX AI — PANTALLA COMPLETA
+========================================================= */
+
 .toolbox-ai-button {
 
     position:
@@ -1377,102 +1380,1626 @@ textarea {
 }
 
 /* =========================================================
-   TOOLBOX AI — MARKDOWN VISUAL
+   APP IA
 ========================================================= */
-.toolbox-markdown {
-    line-height: 1.65;
-    word-break: break-word;
+
+.toolbox-ai-app {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        90000;
+
+    display:
+        none;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
 }
-.toolbox-markdown p {
-    margin: 0 0 12px;
+
+.toolbox-ai-app.open {
+    display:
+        flex;
 }
-.toolbox-markdown p:last-child {
-    margin-bottom: 0;
+
+/* =========================================================
+   SIDEBAR IA
+========================================================= */
+
+.toolbox-ai-sidebar {
+
+    width:
+        280px;
+
+    flex-shrink:
+        0;
+
+    background:
+        #0a0e17;
+
+    border-right:
+        none;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    padding:
+        18px;
 }
-.toolbox-markdown h1,
-.toolbox-markdown h2,
-.toolbox-markdown h3 {
-    margin: 18px 0 9px;
-    line-height: 1.3;
-    color: var(--text);
+
+.ai-sidebar-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        20px;
 }
-.toolbox-markdown h1 { font-size: 1.45rem; }
-.toolbox-markdown h2 { font-size: 1.25rem; }
-.toolbox-markdown h3 { font-size: 1.08rem; }
-.toolbox-markdown strong {
-    font-weight: 800;
-    color: var(--text);
+
+.ai-sidebar-brand {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
 }
-.toolbox-markdown em { font-style: italic; }
-.toolbox-markdown hr {
-    border: 0;
-    border-top: 1px solid var(--border);
-    margin: 18px 0;
+
+.ai-brand-logo {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        50%;
+
+    background:
+        #05070c;
+
+    border:
+        none;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
 }
-.toolbox-markdown ul,
-.toolbox-markdown ol {
-    margin: 8px 0 14px 24px;
-    padding: 0;
+
+.ai-brand-logo span {
+    position: absolute;
 }
-.toolbox-markdown li {
-    margin: 5px 0;
+
+.ai-brand-logo span:first-child {
+    transform: translate(-3px,-3px);
 }
-.toolbox-markdown blockquote {
-    margin: 12px 0;
-    padding: 8px 14px;
-    border-left: 3px solid #8b5cf6;
-    color: var(--muted);
-    background: rgba(139,92,246,.07);
-    border-radius: 0 9px 9px 0;
+
+.ai-brand-logo span:last-child {
+    transform: translate(8px,8px);
+    font-size: 11px;
 }
-.toolbox-markdown code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: .9em;
-    background: rgba(139,92,246,.12);
-    border: 1px solid rgba(139,92,246,.18);
-    border-radius: 6px;
-    padding: 2px 6px;
-}
-.toolbox-markdown pre {
-    margin: 13px 0;
-    padding: 14px;
-    overflow-x: auto;
-    background: #080d16;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-.toolbox-markdown pre code {
+
+.ai-sidebar-brand strong {
     display: block;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    white-space: pre;
+    font-size: 14px;
 }
-.toolbox-markdown a {
-    color: #a78bfa;
-    text-decoration: underline;
-    text-underline-offset: 2px;
+
+.ai-sidebar-brand small {
+    display: block;
+    color: var(--muted);
+    margin-top: 3px;
 }
-.toolbox-markdown table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 14px 0;
-    font-size: .94em;
+
+.ai-close-sidebar {
+
+    width:
+        36px;
+
+    height:
+        36px;
+
+    border:
+        none;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    border-radius:
+        50%;
+
+    font-size:
+        22px;
 }
-.toolbox-markdown th,
-.toolbox-markdown td {
+
+.new-chat-button {
+
+    width:
+        100%;
+
+    border:
+        none;
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    padding:
+        13px;
+
+    border-radius:
+        50px;
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-weight:
+        600;
+}
+
+.new-chat-button:hover {
+    background:
+        var(--purple2);
+}
+
+.conversation-search {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    margin:
+        16px 0;
+
+    padding:
+        0 14px;
+
+    border:
+        none;
+
+    border-radius:
+        50px;
+
+    background:
+        var(--input);
+}
+
+.conversation-search input {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    box-shadow:
+        none;
+
+    padding:
+        10px 5px;
+}
+
+.conversation-list {
+
+    flex:
+        1;
+
+    overflow-y:
+        auto;
+}
+
+.conversation-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        11px 14px;
+
+    border-radius:
+        14px;
+
+    margin-bottom:
+        4px;
+
+    color:
+        var(--muted);
+
+    cursor:
+        pointer;
+}
+
+.conversation-item:hover,
+.conversation-item.active {
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+}
+
+.conversation-title {
+
+    flex:
+        1;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+    font-size:
+        13px;
+}
+
+.delete-conversation {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        #77839a;
+
+    font-size:
+        15px;
+}
+
+.delete-conversation:hover {
+    color:
+        #ef4444;
+}
+
+.ai-sidebar-footer {
+
+    padding-top:
+        15px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+.ai-free-badge {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    margin-bottom:
+        8px;
+}
+
+.status-dot {
+
+    width:
+        9px;
+
+    height:
+        9px;
+
+    border-radius:
+        50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+        0 0 10px
+        rgba(34,197,94,.5);
+}
+
+.ai-free-badge strong {
+    display:
+        block;
+
+    font-size:
+        12px;
+}
+
+.ai-free-badge small {
+    color:
+        var(--muted);
+}
+
+.local-storage-info {
+
+    color:
+        #68758a;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.4;
+}
+
+/* =========================================================
+   MAIN IA
+========================================================= */
+
+.toolbox-ai-main {
+
+    flex:
+        1;
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+}
+
+.toolbox-ai-main-header {
+
+    min-height:
+        70px;
+
+    padding:
+        10px 20px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    border-bottom:
+        none;
+
+    background:
+        rgba(8,11,18,.7);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+.ai-header-title {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-header-icon {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--button);
+}
+
+.ai-header-title strong {
+    display:
+        block;
+}
+
+.ai-header-title small {
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+}
+
+.ai-header-actions button,
+.mobile-menu-button {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    font-size:
+        18px;
+}
+
+.mobile-menu-button {
+    display:
+        none;
+}
+
+/* =========================================================
+   MENSAJES IA
+========================================================= */
+
+.toolbox-ai-messages {
+
+    flex:
+        1;
+
+    overflow-y:
+        auto;
+
+    padding:
+        35px;
+
+    scroll-behavior:
+        smooth;
+}
+
+.ai-welcome {
+
+    max-width:
+        780px;
+
+    margin:
+        10vh auto;
+
+    text-align:
+        center;
+}
+
+.ai-welcome-logo {
+
+    font-size:
+        54px;
+
+    margin-bottom:
+        20px;
+}
+
+.ai-welcome h1 {
+
+    font-size:
+        clamp(30px,5vw,48px);
+
+    margin-bottom:
+        13px;
+}
+
+.ai-welcome h1 span {
+    color:
+        var(--purple2);
+}
+
+.ai-welcome p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        25px;
+}
+
+.ai-suggestions {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(200px,1fr));
+
+    gap:
+        10px;
+}
+
+.ai-suggestion {
+
+    padding:
+        15px;
+
+    border:
+        none;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border-radius:
+        18px;
+
+    text-align:
+        left;
+
+    transition:
+        background .15s;
+}
+
+.ai-suggestion:hover {
+
+    background:
+        var(--button);
+}
+
+/* =========================================================
+   BURBUJAS
+========================================================= */
+
+.ai-chat-row {
+
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto 25px;
+}
+
+.ai-chat-row.user {
+    justify-content:
+        flex-end;
+}
+
+.ai-chat-avatar {
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #05070c;
+
+    color:
+        white;
+
+    border:
+        none;
+}
+
+.ai-chat-bubble {
+
+    max-width:
+        min(750px,80%);
+
+    padding:
+        14px 19px;
+
+    border:
+        none;
+
+    border-radius:
+        22px;
+
+    background:
+        var(--card);
+
+    line-height:
+        1.65;
+
+    white-space:
+        pre-wrap;
+
+    word-break:
+        break-word;
+}
+
+.ai-chat-row.user .ai-chat-bubble {
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    border-radius:
+        22px;
+}
+
+.ai-chat-content {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    gap:
+        6px;
+}
+
+.ai-message-actions {
+
+    display:
+        flex;
+
+    opacity:
+        0;
+
+    transition:
+        opacity .15s;
+}
+
+.ai-chat-row:hover .ai-message-actions {
+    opacity:
+        1;
+}
+
+.ai-copy-button {
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    padding:
+        4px 10px;
+
+    border-radius:
+        50px;
+
+    cursor:
+        pointer;
+}
+
+.ai-copy-button:hover {
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+}
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.toolbox-ai-typing {
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    max-width:
+        900px;
+
+    margin:
+        0 auto;
+
+    padding:
+        0 20px 15px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+}
+
+.toolbox-ai-typing.active {
+    display:
+        flex;
+}
+
+.typing-dots {
+
+    display:
+        flex;
+
+    gap:
+        4px;
+}
+
+.typing-dots span {
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--muted);
+
+    animation:
+        typing .9s infinite;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay:
+        .15s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay:
+        .3s;
+}
+
+@keyframes typing {
+
+    0%,100% {
+        opacity: .3;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+/* =========================================================
+   COMPOSER IA
+========================================================= */
+
+.toolbox-ai-composer-wrapper {
+
+    padding:
+        12px 25px 20px;
+
+    background:
+        var(--bg);
+}
+
+.toolbox-ai-composer {
+
+    max-width:
+        900px;
+
+    margin:
+        auto;
+
+    border:
+        none;
+
+    border-radius:
+        28px;
+
+    background:
+        var(--input);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.18);
+
+    overflow:
+        hidden;
+}
+
+#toolboxAiInput {
+
+    width:
+        100%;
+
+    min-height:
+        65px;
+
+    max-height:
+        180px;
+
+    resize:
+        none;
+
+    border:
+        none;
+
+    border-radius:
+        0;
+
+    background:
+        transparent;
+
+    padding:
+        17px;
+
+    box-shadow:
+        none;
+
+    font-size:
+        15px;
+}
+
+.composer-bottom {
+
+    display:
+        flex;
+
+    justify-content:
+        flex-end;
+
+    align-items:
+        center;
+
+    padding:
+        0 14px 12px;
+}
+
+.composer-tool {
+
+    border:
+        none;
+
+    background:
+        var(--button);
+
+    color:
+        var(--text);
+
+    padding:
+        9px 15px;
+
+    border-radius:
+        50px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    font-size:
+        12px;
+
+    transition:
+        background .15s;
+}
+
+.composer-tool:hover {
+
+    background:
+        var(--purple);
+}
+
+.composer-right {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.ai-char-counter {
+
+    color:
+        #68758a;
+
+    font-size:
+        11px;
+}
+
+.ai-send-button {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--purple);
+
+    color:
+        white;
+
+    font-size:
+        18px;
+
+    transition:
+        background .15s;
+}
+
+.ai-send-button:hover {
+    background:
+        var(--purple2);
+}
+
+.ai-composer-disclaimer {
+
+    max-width:
+        900px;
+
+    margin:
+        8px auto 0;
+
+    text-align:
+        center;
+
+    color:
+        #64748b;
+
+    font-size:
+        9px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    margin-top:
+        80px;
+
+    padding:
+        45px 20px;
+
+    text-align:
+        center;
+
+    border-top:
+        1px solid var(--border);
+
+    color:
+        var(--muted);
+}
+
+footer strong {
+    color:
+        var(--purple2);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:800px) {
+
+    .image-editor {
+        grid-template-columns:
+            1fr;
+    }
+
+    .toolbox-ai-sidebar {
+
+        position:
+            absolute;
+
+        left:
+            0;
+
+        top:
+            0;
+
+        bottom:
+            0;
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform .25s;
+
+        z-index:
+            5;
+    }
+
+    .toolbox-ai-sidebar.mobile-open {
+        transform:
+            translateX(0);
+    }
+
+    .mobile-menu-button {
+        display:
+            block;
+    }
+
+    .toolbox-ai-main-header {
+        gap:
+            10px;
+    }
+}
+
+@media(max-width:600px) {
+
+    .nav-link {
+        display:
+            none;
+    }
+
+    .hero {
+        padding-top:
+            70px;
+    }
+
+    .tool-panel {
+        padding:
+            20px;
+    }
+
+    .toolbox-ai-messages {
+        padding:
+            20px 14px;
+    }
+
+    .toolbox-ai-composer-wrapper {
+        padding:
+            10px;
+    }
+
+    .toolbox-ai-button {
+
+        right:
+            15px;
+
+        bottom:
+            15px;
+
+        width:
+            58px;
+
+        height:
+            58px;
+    }
+
+    .ai-chat-bubble {
+        max-width:
+            88%;
+    }
+
+}
+/* =========================================================
+   GENERADOR DE CONTRASEÑAS MEMORABLES
+========================================================= */
+
+.password-generator-box {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--card2);
     border: 1px solid var(--border);
-    padding: 8px 10px;
+    border-radius: 22px;
+}
+
+.password-generator-box label {
+    display: block;
+    margin: 18px 0 8px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.password-generator-box input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    outline: none;
+    font-size: 15px;
+}
+
+.password-generator-box input:focus {
+    border-color: var(--purple2);
+}
+
+.password-generate-button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.password-result {
+    margin-top: 22px;
+    min-height: 60px;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    font-size: 18px;
+    font-family: monospace;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.password-copy-button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* =========================================================
+   FIX FONDO TOOLBOX AI
+========================================================= */
+
+.toolbox-ai-app {
+    background: #080b12 !important;
+}
+
+.toolbox-ai-app .toolbox-ai-main {
+    background: #080b12 !important;
+}
+
+.toolbox-ai-app .toolbox-ai-messages {
+    background: #080b12 !important;
+}
+
+.toolbox-ai-app .toolbox-ai-messages:hover,
+.toolbox-ai-app .toolbox-ai-messages:focus,
+.toolbox-ai-app .toolbox-ai-messages:active {
+    background: #080b12 !important;
+}
+
+/* =========================================================
+   POMODORO
+========================================================= */
+
+.pomodoro-box {
+    max-width: 760px;
+    margin: 10px auto 0;
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    text-align: center;
+    transition: background .25s, border-color .25s;
+}
+
+.pomodoro-box.focus-mode {
+    background: #4a171b;
+}
+
+.pomodoro-box.short-break-mode {
+    background: #173d2b;
+}
+
+.pomodoro-box.long-break-mode {
+    background: #123326;
+}
+
+.pomodoro-mode {
+    color: rgba(255,255,255,.78);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.pomodoro-time {
+    font-size: clamp(60px, 12vw, 105px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: #fff;
+    margin: 12px 0 25px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pomodoro-sessions {
+    color: rgba(255,255,255,.78);
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.pomodoro-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pomodoro-controls button {
+    min-width: 105px;
+}
+
+.pomodoro-settings {
+    margin-top: 25px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,.12);
     text-align: left;
 }
-.toolbox-markdown th {
-    background: rgba(139,92,246,.10);
-    font-weight: 800;
+
+.pomodoro-settings-title {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
-.toolbox-markdown img {
+
+.pomodoro-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pomodoro-settings-grid label {
+    display: block;
+    color: rgba(255,255,255,.68);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.pomodoro-settings-grid input {
+    background: rgba(0,0,0,.18);
+    color: #fff;
+    border-color: rgba(255,255,255,.14);
+}
+
+.pomodoro-note {
+    margin-top: 14px;
+    color: rgba(255,255,255,.55);
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+@media(max-width:600px) {
+    .pomodoro-box {
+        padding: 22px 15px;
+    }
+
+    .pomodoro-settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pomodoro-time {
+        letter-spacing: -2px;
+    }
+}
+
+/* =========================================================
+   DETECTOR DE TEXTO DE IMAGEN / OCR
+========================================================= */
+
+.ocr-box {
+    max-width: 850px;
+    margin: 10px auto 0;
+}
+
+.ocr-drop {
+    border: 2px dashed var(--border2);
+    border-radius: 18px;
+    padding: 35px 20px;
+    text-align: center;
+    transition: .2s;
+}
+
+.ocr-drop:hover {
+    border-color: var(--purple2);
+    background: rgba(124,58,237,.05);
+}
+
+.ocr-preview {
+    display: none;
     max-width: 100%;
-    border-radius: 10px;
+    max-height: 430px;
+    margin: 25px auto;
+    border-radius: 15px;
+    border: 1px solid var(--border);
 }
+
+.ocr-progress-wrap {
+    display: none;
+    margin-top: 20px;
+}
+
+.ocr-progress-bar {
+    width: 100%;
+    height: 9px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: var(--button);
+}
+
+.ocr-progress {
+    width: 0%;
+    height: 100%;
+    background: var(--purple);
+    transition: width .15s;
+}
+
+.ocr-status {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 9px;
+    text-align: center;
+}
+
+.ocr-result {
+    min-height: 220px;
+    margin-top: 20px;
+}
+
+.ocr-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ocr-actions button {
+    flex: 1;
+    min-width: 150px;
+}
+
+
+/* =========================================================
+   HUMANIZADOR — INTERFAZ LIMPIA
+========================================================= */
+
+.humanizador-panel {
+    max-width: 1080px;
+}
+
+.humanizador-options {
+    display:flex;
+    gap:8px;
+    margin:16px 0;
+    padding:4px;
+    width:max-content;
+    max-width:100%;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--card2);
+}
+
+.humanizador-option {
+    position:relative;
+}
+
+.humanizador-option input {
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.humanizador-option label {
+    display:block;
+    padding:9px 14px;
+    border-radius:9px;
+    color:var(--muted);
+    font-size:.86rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.18s ease;
+}
+
+.humanizador-option input:checked + label {
+    background:var(--button);
+    color:var(--text);
+}
+
+.humanizador-columns {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.humanizador-box {
+    min-width:0;
+}
+
+.humanizador-box-head {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin:0 0 8px;
+    color:var(--text);
+}
+
+.humanizador-box-head span {
+    color:var(--muted);
+    font-size:.76rem;
+    white-space:nowrap;
+}
+
+.humanizador-textarea,
+.humanizador-result {
+    width:100%;
+    min-height:340px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--input);
+    color:var(--text);
+    padding:16px;
+    line-height:1.65;
+}
+
+.humanizador-textarea {
+    resize:vertical;
+    outline:none;
+}
+
+.humanizador-textarea:focus {
+    border-color:#7c3aed;
+    box-shadow:0 0 0 3px rgba(124,58,237,.10);
+}
+
+.humanizador-result {
+    overflow:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.humanizador-result.is-empty {
+    color:var(--muted);
+}
+
+.humanizador-actions {
+    display:flex;
+    gap:9px;
+    margin-top:14px;
+}
+
+.humanizador-actions button {
+    min-width:0;
+}
+
+.humanizador-actions #humanizadorButton {
+    flex:1;
+}
+
+.humanizador-status {
+    margin-top:10px;
+    color:var(--muted);
+    font-size:.82rem;
+}
+
+@media (max-width:760px) {
+    .humanizador-options {
+        width:100%;
+    }
+
+    .humanizador-option {
+        flex:1;
+    }
+
+    .humanizador-option label {
+        text-align:center;
+    }
+
+    .humanizador-columns {
+        grid-template-columns:1fr;
+    }
+
+    .humanizador-textarea,
+    .humanizador-result {
+        min-height:240px;
+    }
+}
+
 
 
 /* =========================================================
@@ -1721,33 +3248,6 @@ body.light .planner-day-head { background:var(--card2); }
     .planner-actions button { flex:1; }
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-
-    margin-top:
-        80px;
-
-    padding:
-        45px 20px;
-
-    text-align:
-        center;
-
-    border-top:
-        1px solid var(--border);
-
-    color:
-        var(--muted);
-}
-
-footer strong {
-    color:
-        var(--purple2);
-}
-
 </style>
 </head>
 
@@ -1773,10 +3273,6 @@ footer strong {
 
         <a href="#herramientas" class="nav-link">
             Herramientas
-        </a>
-
-        <a href="/blog.html" class="nav-link">
-            Blog / Tutoriales
         </a>
 
         <button
@@ -3438,7 +4934,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 <footer>
 
     <div style="font-size:30px">
-       <span class="notranslate">🧰 TOOLBOX 2.9</span>
+       <span class="notranslate">🧰 TOOLBOX 2.5</span>
     </div>
 
     <br>
@@ -3465,23 +4961,359 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 </footer>
 
 
-<!-- TOOLBOX AI: acceso a la página independiente -->
-<a
+<!-- =========================================================
+     BOTÓN FLOTANTE IA
+========================================================= -->
+
+<button
     id="toolboxAiButton"
     class="toolbox-ai-button"
-    href="/TOOLBOXAI"
+    onclick="openToolboxAI()"
     title="Abrir TOOLBOX AI"
-    aria-label="Abrir TOOLBOX AI"
 >
-    <span class="ai-star star-one">✦</span>
-    <span class="ai-star star-two">✦</span>
-</a>
+
+    <span class="ai-star star-one">
+        ✦
+    </span>
+
+    <span class="ai-star star-two">
+        ✦
+    </span>
+
+</button>
+
+
+<!-- =========================================================
+     TOOLBOX AI COMPLETA
+========================================================= -->
+
+<div
+    id="toolboxAiApp"
+    class="toolbox-ai-app"
+>
+
+    <!-- SIDEBAR -->
+
+    <aside
+        id="toolboxAiSidebar"
+        class="toolbox-ai-sidebar"
+    >
+
+        <div class="ai-sidebar-top">
+
+            <div class="ai-sidebar-brand">
+
+                <div class="ai-brand-logo">
+
+                    <span>✦</span>
+                    <span>✦</span>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        TOOLBOX AI
+                    </strong>
+
+                    <small>
+                        Groq
+                    </small>
+
+                </div>
+
+            </div>
+
+            <button
+                class="ai-close-sidebar"
+                onclick="closeToolboxAI()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <button
+            class="new-chat-button"
+            onclick="createNewConversation()"
+        >
+
+            <span>＋</span>
+
+            Nueva conversación
+
+        </button>
+
+
+        <div class="conversation-search">
+
+            <span>⌕</span>
+
+            <input
+                id="conversationSearch"
+                placeholder="Buscar conversaciones..."
+                oninput="filterConversations()"
+            >
+
+        </div>
+
+
+        <div
+            id="conversationList"
+            class="conversation-list"
+        ></div>
+
+
+        <div class="ai-sidebar-footer">
+
+            <div class="ai-free-badge">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        Groq conectado
+                    </strong>
+
+                    <small>
+                        TOOLBOX AI
+                    </small>
+
+                </div>
+
+            </div>
+
+            <small class="local-storage-info">
+                Tus conversaciones se guardan
+                localmente en este dispositivo.
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="toolbox-ai-main">
+
+        <header
+            class="toolbox-ai-main-header"
+        >
+
+            <div
+                style="display:flex;align-items:center;gap:10px"
+            >
+
+                <button
+                    class="mobile-menu-button"
+                    onclick="toggleAISidebar()"
+                >
+                    ☰
+                </button>
+
+                <div class="ai-header-title">
+
+                    <div class="ai-header-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <strong
+                            id="currentConversationTitle"
+                        >
+                            Nueva conversación
+                        </strong>
+
+                        <small>
+                            TOOLBOX AI · Groq
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    class="mobile-menu-button"
+                    style="display:flex"
+                    onclick="createNewConversation()"
+                    title="Nueva conversación"
+                >
+                    ＋
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MENSAJES -->
+
+        <section
+            id="toolboxAiMessages"
+            class="toolbox-ai-messages"
+        >
+
+            <div
+                id="aiWelcome"
+                class="ai-welcome"
+            >
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Hola, soy
+                    <span>TOOLBOX AI</span>
+                </h1>
+
+                <p>
+                    Tu asistente inteligente dentro de TOOLBOX.
+                    Puedo explicarte temas, ayudarte a estudiar,
+                    mejorar textos, programar contigo, darte
+                    ejemplos y mucho más.
+                </p>
+
+                <div class="ai-suggestions">
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Explícame la fotosíntesis de forma sencilla y después pregúntame si quiero aprenderla mejor.')"
+                    >
+                        🌱 Explícame algo
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.')"
+                    >
+                        🐍 Aprende conmigo
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Ayúdame a crear una página web moderna con HTML, CSS y JavaScript.')"
+                    >
+                        💻 Ayúdame a programar
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Dame un reto interesante para aprender algo nuevo.')"
+                    >
+                        🧠 Sorpréndeme
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TYPING -->
+
+        <div
+            id="toolboxAiTyping"
+            class="toolbox-ai-typing"
+        >
+
+            <div class="ai-chat-avatar">
+                ✦
+            </div>
+
+            <span>
+                TOOLBOX AI está pensando
+            </span>
+
+            <div class="typing-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPOSER -->
+
+        <div class="toolbox-ai-composer-wrapper">
+
+            <div class="toolbox-ai-composer">
+
+                <textarea
+                    id="toolboxAiInput"
+                    rows="1"
+                    maxlength="12000"
+                    placeholder="Escribe un mensaje para TOOLBOX AI..."
+                    onkeydown="toolboxAIKeyDown(event)"
+                    oninput="autoResizeAIInput(this);updateCharCounter()"
+                ></textarea>
+
+
+                <div class="composer-bottom">
+
+                    <div class="composer-right">
+
+                        <span
+                            id="aiCharCounter"
+                            class="ai-char-counter"
+                        >
+                            0
+                        </span>
+
+                        <button
+                            id="toolboxAiSend"
+                            class="ai-send-button"
+                            onclick="sendToolboxAI()"
+                        >
+                            ➤
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-composer-disclaimer">
+
+                TOOLBOX AI utiliza Groq.
+                Puede cometer errores; comprueba la información importante.
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
 
 <script>
 
 /* =========================================================
    ESTADO GENERAL
 ========================================================= */
+
+let conversations =
+    JSON.parse(
+        localStorage.getItem("toolboxConversations") || "[]"
+    );
+
+let currentConversationId = null;
+
 
 /* =========================================================
    ABRIR / CERRAR HERRAMIENTAS
@@ -4865,6 +6697,674 @@ function getCurrentConversation() {
    ABRIR IA
 ========================================================= */
 
+function openToolboxAI() {
+
+    document
+        .getElementById(
+            "toolboxAiApp"
+        )
+        .classList.add("open");
+
+
+    if (!currentConversationId) {
+
+        if (conversations.length) {
+
+            currentConversationId =
+                conversations[0].id;
+
+        } else {
+
+            createNewConversation();
+
+            return;
+
+        }
+
+    }
+
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+}
+
+
+function closeToolboxAI() {
+
+    document
+        .getElementById(
+            "toolboxAiApp"
+        )
+        .classList.remove("open");
+
+    closeMobileSidebar();
+
+}
+
+
+/* =========================================================
+   CONVERSACIONES
+========================================================= */
+
+function renderConversationList() {
+
+    const list =
+        document.getElementById(
+            "conversationList"
+        );
+
+    const search =
+        document.getElementById(
+            "conversationSearch"
+        ).value
+        .toLowerCase();
+
+
+    list.innerHTML = "";
+
+
+    conversations
+        .filter(c =>
+            c.title
+                .toLowerCase()
+                .includes(search)
+        )
+        .forEach(conversation => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "conversation-item" +
+                (
+                    conversation.id ===
+                    currentConversationId
+                    ? " active"
+                    : ""
+                );
+
+
+            const title =
+                document.createElement(
+                    "span"
+                );
+
+            title.className =
+                "conversation-title";
+
+            title.innerText =
+                conversation.title;
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+            deleteButton.className =
+                "delete-conversation";
+
+            deleteButton.innerText =
+                "🗑";
+
+
+            deleteButton.onclick =
+                function(event) {
+
+                    event.stopPropagation();
+
+                    deleteConversation(
+                        conversation.id
+                    );
+
+                };
+
+
+            item.onclick =
+                function() {
+
+                    currentConversationId =
+                        conversation.id;
+
+                    renderConversationList();
+
+                    renderCurrentConversation();
+
+                    closeMobileSidebar();
+
+                };
+
+
+            item.appendChild(title);
+
+            item.appendChild(
+                deleteButton
+            );
+
+            list.appendChild(item);
+
+        });
+
+}
+
+
+function filterConversations() {
+
+    renderConversationList();
+
+}
+
+
+function deleteConversation(id) {
+
+    conversations =
+        conversations.filter(
+            c =>
+                c.id !== id
+        );
+
+
+    if (
+        currentConversationId === id
+    ) {
+
+        currentConversationId =
+            conversations.length
+            ? conversations[0].id
+            : null;
+
+    }
+
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+}
+
+
+/* =========================================================
+   RENDER CHAT
+========================================================= */
+
+function renderCurrentConversation() {
+
+    const container =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+
+    const conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        container.innerHTML = `
+            <div id="aiWelcome" class="ai-welcome">
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Hola, soy
+                    <span>TOOLBOX AI</span>
+                </h1>
+
+                <p>
+                    Tu asistente inteligente.
+                    Pregúntame lo que quieras.
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "currentConversationTitle"
+    ).innerText =
+        conversation.title;
+
+
+    if (
+        conversation.messages.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div id="aiWelcome" class="ai-welcome">
+
+                <div class="ai-welcome-logo">
+                    ✦
+                </div>
+
+                <h1>
+                    Nueva
+                    <span>conversación</span>
+                </h1>
+
+                <p>
+                    ¿Qué quieres hacer hoy?
+                </p>
+
+                <div class="ai-suggestions">
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Explícame algo interesante y después hazme una pregunta para comprobar si lo entendí.')"
+                    >
+                        🧠 Aprender
+                    </button>
+
+                    <button
+                        class="ai-suggestion"
+                        onclick="useSuggestion('Ayúdame con programación y explícame los conceptos paso a paso.')"
+                    >
+                        💻 Programar
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    conversation.messages.forEach(
+        message => {
+
+            addMessageToDOM(
+                message.role,
+                message.content
+            );
+
+        }
+    );
+
+
+    scrollAIToBottom();
+
+}
+
+
+function addMessageToDOM(
+    role,
+    content
+) {
+
+    const container =
+        document.getElementById(
+            "toolboxAiMessages"
+        );
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "ai-chat-row " +
+        (
+            role === "user"
+            ? "user"
+            : ""
+        );
+
+
+    if (role !== "user") {
+
+        const avatar =
+            document.createElement(
+                "div"
+            );
+
+        avatar.className =
+            "ai-chat-avatar";
+
+        avatar.innerText =
+            "✦";
+
+        row.appendChild(
+            avatar
+        );
+
+    }
+
+
+    const bubble =
+        document.createElement(
+            "div"
+        );
+
+    bubble.className =
+        "ai-chat-bubble";
+
+    bubble.innerText =
+        content;
+
+
+    if (role === "user") {
+
+        row.appendChild(
+            bubble
+        );
+
+    } else {
+
+        const contentWrap =
+            document.createElement(
+                "div"
+            );
+
+        contentWrap.className =
+            "ai-chat-content";
+
+        contentWrap.appendChild(
+            bubble
+        );
+
+
+        const actions =
+            document.createElement(
+                "div"
+            );
+
+        actions.className =
+            "ai-message-actions";
+
+
+        const copyButton =
+            document.createElement(
+                "button"
+            );
+
+        copyButton.className =
+            "ai-copy-button";
+
+        copyButton.type =
+            "button";
+
+        copyButton.title =
+            "Copiar respuesta";
+
+        copyButton.innerText =
+            "📋 Copiar";
+
+        copyButton.onclick =
+            function() {
+
+                navigator.clipboard
+                    .writeText(content);
+
+                copyButton.innerText =
+                    "✅ Copiado";
+
+                setTimeout(
+                    function() {
+
+                        copyButton.innerText =
+                            "📋 Copiar";
+
+                    },
+                    1500
+                );
+
+            };
+
+        actions.appendChild(
+            copyButton
+        );
+
+        contentWrap.appendChild(
+            actions
+        );
+
+        row.appendChild(
+            contentWrap
+        );
+
+    }
+
+
+    container.appendChild(
+        row
+    );
+
+}
+
+
+/* =========================================================
+   ENVIAR MENSAJE
+========================================================= */
+async function sendToolboxAI() {
+
+    const input =
+        document.getElementById(
+            "toolboxAiInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    let conversation =
+        getCurrentConversation();
+
+
+    if (!conversation) {
+
+        createNewConversation();
+
+        conversation =
+            getCurrentConversation();
+
+    }
+
+
+    // =====================================================
+    // EVITAR DOS PETICIONES AL MISMO TIEMPO
+    // =====================================================
+
+    if (conversation.aiBusy) {
+
+        return;
+
+    }
+
+
+    conversation.aiBusy = true;
+
+
+    // =====================================================
+    // AÑADIR MENSAJE DEL USUARIO
+    // =====================================================
+
+    conversation.messages.push({
+
+        role: "user",
+
+        content: text
+
+    });
+
+
+    // =====================================================
+    // TÍTULO
+    // =====================================================
+
+    if (
+        conversation.messages.length === 1
+    ) {
+
+        conversation.title =
+            createConversationTitle(
+                text
+            );
+
+    }
+
+
+    // =====================================================
+    // LIMPIAR INPUT
+    // =====================================================
+
+    input.value = "";
+
+    updateCharCounter();
+
+    autoResizeAIInput(input);
+
+
+    // =====================================================
+    // GUARDAR
+    // =====================================================
+
+    saveConversations();
+
+    renderConversationList();
+
+    renderCurrentConversation();
+
+
+    // =====================================================
+    // INDICADOR
+    // =====================================================
+
+    const typing =
+        document.getElementById(
+            "toolboxAiTyping"
+        );
+
+
+    typing.classList.add(
+        "active"
+    );
+
+
+    try {
+
+        // =================================================
+        // MANDAMOS TODO EL HISTORIAL
+        // INCLUIDO EL MENSAJE ACTUAL
+        // =================================================
+
+        const messages =
+            conversation.messages.map(
+                message => ({
+
+                    role:
+                        message.role,
+
+                    content:
+                        message.content
+
+                })
+            );
+
+
+        // =================================================
+        // GROQ
+        // =================================================
+
+        const reply =
+            await askGemini(
+                messages,
+                "normal"
+            );
+
+
+        // =================================================
+        // RESPUESTA
+        // =================================================
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                reply
+
+        });
+
+
+        // =================================================
+        // GUARDAR
+        // =================================================
+
+        saveConversations();
+
+        renderConversationList();
+
+        renderCurrentConversation();
+
+
+    } catch (error) {
+
+        console.error(
+            "TOOLBOX AI ERROR:",
+            error
+        );
+
+
+        conversation.messages.push({
+
+            role:
+                "assistant",
+
+            content:
+                "❌ " + error.message
+
+        });
+
+
+        saveConversations();
+
+        renderCurrentConversation();
+
+
+    } finally {
+
+        conversation.aiBusy =
+            false;
+
+
+        typing.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+/* =========================================================
+   PROMPT CENTRAL
+========================================================= */
+
 function buildCentralPrompt(text) {
     return `
 Eres TOOLBOX AI, un asistente de inteligencia artificial general integrado en TOOLBOX.
@@ -4902,10 +7402,7 @@ REGLAS IMPORTANTES:
 8. UTILIZA LISTAS SOLO CUANDO AYUDEN.
    No conviertas una respuesta sencilla en una lista de muchos puntos.
 
-9. FORMATO VISUAL.
-   Puedes usar Markdown básico cuando realmente ayude a leer la respuesta: **negrita**, *cursiva*, títulos, listas, citas, separadores de línea y bloques de código. TOOLBOX AI mostrará ese formato visualmente, así que no escribas etiquetas HTML. No uses Markdown por obligación.
-
-10. ADAPTA LA RESPUESTA AL USUARIO.
+9. ADAPTA LA RESPUESTA AL USUARIO.
    Si pregunta algo sencillo, responde de forma sencilla.
    Si pide una explicación profunda, puedes dar más detalles.
 
@@ -6326,105 +8823,100 @@ function plannerValidatePlan(plan, availability) {
 
 async function generarPlanificador() {
     plannerInit();
+    const tasks=document.getElementById('plannerTasks').value.trim();
+    if(!tasks) { alert('Escribe primero todo lo que tienes que hacer.'); return; }
+    const availability=plannerReadAvailability();
+    const active=availability.filter(d=>d.enabled && d.start<d.end);
+    if(!active.length) { alert('Activa al menos un día y define un horario disponible.'); return; }
 
-    const tasks = document.getElementById('plannerTasks').value.trim();
-    if (!tasks) {
-        alert('Escribe primero todo lo que tienes que hacer.');
-        return;
-    }
+    const button=document.getElementById('plannerGenerate');
+    button.disabled=true;
+    button.innerText='🤖 Organizando semana...';
+    plannerSetStatus('TOOLBOX AI está calculando prioridades, duración y distribución...');
 
-    const availability = plannerReadAvailability();
-    const active = availability.filter(d => d.enabled && d.start < d.end);
+    const availabilityText=availability.map(d=>`${d.name}: ${d.enabled ? d.start+' - '+d.end : 'NO DISPONIBLE'}`).join('\
+');
+    const today=new Date();
+    const dateText=today.toLocaleDateString('es-ES',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 
-    if (!active.length) {
-        alert('Activa al menos un día y define un horario disponible.');
-        return;
-    }
+    const prompt=`
+Eres el planificador inteligente de TOOLBOX. Tu trabajo NO es hacer una lista de tareas ni convertirlas en Pomodoros. Tu trabajo es DISTRIBUIR de forma realista las tareas durante la semana.
 
-    const button = document.getElementById('plannerGenerate');
-    button.disabled = true;
-    button.innerText = '🤖 Organizando...';
-    plannerSetStatus('Creando un plan realista con tus tareas y horarios...');
+FECHA ACTUAL: ${dateText}
 
-    // IMPORTANTE: el planificador hace UNA sola petición y no manda
-    // historial de conversación. Esto reduce muchísimo el consumo.
-    const availabilityText = availability
-        .map(d => `${d.name}:${d.enabled ? d.start + '-' + d.end : 'libre'}`)
-        .join('|');
+TAREAS DEL USUARIO:
+${tasks}
 
-    // Limitar el tamaño evita que un pegado accidentalmente enorme
-    // consuma una cantidad innecesaria de tokens.
-    const tasksForAI = tasks.length > 9000 ? tasks.slice(0, 9000) : tasks;
-
-    const prompt = `Planifica mi semana. No uses Pomodoros.
-
-TAREAS:
-${tasksForAI}
-
-HORARIOS:
+DISPONIBILIDAD SEMANAL:
 ${availabilityText}
 
-REGLAS:
-- Respeta exactamente los horarios.
-- Prioriza fechas límite y exámenes cercanos.
-- Respeta las duraciones indicadas; si falta duración, estima una razonable.
-- Divide tareas largas si hace falta.
-- No llenes todo: deja tiempo libre.
-- No solapes bloques.
-- Si no cabe todo, programa primero lo prioritario y manda el resto a pending.
-- Usa bloques normales como 16:00-17:30.
-- Devuelve SOLO JSON válido, sin Markdown.
+REGLAS IMPORTANTES:
+1. Interpreta las tareas escritas libremente.
+2. Detecta fechas límite, exámenes, reuniones o tareas urgentes cuando aparezcan.
+3. Si el usuario indica una duración, respétala aproximadamente. Si no la indica, estima una duración razonable según la tarea.
+4. REPARTE el trabajo entre los días disponibles. No repartas las horas de manera uniforme por obligación: un día puede tener más trabajo y otro menos si eso produce una semana más lógica.
+5. Respeta estrictamente las horas disponibles. Nunca programes fuera de ellas.
+6. Prioriza primero lo que tenga fecha límite cercana o mayor importancia.
+7. Divide las tareas grandes entre varios días cuando sea más realista.
+8. No llenes necesariamente todo el tiempo disponible. Deja margen razonable para imprevistos y descanso.
+9. No uses Pomodoros, sesiones ni descansos de 5/10/25 minutos. Cada bloque debe representar tiempo real dedicado a una tarea.
+10. No inventes reuniones ni obligaciones que el usuario no haya escrito.
+11. Si no cabe todo, distribuye lo máximo posible y explica qué queda pendiente.
+12. Los bloques de una misma tarea pueden aparecer en varios días.
+13. Evita solapamientos. Ordena cronológicamente los bloques de cada día.
+14. Devuelve SOLO JSON válido, sin Markdown ni explicaciones fuera del JSON.
+15. Mantén el JSON compacto: no escribas textos largos en summary, note, insights o pending.
 
-FORMATO:
-{"title":"Semana organizada","summary":"breve","days":[{"day":"Lunes","blocks":[{"task":"Matemáticas","start":"16:00","end":"17:30","priority":"alta","deadline":"viernes","note":""}]},{"day":"Martes","blocks":[]},{"day":"Miércoles","blocks":[]},{"day":"Jueves","blocks":[]},{"day":"Viernes","blocks":[]},{"day":"Sábado","blocks":[]},{"day":"Domingo","blocks":[]}],"insights":[],"pending":[]}`;
+FORMATO EXACTO:
+{
+  "title":"Tu semana organizada",
+  "summary":"Explicación breve de cómo has distribuido la semana",
+  "days":[
+    {"day":"Lunes","blocks":[{"task":"...","start":"17:00","end":"18:30","priority":"alta","deadline":"jueves","note":"..."}]},
+    {"day":"Martes","blocks":[]},
+    {"day":"Miércoles","blocks":[]},
+    {"day":"Jueves","blocks":[]},
+    {"day":"Viernes","blocks":[]},
+    {"day":"Sábado","blocks":[]},
+    {"day":"Domingo","blocks":[]}
+  ],
+  "insights":["...","..."],
+  "pending":["..."]
+}
+`;
 
     try {
-        // UNA ÚNICA PETICIÓN. Los reintentos automáticos provocaban
-        // más 429 cuando Groq ya estaba limitando la cuenta.
-        const reply = await askGemini(
-            [{ role: 'user', content: prompt }],
-            'normal'
-        );
-
-        const plan = plannerValidatePlan(
-            plannerExtractJSON(reply),
-            availability
-        );
-
-        plan.availability = availability;
-        plannerLastPlan = plan;
-
-        localStorage.setItem(
-            'toolbox_planner_plan',
-            JSON.stringify(plan)
-        );
-
-        plannerRender(plan, availability);
-        document.getElementById('plannerResult').style.display = 'block';
-        plannerSetStatus('✅ Semana organizada correctamente.');
-
-        setTimeout(() => {
-            document.getElementById('plannerResult').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }, 80);
-
-    } catch (error) {
-        console.error('TOOLBOX Planner:', error);
-
-        let message = error?.message || 'Error desconocido.';
-
-        if (message.includes('429') || /too many requests/i.test(message)) {
-            message = 'Groq está limitando temporalmente las peticiones. Espera unos segundos y vuelve a intentarlo. Esta versión ya no hace reintentos automáticos para no gastar más peticiones.';
+        // Reintentos automáticos para errores temporales o JSON incompleto.
+        let lastError = null;
+        for (let attempt = 0; attempt < 3; attempt++) {
+            try {
+                const reply = await askGemini([{role:'user',content:prompt}], 'normal');
+                const plan = plannerValidatePlan(plannerExtractJSON(reply), availability);
+                plan.availability = availability;
+                plannerLastPlan = plan;
+                localStorage.setItem('toolbox_planner_plan', JSON.stringify(plan));
+                plannerRender(plan, availability);
+                document.getElementById('plannerResult').style.display = 'block';
+                plannerSetStatus('✅ Semana organizada correctamente.');
+                setTimeout(() => document.getElementById('plannerResult').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+                return;
+            } catch (err) {
+                lastError = err;
+                if (attempt < 2) {
+                    plannerSetStatus(`🔄 TOOLBOX AI está reintentando (${attempt + 2}/3)...`);
+                    await new Promise(resolve => setTimeout(resolve, 900 * (attempt + 1)));
+                }
+            }
         }
-
+        throw lastError || new Error('No se pudo generar el plan.');
+    } catch(error) {
+        console.error('TOOLBOX Planner:', error);
+        const message = error?.message || 'Error desconocido.';
         plannerSetStatus('⚠️ ' + message);
-        alert('No se pudo crear el plan.\n\n' + message);
-
+        alert('No se pudo crear el plan.\n\n' + message + '\n\nPuedes volver a intentarlo sin perder lo que has escrito.');
     } finally {
-        button.disabled = false;
-        button.innerText = '✨ Crear mi semana';
+        button.disabled=false;
+        button.innerText='✨ Crear mi semana';
     }
 }
 
