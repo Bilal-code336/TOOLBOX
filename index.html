@@ -45,6 +45,122 @@ body {
     top: 0 !important;
 }
 /* =========================================================
+   POMODORO
+========================================================= */
+
+.pomodoro-box {
+    max-width: 760px;
+    margin: 10px auto 0;
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    text-align: center;
+    transition: background .25s, border-color .25s;
+}
+
+.pomodoro-box.focus-mode {
+    background: #4a171b;
+}
+
+.pomodoro-box.short-break-mode {
+    background: #173d2b;
+}
+
+.pomodoro-box.long-break-mode {
+    background: #123326;
+}
+
+.pomodoro-mode {
+    color: rgba(255,255,255,.78);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.pomodoro-time {
+    font-size: clamp(60px, 12vw, 105px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: #fff;
+    margin: 12px 0 25px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pomodoro-sessions {
+    color: rgba(255,255,255,.78);
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.pomodoro-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pomodoro-controls button {
+    min-width: 105px;
+}
+
+.pomodoro-settings {
+    margin-top: 25px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    text-align: left;
+}
+
+.pomodoro-settings-title {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.pomodoro-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pomodoro-settings-grid label {
+    display: block;
+    color: rgba(255,255,255,.68);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.pomodoro-settings-grid input {
+    background: rgba(0,0,0,.18);
+    color: #fff;
+    border-color: rgba(255,255,255,.14);
+}
+
+.pomodoro-note {
+    margin-top: 14px;
+    color: rgba(255,255,255,.55);
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+@media(max-width:600px) {
+    .pomodoro-box {
+        padding: 22px 15px;
+    }
+
+    .pomodoro-settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pomodoro-time {
+        letter-spacing: -2px;
+    }
+}
+/* =========================================================
    TOOLBOX — ESTILO PRINCIPAL
 ========================================================= */
 
@@ -2628,7 +2744,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
         </div>
     </div>
 
-
+    
     <!-- =====================================================
          DETECTOR DE TEXTO DE IMAGEN / OCR
     ===================================================== -->
@@ -5923,6 +6039,7 @@ function pomodoroSkip() {
             );
     }
 }
+
 
 
 /* =========================================================
