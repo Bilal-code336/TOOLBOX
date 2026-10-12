@@ -126,7 +126,7 @@ kbd{font-family:inherit;font-size:10px;padding:2px 6px;border:1px solid var(--bo
 .act:hover{background:var(--button);color:var(--text)}
 .act.ok{color:var(--green)}
 .style-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(139,92,246,.18);color:var(--purple3);border:1px solid rgba(139,92,246,.35)}
-.typing-row .ai-bubble{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.typing-row .ai-bubble{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:12px 16px}
 .dots{display:flex;gap:5px}.dots span{width:7px;height:7px;border-radius:50%;background:var(--purple3);animation:bounce 1s infinite ease-in-out}.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-5px)}}
 .typing-label{font-size:13px;color:var(--muted)}
@@ -257,6 +257,40 @@ body.light .md-code{background:#0f172a}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
+/* ---------- BÚSQUEDA EN LA WEB ---------- */
+.live-head{display:flex;align-items:center;gap:12px}
+.live-list{display:flex;flex-direction:column;gap:7px;width:100%}
+.live-item{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--muted);animation:msgIn .35s var(--ease) both}
+.live-ic{width:16px;height:16px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--green)}
+.live-item:not(.done):not(.error) .live-ic{border:2px solid var(--border2);border-top-color:var(--purple3);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.live-q{color:var(--text2)}
+.live-srcs{display:flex;flex-wrap:wrap;gap:5px}
+.live-chip{padding:2px 9px;border-radius:999px;font-size:11.5px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.28);color:var(--purple3);animation:msgIn .4s var(--ease) both}
+.live-note,.live-item.error{font-size:12.5px;color:var(--amber)}
+.search-log{margin:-2px 0 12px;border:1px solid var(--border);border-radius:12px;background:var(--card2);font-size:13px;overflow:hidden}
+.search-log summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:8px 12px;color:var(--text2);font-weight:700}
+.search-log summary::-webkit-details-marker{display:none}
+.search-log summary small{color:var(--muted);font-weight:400}
+.search-log summary::after{content:"›";margin-left:auto;color:var(--muted);font-size:16px;transition:transform .2s}
+.search-log[open] summary::after{transform:rotate(90deg)}
+.search-log ul{margin:0;padding:2px 14px 10px 30px;color:var(--muted)}.search-log li{margin:3px 0}
+.md a.cite{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;margin:0 1px;vertical-align:.12em;border-radius:6px;font-size:11px;font-weight:800;line-height:1;text-decoration:none;color:var(--purple3);background:rgba(139,92,246,.16);border:1px solid rgba(139,92,246,.35);transition:all .15s}
+.md a.cite:hover{background:var(--purple);color:#fff;border-color:transparent;transform:translateY(-1px)}
+.answer-tail{margin-top:14px}.answer-tail.pending{display:none}
+.src-block{border-top:1px solid var(--border);padding-top:12px;animation:msgIn .4s var(--ease) both}
+.src-title{font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:8px}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.src-card{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:12px;border:1px solid var(--border);background:var(--card2);text-decoration:none;color:inherit;transition:all .2s var(--ease);min-width:0}
+.src-card:hover{border-color:var(--purple2);transform:translateY(-2px);background:rgba(139,92,246,.08)}
+.src-n{flex:0 0 auto;width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--purple),#6d28d9)}
+.src-body{min-width:0;display:flex;flex-direction:column}
+.src-body strong{font-size:12.5px;line-height:1.35;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.src-body small{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.src-more{margin-top:8px;font-size:12.5px;color:var(--purple3);font-weight:700}.src-more:hover{text-decoration:underline}
+.src-card.extra{display:none}.src-grid.expanded .src-card.extra{display:flex}
+.web-note{margin-top:10px;padding:8px 12px;border-radius:10px;font-size:12.5px;color:var(--amber);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35)}
+
 </style>
 </head>
 <body>
@@ -342,7 +376,7 @@ body.light .md-code{background:#0f172a}
           </div>
         </div>
       </div>
-      <div class="disclaimer">TOOLBOX AI utiliza Groq. Puede cometer errores; comprueba la información importante. · Enter envía, Shift+Enter salto de línea.</div>
+      <div class="disclaimer">TOOLBOX AI utiliza Groq y puede buscar en la web cuando hace falta. Puede cometer errores; comprueba la información importante. · Enter envía, Shift+Enter salto de línea.</div>
     </div>
   </main>
 </div>
@@ -371,7 +405,9 @@ const CFG = {
   sendFormatHint: true,     // envía al modelo las reglas de formato (esquemas, tablas, resaltado…)
   autoTitle: true,          // la IA elige el nombre de cada conversación
   typewriter: true,         // efecto de escritura progresiva
-  maxHistory: 24            // mensajes anteriores enviados como contexto
+  maxHistory: 24,           // mensajes anteriores enviados como contexto
+  webSearch: true,          // búsqueda automática en la web (cuando el modelo la necesita)
+  streamEndpoint: '/api/ai/stream'
 };
 
 const FORMAT_HINT =
@@ -401,7 +437,7 @@ const SUGGESTIONS = [
   { icon: '🌱', title: 'Explícame algo', hint: 'Con palabras sencillas y ejemplos', text: 'Explícame la fotosíntesis de forma sencilla.', style: 'facil' },
   { icon: '🐍', title: 'Aprende conmigo', hint: 'Una clase paso a paso', text: 'Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.', style: 'pasos' },
   { icon: '💻', title: 'Ayúdame a programar', hint: 'Código con colores y botón de copiar', text: 'Escríbeme una función en JavaScript que valide un email y explícame cómo funciona.' },
-  { icon: '📊', title: 'Compara opciones', hint: 'Tablas claras para decidir mejor', text: 'Compara PNG, JPG y WebP: cuándo conviene cada formato.', style: 'tabla' },
+  { icon: '🌐', title: 'Pregunta por algo actual', hint: 'Busca en la web y te enseña las fuentes', text: 'Busca las últimas noticias de tecnología de hoy y resúmelas indicando las fuentes.' },
   { icon: '🧠', title: 'Ponme a prueba', hint: 'Un test para practicar', text: 'Hazme un test sobre la Segunda Guerra Mundial.', style: 'test', send: false }
 ];
 
@@ -418,6 +454,13 @@ const fmtTime = ts => ts ? new Date(ts).toLocaleTimeString('es-ES', { hour: '2-d
 ========================================================= */
 const MD = (() => {
   const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  let CITES = null; // fuentes de la respuesta que se está pintando: { id: {url,title,domain} }
+  function citeMap(sources) {
+    if (!sources || !sources.length) return null;
+    const m = {};
+    sources.forEach(s => { if (s && /^https?:\/\//i.test(s.url || '')) m[s.id] = s; });
+    return Object.keys(m).length ? m : null;
+  }
 
   /* ---- resaltado de código ---- */
   const KW = {
@@ -496,6 +539,11 @@ const MD = (() => {
     t = t.replace(/`([^`\n]+)`/g, (_, c) => keep('<code>' + c + '</code>'));
     t = t.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+|mailto:[^\s)]+)\)/g, (_, txt, url) => keep('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + fmt(txt) + '</a>'));
     t = t.replace(/(^|[\s(])(https?:\/\/[^\s<]*[^\s<.,;:!?)\]])/g, (_, p, url) => p + keep('<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + '</a>'));
+    if (CITES) t = t.replace(/\[(\d{1,2}(?:\s*,\s*\d{1,2})*)\](?!\()/g, (m, nums) => {
+      const ids = nums.split(/\s*,\s*/).map(Number);
+      if (!ids.every(n => CITES[n])) return m;
+      return ids.map(n => keep('<a class="cite" href="' + esc(CITES[n].url) + '" target="_blank" rel="noopener noreferrer" title="' + esc((CITES[n].title || '') + ' — ' + (CITES[n].domain || '')) + '">' + n + '</a>')).join('');
+    });
     t = fmt(t);
     for (let i = 0; i < 3 && /\u0000\d+\u0001/.test(t); i++) t = t.replace(/\u0000(\d+)\u0001/g, (_, n) => st[+n]);
     return t.replace(/\n/g, '<br>');
@@ -572,7 +620,7 @@ const MD = (() => {
     return html;
   }
 
-  function render(src) {
+  function renderBlocks(src) {
     const lines = String(src == null ? '' : src).replace(/\r\n?/g, '\n').split('\n');
     const n = lines.length, out = [];
     let i = 0;
@@ -651,6 +699,11 @@ const MD = (() => {
     }
     return out.join('');
   }
+  function render(src, opts) {
+    if (opts === undefined) return renderBlocks(src);
+    const prev = CITES; CITES = citeMap(opts && opts.sources);
+    try { return renderBlocks(src); } finally { CITES = prev; }
+  }
   return { render, esc };
 })();
 
@@ -664,7 +717,7 @@ let pendingStyle = null;
 let lastDeleted = null;
 let stick = true;
 const rt = {};                 // estado temporal por conversación
-const R = id => rt[id] || (rt[id] = { busy: false, controller: null, reveal: null, titling: false, shown: null, tt: 0, typingTimer: 0 });
+const R = id => rt[id] || (rt[id] = { busy: false, controller: null, reveal: null, titling: false, shown: null, tt: 0, typingTimer: 0, live: null });
 const drafts = {};
 
 function normalizeConv(c) {
@@ -707,8 +760,45 @@ async function askAI(messages, mode, signal) {
 }
 const askGemini = askAI; // compatibilidad con el nombre antiguo
 
+async function readStream(res, onEvent) {
+  const reader = res.body.getReader(), dec = new TextDecoder();
+  let buf = '', final = null;
+  for (;;) {
+    const r = await reader.read();
+    if (r.done) break;
+    buf += dec.decode(r.value, { stream: true });
+    let i;
+    while ((i = buf.indexOf('\n\n')) >= 0) {
+      const chunk = buf.slice(0, i); buf = buf.slice(i + 2);
+      const line = chunk.split('\n').find(l => l.startsWith('data:'));
+      if (!line) continue;
+      let ev; try { ev = JSON.parse(line.slice(5).trim()); } catch (e) { continue; }
+      if (ev.type === 'error') throw new Error(ev.error || 'Error conectando con TOOLBOX AI.');
+      if (ev.type === 'done') final = ev; else if (onEvent) onEvent(ev);
+    }
+  }
+  if (!final) throw new Error('La respuesta se cortó antes de terminar. Inténtalo de nuevo.');
+  return final;
+}
+// Pide la respuesta. Si el servidor tiene búsqueda web, va informando de lo que hace.
+async function askChat(messages, signal, onEvent) {
+  if (CFG.webSearch && CFG.streamEndpoint) {
+    let res = null;
+    try {
+      res = await fetch(CFG.streamEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages, mode: CFG.mode, web: true }), signal });
+    } catch (e) { if (e && e.name === 'AbortError') throw e; res = null; }
+    if (res && res.ok && (res.headers.get('content-type') || '').indexOf('text/event-stream') >= 0) return readStream(res, onEvent);
+    if (res && !res.ok && res.status !== 404 && res.status !== 405) {
+      let d = {}; try { d = await res.json(); } catch (e) {}
+      throw new Error(d.error || 'Error conectando con TOOLBOX AI.');
+    }
+  }
+  return { reply: await askAI(messages, CFG.mode, signal), sources: [], searches: [], web_error: null };
+}
+
 function buildPayload(conv) {
-  const msgs = conv.messages.filter(m => !m.error).slice(-CFG.maxHistory).map(m => ({ role: m.role, content: m.content }));
+  const CITA = /\s*\[\d{1,2}(?:\s*,\s*\d{1,2})*\]/g; // las citas de turnos anteriores no valen en el nuevo
+  const msgs = conv.messages.filter(m => !m.error).slice(-CFG.maxHistory).map(m => ({ role: m.role, content: (m.sources && m.sources.length) ? m.content.replace(CITA, '') : m.content }));
   const lastUser = [...conv.messages].reverse().find(m => m.role === 'user');
   const hints = [];
   if (CFG.sendFormatHint) hints.push(FORMAT_HINT);
@@ -868,7 +958,7 @@ function buildWelcome() {
   const w = el('div', 'welcome');
   w.appendChild(el('div', 'welcome-logo', '✦'));
   const h = el('h1'); h.append('Hola, soy '); h.appendChild(el('span', null, 'TOOLBOX AI')); w.appendChild(h);
-  w.appendChild(el('p', null, 'Tu asistente inteligente. Puedo explicarte temas, hacerte esquemas, resúmenes y tablas, ayudarte a estudiar, mejorar textos y programar contigo.'));
+  w.appendChild(el('p', null, 'Tu asistente inteligente. Puedo explicarte temas, hacerte esquemas, resúmenes y tablas, ayudarte a estudiar, mejorar textos y programar contigo. Si hace falta, busco en la web y te muestro las fuentes.'));
   const cards = el('div', 'cards');
   SUGGESTIONS.forEach((s, i) => {
     const b = el('button', 'card-s'); b.type = 'button'; b.style.setProperty('--i', i); b.dataset.sug = i;
@@ -889,8 +979,15 @@ function buildRow(conv, m, i, ctx) {
   const col = el('div', 'ai-col');
   const bubble = el('div', 'ai-bubble' + (m.error ? ' is-error' : ''));
   if (isUser) bubble.textContent = m.content;
-  else if (ctx.reveal && CFG.typewriter) { bubble.innerHTML = '<div class="md"></div>'; queueMicrotask(() => startReveal(conv.id, bubble, m.content)); }
-  else bubble.innerHTML = '<div class="md">' + MD.render(m.content) + '</div>';
+  else {
+    const anim = !!(ctx.reveal && CFG.typewriter);
+    if (!m.error && m.searches && m.searches.length) bubble.appendChild(buildSearchLog(m));
+    const md = el('div', 'md'); bubble.appendChild(md);
+    if (anim) queueMicrotask(() => startReveal(conv.id, bubble, m));
+    else md.innerHTML = MD.render(m.content, { sources: m.sources });
+    const tail = m.error ? null : buildAnswerTail(m, anim);
+    if (tail) bubble.appendChild(tail);
+  }
   col.appendChild(bubble);
 
   const meta = el('div', 'ai-meta');
@@ -910,13 +1007,92 @@ function buildRow(conv, m, i, ctx) {
   row.appendChild(col);
   return row;
 }
+function buildSearchLog(m) {
+  const n = m.searches.length, total = (m.sources || []).length;
+  const d = el('details', 'search-log');
+  const s = el('summary'); s.appendChild(el('span', null, '🌐 Buscó en la web'));
+  s.appendChild(el('small', null, n + (n === 1 ? ' búsqueda' : ' búsquedas') + ' · ' + total + (total === 1 ? ' fuente' : ' fuentes')));
+  d.appendChild(s);
+  const ul = el('ul');
+  m.searches.forEach(x => ul.appendChild(el('li', null, '«' + x.query + '»' + (x.results ? ' · ' + x.results + ' resultados' : ''))));
+  d.appendChild(ul); return d;
+}
+function buildSources(m) {
+  const cited = new Set();
+  String(m.content).replace(/\[(\d{1,2}(?:\s*,\s*\d{1,2})*)\]/g, (all, n) => { n.split(/\s*,\s*/).forEach(x => cited.add(+x)); return all; });
+  let list = m.sources.filter(s => cited.has(s.id)); if (!list.length) list = m.sources;
+  const box = el('div', 'src-block'); box.appendChild(el('div', 'src-title', 'Fuentes · ' + list.length));
+  const grid = el('div', 'src-grid');
+  list.forEach((s, i) => {
+    const a = el('a', 'src-card' + (i >= 6 ? ' extra' : '')); a.href = s.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.title = s.title;
+    a.appendChild(el('span', 'src-n', String(s.id)));
+    const b = el('span', 'src-body'); b.appendChild(el('strong', null, s.title || s.domain)); b.appendChild(el('small', null, s.domain)); a.appendChild(b);
+    grid.appendChild(a);
+  });
+  box.appendChild(grid);
+  if (list.length > 6) {
+    const more = el('button', 'src-more', 'Ver las ' + list.length + ' fuentes'); more.type = 'button';
+    more.addEventListener('click', () => { const ex = grid.classList.toggle('expanded'); more.textContent = ex ? 'Ver menos' : 'Ver las ' + list.length + ' fuentes'; });
+    box.appendChild(more);
+  }
+  return box;
+}
+function buildAnswerTail(m, pending) {
+  const hasSrc = m.sources && m.sources.length;
+  if (!hasSrc && !m.webError) return null;
+  const t = el('div', 'answer-tail' + (pending ? ' pending' : ''));
+  if (hasSrc) t.appendChild(buildSources(m));
+  if (m.webError) t.appendChild(el('div', 'web-note', '⚠️ ' + m.webError + ' Esta respuesta puede estar desactualizada.'));
+  return t;
+}
 function buildTyping() {
   const row = el('div', 'ai-row bot typing-row is-new'); row.id = 'typingRow';
   row.appendChild(el('div', 'avatar', '✦'));
   const b = el('div', 'ai-bubble');
+  const head = el('div', 'live-head');
   const d = el('div', 'dots'); d.innerHTML = '<span></span><span></span><span></span>';
-  b.appendChild(d); const l = el('span', 'typing-label', 'TOOLBOX AI está pensando…'); l.id = 'typingLabel'; b.appendChild(l);
+  head.appendChild(d); const l = el('span', 'typing-label', 'TOOLBOX AI está pensando…'); l.id = 'typingLabel'; head.appendChild(l);
+  b.appendChild(head);
+  const list = el('div', 'live-list'); list.id = 'liveList'; list.hidden = true; b.appendChild(list);
   row.appendChild(b); return row;
+}
+function liveLabel(L) {
+  const n = L.searches.reduce((a, s) => a + (s.sources ? s.sources.length : 0), 0);
+  if (L.stage === 'searching') return '🔎 Buscando en la web…';
+  if (L.stage === 'reading') return '📖 Leyendo ' + n + (n === 1 ? ' fuente…' : ' fuentes…');
+  if (L.stage === 'writing') return '✍️ Redactando la respuesta…';
+  return 'TOOLBOX AI está pensando…';
+}
+function paintLive(id) {
+  if (id !== currentId) return;
+  const lab = $('typingLabel'), list = $('liveList'); if (!lab || !list) return;
+  const L = R(id).live || { searches: [], stage: 'thinking', notice: '' };
+  lab.textContent = liveLabel(L);
+  list.innerHTML = '';
+  L.searches.forEach(s => {
+    const it = el('div', 'live-item' + (s.error ? ' error' : s.done ? ' done' : ''));
+    it.appendChild(el('span', 'live-ic', s.error ? '⚠️' : s.done ? '✓' : ''));
+    it.appendChild(el('span', 'live-q', '«' + s.query + '»'));
+    if (s.done && !s.error && s.sources.length) {
+      const chips = el('span', 'live-srcs');
+      s.sources.slice(0, 4).forEach(x => chips.appendChild(el('span', 'live-chip', x.domain || '')));
+      it.appendChild(chips);
+    }
+    list.appendChild(it);
+  });
+  if (L.notice) list.appendChild(el('div', 'live-note', '⚠️ ' + L.notice));
+  list.hidden = !list.children.length;
+  if (stick) scrollBottom(false);
+}
+function handleLive(id, ev) {
+  const r = R(id), L = r.live || (r.live = { searches: [], stage: 'thinking', notice: '' });
+  const find = q => [...L.searches].reverse().find(x => x.query === q && !x.done);
+  if (ev.type === 'search') { L.stage = 'searching'; L.searches.push({ query: ev.query, done: false, sources: [] }); }
+  else if (ev.type === 'results') { const s = find(ev.query); if (s) { s.done = true; s.sources = ev.sources || []; } L.stage = 'reading'; }
+  else if (ev.type === 'search_error') { const s = find(ev.query); if (s) { s.done = true; s.error = true; } L.notice = ev.error || 'No se pudo buscar en la web'; }
+  else if (ev.type === 'limit') { L.notice = ev.reason || 'Límite de búsquedas alcanzado'; }
+  else if (ev.type === 'writing') { if (!L.searches.some(x => x.done && !x.error)) L.stage = 'writing'; } // con fuentes, sigue «Leyendo fuentes…» hasta que llega la respuesta
+  paintLive(id);
 }
 function renderThread(opts) {
   opts = opts || {};
@@ -928,7 +1104,7 @@ function renderThread(opts) {
     const isLast = i === conv.messages.length - 1;
     th.appendChild(buildRow(conv, m, i, { isNew: opts.animateLast && isLast, reveal: opts.revealLast && isLast && m.role === 'assistant' && !m.error, isLast }));
   });
-  if (R(conv.id).busy) th.appendChild(buildTyping());
+  if (R(conv.id).busy) { th.appendChild(buildTyping()); paintLive(conv.id); }
   if (opts.keepScroll !== true) scrollBottom(false);
   else msgBox.scrollTo({ top: stick ? msgBox.scrollHeight : prevTop, behavior: 'instant' });
   updateSend(); renderHeader();
@@ -936,27 +1112,30 @@ function renderThread(opts) {
 function startTypingRow() {
   const th = $('thread'); if ($('typingRow')) return;
   const w = th.querySelector('.welcome'); if (w) w.remove();
-  th.appendChild(buildTyping()); if (stick) scrollBottom(false);
+  th.querySelectorAll('[data-act="retry"]').forEach(b => b.remove()); // mientras responde no hace falta «Generar respuesta»
+  th.querySelectorAll('.show-meta').forEach(r => r.classList.remove('show-meta'));
+  th.appendChild(buildTyping()); paintLive(currentId); if (stick) scrollBottom(false);
   const r = R(currentId); clearTimeout(r.typingTimer);
-  r.typingTimer = setTimeout(() => { const l = $('typingLabel'); if (l) l.textContent = 'Sigue pensando… puedes pulsar ■ para cancelar'; }, 9000);
+  r.typingTimer = setTimeout(() => { if (r.live && r.live.stage !== 'thinking') return; const l = $('typingLabel'); if (l) l.textContent = 'Sigue pensando… puedes pulsar ■ para cancelar'; }, 9000);
 }
 function stopTypingRow(id) { const t = $('typingRow'); if (t) t.remove(); if (id) clearTimeout(R(id).typingTimer); }
 
-function startReveal(id, bubble, text) {
-  const r = R(id);
+function startReveal(id, bubble, m) {
+  const r = R(id), text = m.content;
   const total = text.length, frames = Math.min(200, Math.max(24, Math.round(total / 11))), step = Math.max(2, Math.ceil(total / frames));
   let pos = 0, raf = 0, done = false;
   bubble.classList.add('streaming');
   const content = bubble.querySelector('.md');
   const finish = () => {
     if (done) return; done = true; cancelAnimationFrame(raf);
-    bubble.classList.remove('streaming'); content.innerHTML = MD.render(text);
+    bubble.classList.remove('streaming'); content.innerHTML = MD.render(text, { sources: m.sources });
+    const tail = bubble.querySelector('.answer-tail'); if (tail) tail.classList.remove('pending');
     if (r.reveal && r.reveal.finish === finish) r.reveal = null;
     updateSend(); if (stick) scrollBottom(false);
   };
   const tick = () => {
     if (done) return;
-    pos = Math.min(total, pos + step); content.innerHTML = MD.render(text.slice(0, pos));
+    pos = Math.min(total, pos + step); content.innerHTML = MD.render(text.slice(0, pos), { sources: m.sources });
     if (stick) scrollBottom(false);
     if (pos >= total) finish(); else raf = requestAnimationFrame(tick);
   };
@@ -1034,11 +1213,16 @@ async function send(textOverride) {
 }
 async function requestReply(c) {
   const r = R(c.id);
-  r.busy = true; r.controller = new AbortController();
+  r.busy = true; r.controller = new AbortController(); r.live = { searches: [], stage: 'thinking', notice: '' };
   if (c.id === currentId) startTypingRow(); updateSend();
   try {
-    const reply = await askAI(buildPayload(c), CFG.mode, r.controller.signal);
-    c.messages.push({ role: 'assistant', content: reply, ts: Date.now() }); touch(c); save();
+    const res = await askChat(buildPayload(c), r.controller.signal, ev => handleLive(c.id, ev));
+    const msg = { role: 'assistant', content: res.reply, ts: Date.now() };
+    const srcs = (res.sources || []).filter(s => s && /^https?:\/\//i.test(s.url || '')).map(s => ({ id: s.id, title: String(s.title || s.domain || '').slice(0, 140), url: s.url, domain: s.domain || '' }));
+    if (srcs.length) msg.sources = srcs;
+    if (res.searches && res.searches.length) msg.searches = res.searches.map(x => ({ query: String(x.query || ''), results: x.results || 0 }));
+    if (res.web_error) msg.webError = String(res.web_error);
+    c.messages.push(msg); touch(c); save();
     r.busy = false; r.controller = null;
     if (c.id === currentId) renderThread({ revealLast: true, keepScroll: true });
     else toast('✦ Nueva respuesta en “' + c.title + '”');
@@ -1051,7 +1235,7 @@ async function requestReply(c) {
       c.messages.push({ role: 'assistant', content: '❌ ' + (e && e.message ? e.message : 'Ha ocurrido un error.'), ts: Date.now(), error: true }); save();
       if (c.id === currentId) renderThread();
     }
-  } finally { stopTypingRow(c.id); updateSend(); renderHeader(); }
+  } finally { r.live = null; stopTypingRow(c.id); updateSend(); renderHeader(); }
 }
 function stopWork() {
   const c = current(); if (!c) return; const r = R(c.id);
@@ -1101,11 +1285,12 @@ async function clearAll() {
   if (!ok) return;
   conversations = []; currentId = null; save(); createConversation(false); toast('Todo borrado');
 }
+const sourcesText = m => (m.sources && m.sources.length) ? '\n\nFuentes:\n' + m.sources.map(s => '[' + s.id + '] ' + s.title + ' — ' + s.url).join('\n') : '';
 function convToMarkdown(c) {
   const head = '# ' + c.title + '\n\n_Exportado de TOOLBOX AI · ' + new Date().toLocaleString('es-ES') + '_\n\n';
-  return head + c.messages.filter(m => !m.error).map(m => (m.role === 'user' ? '### 🧑 Tú' : '### ✦ TOOLBOX AI') + '\n\n' + m.content).join('\n\n---\n\n') + '\n';
+  return head + c.messages.filter(m => !m.error).map(m => (m.role === 'user' ? '### 🧑 Tú' : '### ✦ TOOLBOX AI') + '\n\n' + m.content + (m.role === 'assistant' ? sourcesText(m) : '')).join('\n\n---\n\n') + '\n';
 }
-function convToText(c) { return c.title + '\n' + '='.repeat(Math.min(c.title.length, 60)) + '\n\n' + c.messages.filter(m => !m.error).map(m => (m.role === 'user' ? 'TÚ' : 'TOOLBOX AI') + ':\n' + m.content).join('\n\n----------\n\n') + '\n'; }
+function convToText(c) { return c.title + '\n' + '='.repeat(Math.min(c.title.length, 60)) + '\n\n' + c.messages.filter(m => !m.error).map(m => (m.role === 'user' ? 'TÚ' : 'TOOLBOX AI') + ':\n' + m.content + (m.role === 'assistant' ? sourcesText(m) : '')).join('\n\n----------\n\n') + '\n'; }
 function download(name, text, mime) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: mime + ';charset=utf-8' })); a.download = name;
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
@@ -1191,7 +1376,7 @@ function bind() {
     const c = current(); if (!c) return;
     if (b.dataset.act === 'copycode') { const code = b.closest('.md-code').querySelector('code').textContent; copyText(code, b); return; }
     const row = b.closest('.ai-row'); const idx = row ? +row.dataset.idx : -1; const m = c.messages[idx];
-    if (b.dataset.act === 'copy' && m) copyText(m.content, b);
+    if (b.dataset.act === 'copy' && m) copyText(m.role === 'assistant' ? m.content + sourcesText(m) : m.content, b);
     else if (b.dataset.act === 'regen') regenerate();
     else if (b.dataset.act === 'retry') { if (!R(c.id).busy) requestReply(c); }
     else if (b.dataset.act === 'retry-error') retryError();
