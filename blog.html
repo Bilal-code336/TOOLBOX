@@ -108,6 +108,14 @@
         "@type": "Answer",
         "text": "Es la instrucción que le das a la IA. Cuanto más claro sea qué quieres, para quién y en qué formato, mejores suelen ser las respuestas."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿TOOLBOX AI puede buscar en internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Cuando una pregunta depende de información actual, busca en la web por su cuenta, te avisa mientras lo hace y muestra las fuentes con enlaces. Para ello envía una consulta generada a partir de tu mensaje a un buscador, así que evita incluir datos personales. Conviene comprobar siempre las fuentes."
+      }
     }
   ]
 }
@@ -300,7 +308,7 @@ body.light .article-meta strong{color:#6d28d9}body.light .toc a{color:#4b5563}
   </section>
   <section class="ai-banner" aria-label="TOOLBOX AI">
     <div class="ai-banner-icon" aria-hidden="true">✦</div>
-    <div class="ai-banner-text"><strong>Conoce TOOLBOX AI</strong><span>Un asistente gratuito para hacer esquemas, resúmenes y tablas, explicarte temas, corregir textos y ayudarte a programar. Tus conversaciones se guardan en tu dispositivo.</span></div>
+    <div class="ai-banner-text"><strong>Conoce TOOLBOX AI</strong><span>Un asistente gratuito para hacer esquemas, resúmenes y tablas, explicarte temas, buscar en la web mostrando las fuentes y ayudarte a programar. Tus conversaciones se guardan en tu dispositivo.</span></div>
     <a class="btn" href="/TOOLBOXAI">Probar TOOLBOX AI →</a>
   </section>
   <div class="blog-index" id="indice">
@@ -341,7 +349,7 @@ body.light .article-meta strong{color:#6d28d9}body.light .toc a{color:#4b5563}
     </div>
     <div class="grid">
       <article class="card" data-cat="ia"><div class="card-icon">🤖</div><div class="tag">IA</div><h3>Qué es la inteligencia artificial generativa, explicada fácil</h3><p>Cómo funciona un asistente de IA, qué se le da bien y qué no, sin tecnicismos.</p><a class="read" href="#que-es-ia">Leer guía →</a></article>
-      <article class="card" data-cat="ia"><div class="card-icon">✦</div><div class="tag">IA · TOOLBOX AI</div><h3>TOOLBOX AI: qué puede hacer y cómo sacarle partido</h3><p>Conversaciones, nombres automáticos, esquemas, tablas, atajos de formato y atajos de teclado.</p><a class="read" href="#ia-toolbox">Leer guía →</a></article>
+      <article class="card" data-cat="ia"><div class="card-icon">✦</div><div class="tag">IA · TOOLBOX AI</div><h3>TOOLBOX AI: qué puede hacer y cómo sacarle partido</h3><p>Conversaciones, nombres automáticos, esquemas, tablas, búsqueda en la web con fuentes y atajos de teclado.</p><a class="read" href="#ia-toolbox">Leer guía →</a></article>
       <article class="card" data-cat="ia"><div class="card-icon">💬</div><div class="tag">IA</div><h3>Cómo escribir buenos prompts para obtener mejores respuestas</h3><p>Una fórmula sencilla, ejemplos antes y después y una plantilla que puedes reutilizar.</p><a class="read" href="#prompts">Leer guía →</a></article>
       <article class="card" data-cat="ia"><div class="card-icon">🎓</div><div class="tag">IA · Estudio</div><h3>Cómo estudiar con IA sin dejar de aprender</h3><p>Esquemas, resúmenes, tests y un flujo de estudio para entender de verdad.</p><a class="read" href="#estudiar-ia">Leer guía →</a></article>
       <article class="card" data-cat="ia"><div class="card-icon">✍️</div><div class="tag">IA · Texto</div><h3>Humanizador, corrector y simplificador: cuál usar</h3><p>Qué hace cada herramienta de texto con IA y en qué orden combinarlas.</p><a class="read" href="#textos-ia">Leer guía →</a></article>
@@ -434,12 +442,15 @@ body.light .article-meta strong{color:#6d28d9}body.light .toc a{color:#4b5563}
         <p>Las respuestas pueden incluir títulos, listas con niveles, tablas, avisos de colores, texto <mark>resaltado</mark> o <u>subrayado</u> para lo importante, bloques de código con colores y un botón para copiarlos. Cuando conviene, también dibuja <strong>esquemas visuales</strong> en forma de árbol, ideales para repasar un tema de un vistazo.</p>
         <h3>Los atajos de formato</h3>
         <p>Encima del cuadro de texto encontrarás seis atajos: <strong>Esquema</strong>, <strong>Resumen</strong>, <strong>Explícamelo fácil</strong>, <strong>Paso a paso</strong>, <strong>Tabla</strong> y <strong>Test</strong>. Pulsa uno, escribe tu tema y la respuesta se adaptará a ese formato. Se aplica solo al siguiente mensaje, así que puedes cambiar de formato cuando quieras.</p>
+        <h3>Búsqueda en la web, con fuentes</h3>
+        <p>Cuando tu pregunta depende de información actual —noticias, precios, versiones de programas, resultados— TOOLBOX AI puede buscar en internet por su cuenta, sin que tengas que pedirlo. Mientras lo hace, el chat te avisa de qué está buscando y cuántas fuentes está leyendo.</p>
+        <p>En la respuesta verás pequeños números <strong>[1]</strong>, <strong>[2]</strong> que enlazan a la página de la que sale cada dato, y debajo, una lista con las fuentes consultadas. Si no encuentra información fiable, debería decirlo en lugar de inventarla. Aun así, abre las fuentes para comprobar lo importante.</p>
         <h3>Controla la conversación</h3>
         <ul><li><strong>Editar</strong> un mensaje tuyo y volver a enviarlo.</li><li><strong>Regenerar</strong> la última respuesta si no te convence.</li><li><strong>Detener</strong> una respuesta mientras se escribe.</li><li><strong>Copiar</strong> una respuesta o una conversación entera.</li><li><strong>Exportar</strong> la conversación en Markdown (.md) o texto (.txt).</li></ul>
         <h3>Atajos de teclado</h3>
         <code>Enter</code> envía el mensaje y <code>Shift</code> + <code>Enter</code> añade un salto de línea. Con <code>Ctrl</code> + <code>K</code> buscas conversaciones y con <code>Alt</code> + <code>N</code> empiezas una nueva.
         <h3>Qué pasa con tus datos</h3>
-        <p>Tus conversaciones se guardan en el navegador de tu dispositivo y puedes borrarlas cuando quieras. Eso sí: para generar cada respuesta, el texto que escribes se envía al servicio de IA, así que no incluyas contraseñas, datos personales ni información sensible. Más detalles en <a class="tool-link" href="#privacidad-seguridad">privacidad y seguridad</a>.</p>
+        <p>Tus conversaciones se guardan en el navegador de tu dispositivo y puedes borrarlas cuando quieras. Eso sí: para generar cada respuesta, el texto que escribes se envía al servicio de IA y, si hace falta buscar en la web, una consulta generada a partir de tu mensaje se envía a un buscador. Por eso no incluyas contraseñas, datos personales ni información sensible. Más detalles en <a class="tool-link" href="#privacidad-seguridad">privacidad y seguridad</a>.</p>
         <h3>Pruébalo ahora</h3>
         <p>Abre <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a>, pulsa <strong>Esquema</strong> y escribe un tema que estés estudiando. En unos segundos tendrás un mapa visual para repasarlo.</p>
         <div class="tip">✦ <strong>Truco:</strong> combina atajos con tus propias palabras. Por ejemplo: pulsa <em>Tabla</em> y pide «compara PNG, JPG y WebP para una web».</div>
@@ -542,7 +553,7 @@ body.light .article-meta strong{color:#6d28d9}body.light .toc a{color:#4b5563}
         <h3>Temas delicados</h3>
         <p>En salud, asuntos legales y decisiones financieras, trata la respuesta como orientación general y consulta con un profesional. Un error en estos temas puede tener consecuencias reales.</p>
         <h3>Información reciente</h3>
-        <p>Un modelo no siempre conoce lo último que ha ocurrido: noticias, versiones nuevas de programas, cambios de normativa o precios. Si necesitas datos actuales, búscalos en una fuente actualizada.</p>
+        <p>Un modelo no siempre conoce lo último que ha ocurrido: noticias, versiones nuevas de programas, cambios de normativa o precios. Si necesitas datos actuales, búscalos en una fuente actualizada. TOOLBOX AI puede buscar en la web cuando lo necesita y muestra sus fuentes, pero una búsqueda tampoco garantiza que la información sea correcta: abre los enlaces y contrasta.</p>
         <h3>Sesgos y privacidad</h3>
         <p>La IA aprende de textos humanos y puede reflejar sus sesgos, así que conviene leer sus respuestas con espíritu crítico. Y por privacidad, evita introducir contraseñas, datos personales o información confidencial; en <a class="tool-link" href="#privacidad-seguridad">esta guía</a> explicamos qué revisar antes de compartir información con cualquier herramienta online.</p>
         <div class="tip">⚠️ <strong>Regla de oro:</strong> cuanto más importante sea el dato, más necesario es comprobarlo fuera de la IA.</div>
@@ -844,6 +855,7 @@ body.light .article-meta strong{color:#6d28d9}body.light .toc a{color:#4b5563}
     <div class="faq-item"><h3>¿Se guardan mis conversaciones con la IA?</h3><p>Se guardan en el navegador de tu dispositivo y puedes borrarlas cuando quieras. Para generar cada respuesta, el texto que escribes se envía al servicio de IA, así que evita incluir contraseñas, datos personales o información sensible.</p></div>
     <div class="faq-item"><h3>¿La IA puede equivocarse?</h3><p>Sí. Puede cometer errores o inventar datos con mucha seguridad, sobre todo en cifras, fuentes y temas recientes. Contrasta siempre la información importante con fuentes fiables.</p></div>
     <div class="faq-item"><h3>¿Qué es un prompt?</h3><p>Es la instrucción que le das a la IA. Cuanto más claro sea qué quieres, para quién y en qué formato, mejores suelen ser las respuestas.</p></div>
+    <div class="faq-item"><h3>¿TOOLBOX AI puede buscar en internet?</h3><p>Sí. Cuando una pregunta depende de información actual, busca en la web por su cuenta, te avisa mientras lo hace y muestra las fuentes con enlaces. Para ello envía una consulta generada a partir de tu mensaje a un buscador, así que evita incluir datos personales. Conviene comprobar siempre las fuentes.</p></div>
   </section>
   <section class="cta">
     <h2>🧰 ¿Buscas una herramienta?</h2>
