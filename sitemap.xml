@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+    <!-- Página principal de TOOLBOX -->
     <url>
         <loc>https://toolbox-zci6.onrender.com/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
 
+    <!-- Blog de TOOLBOX -->
     <url>
         <loc>https://toolbox-zci6.onrender.com/blog.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
 
+    <!-- Asistente de inteligencia artificial -->
     <url>
         <loc>https://toolbox-zci6.onrender.com/TOOLBOXAI</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
 </urlset>
