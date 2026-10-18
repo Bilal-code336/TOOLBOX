@@ -1,0 +1,50 @@
+TOOLBOX — IDIOMAS (español, English, Français)
+================================================
+
+Qué hay aquí
+------------
+index.html        → página en español   (se sirve en  /)
+en/index.html     → página en inglés    (se sirve en  /en/)
+fr/index.html     → página en francés   (se sirve en  /fr/)
+sitemap.xml       → con hreflang de los 3 idiomas
+TOOLBOXMOTOR.py   → servidor con las rutas /en/ y /fr/
+i18n/             → herramientas para regenerar las páginas (no se publica)
+
+IMPORTANTE: las 3 páginas se GENERAN a partir de una plantilla.
+Para cambiar algo de la web, edita  i18n/index.tpl.html  (HTML en español) y
+vuelve a generar. Si editas index.html a mano, el siguiente build lo sobrescribe.
+
+Cómo regenerar las páginas
+--------------------------
+   python i18n/build_i18n.py
+
+Escribe index.html, en/index.html, fr/index.html y sitemap.xml en la raíz.
+Si falta alguna traducción, el script te dice cuál y no termina.
+
+Dónde están los textos
+----------------------
+* Textos que se ven en la página (HTML):  lang_en.py  y  lang_fr.py, sección HTML.
+  La clave es el texto EXACTO en español de la plantilla; el valor, la traducción.
+  Si añades un texto nuevo a la plantilla, añade su línea en cada idioma.
+* Textos del JavaScript (avisos, botones dinámicos, prompts de la IA):
+  lang_es.py, lang_en.py, lang_fr.py, sección JS. En la plantilla se usan como t('clave').
+* Título y descripción de cada idioma: sección META.
+
+Cómo añadir otro idioma (por ejemplo alemán)
+--------------------------------------------
+1. Copia lang_en.py a lang_de.py y traduce META, HTML y JS (mantén los {marcadores}).
+2. En build_i18n.py:
+   - añade 'de' a LANGS (nombre, código, ruta '/de/', archivo 'de/index.html', og 'de_DE', label),
+   - añade el idioma a  for code in ('en', 'fr')  → ('en', 'fr', 'de'),
+   - si quieres bandera, añade <g id="flag-de"> en FLAG_SPRITE,
+   - añade las etiquetas de los botones de estilo en STYLE_LABELS.
+3. En TOOLBOXMOTOR.py añade "de" a IDIOMAS_WEB y a IDIOMAS_NOMBRE.
+4. Ejecuta el build y sube de/index.html.
+
+Notas
+-----
+* El idioma del OCR (Tesseract) se define con la clave ocr_lang (spa+eng, eng, fra+eng).
+* El Planificador guarda su plan por idioma (los nombres de los días cambian).
+* La IA responde en el idioma de la página: el servidor recibe "lang".
+* Blog, TOOLBOX AI y páginas legales siguen en español; en EN/FR sus enlaces
+  llevan una pequeña etiqueta "ES".
