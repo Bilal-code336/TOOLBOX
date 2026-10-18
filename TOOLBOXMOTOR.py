@@ -13,6 +13,7 @@ from flask import (
     Response,
     abort,
     jsonify,
+    redirect,
     request,
     send_from_directory,
     stream_with_context,
@@ -113,6 +114,33 @@ def inicio():
 
 
 # ============================================================
+# IDIOMAS DE LA WEB (páginas generadas con build_i18n.py)
+#   /      → español (index.html)
+#   /en/   → inglés  (en/index.html)
+#   /fr/   → francés (fr/index.html)
+# Para añadir otro idioma: crea su carpeta y añade su código aquí.
+# ============================================================
+
+IDIOMAS_WEB = ("en", "fr")
+
+
+def _pagina_idioma(codigo):
+    return lambda: send_from_directory(codigo, "index.html")
+
+
+def _redirigir(destino):
+    return lambda: redirect(destino, code=301)
+
+
+for _codigo in IDIOMAS_WEB:
+    app.add_url_rule(f"/{_codigo}/", f"inicio_{_codigo}", _pagina_idioma(_codigo))
+    app.add_url_rule(f"/{_codigo}", f"redirigir_{_codigo}", _redirigir(f"/{_codigo}/"))
+
+app.add_url_rule("/es", "redirigir_es", _redirigir("/"))
+app.add_url_rule("/es/", "redirigir_es_barra", _redirigir("/"))
+
+
+# ============================================================
 # TOOLBOX AI
 # ============================================================
 
@@ -163,6 +191,8 @@ def ruta_permitida(filename):
     if not partes:
         return False
     if any(p.startswith(".") or p == ".." for p in partes):
+        return False
+    if partes[0].lower() == "i18n":  # herramientas para generar idiomas: no se publican
         return False
     nombre = partes[-1].lower()
     if nombre in NOMBRES_BLOQUEADOS:
@@ -320,9 +350,24 @@ o que pueda haber cambiado, avísale de que tu información puede estar desactua
 """
 
 
-def construir_system_prompt(web_disponible):
+IDIOMAS_NOMBRE = {"es": "español", "en": "inglés", "fr": "francés"}
+
+
+def linea_idioma(codigo):
+    """Indica a la IA el idioma de la página desde la que escribe el usuario."""
+    nombre = IDIOMAS_NOMBRE.get(str(codigo or "").lower()[:2])
+    if not nombre:
+        return ""
+    return (
+        f"\nIdioma de la interfaz del usuario: {nombre}. Responde en {nombre} "
+        "salvo que el usuario escriba en otro idioma.\n"
+    )
+
+
+def construir_system_prompt(web_disponible, idioma=None):
     return (
         SYSTEM_PROMPT.strip()
+        + linea_idioma(idioma)
         + f"\n\nFecha y hora actuales: {fecha_actual_texto()}.\n"
         + "Puedes usar Markdown cuando mejore la lectura (listas, tablas, código).\n"
         + (BLOQUE_WEB_ACTIVA if web_disponible else BLOQUE_WEB_INACTIVA)
@@ -605,7 +650,7 @@ def formatear_resultados_para_modelo(consulta, nuevos):
     return "\n".join(partes)
 
 
-def chat_eventos(mensajes_cliente, usar_web, ip):
+def chat_eventos(mensajes_cliente, usar_web, ip, idioma=None):
     """
     Generador. Va emitiendo eventos y termina con uno de tipo 'done':
       start · search · results · search_error · limit · writing · done
@@ -621,7 +666,7 @@ def chat_eventos(mensajes_cliente, usar_web, ip):
         print("⚠️ Búsqueda web desactivada: falta la variable TAVILY_API_KEY en Render.")
 
     conversacion = [
-        {"role": "system", "content": construir_system_prompt(web_disponible)}
+        {"role": "system", "content": construir_system_prompt(web_disponible, idioma)}
     ] + mensajes
 
     fuentes = []          # todas las fuentes de esta respuesta (id global)
@@ -642,7 +687,7 @@ def chat_eventos(mensajes_cliente, usar_web, ip):
             if usar_herramienta and e.status == 400:
                 web_disponible = False
                 web_error = web_error or "No se pudo usar la búsqueda en la web en esta respuesta."
-                conversacion[0]["content"] = construir_system_prompt(False)
+                conversacion[0]["content"] = construir_system_prompt(False, idioma)
                 msg = llamar_groq(conversacion, None)
             else:
                 raise
@@ -814,10 +859,11 @@ def ai_stream():
     mensajes = preparar_mensajes(messages, ultimo_texto)
     usar_web = bool(data.get("web", True))
     ip = ip_cliente()
+    idioma = data.get("lang")
 
     def generar():
         try:
-            for evento in chat_eventos(mensajes, usar_web, ip):
+            for evento in chat_eventos(mensajes, usar_web, ip, idioma):
                 yield sse(evento)
         except Exception as error:
             print(traceback.format_exc())
@@ -862,7 +908,7 @@ def ai():
             # Chat normal: roles reales y, si lo pides con "web": true, búsqueda
             mensajes = preparar_mensajes(messages, ultimo_texto)
             final = None
-            for evento in chat_eventos(mensajes, bool(data.get("web", False)), ip_cliente()):
+            for evento in chat_eventos(mensajes, bool(data.get("web", False)), ip_cliente(), data.get("lang")):
                 if evento["type"] == "done":
                     final = evento
             texto_ia = final["reply"]
@@ -886,7 +932,7 @@ def ai():
             )
 
             msg = llamar_groq([
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": SYSTEM_PROMPT + linea_idioma(data.get("lang"))},
                 {"role": "user", "content": prompt_final},
             ], timeout=30)
 

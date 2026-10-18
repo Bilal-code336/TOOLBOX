@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" translate="yes">
-
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +7,22 @@
 <meta name="google-adsense-account" content="ca-pub-1369473611696992">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1369473611696992"
      crossorigin="anonymous"></script>
-  
+
 <title>TOOLBOX — Herramientas online gratis</title>
 <meta name="description" content="TOOLBOX reúne herramientas online gratis para estudiar, escribir, calcular, trabajar con imágenes y usar inteligencia artificial. Humanizador de texto, corrector, Pomodoro, OCR y mucho más.">
+<meta name="theme-color" content="#080b12">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="canonical" href="https://toolbox-zci6.onrender.com/">
+<link rel="alternate" hreflang="es" href="https://toolbox-zci6.onrender.com/">
+<link rel="alternate" hreflang="en" href="https://toolbox-zci6.onrender.com/en/">
+<link rel="alternate" hreflang="fr" href="https://toolbox-zci6.onrender.com/fr/">
+<link rel="alternate" hreflang="x-default" href="https://toolbox-zci6.onrender.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TOOLBOX">
+<meta property="og:title" content="TOOLBOX — Herramientas online gratis">
+<meta property="og:description" content="TOOLBOX reúne herramientas online gratis para estudiar, escribir, calcular, trabajar con imágenes y usar inteligencia artificial. Humanizador de texto, corrector, Pomodoro, OCR y mucho más.">
+<meta property="og:url" content="https://toolbox-zci6.onrender.com/">
+<meta property="og:locale" content="es_ES">
 
 <script type="application/ld+json">
 {
@@ -20,146 +30,12 @@
   "@type": "WebSite",
   "name": "TOOLBOX",
   "url": "https://toolbox-zci6.onrender.com/",
+  "inLanguage": "es",
   "description": "TOOLBOX reúne herramientas online gratis para estudiar, escribir, calcular, trabajar con imágenes y usar inteligencia artificial."
 }
 </script>
 
 <style>
-#google_translate_element {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-}
-
-.goog-te-banner-frame {
-    display: none !important;
-}
-
-.skiptranslate {
-    display: none !important;
-}
-
-body {
-    top: 0 !important;
-}
-/* =========================================================
-   POMODORO
-========================================================= */
-
-.pomodoro-box {
-    max-width: 760px;
-    margin: 10px auto 0;
-    padding: 30px;
-    border-radius: 22px;
-    border: 1px solid var(--border);
-    background: var(--card2);
-    text-align: center;
-    transition: background .25s, border-color .25s;
-}
-
-.pomodoro-box.focus-mode {
-    background: #4a171b;
-}
-
-.pomodoro-box.short-break-mode {
-    background: #173d2b;
-}
-
-.pomodoro-box.long-break-mode {
-    background: #123326;
-}
-
-.pomodoro-mode {
-    color: rgba(255,255,255,.78);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-}
-
-.pomodoro-time {
-    font-size: clamp(60px, 12vw, 105px);
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -4px;
-    color: #fff;
-    margin: 12px 0 25px;
-    font-variant-numeric: tabular-nums;
-}
-
-.pomodoro-sessions {
-    color: rgba(255,255,255,.78);
-    font-size: 14px;
-    margin-bottom: 22px;
-}
-
-.pomodoro-controls {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.pomodoro-controls button {
-    min-width: 105px;
-}
-
-.pomodoro-settings {
-    margin-top: 25px;
-    padding-top: 22px;
-    border-top: 1px solid rgba(255,255,255,.12);
-    text-align: left;
-}
-
-.pomodoro-settings-title {
-    color: rgba(255,255,255,.85);
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.pomodoro-settings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.pomodoro-settings-grid label {
-    display: block;
-    color: rgba(255,255,255,.68);
-    font-size: 12px;
-    margin-bottom: 6px;
-}
-
-.pomodoro-settings-grid input {
-    background: rgba(0,0,0,.18);
-    color: #fff;
-    border-color: rgba(255,255,255,.14);
-}
-
-.pomodoro-note {
-    margin-top: 14px;
-    color: rgba(255,255,255,.55);
-    font-size: 11px;
-    line-height: 1.5;
-    text-align: center;
-}
-
-@media(max-width:600px) {
-    .pomodoro-box {
-        padding: 22px 15px;
-    }
-
-    .pomodoro-settings-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .pomodoro-time {
-        letter-spacing: -2px;
-    }
-}
 /* =========================================================
    TOOLBOX — ESTILO PRINCIPAL
 ========================================================= */
@@ -1864,41 +1740,260 @@ footer strong {
         var(--purple2);
 }
 
+
+/* =========================================================
+   IDIOMAS, ACCESIBILIDAD Y MEJORAS
+========================================================= */
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    z-index: 10000;
+    padding: 9px 16px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.skip-link:focus { left: 12px; }
+
+:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.logo { color: inherit; text-decoration: none; }
+
+.flag {
+    width: 22px;
+    height: 15px;
+    flex: 0 0 auto;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(128,128,128,.35);
+}
+
+.lang-switch { position: relative; }
+
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--button);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.lang-btn:hover {
+    border-color: var(--purple2);
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(139,92,246,.25);
+}
+
+.lang-btn .caret { font-size: 10px; opacity: .7; transition: transform .2s; }
+.lang-btn[aria-expanded="true"] .caret { transform: rotate(180deg); }
+
+.lang-menu {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    z-index: 6000;
+    min-width: 190px;
+    padding: 6px;
+    list-style: none;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    animation: langPop .18s ease;
+}
+
+@keyframes langPop {
+    from { opacity: 0; transform: translateY(-6px) scale(.97); }
+    to { opacity: 1; transform: none; }
+}
+
+.lang-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.lang-menu a:hover,
+.lang-menu a:focus-visible { background: var(--button); }
+.lang-menu a[aria-current="true"] { background: rgba(124,58,237,.16); font-weight: 700; }
+.lang-menu .check { margin-left: auto; color: var(--purple3); }
+
+.lang-tag {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    vertical-align: middle;
+}
+
+.lang-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    z-index: 9000;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: calc(100% - 28px);
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 18px 50px rgba(0,0,0,.4);
+    font-size: 14px;
+    animation: langPop .3s ease;
+}
+
+.lang-hint a {
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.lang-hint button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: var(--button);
+    color: var(--text);
+}
+
+body.light .search {
+    background: #fff;
+    box-shadow: 0 15px 50px rgba(15,23,42,.08);
+}
+
+body.light .search input { color: var(--text); }
+
+.tool-sub { color: var(--muted); margin-top: 6px; font-size: 14px; line-height: 1.5; }
+
+.no-results {
+    margin-top: 22px;
+    padding: 26px;
+    text-align: center;
+    color: var(--muted);
+    border: 1px dashed var(--border2);
+    border-radius: 16px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 26px;
+    margin: 26px 0 18px;
+}
+
+.footer-links a, .footer-langs a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover, .footer-langs a:hover { color: var(--text); text-decoration: underline; }
+
+.footer-langs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 22px;
+    margin-bottom: 18px;
+}
+
+.footer-langs a { display: inline-flex; align-items: center; gap: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+@media (max-width: 700px) {
+    nav { padding: 0 4%; }
+    .nav-link { display: none; }
+    .nav-right { gap: 10px; }
+    .logo { font-size: 22px; }
+}
+
+@media (max-width: 600px) {
+    .lang-btn { padding: 0 10px; }
+    .lang-hint { bottom: 86px; }
+}
 </style>
 </head>
 
 <body>
+<script>try{if(localStorage.getItem("toolboxTheme")==="light")document.body.classList.add("light")}catch(e){}</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<g id="flag-es"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></g>
+<g id="flag-fr"><rect width="24" height="16" fill="#ED2939"/><rect width="16" height="16" fill="#FFFFFF"/><rect width="8" height="16" fill="#002395"/></g>
+<clipPath id="flag-en-clip"><path d="M12,8 h12 v8 z v8 h-12 z h-12 v-8 z v-8 h12 z"/></clipPath>
+<g id="flag-en"><rect width="24" height="16" fill="#012169"/>
+<path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="2.6"/>
+<path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.5" clip-path="url(#flag-en-clip)"/>
+<path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="4.4"/>
+<path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="2.6"/></g>
+</defs>
+</svg>
 
 <!-- =========================================================
      NAVBAR
 ========================================================= -->
 
-<nav>
+<a class="skip-link" href="#herramientas">Saltar al contenido</a>
 
-    <div class="logo">
+<nav aria-label="Principal">
+
+    <a class="logo" href="/" aria-label="TOOLBOX">
         🧰 TOOL<span>BOX</span>
-    </div>
-   <!-- Probamos con la URL alternativa directa de Google Translate 👇 -->
-    <button id="btn-idioma" class="btn-lang" onclick="forzarTraduccionGoogle()">
-    🌐 EN
-   </button>
+    </a>
 
-<div id="google_translate_element"></div>
-   
     <div class="nav-right">
 
         <a href="#herramientas" class="nav-link">
             Herramientas
         </a>
 
-        <a href="/blog.html" class="nav-link">
+        <a href="/blog.html" class="nav-link" hreflang="es">
             Blog / Tutoriales
         </a>
+
+        <div class="lang-switch" id="langSwitch"><button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Idioma: Español" title="Idioma / Language / Langue"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-es"/></svg><span>ES</span><span class="caret" aria-hidden="true">▾</span></button><ul class="lang-menu" id="langMenu" hidden><li><a href="/" hreflang="es" lang="es" data-lang="es" aria-current="true"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-es"/></svg><span>Español</span><span class="check" aria-hidden="true">✓</span></a></li><li><a href="/en/" hreflang="en" lang="en" data-lang="en"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-en"/></svg><span>English</span></a></li><li><a href="/fr/" hreflang="fr" lang="fr" data-lang="fr"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-fr"/></svg><span>Français</span></a></li></ul></div>
 
         <button
             id="themeButton"
             class="theme"
             onclick="tema()"
+            type="button"
+            title="Cambiar tema"
+            aria-label="Cambiar tema"
         >
             🌙
         </button>
@@ -2284,7 +2379,7 @@ footer strong {
         </div>
 <!-- Contraseñas sencillas -->
 <div class="tool-card"
-     data-category="seguridad"
+     data-category="utilidad"
      data-name="generador de contraseñas faciles">
 
     <div class="icon">🔐</div>
@@ -2330,95 +2425,10 @@ CONTRASEÑA FACIL
 ===================================================== -->
 
     </div>
+<p class="no-results" id="noResults" hidden>No se ha encontrado ninguna herramienta. Prueba con otra palabra.</p>
 <div id="passwordMemorable" class="tool-panel">
 
-    <button class="close" onclick="cerrar()">×</button>
-
-    <div class="tool-header">
-        <div class="tool-big-icon">🔐</div>
-
-        <div>
-            <h2>Generador de Contraseñas Memorables</h2>
-            
-            </p>
-        </div>
-    </div>
-
-    <div class="password-generator-box">
-
-        <label for="passwordWord1">
-            Primera palabra
-        </label>
-
-        <input
-            id="passwordWord1"
-            type="text"
-            maxlength="30"
-            placeholder="Ejemplo: Luna"
-        >
-
-        <label for="passwordWord2">
-            Segunda palabra
-        </label>
-
-        <input
-            id="passwordWord2"
-            type="text"
-            maxlength="30"
-            placeholder="Ejemplo: Bosque"
-        >
-
-        <label for="passwordNumber">
-            Número
-        </label>
-
-        <input
-            id="passwordNumber"
-            type="number"
-            min="0"
-            max="999999"
-            placeholder="Ejemplo: 27"
-        >
-
-        <button
-            class="primary password-generate-button"
-            onclick="generarPasswordMemorable()"
-        >
-            🔐 Generar contraseña
-        </button>
-
-        <div
-            id="passwordMemorableResult"
-            class="password-result"
-        >
-            Tu contraseña aparecerá aquí.
-        </div>
-
-        <button
-            id="copyPasswordButton"
-            class="secondary password-copy-button"
-            onclick="copiarPasswordMemorable()"
-        >
-            📋 Copiar contraseña
-        </button>
-
-    </div>
-
-</div>
-<div id="passwordMemorable" class="tool-panel">
-
-    <button class="close" onclick="cerrar()">×</button>
-
-    <div class="tool-header">
-        <div class="tool-big-icon">🔐</div>
-
-        <div>
-            <h2>Generador de Contraseñas Memorables</h2>
-            <p>
-                Crea contraseñas fáciles de recordar y difíciles de adivinar.
-            </p>
-        </div>
-    </div>
+    <div class="tool-head"><div><h2>🔐 Generador de Contraseñas Memorables</h2><p class="tool-sub">Crea contraseñas fáciles de recordar y difíciles de adivinar.</p></div><button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button></div>
 
     <div class="password-generator-box">
 
@@ -2496,12 +2506,7 @@ CONTRASEÑA FACIL
                 ✅ Corrector de texto IA
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -2552,7 +2557,7 @@ CONTRASEÑA FACIL
                 <h2>📅 Planificador inteligente</h2>
                 <p>Cuéntame todo lo que tienes que hacer y cuándo tienes tiempo. TOOLBOX decide cómo repartirlo durante la semana.</p>
             </div>
-            <button class="close" onclick="cerrar()">✕</button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
         </div>
 
         <div class="planner-layout">
@@ -2641,12 +2646,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
         <div class="tool-head">
             <h2>🍅 Temporizador Pomodoro</h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
         </div>
 
         <div id="pomodoroBox" class="pomodoro-box focus-mode">
@@ -2756,12 +2756,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
         <div class="tool-head">
             <h2>🔎 Texto de imagen</h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
         </div>
 
         <div class="ocr-box">
@@ -2847,15 +2842,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 
 <div id="humanizador" class="tool-panel humanizador-panel">
 
-    <button class="close" onclick="cerrar()">×</button>
-
-    <div class="tool-header">
-        <div class="tool-big-icon">📝</div>
-        <div>
-            <h2>Humanizador de Texto</h2>
-            <p>Reescribe para que el texto sea claro, natural y fácil de leer, manteniendo su significado.</p>
-        </div>
-    </div>
+    <div class="tool-head"><div><h2>📝 Humanizador de Texto</h2><p class="tool-sub">Reescribe para que el texto sea claro, natural y fácil de leer, manteniendo su significado.</p></div><button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button></div>
 
     <div class="humanizador-options" aria-label="Tipo de redacción">
         <div class="humanizador-option">
@@ -2910,12 +2897,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 📝 Simplificador de textos IA
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -2970,12 +2952,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 🧮 Calculadora
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -3103,12 +3080,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 ✨ Estilizador de texto
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -3183,12 +3155,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 🛠️ Editor de imágenes
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -3331,12 +3298,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 🔄 PNG → JPG
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -3395,12 +3357,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 🔐 Generador de contraseñas
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -3498,12 +3455,7 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
                 🎨 Generador de colores
             </h2>
 
-            <button
-                class="close"
-                onclick="cerrar()"
-            >
-                ✕
-            </button>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Cerrar">✕</button>
 
         </div>
 
@@ -3554,29 +3506,33 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 <footer>
 
     <div style="font-size:30px">
-       <span class="notranslate">🧰 TOOLBOX 2.9</span>
+       🧰 TOOLBOX 2.9
     </div>
 
     <br>
-<div style="font-size:20px">
-    Todas tus herramientas en un solo sitio.
-</div>
+
+    <div style="font-size:20px">
+        Todas tus herramientas en un solo sitio.
+    </div>
+
     <br>
+
     <strong>
         Sin costes, sin complicaciones
     </strong>
-<br><br>
-<a href="/privacidad.html">🔒 Política de privacidad</a>
-<br><br>
-<a href="/terminos.html">📜 Términos y condiciones</a>
-<br><br>
-<a href="/cookies.html">🍪 Uso de cookies</a>
-<br><br>
-<a href="/contacto.html">📧 Contacta con nosotros</a>
 
-<br><br>
+    <div class="footer-links">
+        <a href="/TOOLBOXAI">✦ TOOLBOX AI</a>
+        <a href="/blog.html" hreflang="es">📚 Blog / Tutoriales</a>
+        <a href="/privacidad.html" hreflang="es">🔒 Política de privacidad</a>
+        <a href="/terminos.html" hreflang="es">📜 Términos y condiciones</a>
+        <a href="/cookies.html" hreflang="es">🍪 Uso de cookies</a>
+        <a href="/contacto.html" hreflang="es">📧 Contacta con nosotros</a>
+    </div>
 
-© 2026 TOOLBOX
+    <div class="footer-langs" aria-label="Idiomas / Languages / Langues"><a href="/" hreflang="es" lang="es"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-es"/></svg><span>Español</span></a><a href="/en/" hreflang="en" lang="en"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-en"/></svg><span>English</span></a><a href="/fr/" hreflang="fr" lang="fr"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-fr"/></svg><span>Français</span></a></div>
+
+    © 2026 TOOLBOX
 
 </footer>
 
@@ -3594,10 +3550,20 @@ También quiero dejar algo de tiempo libre esta semana."></textarea>
 </a>
 
 <script>
-
 /* =========================================================
-   ESTADO GENERAL
+   IDIOMA (se genera una página por idioma)
 ========================================================= */
+
+const LANG = "es";
+const I18N = {"color_copied": "Color copiado.", "styler_empty": "Tu texto aparecerá aquí.", "text_copied": "Texto copiado.", "pw_select_one": "Selecciona al menos un tipo de carácter.", "pw_copied": "Contraseña copiada.", "img_load_first": "Primero carga una imagen.", "err_invalid_response": "El servidor no devolvió una respuesta válida.", "err_no_reply": "TOOLBOX AI no devolvió ninguna respuesta.", "err_connect": "Error conectando con TOOLBOX AI.", "corr_write_first": "Escribe un texto primero.", "corr_loading": "🤖 Mejorando...", "corr_analyzing": "TOOLBOX AI está analizando tu texto...", "corr_button": "✨ Mejorar con IA", "paste_first": "Pega un texto primero.", "simp_loading": "🧠 Simplificando...", "simp_working": "TOOLBOX AI está preparando una explicación sencilla...", "simp_button": "🧠 Hacerlo fácil", "pwm_complete": "⚠️ Completa las dos palabras y el número.", "pwm_copied": "✅ ¡Copiada!", "pwm_copy_failed": "No se pudo copiar automáticamente.", "words_suffix": " palabras", "hum_empty": "Aquí aparecerá el texto reescrito.", "copied_ok": "✅ Copiado", "hum_longer": "Pega un texto un poco más largo para obtener una reescritura útil.", "hum_style_simple": "Usa un español sencillo, directo y natural. Prioriza palabras habituales, frases claras y una lectura fácil. No rebajes la precisión ni elimines información.", "hum_style_pro": "Usa una redacción profesional y, cuando corresponda, académica. Debe ser precisa, clara y seria, pero sin sonar rígida, excesivamente formal o mecánica.", "hum_loading": "🧠 Reescribiendo...", "hum_analyzing": "Analizando el texto...", "hum_checking": "Revisando vocabulario, estructura, ritmo, repeticiones y claridad...", "hum_empty_ai": "La IA no devolvió un texto. Inténtalo de nuevo.", "hum_done": "✅ Texto reescrito. Revísalo antes de utilizarlo.", "hum_status_default": "Mantiene el significado y mejora claridad, ritmo, variedad y naturalidad.", "hum_copy_result": "📋 Copiar resultado", "hum_failed": "No se pudo completar la reescritura.", "hum_button": "✨ Humanizar texto", "pomo_focus": "Momento de estudiar / trabajar", "pomo_short": "Descanso corto", "pomo_long": "Descanso largo", "pomo_pause": "⏸️ Pausar", "pomo_start": "▶️ Empezar", "pomo_t_all": "🍅 ¡Has terminado las sesiones!", "pomo_m_all": "Puedes hacer tu descanso largo.", "pomo_t_session": "🍅 ¡Sesión terminada!", "pomo_m_session": "Puedes descansar unos minutos.", "pomo_t_break": "⏰ ¡Descanso terminado!", "pomo_m_break": "Toca volver a estudiar o trabajar.", "pomo_t_long": "🌿 ¡Descanso largo terminado!", "pomo_m_long": "Puedes ponerte a trabajar de nuevo.", "ocr_preparing": "Preparando reconocimiento...", "ocr_ok": "✅ Texto detectado correctamente.", "ocr_none": "No se ha encontrado texto en la imagen.", "ocr_fail": "❌ No se pudo reconocer el texto. Prueba con otra imagen.", "ocr_first": "Primero detecta algún texto.", "ocr_copied": "✅ Texto copiado.", "planner_same_monday": "Horario del lunes copiado al resto de la semana.", "planner_same_all": "Mismo horario aplicado a todos los días.", "planner_clear_confirm": "¿Quieres borrar las tareas y el plan generado?", "planner_bad_json": "La IA devolvió una respuesta que no se pudo convertir en un plan. Inténtalo de nuevo.", "planner_bad_days": "La IA no devolvió la estructura de días esperada.", "planner_write_first": "Escribe primero todo lo que tienes que hacer.", "planner_activate_day": "Activa al menos un día y define un horario disponible.", "planner_time_error": "La hora de inicio debe ser anterior a la hora de fin.", "planner_loading": "🤖 Organizando...", "planner_status_creating": "Creando un plan realista con tus tareas y horarios...", "planner_done": "✅ Semana organizada correctamente.", "planner_unknown": "Error desconocido.", "planner_button": "✨ Crear mi semana", "planner_rate_limit": "Groq está limitando temporalmente las peticiones. Espera unos segundos y vuelve a intentarlo. Esta versión ya no hace reintentos automáticos para no gastar más peticiones.", "planner_title_default": "Tu semana organizada", "planner_summary_default": "He distribuido tus tareas teniendo en cuenta el tiempo disponible y sus prioridades.", "planner_unavailable": "No disponible", "planner_undo": "↶ Deshacer", "planner_mark_done": "✓ Hecho", "planner_load_fail": "No se pudo cargar el plan guardado", "planner_fail": "No se pudo crear el plan.", "pomo_session": "Sesión {n} de {total}", "ocr_lang": "spa+eng", "day_mon": "Lunes", "day_mon_s": "Lun", "day_tue": "Martes", "day_tue_s": "Mar", "day_wed": "Miércoles", "day_wed_s": "Mié", "day_thu": "Jueves", "day_thu_s": "Jue", "day_fri": "Viernes", "day_fri_s": "Vie", "day_sat": "Sábado", "day_sat_s": "Sáb", "day_sun": "Domingo", "day_sun_s": "Dom", "planner_free_word": "libre", "planner_activate": "Activar", "planner_pending_one": "pendiente", "planner_pending_many": "pendientes", "planner_planned": "planificadas", "planner_free_day": "Día libre", "planner_free_time": "Tiempo libre", "prompt_corrector": "\nEres el corrector de textos de TOOLBOX.\n\nCorrige exclusivamente el texto proporcionado por el usuario.\n\nCorrige:\n- Ortografía\n- Tildes\n- Puntuación\n- Mayúsculas y minúsculas\n- Gramática\n- Concordancia\n- Tipografía\n- Errores de escritura\n\nREGLAS IMPORTANTES:\n\n1. Mantén exactamente el significado original.\n2. No añadas información nueva.\n3. No saludes al usuario.\n4. No expliques las correcciones.\n5. No pongas introducciones como \"Aquí tienes\".\n6. No pongas despedidas.\n7. No hagas comentarios.\n8. Devuelve ÚNICAMENTE el texto corregido.\n9. Conserva los párrafos y el formato del texto original cuando sea posible.\n\nTEXTO A CORREGIR:\n\n{input}\n        ", "prompt_simplifier": "\nEres el Simplificador de Textos de TOOLBOX.\n\nTu tarea es transformar el texto complicado del usuario\nen un texto mucho más fácil de entender.\n\nREGLAS IMPORTANTES:\n\n1. Explica el mismo contenido con palabras sencillas.\n2. Mantén TODA la información importante.\n3. No inventes información.\n4. No cambies el significado.\n5. Sustituye palabras difíciles por palabras fáciles.\n6. Divide las frases demasiado largas.\n7. Si hay conceptos complicados, explícalos de forma sencilla.\n8. Puedes utilizar ejemplos cotidianos cuando ayuden a entender el concepto.\n9. NO saludes al usuario.\n10. NO digas \"Aquí tienes\".\n11. NO expliques lo que has cambiado.\n12. NO hagas comentarios al final.\n13. Devuelve ÚNICAMENTE el texto simplificado.\n14. Mantén los párrafos y la estructura cuando sea posible.\n\nTEXTO A SIMPLIFICAR:\n\n\n{input}\n        ", "prompt_humanizer": "\nReescribe el texto con total libertad de redacción. No quiero una simple sustitución de palabras:\nquiero que construyas una versión nueva, natural y coherente del texto.\n\nDICCIONARIO DE ESTILO NATURAL:\n\nEvita abusar de:\n- \"En primer lugar\"\n- \"En segundo lugar\"\n- \"Por otro lado\"\n- \"Asimismo\"\n- \"Cabe destacar que\"\n- \"Es importante señalar que\"\n- \"En este sentido\"\n- \"Por consiguiente\"\n- \"De este modo\"\n- \"En conclusión\"\n- \"En definitiva\"\n- \"A modo de conclusión\"\n- \"Resulta fundamental\"\n- \"Es necesario destacar\"\n- \"No cabe duda de que\"\n- \"En la actualidad\"\n- \"A lo largo de la historia\"\n- \"Como se ha mencionado anteriormente\"\n- \"Por último\"\n\nNo están prohibidas. Úsalas únicamente cuando realmente encajen.\n\nPREFERENCIAS DE VOCABULARIO:\n\nEn lugar de buscar constantemente palabras más sofisticadas:\n- \"utilizar\" → \"usar\" cuando el contexto lo permita\n- \"realizar\" → \"hacer\" cuando sea natural\n- \"efectuar\" → \"hacer\" o \"llevar a cabo\"\n- \"adquirir\" → \"obtener\" o \"conseguir\" según el contexto\n- \"posteriormente\" → \"después\"\n- \"previamente\" → \"antes\"\n- \"numerosos\" → \"muchos\" cuando no se necesite formalidad\n- \"aproximadamente\" → \"más o menos\" solo en contextos informales\n- \"debido a que\" → \"porque\" cuando no cambie el tono\n- \"con el objetivo de\" → \"para\" cuando sea suficiente\n- \"en relación con\" → \"sobre\" o \"respecto a\" cuando suene mejor\n- \"llevar a cabo\" → \"hacer\" cuando no sea necesario mantener un registro formal\n\nIMPORTANTE:\nNo hagas estas sustituciones automáticamente. Son ejemplos de preferencias, no reglas.\nSi la palabra original es la mejor opción, mantenla.\n\nREGLAS DE ESCRITURA:\n\n1. Reescribe las frases desde cero cuando sea necesario.\n2. No conserves la estructura del original por obligación.\n3. Puedes cambiar el orden de las ideas dentro de una explicación si mejora la lectura.\n4. Puedes fusionar frases.\n5. Puedes dividir frases demasiado largas.\n6. Puedes cambiar completamente los conectores.\n7. Puedes eliminar repeticiones.\n8. Puedes conservar repeticiones cuando sean naturales o necesarias.\n9. No intentes utilizar un sinónimo diferente cada vez que aparece una palabra.\n10. No hagas que todas las frases tengan la misma longitud.\n11. No hagas que todos los párrafos tengan exactamente la misma estructura.\n12. No empieces todas las frases de forma parecida.\n13. No fuerces conectores entre todas las ideas.\n14. Deja que algunas ideas estén directamente relacionadas sin añadir un conector artificial.\n15. Evita frases excesivamente perfectas, genéricas o de plantilla.\n16. No añadas relleno.\n17. No añadas información nueva.\n18. No cambies datos, cifras, nombres o conceptos.\n19. Mantén el significado original.\n20. Mantén el idioma original.\n\nLIBERTAD:\n\nTienes permiso para cambiar prácticamente toda la forma del texto:\nvocabulario, sintaxis, orden de las frases, longitud de las frases,\nconectores, estructura de los párrafos y manera de explicar las ideas.\n\nLo único que debes conservar es la información y el significado.\n\nEl resultado debe funcionar como un texto independiente.\nNo debe parecer una versión palabra-por-palabra del original.\n\nTIPO DE TEXTO:\n{estilo}\n\n--- TEXTO ORIGINAL ---\n{input}\n--- FIN DEL TEXTO ORIGINAL ---\n\nDevuelve únicamente la nueva versión del texto.\n", "prompt_planner": "Planifica mi semana. No uses Pomodoros.\n\nTAREAS:\n{tasks}\n\nHORARIOS:\n{availability}\n\nREGLAS:\n- Respeta exactamente los horarios.\n- Prioriza fechas límite y exámenes cercanos.\n- Respeta las duraciones indicadas; si falta duración, estima una razonable.\n- Divide tareas largas si hace falta.\n- No llenes todo: deja tiempo libre.\n- No solapes bloques.\n- Si no cabe todo, programa primero lo prioritario y manda el resto a pending.\n- Usa bloques normales como 16:00-17:30.\n- Devuelve SOLO JSON válido, sin Markdown.\n\nFORMATO:\n{\"title\":\"Semana organizada\",\"summary\":\"breve\",\"days\":[{\"day\":\"Lunes\",\"blocks\":[{\"task\":\"Matemáticas\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"alta\",\"deadline\":\"viernes\",\"note\":\"\"}]},{\"day\":\"Martes\",\"blocks\":[]},{\"day\":\"Miércoles\",\"blocks\":[]},{\"day\":\"Jueves\",\"blocks\":[]},{\"day\":\"Viernes\",\"blocks\":[]},{\"day\":\"Sábado\",\"blocks\":[]},{\"day\":\"Domingo\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}"};
+
+function t(key, vars) {
+    let text = (I18N[key] !== undefined) ? I18N[key] : key;
+    if (vars) {
+        text = text.replace(/\{(\w+)\}/g, (m, name) => (vars[name] !== undefined ? vars[name] : m));
+    }
+    return text;
+}
 
 /* =========================================================
    ABRIR / CERRAR HERRAMIENTAS
@@ -3646,21 +3612,25 @@ function tema() {
 
     document.body.classList.toggle("light");
 
-    const button =
-        document.getElementById("themeButton");
+    const light = document.body.classList.contains("light");
 
-    if (
-        document.body.classList.contains("light")
-    ) {
+    syncThemeButton();
 
-        button.innerText = "☀️";
+    try {
+        localStorage.setItem("toolboxTheme", light ? "light" : "dark");
+    } catch (e) {}
 
-    } else {
+}
 
-        button.innerText = "🌙";
+function syncThemeButton() {
 
-    }
+    const button = document.getElementById("themeButton");
 
+    if (!button) return;
+
+    const light = document.body.classList.contains("light");
+
+    button.innerText = light ? "☀️" : "🌙";
 }
 
 
@@ -3668,37 +3638,58 @@ function tema() {
    BUSCADOR
 ========================================================= */
 
-function buscar() {
+let currentCategory = "all";
 
-    const texto =
-        document
-            .getElementById("search")
-            .value
-            .toLowerCase()
-            .trim();
+function normalizeText(text) {
+    return String(text || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+function applyToolFilters() {
+
+    const input = document.getElementById("search");
+
+    const query = normalizeText(input ? input.value.trim() : "");
+
+    let visible = 0;
 
     document
         .querySelectorAll(".tool-card")
         .forEach(card => {
 
-            const nombre =
-                card.dataset.name.toLowerCase();
+            const matchesCategory =
+                currentCategory === "all" ||
+                card.dataset.category === currentCategory;
 
-            card.style.display =
-                nombre.includes(texto)
-                ? ""
-                : "none";
+            const matchesText =
+                !query ||
+                normalizeText(card.dataset.name + " " + card.innerText).includes(query);
+
+            const show = matchesCategory && matchesText;
+
+            card.style.display = show ? "" : "none";
+
+            if (show) visible++;
 
         });
 
+    const none = document.getElementById("noResults");
+
+    if (none) none.hidden = visible > 0;
+
 }
 
+function buscar() {
 
-/* =========================================================
-   CATEGORÍAS
-========================================================= */
+    applyToolFilters();
+
+}
 
 function filtrar(categoria, boton) {
+
+    currentCategory = categoria;
 
     document
         .querySelectorAll(".category")
@@ -3710,26 +3701,11 @@ function filtrar(categoria, boton) {
 
     boton.classList.add("selected");
 
-    document
-        .querySelectorAll(".tool-card")
-        .forEach(card => {
-
-            if (
-                categoria === "all" ||
-                card.dataset.category === categoria
-            ) {
-
-                card.style.display = "";
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
+    applyToolFilters();
 
 }
+
+
 
 
 /* =========================================================
@@ -3893,7 +3869,7 @@ async function copyColor() {
 
     await navigator.clipboard.writeText(text);
 
-    alert("Color copiado.");
+    alert(t('color_copied'));
 
 }
 
@@ -3997,7 +3973,7 @@ function actualizarEstilo() {
         document.getElementById(
             "stylerResult"
         ).innerText =
-            "Tu texto aparecerá aquí.";
+            t('styler_empty');
 
         return;
 
@@ -4045,7 +4021,7 @@ async function copiarEstilo() {
 
     await navigator.clipboard.writeText(text);
 
-    alert("Texto copiado.");
+    alert(t('text_copied'));
 
 }
 
@@ -4128,7 +4104,7 @@ function generatePassword() {
     if (!chars) {
 
         alert(
-            "Selecciona al menos un tipo de carácter."
+            t('pw_select_one')
         );
 
         return;
@@ -4185,7 +4161,7 @@ async function copyPassword() {
         input.value
     );
 
-    alert("Contraseña copiada.");
+    alert(t('pw_copied'));
 
 }
 
@@ -4582,7 +4558,7 @@ function downloadEditor() {
     if (!editorImage) {
 
         alert(
-            "Primero carga una imagen."
+            t('img_load_first')
         );
 
         return;
@@ -4630,7 +4606,8 @@ async function askGemini(messages, mode = "normal") {
 
             body: JSON.stringify({
                 messages: messages,
-                mode: mode
+                mode: mode,
+                lang: LANG
             })
         }
     );
@@ -4645,7 +4622,7 @@ async function askGemini(messages, mode = "normal") {
     } catch {
 
         throw new Error(
-            "El servidor no devolvió una respuesta válida."
+            t('err_invalid_response')
         );
 
     }
@@ -4655,7 +4632,7 @@ async function askGemini(messages, mode = "normal") {
 
         throw new Error(
             data.error ||
-            "Error conectando con TOOLBOX AI."
+            t('err_connect')
         );
 
     }
@@ -4665,7 +4642,7 @@ async function askGemini(messages, mode = "normal") {
 
         throw new Error(
             data.error ||
-            "TOOLBOX AI no devolvió ninguna respuesta."
+            t('err_no_reply')
         );
 
     }
@@ -4690,7 +4667,7 @@ async function corregirConIA() {
     if (!input) {
 
         alert(
-            "Escribe un texto primero."
+            t('corr_write_first')
         );
 
         return;
@@ -4712,46 +4689,16 @@ async function corregirConIA() {
     button.disabled = true;
 
     button.innerText =
-        "🤖 Mejorando...";
+        t('corr_loading');
 
 
     result.innerText =
-        "TOOLBOX AI está analizando tu texto...";
+        t('corr_analyzing');
 
 
     try {
 
-        const prompt = `
-Eres el corrector de textos de TOOLBOX.
-
-Corrige exclusivamente el texto proporcionado por el usuario.
-
-Corrige:
-- Ortografía
-- Tildes
-- Puntuación
-- Mayúsculas y minúsculas
-- Gramática
-- Concordancia
-- Tipografía
-- Errores de escritura
-
-REGLAS IMPORTANTES:
-
-1. Mantén exactamente el significado original.
-2. No añadas información nueva.
-3. No saludes al usuario.
-4. No expliques las correcciones.
-5. No pongas introducciones como "Aquí tienes".
-6. No pongas despedidas.
-7. No hagas comentarios.
-8. Devuelve ÚNICAMENTE el texto corregido.
-9. Conserva los párrafos y el formato del texto original cuando sea posible.
-
-TEXTO A CORREGIR:
-
-${input}
-        `;
+        const prompt = t('prompt_corrector', {input: input});
 
 
         const reply =
@@ -4779,7 +4726,7 @@ result.innerText =
         button.disabled = false;
 
         button.innerText =
-            "✨ Mejorar con IA";
+            t('corr_button');
 
     }
 
@@ -4801,7 +4748,7 @@ async function simplificar() {
     if (!input) {
 
         alert(
-            "Pega un texto primero."
+            t('paste_first')
         );
 
         return;
@@ -4823,43 +4770,16 @@ async function simplificar() {
     button.disabled = true;
 
     button.innerText =
-        "🧠 Simplificando...";
+        t('simp_loading');
 
 
     result.innerText =
-        "TOOLBOX AI está preparando una explicación sencilla...";
+        t('simp_working');
 
 
     try {
 
-const prompt = `
-Eres el Simplificador de Textos de TOOLBOX.
-
-Tu tarea es transformar el texto complicado del usuario
-en un texto mucho más fácil de entender.
-
-REGLAS IMPORTANTES:
-
-1. Explica el mismo contenido con palabras sencillas.
-2. Mantén TODA la información importante.
-3. No inventes información.
-4. No cambies el significado.
-5. Sustituye palabras difíciles por palabras fáciles.
-6. Divide las frases demasiado largas.
-7. Si hay conceptos complicados, explícalos de forma sencilla.
-8. Puedes utilizar ejemplos cotidianos cuando ayuden a entender el concepto.
-9. NO saludes al usuario.
-10. NO digas "Aquí tienes".
-11. NO expliques lo que has cambiado.
-12. NO hagas comentarios al final.
-13. Devuelve ÚNICAMENTE el texto simplificado.
-14. Mantén los párrafos y la estructura cuando sea posible.
-
-TEXTO A SIMPLIFICAR:
-
-
-${input}
-        `;
+const prompt = t('prompt_simplifier', {input: input});
 
 
         const reply =
@@ -4889,353 +4809,19 @@ ${input}
         button.disabled = false;
 
         button.innerText =
-            "🧠 Hacerlo fácil";
+            t('simp_button');
 
     }
 
 }
-
-
-/* =========================================================
-   TOOLBOX AI — CONVERSACIONES
-========================================================= */
-
-function saveConversations() {
-
-    localStorage.setItem(
-        "toolboxConversations",
-        JSON.stringify(
-            conversations
-        )
-    );
-
-}
-
-
-function createNewConversation() {
-
-    const conversation = {
-
-        id:
-            Date.now().toString(),
-
-        title:
-            "Nueva conversación",
-
-        messages:
-            []
-
-    };
-
-
-    conversations.unshift(
-        conversation
-    );
-
-
-    currentConversationId =
-        conversation.id;
-
-
-    saveConversations();
-
-    renderConversationList();
-
-    renderCurrentConversation();
-
-    document.getElementById(
-        "currentConversationTitle"
-    ).innerText =
-        conversation.title;
-
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    input.value = "";
-
-    updateCharCounter();
-
-    input.focus();
-
-
-    closeMobileSidebar();
-
-}
-
-
-function getCurrentConversation() {
-
-    return conversations.find(
-        c =>
-            c.id ===
-            currentConversationId
-    );
-
-}
-
-
-/* =========================================================
-   ABRIR IA
-========================================================= */
-
-function buildCentralPrompt(text) {
-    return `
-Eres TOOLBOX AI, un asistente de inteligencia artificial general integrado en TOOLBOX.
-
-Tu objetivo principal es responder de forma natural, útil, clara y coherente a lo que el usuario te diga.
-
-REGLAS IMPORTANTES:
-
-1. RESPONDE SOLO A LO QUE EL USUARIO ESTÁ HABLANDO.
-   No introduzcas temas que el usuario no haya mencionado ni pedido.
-
-2. NO HABLES DE PROGRAMACIÓN POR DEFECTO.
-   Solo habla de Python, HTML, CSS, JavaScript, programación, código o desarrollo de aplicaciones cuando el usuario pregunte por esos temas o cuando sean claramente necesarios para responder.
-
-3. NO MENCIONES LAS FUNCIONES DE TOOLBOX SIN MOTIVO.
-   No digas constantemente que puedes ayudar con programación, diseño, herramientas, etc.
-
-4. MANTÉN EL CONTEXTO.
-   Si el usuario continúa hablando del mismo tema, utiliza los mensajes anteriores para entender a qué se refiere.
-   Por ejemplo, si primero pregunta "¿qué es Marte?" y después dice "¿y cuánto tarda en llegar?", entiende que sigue hablando de Marte.
-
-5. SI EL USUARIO CAMBIA DE TEMA, CAMBIA DE TEMA.
-   No sigas hablando del tema anterior si el nuevo mensaje trata de algo diferente.
-
-6. HABLA DE FORMA NATURAL.
-   No conviertas todas las respuestas en documentos o apuntes.
-
-7. NO ABUSES DEL MARKDOWN.
-   Evita utilizar muchos asteriscos.
-   No utilices negritas constantemente.
-   No utilices hashtags (#, ##, ###) para crear títulos salvo que el usuario los pida o sean realmente necesarios.
-   No pongas títulos innecesarios.
-   Utiliza párrafos normales siempre que sea suficiente.
-
-8. UTILIZA LISTAS SOLO CUANDO AYUDEN.
-   No conviertas una respuesta sencilla en una lista de muchos puntos.
-
-9. FORMATO VISUAL.
-   Puedes usar Markdown básico cuando realmente ayude a leer la respuesta: **negrita**, *cursiva*, títulos, listas, citas, separadores de línea y bloques de código. TOOLBOX AI mostrará ese formato visualmente, así que no escribas etiquetas HTML. No uses Markdown por obligación.
-
-10. ADAPTA LA RESPUESTA AL USUARIO.
-   Si pregunta algo sencillo, responde de forma sencilla.
-   Si pide una explicación profunda, puedes dar más detalles.
-
-10. CUANDO TE PIDAN EXPLICAR ALGO:
-   Explica el concepto claramente.
-   Utiliza ejemplos si ayudan a entenderlo.
-   Si el tema es complicado, divídelo en partes sencillas.
-   Al final puedes preguntar de forma natural si quiere aprenderlo más a fondo.
-
-11. SI EL USUARIO QUIERE APRENDER:
-   Actúa como profesor.
-   Explica paso a paso, utiliza ejemplos y pequeñas preguntas para comprobar que entiende el concepto.
-
-12. SI EL USUARIO PIDE PROGRAMACIÓN:
-   Entonces sí puedes hablar de programación y proporcionar código.
-   Explica el código de forma comprensible y procura que funcione.
-
-13. SI EL USUARIO PIDE ESCRITURA:
-   Ayuda con poemas, historias, textos, ideas, correcciones o cualquier otro tipo de escritura que solicite.
-
-14. NO INVENTES INFORMACIÓN.
-   Si no estás seguro de algo, dilo claramente.
-
-15. NO REPITAS LA PREGUNTA DEL USUARIO SIN NECESIDAD.
-   Responde directamente.
-
-16. NO DIGAS QUE ERES UNA PERSONA.
-   No afirmes tener experiencias personales.
-
-17. RESPONDE EN EL IDIOMA DEL USUARIO.
-   Si el usuario escribe en español, responde en español.
-   Si cambia claramente a otro idioma, responde en ese idioma.
-
-La conversación puede contener mensajes anteriores. Utilízalos únicamente para comprender correctamente el mensaje actual y mantener el contexto.
-
-MENSAJE ACTUAL DEL USUARIO:
-
-${text}
-    `;
-}
-
-
-/* =========================================================
-   TÍTULOS AUTOMÁTICOS
-========================================================= */
-
-function createConversationTitle(text) {
-
-    let title =
-        text
-            .replace(/\s+/g," ")
-            .trim();
-
-
-    if (title.length > 38) {
-
-        title =
-            title.substring(
-                0,
-                38
-            ) + "...";
-
-    }
-
-
-    return title ||
-        "Nueva conversación";
-
-}
-
-
-/* =========================================================
-   SUGERENCIAS
-========================================================= */
-
-function useSuggestion(text) {
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    input.value =
-        text;
-
-    updateCharCounter();
-
-    autoResizeAIInput(input);
-
-    input.focus();
-
-}
-
-
-/* =========================================================
-   INPUT IA
-========================================================= */
-
-function toolboxAIKeyDown(event) {
-
-    if (
-        event.key === "Enter" &&
-        !event.shiftKey
-    ) {
-
-        event.preventDefault();
-
-        sendToolboxAI();
-
-    }
-
-}
-
-
-function autoResizeAIInput(textarea) {
-
-    textarea.style.height =
-        "auto";
-
-    textarea.style.height =
-        Math.min(
-            textarea.scrollHeight,
-            180
-        ) + "px";
-
-}
-
-
-function updateCharCounter() {
-
-    const input =
-        document.getElementById(
-            "toolboxAiInput"
-        );
-
-    document.getElementById(
-        "aiCharCounter"
-    ).innerText =
-        input.value.length;
-
-}
-
-
-function scrollAIToBottom() {
-
-    const messages =
-        document.getElementById(
-            "toolboxAiMessages"
-        );
-
-    messages.scrollTop =
-        messages.scrollHeight;
-
-}
-
-
-/* =========================================================
-   SIDEBAR MÓVIL
-========================================================= */
-
-function toggleAISidebar() {
-
-    document
-        .getElementById(
-            "toolboxAiSidebar"
-        )
-        .classList.toggle(
-            "mobile-open"
-        );
-
-}
-
-
-function closeMobileSidebar() {
-
-    document
-        .getElementById(
-            "toolboxAiSidebar"
-        )
-        .classList.remove(
-            "mobile-open"
-        );
-
-}
-
 
 
 /* =========================================================
    INICIALIZACIÓN
 ========================================================= */
 
-(function init() {
+updateColor();
 
-    if (
-        conversations.length === 0
-    ) {
-
-        createNewConversation();
-
-    } else {
-
-        currentConversationId =
-            conversations[0].id;
-
-        renderConversationList();
-
-        renderCurrentConversation();
-
-    }
-
-
-    updateColor();
-
-})();
 /* =========================================================
    GENERADOR DE CONTRASEÑAS MEMORABLES
 ========================================================= */
@@ -5290,8 +4876,9 @@ function generarPasswordMemorable() {
 
     if (!palabra1 || !palabra2 || !numero) {
 
+        resultado.dataset.error = "1";
         resultado.innerText =
-            "⚠️ Completa las dos palabras y el número.";
+            t('pwm_complete');
 
         return;
     }
@@ -5338,6 +4925,7 @@ function generarPasswordMemorable() {
             )
         ];
 
+    delete resultado.dataset.error;
     resultado.innerText = password;
 }
 
@@ -5354,7 +4942,7 @@ function copiarPasswordMemorable() {
 
     if (
         !password ||
-        password.includes("Completa")
+        resultado.dataset.error === "1"
     ) {
         return;
     }
@@ -5371,7 +4959,7 @@ function copiarPasswordMemorable() {
                 boton.innerText;
 
             boton.innerText =
-                "✅ ¡Copiada!";
+                t('pwm_copied');
 
             setTimeout(() => {
 
@@ -5384,7 +4972,7 @@ function copiarPasswordMemorable() {
         .catch(() => {
 
             alert(
-                "No se pudo copiar automáticamente."
+                t('pwm_copy_failed')
             );
 
         });
@@ -5407,12 +4995,12 @@ function humanizadorActualizarContadores() {
 
     if (input && inputCount) {
         inputCount.textContent =
-            humanizadorContarPalabras(input.value) + " palabras";
+            humanizadorContarPalabras(input.value) + t('words_suffix');
     }
 
     if (output && outputCount) {
         outputCount.textContent =
-            humanizadorContarPalabras(output.innerText) + " palabras";
+            humanizadorContarPalabras(output.innerText) + t('words_suffix');
     }
 }
 
@@ -5426,7 +5014,7 @@ function limpiarHumanizador() {
 
     if (result) {
         result.textContent =
-            "Aquí aparecerá el texto reescrito.";
+            t('hum_empty');
         result.classList.add("is-empty");
     }
 
@@ -5434,7 +5022,7 @@ function limpiarHumanizador() {
 
     if (status) {
         status.textContent =
-            "Mantiene el significado y mejora claridad, ritmo, variedad y naturalidad.";
+            t('hum_status_default');
     }
 
     humanizadorActualizarContadores();
@@ -5453,7 +5041,7 @@ async function copiarHumanizador() {
 
         if (copyButton) {
             const anterior = copyButton.innerText;
-            copyButton.innerText = "✅ Copiado";
+            copyButton.innerText = t('copied_ok');
             setTimeout(() => {
                 copyButton.innerText = anterior;
             }, 1400);
@@ -5467,9 +5055,9 @@ async function copiarHumanizador() {
         area.remove();
 
         if (copyButton) {
-            copyButton.innerText = "✅ Copiado";
+            copyButton.innerText = t('copied_ok');
             setTimeout(() => {
-                copyButton.innerText = "📋 Copiar resultado";
+                copyButton.innerText = t('hum_copy_result');
             }, 1400);
         }
     }
@@ -5486,13 +5074,13 @@ async function humanizarTexto() {
     const input = inputElement.value.trim();
 
     if (!input) {
-        alert("Pega un texto primero.");
+        alert(t('paste_first'));
         inputElement.focus();
         return;
     }
 
     if (input.length < 20) {
-        alert("Pega un texto un poco más largo para obtener una reescritura útil.");
+        alert(t('hum_longer'));
         inputElement.focus();
         return;
     }
@@ -5500,110 +5088,19 @@ async function humanizarTexto() {
     const tipo = document.querySelector('input[name="humanizadorTipo"]:checked')?.value || "profesional";
 
     const estilo = tipo === "sencillo"
-        ? "Usa un español sencillo, directo y natural. Prioriza palabras habituales, frases claras y una lectura fácil. No rebajes la precisión ni elimines información."
-        : "Usa una redacción profesional y, cuando corresponda, académica. Debe ser precisa, clara y seria, pero sin sonar rígida, excesivamente formal o mecánica.";
+        ? t('hum_style_simple')
+        : t('hum_style_pro');
 
     button.disabled = true;
     copyButton.disabled = true;
-    button.innerText = "🧠 Reescribiendo...";
+    button.innerText = t('hum_loading');
     result.classList.remove("is-empty");
-    result.textContent = "Analizando el texto...";
-    status.textContent = "Revisando vocabulario, estructura, ritmo, repeticiones y claridad...";
+    result.textContent = t('hum_analyzing');
+    status.textContent = t('hum_checking');
     humanizadorActualizarContadores();
 
     try {
-        const prompt = `
-Reescribe el texto con total libertad de redacción. No quiero una simple sustitución de palabras:
-quiero que construyas una versión nueva, natural y coherente del texto.
-
-DICCIONARIO DE ESTILO NATURAL:
-
-Evita abusar de:
-- "En primer lugar"
-- "En segundo lugar"
-- "Por otro lado"
-- "Asimismo"
-- "Cabe destacar que"
-- "Es importante señalar que"
-- "En este sentido"
-- "Por consiguiente"
-- "De este modo"
-- "En conclusión"
-- "En definitiva"
-- "A modo de conclusión"
-- "Resulta fundamental"
-- "Es necesario destacar"
-- "No cabe duda de que"
-- "En la actualidad"
-- "A lo largo de la historia"
-- "Como se ha mencionado anteriormente"
-- "Por último"
-
-No están prohibidas. Úsalas únicamente cuando realmente encajen.
-
-PREFERENCIAS DE VOCABULARIO:
-
-En lugar de buscar constantemente palabras más sofisticadas:
-- "utilizar" → "usar" cuando el contexto lo permita
-- "realizar" → "hacer" cuando sea natural
-- "efectuar" → "hacer" o "llevar a cabo"
-- "adquirir" → "obtener" o "conseguir" según el contexto
-- "posteriormente" → "después"
-- "previamente" → "antes"
-- "numerosos" → "muchos" cuando no se necesite formalidad
-- "aproximadamente" → "más o menos" solo en contextos informales
-- "debido a que" → "porque" cuando no cambie el tono
-- "con el objetivo de" → "para" cuando sea suficiente
-- "en relación con" → "sobre" o "respecto a" cuando suene mejor
-- "llevar a cabo" → "hacer" cuando no sea necesario mantener un registro formal
-
-IMPORTANTE:
-No hagas estas sustituciones automáticamente. Son ejemplos de preferencias, no reglas.
-Si la palabra original es la mejor opción, mantenla.
-
-REGLAS DE ESCRITURA:
-
-1. Reescribe las frases desde cero cuando sea necesario.
-2. No conserves la estructura del original por obligación.
-3. Puedes cambiar el orden de las ideas dentro de una explicación si mejora la lectura.
-4. Puedes fusionar frases.
-5. Puedes dividir frases demasiado largas.
-6. Puedes cambiar completamente los conectores.
-7. Puedes eliminar repeticiones.
-8. Puedes conservar repeticiones cuando sean naturales o necesarias.
-9. No intentes utilizar un sinónimo diferente cada vez que aparece una palabra.
-10. No hagas que todas las frases tengan la misma longitud.
-11. No hagas que todos los párrafos tengan exactamente la misma estructura.
-12. No empieces todas las frases de forma parecida.
-13. No fuerces conectores entre todas las ideas.
-14. Deja que algunas ideas estén directamente relacionadas sin añadir un conector artificial.
-15. Evita frases excesivamente perfectas, genéricas o de plantilla.
-16. No añadas relleno.
-17. No añadas información nueva.
-18. No cambies datos, cifras, nombres o conceptos.
-19. Mantén el significado original.
-20. Mantén el idioma original.
-
-LIBERTAD:
-
-Tienes permiso para cambiar prácticamente toda la forma del texto:
-vocabulario, sintaxis, orden de las frases, longitud de las frases,
-conectores, estructura de los párrafos y manera de explicar las ideas.
-
-Lo único que debes conservar es la información y el significado.
-
-El resultado debe funcionar como un texto independiente.
-No debe parecer una versión palabra-por-palabra del original.
-
-TIPO DE TEXTO:
-${estilo}
-
---- TEXTO ORIGINAL ---
-${input}
---- FIN DEL TEXTO ORIGINAL ---
-
-Devuelve únicamente la nueva versión del texto.
-`;
+        const prompt = t('prompt_humanizer', {estilo: estilo, input: input});
         const reply = await askGemini(
             [{ role: "user", content: prompt }],
             "humanizador"
@@ -5612,20 +5109,20 @@ Devuelve únicamente la nueva versión del texto.
         const limpio = (reply || "").trim();
 
         if (!limpio) {
-            throw new Error("La IA no devolvió un texto. Inténtalo de nuevo.");
+            throw new Error(t('hum_empty_ai'));
         }
 
         result.textContent = limpio;
         copyButton.disabled = false;
-        status.textContent = "✅ Texto reescrito. Revísalo antes de utilizarlo.";
+        status.textContent = t('hum_done');
         humanizadorActualizarContadores();
 
     } catch (error) {
         result.textContent = "❌ " + error.message;
-        status.textContent = "No se pudo completar la reescritura.";
+        status.textContent = t('hum_failed');
     } finally {
         button.disabled = false;
-        button.innerText = "✨ Humanizar texto";
+        button.innerText = t('hum_button');
         humanizadorActualizarContadores();
     }
 }
@@ -5637,63 +5134,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
-<script>
-
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'es',
-        includedLanguages: 'es,en',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-
-function forzarTraduccionGoogle() {
-    const select = document.querySelector('.goog-te-combo');
-    const boton = document.getElementById('btn-idioma');
-
-    if (!select) {
-        console.log("Google Translate todavía no ha cargado.");
-        return;
-    }
-
-    if (select.value !== 'en') {
-        // Pasar al inglés
-        select.value = 'en';
-        select.dispatchEvent(new Event('change'));
-        boton.innerHTML = '🌐 ES';
-        } else {
-        // Volver al contenido original de TOOLBOX
-        select.value = 'es';
-        select.dispatchEvent(new Event('change'));
-        boton.innerHTML = '🌐 EN';
-    }
-
-    select.dispatchEvent(new Event('change'));
-}
-</script>
-
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- ESTILOS PÚRPURA DE TU BOTÓN DE IDIOMA -->
-<style>
-    .btn-lang {
-        background: var(--button);
-        color: var(--text);
-        border: 1px solid var(--border);
-        padding: 8px 16px;
-        border-radius: 11px;
-        font-weight: bold;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.25s ease;
-    }
-    .btn-lang:hover {
-        border-color: var(--purple2) !important;
-        color: var(--purple3) !important;
-        background: rgba(124, 58, 237, 0.08);
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-        transform: translateY(-1px);
-    }
-</style>
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@6/dist/tesseract.min.js"></script>
 
@@ -5790,34 +5230,34 @@ function pomodoroUpdateDisplay() {
     if (pomodoroMode === "focus") {
 
         modeElement.innerText =
-            "Momento de estudiar / trabajar";
+            t('pomo_focus');
 
         box.classList.add("focus-mode");
 
     } else if (pomodoroMode === "short") {
 
         modeElement.innerText =
-            "Descanso corto";
+            t('pomo_short');
 
         box.classList.add("short-break-mode");
 
     } else {
 
         modeElement.innerText =
-            "Descanso largo";
+            t('pomo_long');
 
         box.classList.add("long-break-mode");
     }
 
 
     document.getElementById("pomodoroSessions").innerText =
-        `Sesión ${pomodoroSession} de ${pomodoroTotalSessions}`;
+        t('pomo_session', {n: pomodoroSession, total: pomodoroTotalSessions});
 
 
     document.getElementById("pomodoroPlay").innerText =
         pomodoroRunning
-        ? "⏸️ Pausar"
-        : "▶️ Empezar";
+        ? t('pomo_pause')
+        : t('pomo_start');
 }
 
 
@@ -5891,35 +5331,35 @@ function pomodoroFinishPhase() {
 
         if (pomodoroSession >= pomodoroTotalSessions) {
 
-            title = "🍅 ¡Has terminado las sesiones!";
+            title = t('pomo_t_all');
             message =
-                "Puedes hacer tu descanso largo.";
+                t('pomo_m_all');
 
             pomodoroMode = "long";
 
         } else {
 
-            title = "🍅 ¡Sesión terminada!";
+            title = t('pomo_t_session');
             message =
-                "Puedes descansar unos minutos.";
+                t('pomo_m_session');
 
             pomodoroMode = "short";
         }
 
     } else if (pomodoroMode === "short") {
 
-        title = "⏰ ¡Descanso terminado!";
+        title = t('pomo_t_break');
         message =
-            "Toca volver a estudiar o trabajar.";
+            t('pomo_m_break');
 
         pomodoroSession++;
         pomodoroMode = "focus";
 
     } else {
 
-        title = "🌿 ¡Descanso largo terminado!";
+        title = t('pomo_t_long');
         message =
-            "Puedes ponerte a trabajar de nuevo.";
+            t('pomo_m_long');
 
         pomodoroSession = 1;
         pomodoroMode = "focus";
@@ -6088,14 +5528,14 @@ async function procesarOCR(event) {
 
 
     status.innerText =
-        "Preparando reconocimiento...";
+        t('ocr_preparing');
 
 
     try {
 
         const worker =
             await Tesseract.createWorker(
-                "spa+eng",
+                t('ocr_lang'),
                 1,
                 {
                     logger: function(info) {
@@ -6137,14 +5577,14 @@ async function procesarOCR(event) {
         if (result.value) {
 
             status.innerText =
-                "✅ Texto detectado correctamente.";
+                t('ocr_ok');
 
             copyButton.disabled = false;
 
         } else {
 
             status.innerText =
-                "No se ha encontrado texto en la imagen.";
+                t('ocr_none');
         }
 
     } catch (error) {
@@ -6152,7 +5592,7 @@ async function procesarOCR(event) {
         console.error(error);
 
         status.innerText =
-            "❌ No se pudo reconocer el texto. Prueba con otra imagen.";
+            t('ocr_fail');
 
     }
 }
@@ -6169,7 +5609,7 @@ async function copiarOCR() {
     if (!text.trim()) {
 
         alert(
-            "Primero detecta algún texto."
+            t('ocr_first')
         );
 
         return;
@@ -6181,7 +5621,7 @@ async function copiarOCR() {
         await navigator.clipboard.writeText(text);
 
         alert(
-            "✅ Texto copiado."
+            t('ocr_copied')
         );
 
     } catch {
@@ -6194,7 +5634,7 @@ async function copiarOCR() {
         document.execCommand("copy");
 
         alert(
-            "✅ Texto copiado."
+            t('ocr_copied')
         );
     }
 }
@@ -6233,7 +5673,7 @@ function limpiarOCR() {
     progress.style.width = "0%";
 
     status.innerText =
-        "Preparando reconocimiento...";
+        t('ocr_preparing');
 
     result.value = "";
 
@@ -6244,14 +5684,15 @@ function limpiarOCR() {
 /* =========================================================
    PLANIFICADOR INTELIGENTE — TOOLBOX AI
 ========================================================= */
+const PLANNER_STORAGE_KEY = 'toolbox_planner_plan' + (LANG === 'es' ? '' : '_' + LANG);
 const plannerDays = [
-    {key:'lun', name:'Lunes', short:'Lun', enabled:true, start:'17:00', end:'21:00'},
-    {key:'mar', name:'Martes', short:'Mar', enabled:true, start:'16:00', end:'20:00'},
-    {key:'mie', name:'Miércoles', short:'Mié', enabled:true, start:'17:00', end:'21:00'},
-    {key:'jue', name:'Jueves', short:'Jue', enabled:true, start:'16:00', end:'21:00'},
-    {key:'vie', name:'Viernes', short:'Vie', enabled:true, start:'16:00', end:'19:00'},
-    {key:'sab', name:'Sábado', short:'Sáb', enabled:true, start:'10:00', end:'14:00'},
-    {key:'dom', name:'Domingo', short:'Dom', enabled:false, start:'10:00', end:'14:00'}
+    {key:'lun', name:t('day_mon'), short:t('day_mon_s'), enabled:true, start:'17:00', end:'21:00'},
+    {key:'mar', name:t('day_tue'), short:t('day_tue_s'), enabled:true, start:'16:00', end:'20:00'},
+    {key:'mie', name:t('day_wed'), short:t('day_wed_s'), enabled:true, start:'17:00', end:'21:00'},
+    {key:'jue', name:t('day_thu'), short:t('day_thu_s'), enabled:true, start:'16:00', end:'21:00'},
+    {key:'vie', name:t('day_fri'), short:t('day_fri_s'), enabled:true, start:'16:00', end:'19:00'},
+    {key:'sab', name:t('day_sat'), short:t('day_sat_s'), enabled:true, start:'10:00', end:'14:00'},
+    {key:'dom', name:t('day_sun'), short:t('day_sun_s'), enabled:false, start:'10:00', end:'14:00'}
 ];
 
 let plannerLastPlan = null;
@@ -6263,7 +5704,7 @@ function plannerInit() {
     wrap.innerHTML = plannerDays.map((d, i) => `
         <div class="planner-day-row">
             <span class="planner-day-name">${d.name}</span>
-            <label class="planner-switch" title="Activar ${d.name}">
+            <label class="planner-switch" title="${t("planner_activate")} ${d.name}">
                 <input type="checkbox" id="plannerEnabled_${i}" ${d.enabled ? 'checked' : ''} onchange="plannerSyncDay(${i})">
                 <span class="planner-slider"></span>
             </label>
@@ -6304,21 +5745,21 @@ function plannerCopyMonday() {
         document.getElementById(`plannerEnd_${i}`).value = end;
         plannerSyncDay(i);
     }
-    plannerSetStatus('Horario del lunes copiado al resto de la semana.');
+    plannerSetStatus(t('planner_same_monday'));
 }
 
 function plannerApplySameHours() {
     plannerInit();
     const start = document.getElementById('plannerSameStart').value;
     const end = document.getElementById('plannerSameEnd').value;
-    if (!start || !end || start >= end) { alert('La hora de inicio debe ser anterior a la hora de fin.'); return; }
+    if (!start || !end || start >= end) { alert(t('planner_time_error')); return; }
     for (let i=0;i<7;i++) {
         document.getElementById(`plannerEnabled_${i}`).checked = true;
         document.getElementById(`plannerStart_${i}`).value = start;
         document.getElementById(`plannerEnd_${i}`).value = end;
         plannerSyncDay(i);
     }
-    plannerSetStatus('Mismo horario aplicado a todos los días.');
+    plannerSetStatus(t('planner_same_all'));
 }
 
 function plannerSetStatus(text) {
@@ -6332,13 +5773,13 @@ function plannerToggleSetup() {
 }
 
 function plannerClear() {
-    if (!confirm('¿Quieres borrar las tareas y el plan generado?')) return;
+    if (!confirm(t('planner_clear_confirm'))) return;
     document.getElementById('plannerTasks').value='';
     document.getElementById('plannerResult').style.display='none';
     document.getElementById('plannerInsights').innerHTML='';
     document.getElementById('plannerWeek').innerHTML='';
     plannerLastPlan=null;
-    localStorage.removeItem('toolbox_planner_plan');
+    localStorage.removeItem(PLANNER_STORAGE_KEY);
     plannerSetStatus('');
 }
 
@@ -6393,12 +5834,12 @@ function plannerExtractJSON(text) {
         }
     }
 
-    throw new Error('La IA devolvió una respuesta que no se pudo convertir en un plan. Inténtalo de nuevo.');
+    throw new Error(t('planner_bad_json'));
 }
 
 function plannerValidatePlan(plan, availability) {
     if (!plan || !Array.isArray(plan.days)) {
-        throw new Error('La IA no devolvió la estructura de días esperada.');
+        throw new Error(t('planner_bad_days'));
     }
 
     const byDay = new Map(availability.map(d => [d.name.toLowerCase(), d]));
@@ -6446,7 +5887,7 @@ async function generarPlanificador() {
 
     const tasks = document.getElementById('plannerTasks').value.trim();
     if (!tasks) {
-        alert('Escribe primero todo lo que tienes que hacer.');
+        alert(t('planner_write_first'));
         return;
     }
 
@@ -6454,46 +5895,26 @@ async function generarPlanificador() {
     const active = availability.filter(d => d.enabled && d.start < d.end);
 
     if (!active.length) {
-        alert('Activa al menos un día y define un horario disponible.');
+        alert(t('planner_activate_day'));
         return;
     }
 
     const button = document.getElementById('plannerGenerate');
     button.disabled = true;
-    button.innerText = '🤖 Organizando...';
-    plannerSetStatus('Creando un plan realista con tus tareas y horarios...');
+    button.innerText = t('planner_loading');
+    plannerSetStatus(t('planner_status_creating'));
 
     // IMPORTANTE: el planificador hace UNA sola petición y no manda
     // historial de conversación. Esto reduce muchísimo el consumo.
     const availabilityText = availability
-        .map(d => `${d.name}:${d.enabled ? d.start + '-' + d.end : 'libre'}`)
+        .map(d => `${d.name}:${d.enabled ? d.start + '-' + d.end : t('planner_free_word')}`)
         .join('|');
 
     // Limitar el tamaño evita que un pegado accidentalmente enorme
     // consuma una cantidad innecesaria de tokens.
     const tasksForAI = tasks.length > 9000 ? tasks.slice(0, 9000) : tasks;
 
-    const prompt = `Planifica mi semana. No uses Pomodoros.
-
-TAREAS:
-${tasksForAI}
-
-HORARIOS:
-${availabilityText}
-
-REGLAS:
-- Respeta exactamente los horarios.
-- Prioriza fechas límite y exámenes cercanos.
-- Respeta las duraciones indicadas; si falta duración, estima una razonable.
-- Divide tareas largas si hace falta.
-- No llenes todo: deja tiempo libre.
-- No solapes bloques.
-- Si no cabe todo, programa primero lo prioritario y manda el resto a pending.
-- Usa bloques normales como 16:00-17:30.
-- Devuelve SOLO JSON válido, sin Markdown.
-
-FORMATO:
-{"title":"Semana organizada","summary":"breve","days":[{"day":"Lunes","blocks":[{"task":"Matemáticas","start":"16:00","end":"17:30","priority":"alta","deadline":"viernes","note":""}]},{"day":"Martes","blocks":[]},{"day":"Miércoles","blocks":[]},{"day":"Jueves","blocks":[]},{"day":"Viernes","blocks":[]},{"day":"Sábado","blocks":[]},{"day":"Domingo","blocks":[]}],"insights":[],"pending":[]}`;
+    const prompt = t('prompt_planner', {tasks: tasksForAI, availability: availabilityText});
 
     try {
         // UNA ÚNICA PETICIÓN. Los reintentos automáticos provocaban
@@ -6512,13 +5933,13 @@ FORMATO:
         plannerLastPlan = plan;
 
         localStorage.setItem(
-            'toolbox_planner_plan',
+            PLANNER_STORAGE_KEY,
             JSON.stringify(plan)
         );
 
         plannerRender(plan, availability);
         document.getElementById('plannerResult').style.display = 'block';
-        plannerSetStatus('✅ Semana organizada correctamente.');
+        plannerSetStatus(t('planner_done'));
 
         setTimeout(() => {
             document.getElementById('plannerResult').scrollIntoView({
@@ -6530,18 +5951,18 @@ FORMATO:
     } catch (error) {
         console.error('TOOLBOX Planner:', error);
 
-        let message = error?.message || 'Error desconocido.';
+        let message = error?.message || t('planner_unknown');
 
         if (message.includes('429') || /too many requests/i.test(message)) {
-            message = 'Groq está limitando temporalmente las peticiones. Espera unos segundos y vuelve a intentarlo. Esta versión ya no hace reintentos automáticos para no gastar más peticiones.';
+            message = t('planner_rate_limit');
         }
 
         plannerSetStatus('⚠️ ' + message);
-        alert('No se pudo crear el plan.\n\n' + message);
+        alert(t('planner_fail') + '\n\n' + message);
 
     } finally {
         button.disabled = false;
-        button.innerText = '✨ Crear mi semana';
+        button.innerText = t('planner_button');
     }
 }
 
@@ -6568,12 +5989,12 @@ function plannerRender(plan, availability) {
 
     const insights=(plan.insights||[]).map(x=>`<div class="planner-chip">${plannerEsc(x)}</div>`).join('');
     const pending=(plan.pending||[]).filter(Boolean);
-    const pendingHtml=pending.length?`<div class="planner-chip">📌 <strong>${pending.length}</strong> pendiente${pending.length===1?'':'s'}</div>`:'';
-    document.getElementById('plannerInsights').innerHTML=insights+pendingHtml+`<div class="planner-chip">⏱️ <strong>${Math.round(allBlocks.reduce((a,b)=>a+(plannerMinutes(b.end)-plannerMinutes(b.start)),0)/60*10)/10} h</strong> planificadas</div>`;
-    document.getElementById('plannerResultTitle').innerText=plan.title||'Tu semana organizada';
-    document.getElementById('plannerResultSummary').innerText=plan.summary||'He distribuido tus tareas teniendo en cuenta el tiempo disponible y sus prioridades.';
+    const pendingHtml=pending.length?`<div class="planner-chip">📌 <strong>${pending.length}</strong> ${t(pending.length===1?'planner_pending_one':'planner_pending_many')}</div>`:'';
+    document.getElementById('plannerInsights').innerHTML=insights+pendingHtml+`<div class="planner-chip">⏱️ <strong>${Math.round(allBlocks.reduce((a,b)=>a+(plannerMinutes(b.end)-plannerMinutes(b.start)),0)/60*10)/10} h</strong> ${t('planner_planned')}</div>`;
+    document.getElementById('plannerResultTitle').innerText=plan.title||t('planner_title_default');
+    document.getElementById('plannerResultSummary').innerText=plan.summary||t('planner_summary_default');
 
-    const header=`<div class="planner-time-head"></div>${days.map(d=>`<div class="planner-day-head"><strong>${d.short}</strong><small>${d.config?d.config.start+'–'+d.config.end:'No disponible'}</small><div class="planner-day-total">${Math.round((d.data.blocks||[]).reduce((a,b)=>a+(plannerMinutes(b.end)-plannerMinutes(b.start)),0)/6)/10} h</div></div>`).join('')}`;
+    const header=`<div class="planner-time-head"></div>${days.map(d=>`<div class="planner-day-head"><strong>${d.short}</strong><small>${d.config?d.config.start+'–'+d.config.end:t('planner_unavailable')}</small><div class="planner-day-total">${Math.round((d.data.blocks||[]).reduce((a,b)=>a+(plannerMinutes(b.end)-plannerMinutes(b.start)),0)/6)/10} h</div></div>`).join('')}`;
     const axis=Array.from({length:maxHour-minHour+1},(_,i)=>{const y=i*60*pxPerMinute;return `<span class="planner-time-label" style="top:${y}px">${String(minHour+i).padStart(2,'0')}:00</span>`;}).join('');
 
     const tracks=days.map(d=>{
@@ -6584,23 +6005,23 @@ function plannerRender(plan, availability) {
         const blockHtml=dayBlocks.map((b,i)=>{
             const top=(plannerMinutes(b.start)-minHour*60)*pxPerMinute;
             const height=Math.max(40,(plannerMinutes(b.end)-plannerMinutes(b.start))*pxPerMinute-6);
-            const urgent=String(b.priority).toLowerCase().includes('alta')||String(b.priority).toLowerCase().includes('urg');
+            const urgent=/alta|high|urg|haut|[ée]lev/i.test(String(b.priority));
             return `<div class="planner-block ${urgent?'urgent':''}" style="top:${top}px;height:${height}px" title="${plannerEsc(b.note||'')}" data-planner-day="${plannerEsc(d.name)}" data-planner-task="${plannerEsc(b.task)}">
                 <div class="planner-block-title">${plannerEsc(b.task)}</div>
                 <div class="planner-block-time">${plannerEsc(b.start)} – ${plannerEsc(b.end)}</div>
                 <div class="planner-block-meta">
                     ${b.deadline?`<span class="planner-mini-btn">📌 ${plannerEsc(b.deadline)}</span>`:''}
-                    <button class="planner-mini-btn" onclick="plannerMarkDone(this)">✓ Hecho</button>
+                    <button class="planner-mini-btn" onclick="plannerMarkDone(this)">${t('planner_mark_done')}</button>
                 </div>
             </div>`;
         }).join('');
         const offTop=before;
         const offBottom=after;
         return `<div class="planner-track" style="height:${trackHeight}px">
-            ${!cfg?`<div class="planner-free-label">Día libre</div>`:''}
+            ${!cfg?`<div class="planner-free-label">${t('planner_free_day')}</div>`:''}
             ${cfg&&offTop>0?`<div class="planner-off-hours" style="top:0;height:${offTop*pxPerMinute}px"></div>`:''}
             ${cfg&&offBottom>0?`<div class="planner-off-hours" style="bottom:0;height:${offBottom*pxPerMinute}px"></div>`:''}
-            ${cfg&&!dayBlocks.length?`<div class="planner-free" style="top:${before*pxPerMinute+10}px;height:${Math.max(44,(totalMinutes-before-offBottom)*pxPerMinute-20)}px">Tiempo libre</div>`:''}
+            ${cfg&&!dayBlocks.length?`<div class="planner-free" style="top:${before*pxPerMinute+10}px;height:${Math.max(44,(totalMinutes-before-offBottom)*pxPerMinute-20)}px">${t('planner_free_time')}</div>`:''}
             ${blockHtml}
         </div>`;
     }).join('');
@@ -6611,18 +6032,18 @@ function plannerMarkDone(button) {
     const block=button.closest('.planner-block');
     if(!block) return;
     block.classList.toggle('done');
-    button.innerText=block.classList.contains('done')?'↶ Deshacer':'✓ Hecho';
+    button.innerText=block.classList.contains('done')?t('planner_undo'):t('planner_mark_done');
 }
 
 function plannerLoadSaved() {
     try {
-        const saved=JSON.parse(localStorage.getItem('toolbox_planner_plan')||'null');
+        const saved=JSON.parse(localStorage.getItem(PLANNER_STORAGE_KEY)||'null');
         if(saved && saved.days && saved.availability) {
             plannerLastPlan=saved;
             plannerRender(saved,saved.availability);
             document.getElementById('plannerResult').style.display='block';
         }
-    } catch(e) { console.warn('No se pudo cargar el plan guardado',e); }
+    } catch(e) { console.warn(t('planner_load_fail'),e); }
 }
 
 const plannerOriginalAbrir = window.abrir;
@@ -6633,6 +6054,135 @@ window.abrir = function(id) {
     }
 };
 
+
+/* =========================================================
+   SELECTOR DE IDIOMA, AVISO DE IDIOMA, ENLACES #HERRAMIENTA
+========================================================= */
+
+(function () {
+
+    const switcher = document.getElementById("langSwitch");
+
+    if (switcher) {
+
+        const button = document.getElementById("langBtn");
+        const menu = document.getElementById("langMenu");
+
+        const close = () => {
+            menu.hidden = true;
+            button.setAttribute("aria-expanded", "false");
+        };
+
+        button.addEventListener("click", event => {
+
+            event.stopPropagation();
+
+            const opening = menu.hidden;
+
+            menu.hidden = !opening;
+
+            button.setAttribute("aria-expanded", String(opening));
+
+            if (opening) {
+                const current = menu.querySelector('[aria-current="true"]') || menu.querySelector("a");
+                if (current) current.focus();
+            }
+
+        });
+
+        document.addEventListener("click", event => {
+            if (!switcher.contains(event.target)) close();
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && !menu.hidden) {
+                close();
+                button.focus();
+            }
+        });
+
+        menu.querySelectorAll("a[data-lang]").forEach(link => {
+            link.addEventListener("click", () => {
+                try { localStorage.setItem("toolboxLang", link.dataset.lang); } catch (e) {}
+                link.href = link.getAttribute("href").split("#")[0] + location.hash;
+            });
+        });
+
+    }
+
+    /* Aviso amable si el navegador está en otro idioma disponible */
+
+    const HINTS = {
+        es: { text: "Esta página también está disponible en español.", cta: "Ver en español", href: "/" },
+        en: { text: "This site is also available in English.", cta: "View in English", href: "/en/" },
+        fr: { text: "Ce site est aussi disponible en français.", cta: "Voir en français", href: "/fr/" }
+    };
+
+    let chosen = "";
+    let dismissed = "";
+
+    try {
+        chosen = localStorage.getItem("toolboxLang") || "";
+        dismissed = localStorage.getItem("toolboxLangHint") || "";
+    } catch (e) {}
+
+    const browser = (navigator.language || "").slice(0, 2).toLowerCase();
+
+    if (HINTS[browser] && browser !== LANG && !chosen && !dismissed) {
+
+        const hint = document.createElement("div");
+
+        hint.className = "lang-hint";
+        hint.setAttribute("role", "region");
+        hint.setAttribute("lang", browser);
+
+        const text = document.createElement("span");
+        text.textContent = HINTS[browser].text;
+
+        const link = document.createElement("a");
+        link.href = HINTS[browser].href + location.hash;
+        link.textContent = HINTS[browser].cta;
+        link.addEventListener("click", () => {
+            try { localStorage.setItem("toolboxLang", browser); } catch (e) {}
+        });
+
+        const closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.textContent = "✕";
+        closeButton.setAttribute("aria-label", "Close");
+        closeButton.addEventListener("click", () => {
+            try { localStorage.setItem("toolboxLangHint", "1"); } catch (e) {}
+            hint.remove();
+        });
+
+        hint.append(text, link, closeButton);
+        document.body.appendChild(hint);
+
+    }
+
+})();
+
+/* Abrir una herramienta desde la URL: /#humanizador, /#ocr, /#planner ... */
+
+function openToolFromHash() {
+
+    const id = decodeURIComponent(location.hash.slice(1));
+
+    if (!id) return;
+
+    const panel = document.getElementById(id);
+
+    if (panel && panel.classList.contains("tool-panel")) {
+        abrir(id);
+    }
+
+}
+
+window.addEventListener("hashchange", openToolFromHash);
+
+syncThemeButton();
+
+openToolFromHash();
 </script>
 
 </body>
