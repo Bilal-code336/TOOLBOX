@@ -160,12 +160,19 @@ kbd{font-family:inherit;font-size:10px;padding:2px 6px;border:1px solid var(--bo
 .composer-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 10px 10px 16px}
 .style-hint{font-size:12px;color:var(--purple3);min-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.icon-btn{width:36px;height:36px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;background:var(--button);color:var(--text);transition:transform .2s var(--ease),background .2s;border:none;cursor:pointer}
+.icon-btn:hover{background:var(--purple);color:#fff;transform:translateY(-1px)}
 #counter{color:#68758a;font-size:11px;font-variant-numeric:tabular-nums}#counter.warn{color:var(--amber)}#counter.max{color:var(--red)}
 .send{width:42px;height:42px;border-radius:50%;font-size:17px;color:#fff;background:linear-gradient(135deg,var(--purple),#6d28d9);display:flex;align-items:center;justify-content:center;transition:transform .2s var(--ease),box-shadow .2s;box-shadow:0 6px 18px rgba(124,58,237,.4)}
 .send:hover:not(:disabled){transform:scale(1.08) rotate(-6deg)}
 .send.stop{background:linear-gradient(135deg,#ef4444,#b91c1c);box-shadow:0 6px 18px rgba(239,68,68,.4);animation:pulseStop 1.6s infinite}
 @keyframes pulseStop{50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
 .disclaimer{max-width:860px;margin:8px auto 0;text-align:center;color:#64748b;font-size:10.5px}
+.attached-file{max-width:860px;margin:6px auto 0;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;gap:8px;font-size:13px}
+.attached-file .file-icon{font-size:18px}
+.attached-file .file-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.attached-file .file-remove{color:var(--red);cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .15s}
+.attached-file .file-remove:hover{background:rgba(239,68,68,.1)}
 
 /* ---------- TOASTS / MODAL ---------- */
 .toasts{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:100;pointer-events:none}
@@ -349,6 +356,8 @@ body.light .md-code{background:#0f172a}
           <button data-menu="retitle" role="menuitem">✨ Que la IA elija el mejor nombre</button>
           <button data-menu="pin" role="menuitem" id="pinItem">📌 Fijar conversación</button>
           <hr>
+          <button data-menu="summary" role="menuitem">📋 Generar resumen de conversación</button>
+          <hr>
           <button data-menu="copy" role="menuitem">📋 Copiar conversación</button>
           <button data-menu="md" role="menuitem">⬇️ Exportar en Markdown (.md)</button>
           <button data-menu="txt" role="menuitem">⬇️ Exportar en texto (.txt)</button>
@@ -371,11 +380,15 @@ body.light .md-code{background:#0f172a}
         <div class="composer-bar">
           <span class="style-hint" id="styleHint"></span>
           <div class="bar-right">
+            <input type="file" id="fileInput" hidden accept=".txt,.pdf,.doc,.docx,.png,.jpg,.jpeg,.gif,.md">
+            <button class="icon-btn" id="attachBtn" title="Adjuntar archivo" aria-label="Adjuntar archivo">📎</button>
+            <button class="icon-btn" id="summaryBtn" title="Resumir conversación" aria-label="Resumir conversación">📋</button>
             <span id="counter">0</span>
             <button class="send" id="sendBtn" aria-label="Enviar mensaje" title="Enviar (Enter)">➤</button>
           </div>
         </div>
       </div>
+      <div id="attachedFile" class="attached-file" hidden></div>
       <div class="disclaimer">TOOLBOX AI utiliza Groq y puede buscar en la web cuando hace falta. Puede cometer errores; comprueba la información importante. · Enter envía, Shift+Enter salto de línea.</div>
     </div>
   </main>
@@ -438,7 +451,9 @@ const SUGGESTIONS = [
   { icon: '🐍', title: 'Aprende conmigo', hint: 'Una clase paso a paso', text: 'Quiero aprender Python desde cero. Haz de profesor y enséñame paso a paso.', style: 'pasos' },
   { icon: '💻', title: 'Ayúdame a programar', hint: 'Código con colores y botón de copiar', text: 'Escríbeme una función en JavaScript que valide un email y explícame cómo funciona.' },
   { icon: '🌐', title: 'Pregunta por algo actual', hint: 'Busca en la web y te enseña las fuentes', text: 'Busca las últimas noticias de tecnología de hoy y resúmelas indicando las fuentes.' },
-  { icon: '🧠', title: 'Ponme a prueba', hint: 'Un test para practicar', text: 'Hazme un test sobre la Segunda Guerra Mundial.', style: 'test', send: false }
+  { icon: '🧠', title: 'Ponme a prueba', hint: 'Un test para practicar', text: 'Hazme un test sobre la Segunda Guerra Mundial.', style: 'test', send: false },
+  { icon: '📁', title: 'Analiza un documento', hint: 'Sube archivos PDF, Word, texto', text: 'Adjunta un archivo para analizarlo', action: 'attach' },
+  { icon: '🎨', title: 'Genera una imagen', hint: 'Describe lo que quieres crear', text: 'Genera una imagen de un paisaje futurista con ciudades flotantes', action: 'image' }
 ];
 
 /* =========================================================
@@ -716,6 +731,7 @@ let renaming = null;           // { id, where: 'side' | 'head' }
 let pendingStyle = null;
 let lastDeleted = null;
 let stick = true;
+let attachedFile = null; // Archivo adjunto pendiente
 const rt = {};                 // estado temporal por conversación
 const R = id => rt[id] || (rt[id] = { busy: false, controller: null, reveal: null, titling: false, shown: null, tt: 0, typingTimer: 0, live: null });
 const drafts = {};
@@ -743,6 +759,97 @@ function save() {
 const getConv = id => conversations.find(c => c.id === id);
 const current = () => getConv(currentId);
 const touch = c => { c.updated = Date.now(); };
+
+/* =========================================================
+   FUNCIONES DE IA MEJORADA
+========================================================= */
+async function uploadFile(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Error al subir archivo');
+    }
+
+    return await res.json();
+  } catch (e) {
+    throw new Error(e.message || 'Error al subir archivo');
+  }
+}
+
+async function analyzeDocument(texto) {
+  try {
+    const res = await fetch('/api/analyze-document', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ texto })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Error al analizar documento');
+    }
+
+    return await res.json();
+  } catch (e) {
+    throw new Error(e.message || 'Error al analizar documento');
+  }
+}
+
+async function summarizeConversation(messages) {
+  try {
+    const res = await fetch('/api/summarize-conversation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Error al generar resumen');
+    }
+
+    return await res.json();
+  } catch (e) {
+    throw new Error(e.message || 'Error al generar resumen');
+  }
+}
+
+function showAttachedFile(file) {
+  attachedFile = file;
+  const box = $('attachedFile');
+  box.innerHTML = '';
+  box.hidden = false;
+
+  const icon = el('span', 'file-icon', '📎');
+  const name = el('span', 'file-name', file.name + ' (' + formatFileSize(file.size) + ')');
+  const remove = el('button', 'file-remove', '✕');
+  remove.type = 'button';
+  remove.addEventListener('click', clearAttachedFile);
+
+  box.appendChild(icon);
+  box.appendChild(name);
+  box.appendChild(remove);
+}
+
+function clearAttachedFile() {
+  attachedFile = null;
+  $('attachedFile').hidden = true;
+  $('fileInput').value = '';
+}
+
+function formatFileSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
 
 /* =========================================================
    API
@@ -1198,12 +1305,43 @@ function selectConv(id) {
 }
 async function send(textOverride) {
   const input = $('aiInput');
-  const text = (typeof textOverride === 'string' ? textOverride : input.value).trim();
-  if (!text) return;
+  let text = (typeof textOverride === 'string' ? textOverride : input.value).trim();
+
+  // Procesar archivo adjunto si existe
+  if (attachedFile && !text) {
+    text = `He adjuntado el archivo: ${attachedFile.name}. Por favor, analízalo.`;
+  }
+
+  if (!text && !attachedFile) return;
+
   let c = current() || createConversation(false);
   const r = R(c.id);
   if (r.busy) return;
   if (r.reveal) r.reveal.finish();
+
+  // Si hay un archivo adjunto, procesarlo primero
+  if (attachedFile) {
+    toast('📤 Subiendo archivo...');
+    try {
+      const uploadResult = await uploadFile(attachedFile);
+
+      // Si es un documento largo, analizarlo
+      if (uploadResult.texto && uploadResult.texto.length > 3000) {
+        toast('📖 Analizando documento largo...');
+        const analisis = await analyzeDocument(uploadResult.texto);
+        text += `\n\n[Archivo adjunto: ${attachedFile.name}]\n\nResumen del documento:\n${analisis.resumen_general}`;
+      } else if (uploadResult.texto) {
+        text += `\n\n[Archivo adjunto: ${attachedFile.name}]\n\nContenido:\n${uploadResult.texto}`;
+      }
+
+      clearAttachedFile();
+      toast('✓ Archivo procesado');
+    } catch (e) {
+      toast('Error al procesar archivo: ' + e.message);
+      return;
+    }
+  }
+
   c.messages.push({ role: 'user', content: text, ts: Date.now(), style: pendingStyle || undefined });
   if (c.messages.filter(m => m.role === 'user').length === 1 && !c.titleLocked) { c.title = smartTitle(text); c.titleAuto = false; }
   touch(c); input.value = ''; delete drafts[c.id]; resizeInput(); updateCounter();
@@ -1301,6 +1439,15 @@ function menuAction(act) {
   if (act === 'rename') startRename(c.id, 'head');
   else if (act === 'retitle') { if (!c.messages.some(m => m.role === 'assistant' && !m.error)) toast('Haz primero una pregunta para poder titularla'); else { toast('✨ Buscando el mejor nombre…'); autoTitle(c, true); } }
   else if (act === 'pin') togglePin(c.id);
+  else if (act === 'summary') {
+    if (!c.messages || c.messages.length === 0) return toast('No hay conversación para resumir');
+    if (R(c.id).busy) return toast('Espera a que termine la respuesta actual');
+    toast('📋 Generando resumen de la conversación...');
+    summarizeConversation(c.messages).then(result => {
+      c.messages.push({ role: 'assistant', content: '📋 **Resumen de la conversación**\n\n' + result.resumen, ts: Date.now() });
+      touch(c); save(); renderThread({ animateLast: true }); toast('✓ Resumen generado');
+    }).catch(e => toast('Error al generar resumen: ' + e.message));
+  }
   else if (act === 'copy') { if (!c.messages.length) return toast('La conversación está vacía'); copyText(convToMarkdown(c)); toast('Conversación copiada ✓'); }
   else if (act === 'md') { if (!c.messages.length) return toast('La conversación está vacía'); download(slug(c.title) + '.md', convToMarkdown(c), 'text/markdown'); }
   else if (act === 'txt') { if (!c.messages.length) return toast('La conversación está vacía'); download(slug(c.title) + '.txt', convToText(c), 'text/plain'); }
@@ -1368,7 +1515,25 @@ function bind() {
   $('thread').addEventListener('click', e => {
     const sug = e.target.closest('[data-sug]');
     if (sug) {
-      const s = SUGGESTIONS[+sug.dataset.sug]; pendingStyle = s.style || null; renderChips();
+      const s = SUGGESTIONS[+sug.dataset.sug];
+
+      // Manejar acciones especiales
+      if (s.action === 'attach') {
+        $('fileInput').click();
+        return;
+      }
+
+      if (s.action === 'image') {
+        toast('🎨 La generación de imágenes requiere configurar una API externa (DALL-E, Stable Diffusion, etc.)');
+        const inp = $('aiInput');
+        inp.value = s.text;
+        resizeInput();
+        updateCounter();
+        inp.focus();
+        return;
+      }
+
+      pendingStyle = s.style || null; renderChips();
       const inp = $('aiInput'); inp.value = s.text; resizeInput(); updateCounter(); inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length);
       if (s.send !== false) send(); return;
     }
@@ -1390,6 +1555,54 @@ function bind() {
   $('sendBtn').addEventListener('click', () => { const c = current(); if (c && (R(c.id).busy || R(c.id).reveal)) stopWork(); else send(); });
   $('messages').addEventListener('scroll', onScroll, { passive: true });
   $('fab').addEventListener('click', () => { stick = true; scrollBottom(true); });
+
+  // Botón de adjuntar archivo
+  $('attachBtn').addEventListener('click', () => $('fileInput').click());
+  $('fileInput').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 16 * 1024 * 1024) {
+        toast('El archivo es demasiado grande (máx. 16 MB)');
+        e.target.value = '';
+        return;
+      }
+      showAttachedFile(file);
+    }
+  });
+
+  // Botón de resumen de conversación
+  $('summaryBtn').addEventListener('click', async () => {
+    const c = current();
+    if (!c || !c.messages || c.messages.length === 0) {
+      toast('No hay conversación para resumir');
+      return;
+    }
+
+    if (R(c.id).busy) {
+      toast('Espera a que termine la respuesta actual');
+      return;
+    }
+
+    toast('📋 Generando resumen de la conversación...');
+
+    try {
+      const result = await summarizeConversation(c.messages);
+
+      // Agregar el resumen como un mensaje del asistente
+      c.messages.push({
+        role: 'assistant',
+        content: '📋 **Resumen de la conversación**\n\n' + result.resumen,
+        ts: Date.now()
+      });
+
+      touch(c);
+      save();
+      renderThread({ animateLast: true });
+      toast('✓ Resumen generado');
+    } catch (e) {
+      toast('Error al generar resumen: ' + e.message);
+    }
+  });
 
   document.addEventListener('keydown', e => {
     const mod = e.ctrlKey || e.metaKey;
