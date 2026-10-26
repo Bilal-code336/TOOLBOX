@@ -48,3 +48,13 @@ Notas
 * La IA responde en el idioma de la página: el servidor recibe "lang".
 * Blog, TOOLBOX AI y páginas legales siguen en español; en EN/FR sus enlaces
   llevan una pequeña etiqueta "ES".
+
+Novedades (herramientas PDF y favoritas)
+----------------------------------------
+* Herramientas PDF nuevas: Unir, Dividir, Comprimir, Imágenes a PDF y Extraer páginas.
+  Todo se procesa en el navegador; las librerías (pdf-lib y pdf.js) se cargan desde
+  jsDelivr solo cuando alguien abre una de estas herramientas.
+* Favoritas: cada visitante marca con la estrella (☆/★) las herramientas que quiere; salen
+  las primeras y hay un filtro "⭐ Favoritas". Se guardan en su navegador (toolboxFavorites).
+* Para añadir otra herramienta a las favoritas no hay que hacer nada: la estrella se añade sola
+  a toda tarjeta .tool-card que tenga un botón abrir('id').

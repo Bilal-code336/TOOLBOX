@@ -1945,6 +1945,239 @@ body.light .search input { color: var(--text); }
     .lang-btn { padding: 0 10px; }
     .lang-hint { bottom: 86px; }
 }
+
+/* =========================================================
+   FAVORITAS
+========================================================= */
+
+.fav-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--button);
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1;
+    transition: transform .2s, color .2s, border-color .2s, background .2s;
+}
+
+.fav-btn:hover {
+    transform: scale(1.1);
+    color: #facc15;
+    border-color: rgba(250,204,21,.6);
+}
+
+.tool-card.is-fav {
+    border-color: rgba(250,204,21,.45);
+    box-shadow: 0 0 0 1px rgba(250,204,21,.12), 0 14px 40px rgba(250,204,21,.07);
+}
+
+.tool-card.is-fav .fav-btn {
+    color: #facc15;
+    border-color: rgba(250,204,21,.5);
+    background: rgba(250,204,21,.12);
+}
+
+/* =========================================================
+   HERRAMIENTAS PDF
+========================================================= */
+
+.file-drop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 34px 20px;
+    text-align: center;
+    border: 2px dashed var(--border2);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+
+.file-drop:hover,
+.file-drop.dragover,
+.file-drop:focus-within {
+    border-color: var(--purple2);
+    background: rgba(124,58,237,.06);
+}
+
+.file-drop-icon { font-size: 40px; }
+.file-drop strong { font-size: 16px; }
+.file-drop small { color: var(--muted); }
+
+.file-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+}
+
+.file-list {
+    list-style: none;
+    margin: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--input);
+}
+
+.file-item.error { border-color: rgba(239,68,68,.55); }
+
+.file-thumb {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: var(--button);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.file-info { min-width: 0; }
+
+.file-name {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-meta { display: block; color: var(--muted); font-size: 12.5px; }
+.file-error { display: block; color: #f87171; font-size: 12.5px; margin-top: 2px; }
+
+.file-actions { display: flex; gap: 4px; }
+
+.file-actions button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 9px;
+    background: var(--button);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.file-actions button:hover:not(:disabled) { background: var(--purple); color: #fff; }
+.file-actions button:disabled { opacity: .35; cursor: not-allowed; }
+
+.pdf-options {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.pdf-options legend { padding: 0 8px; font-weight: 700; font-size: 14px; }
+
+.pdf-radio {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.pdf-radio.block { align-items: flex-start; }
+.pdf-radio input[type="radio"] { width: auto; margin-top: 3px; accent-color: var(--purple2); }
+
+.pdf-inline-input { width: 80px; padding: 8px 10px; }
+.pdf-inline-input.wide { width: min(260px, 100%); }
+
+.pdf-select {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.pdf-select.wide { margin-top: 18px; }
+.pdf-text-input { width: 100%; }
+
+.pdf-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4px 14px;
+    margin-top: 6px;
+}
+
+.pdf-hint { margin-top: 10px; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+
+.tool-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.pdf-progress {
+    height: 8px;
+    margin-top: 16px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--button);
+}
+
+.pdf-progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--purple3));
+    transition: width .15s;
+}
+
+.pdf-status { margin-top: 12px; font-size: 14px; color: var(--muted); }
+.pdf-status.error { color: #f87171; }
+.pdf-status.ok { color: var(--green); font-weight: 700; }
+
+.pdf-result {
+    margin-top: 14px;
+    padding: 16px;
+    border: 1px solid rgba(34,197,94,.4);
+    border-radius: 14px;
+    background: rgba(34,197,94,.07);
+}
+
+.pdf-result p { margin-bottom: 10px; color: var(--muted); font-size: 13.5px; }
+.pdf-downloads { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.pdf-downloads a {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pdf-downloads a:hover { background: var(--purple2); }
+
+@media (max-width: 600px) {
+    .file-item { grid-template-columns: auto 1fr; }
+    .file-actions { grid-column: 1 / -1; justify-content: flex-end; }
+}
 </style>
 </head>
 
@@ -2071,6 +2304,13 @@ body.light .search input { color: var(--text); }
 
         <button
             class="category"
+            onclick="filtrar('favoritas',this)"
+        >
+            ⭐ Favorites
+        </button>
+
+        <button
+            class="category"
             onclick="filtrar('ia',this)"
         >
             🤖 AI
@@ -2088,6 +2328,13 @@ body.light .search input { color: var(--text); }
             onclick="filtrar('imagen',this)"
         >
             🖼️ Image
+        </button>
+
+        <button
+            class="category"
+            onclick="filtrar('pdf',this)"
+        >
+            📄 PDF
         </button>
 
         <button
@@ -2344,6 +2591,121 @@ body.light .search input { color: var(--text); }
         </div>
 
 
+        <!-- PDF: pdfMerge -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="merge pdf combine join several pdf into one"
+        >
+            <div class="icon">📎</div>
+
+            <h3>Merge PDF</h3>
+
+            <p>
+                Combine several PDFs into one and choose the order.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfMerge')"
+            >
+                Open
+            </button>
+        </div>
+
+        <!-- PDF: pdfSplit -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="split pdf separate divide cut pages"
+        >
+            <div class="icon">✂️</div>
+
+            <h3>Split PDF</h3>
+
+            <p>
+                Split a PDF into single pages, by ranges or every N pages.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfSplit')"
+            >
+                Open
+            </button>
+        </div>
+
+        <!-- PDF: pdfCompress -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="compress pdf reduce size file smaller shrink"
+        >
+            <div class="icon">🗜️</div>
+
+            <h3>Compress PDF</h3>
+
+            <p>
+                Reduce your PDF size so it is easier to send or upload.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfCompress')"
+            >
+                Open
+            </button>
+        </div>
+
+        <!-- PDF: imgToPdf -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="images to pdf photos jpg png convert create pdf image"
+        >
+            <div class="icon">🖼️</div>
+
+            <h3>Images to PDF</h3>
+
+            <p>
+                Turn photos and screenshots into a tidy PDF with the page size you want.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('imgToPdf')"
+            >
+                Open
+            </button>
+        </div>
+
+        <!-- PDF: pdfExtract -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="extract pages pdf pull select remove pages"
+        >
+            <div class="icon">📑</div>
+
+            <h3>Extract PDF pages</h3>
+
+            <p>
+                Pull out only the pages you need from a PDF.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfExtract')"
+            >
+                Open
+            </button>
+        </div>
+
         <!-- CONTRASEÑAS -->
 
         <div
@@ -2419,6 +2781,240 @@ CONTRASEÑA FACIL
 
     </div>
 <p class="no-results" id="noResults" hidden>No tools found. Try a different word.</p>
+<p class="no-results" id="noFavorites" hidden>You do not have any favorite tools yet. Tap the ☆ on a tool to save it here.</p>
+
+    <div id="pdfMerge" class="tool-panel pdf-tool" data-pdf-tool="merge">
+
+        <div class="tool-head">
+            <div>
+                <h2>📎 Merge PDF</h2>
+                <p class="tool-sub">Combine several PDFs into a single one. Everything is processed in your browser: your files are not uploaded anywhere.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Drag your PDFs here or click to choose them</strong>
+            <small>You can add several files and put them in order afterwards.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf" multiple>
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>📎 Merge PDF</button>
+            <button class="secondary" data-role="clear" type="button">🗑️ Remove all</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="pdfSplit" class="tool-panel pdf-tool" data-pdf-tool="split">
+
+        <div class="tool-head">
+            <div>
+                <h2>✂️ Split PDF</h2>
+                <p class="tool-sub">Split a PDF into several files. Everything is processed in your browser: your files are not uploaded anywhere.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Drag a PDF here or click to choose it</strong>
+            <small>One file only.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf">
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <fieldset class="pdf-options">
+            <legend>How do you want to split it?</legend>
+
+            <label class="pdf-radio">
+                <input type="radio" name="pdfSplitMode" value="each" checked>
+                <span>One page per file</span>
+            </label>
+
+            <label class="pdf-radio">
+                <input type="radio" name="pdfSplitMode" value="every">
+                <span>Every</span>
+                <input class="pdf-inline-input" data-opt="splitEvery" type="number" min="1" value="2" inputmode="numeric">
+                <span>pages</span>
+            </label>
+
+            <label class="pdf-radio">
+                <input type="radio" name="pdfSplitMode" value="ranges">
+                <span>By ranges</span>
+                <input class="pdf-inline-input wide" data-opt="splitRanges" type="text" placeholder="1-3; 4-6; 7">
+            </label>
+
+            <p class="pdf-hint">Each range separated by “;” becomes one file. Inside a group you can use commas: 1-3, 5.</p>
+        </fieldset>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>✂️ Split PDF</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="pdfCompress" class="tool-panel pdf-tool" data-pdf-tool="compress">
+
+        <div class="tool-head">
+            <div>
+                <h2>🗜️ Compress PDF</h2>
+                <p class="tool-sub">Reduce the size of your PDF. Everything is processed in your browser: your files are not uploaded anywhere.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Drag a PDF here or click to choose it</strong>
+            <small>One file only.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf">
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <fieldset class="pdf-options">
+            <legend>Compression type</legend>
+
+            <label class="pdf-radio block">
+                <input type="radio" name="pdfCompressMode" value="light" checked>
+                <span><strong>Light</strong> — keeps the text selectable, but reduces the size only a little.</span>
+            </label>
+
+            <label class="pdf-radio block">
+                <input type="radio" name="pdfCompressMode" value="strong">
+                <span><strong>Strong</strong> — turns the pages into images: it reduces the size a lot, but the text can no longer be selected.</span>
+            </label>
+
+            <label class="pdf-select">
+                <span>Image quality (strong compression)</span>
+                <select data-opt="compressQuality">
+                    <option value="low">Low (very small file)</option>
+                    <option value="medium" selected>Medium (recommended)</option>
+                    <option value="high">High (larger file)</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>🗜️ Compress PDF</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="imgToPdf" class="tool-panel pdf-tool" data-pdf-tool="images">
+
+        <div class="tool-head">
+            <div>
+                <h2>🖼️ Images to PDF</h2>
+                <p class="tool-sub">Turn your photos and screenshots into a single PDF. Everything is processed in your browser: your files are not uploaded anywhere.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">🖼️</span>
+            <strong>Drag your images here or click to choose them</strong>
+            <small>JPG, PNG, WebP… You can add several and put them in order afterwards.</small>
+            <input class="file-input" data-role="input" type="file" accept="image/*" multiple>
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <div class="pdf-options-grid">
+
+            <label class="pdf-select">
+                <span>Page size</span>
+                <select data-opt="imgPage">
+                    <option value="a4" selected>A4</option>
+                    <option value="letter">Letter</option>
+                    <option value="fit">Same as the image</option>
+                </select>
+            </label>
+
+            <label class="pdf-select">
+                <span>Margin</span>
+                <select data-opt="imgMargin">
+                    <option value="0">No margin</option>
+                    <option value="24" selected>Small</option>
+                    <option value="48">Large</option>
+                </select>
+            </label>
+
+            <label class="pdf-select">
+                <span>File size</span>
+                <select data-opt="imgQuality">
+                    <option value="high">High quality (original)</option>
+                    <option value="balanced" selected>Balanced (recommended)</option>
+                    <option value="small">Small (more compression)</option>
+                </select>
+            </label>
+
+        </div>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>🖼️ Create PDF</button>
+            <button class="secondary" data-role="clear" type="button">🗑️ Remove all</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="pdfExtract" class="tool-panel pdf-tool" data-pdf-tool="extract">
+
+        <div class="tool-head">
+            <div>
+                <h2>📑 Extract PDF pages</h2>
+                <p class="tool-sub">Pull out only the pages you need. Everything is processed in your browser: your files are not uploaded anywhere.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Close">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Drag a PDF here or click to choose it</strong>
+            <small>One file only.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf">
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <label class="pdf-select wide">
+            <span>Pages you want to extract</span>
+            <input class="pdf-text-input" data-opt="extractPages" type="text" placeholder="1-3, 5, 8-10">
+        </label>
+
+        <p class="pdf-hint">Use numbers and ranges separated by commas. They will be extracted in the order you type them.</p>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>📑 Extract pages</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
 <div id="passwordMemorable" class="tool-panel">
 
     <div class="tool-head"><div><h2>🔐 Memorable Password Generator</h2><p class="tool-sub">Create passwords that are easy to remember and hard to guess.</p></div><button class="close" onclick="cerrar()" type="button" aria-label="Close">✕</button></div>
@@ -3538,7 +4134,7 @@ CONTRASEÑA FACIL
 ========================================================= */
 
 const LANG = "en";
-const I18N = {"color_copied": "Color copied.", "styler_empty": "Your text will appear here.", "text_copied": "Text copied.", "pw_select_one": "Select at least one type of character.", "pw_copied": "Password copied.", "img_load_first": "Load an image first.", "err_invalid_response": "The server did not return a valid response.", "err_no_reply": "TOOLBOX AI did not return any response.", "err_connect": "Error connecting to TOOLBOX AI.", "corr_write_first": "Write a text first.", "corr_loading": "🤖 Improving...", "corr_analyzing": "TOOLBOX AI is analyzing your text...", "corr_button": "✨ Improve with AI", "paste_first": "Paste a text first.", "simp_loading": "🧠 Simplifying...", "simp_working": "TOOLBOX AI is preparing a simple explanation...", "simp_button": "🧠 Make it easy", "pwm_complete": "⚠️ Fill in both words and the number.", "pwm_copied": "✅ Copied!", "pwm_copy_failed": "Could not copy automatically.", "words_suffix": " words", "hum_empty": "The rewritten text will appear here.", "copied_ok": "✅ Copied", "hum_longer": "Paste a slightly longer text to get a useful rewrite.", "hum_style_simple": "Use plain, direct and natural wording in the same language as the original text. Prioritize everyday words, clear sentences and easy reading. Do not reduce precision or remove information.", "hum_style_pro": "Use professional and, where appropriate, academic writing in the same language as the original text. It must be precise, clear and serious, but without sounding rigid, overly formal or mechanical.", "hum_loading": "🧠 Rewriting...", "hum_analyzing": "Analyzing the text...", "hum_checking": "Reviewing vocabulary, structure, rhythm, repetitions and clarity...", "hum_empty_ai": "The AI did not return any text. Please try again.", "hum_done": "✅ Text rewritten. Review it before using it.", "hum_status_default": "Keeps the meaning and improves clarity, rhythm, variety and naturalness.", "hum_copy_result": "📋 Copy result", "hum_failed": "The rewrite could not be completed.", "hum_button": "✨ Humanize text", "pomo_focus": "Time to study / work", "pomo_short": "Short break", "pomo_long": "Long break", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Start", "pomo_t_all": "🍅 You have finished all the sessions!", "pomo_m_all": "You can take your long break.", "pomo_t_session": "🍅 Session finished!", "pomo_m_session": "You can rest for a few minutes.", "pomo_t_break": "⏰ Break finished!", "pomo_m_break": "Time to get back to studying or working.", "pomo_t_long": "🌿 Long break finished!", "pomo_m_long": "You can get back to work.", "pomo_session": "Session {n} of {total}", "ocr_preparing": "Preparing recognition...", "ocr_lang": "eng", "ocr_ok": "✅ Text detected successfully.", "ocr_none": "No text was found in the image.", "ocr_fail": "❌ The text could not be recognized. Try another image.", "ocr_first": "Detect some text first.", "ocr_copied": "✅ Text copied.", "planner_same_monday": "Monday's schedule copied to the rest of the week.", "planner_same_all": "The same schedule was applied to every day.", "planner_clear_confirm": "Do you want to delete the tasks and the generated plan?", "planner_bad_json": "The AI returned a response that could not be turned into a plan. Please try again.", "planner_bad_days": "The AI did not return the expected day structure.", "planner_write_first": "First write everything you have to do.", "planner_activate_day": "Turn on at least one day and set an available time slot.", "planner_time_error": "The start time must be earlier than the end time.", "planner_loading": "🤖 Organizing...", "planner_status_creating": "Creating a realistic plan with your tasks and schedules...", "planner_done": "✅ Week organized successfully.", "planner_unknown": "Unknown error.", "planner_button": "✨ Create my week", "planner_rate_limit": "Groq is temporarily limiting requests. Wait a few seconds and try again. This version no longer retries automatically so it does not use more requests.", "planner_title_default": "Your organized week", "planner_summary_default": "I have distributed your tasks taking into account your available time and their priorities.", "planner_unavailable": "Not available", "planner_undo": "↶ Undo", "planner_mark_done": "✓ Done", "planner_load_fail": "The saved plan could not be loaded", "planner_fail": "The plan could not be created.", "planner_free_word": "free", "planner_activate": "Turn on", "planner_pending_one": "pending", "planner_pending_many": "pending", "planner_planned": "scheduled", "planner_free_day": "Free day", "planner_free_time": "Free time", "day_mon": "Monday", "day_mon_s": "Mon", "day_tue": "Tuesday", "day_tue_s": "Tue", "day_wed": "Wednesday", "day_wed_s": "Wed", "day_thu": "Thursday", "day_thu_s": "Thu", "day_fri": "Friday", "day_fri_s": "Fri", "day_sat": "Saturday", "day_sat_s": "Sat", "day_sun": "Sunday", "day_sun_s": "Sun", "prompt_corrector": "\nYou are the TOOLBOX text proofreader.\n\nCorrect only the text provided by the user.\n\nCorrect:\n- Spelling\n- Accents and diacritics\n- Punctuation\n- Capital and lowercase letters\n- Grammar\n- Agreement\n- Typography\n- Typing mistakes\n\nIMPORTANT RULES:\n\n1. Keep the original meaning exactly.\n2. Do not add new information.\n3. Do not greet the user.\n4. Do not explain the corrections.\n5. Do not add introductions such as \"Here you go\".\n6. Do not add farewells.\n7. Do not make comments.\n8. Return ONLY the corrected text.\n9. Keep the paragraphs and the format of the original text whenever possible.\n10. Keep the language of the original text.\n\nTEXT TO CORRECT:\n\n{input}\n        ", "prompt_simplifier": "\nYou are the TOOLBOX Text Simplifier.\n\nYour task is to turn the user's complicated text\ninto a text that is much easier to understand.\n\nIMPORTANT RULES:\n\n1. Explain the same content using simple words.\n2. Keep ALL the important information.\n3. Do not invent information.\n4. Do not change the meaning.\n5. Replace difficult words with easy ones.\n6. Split sentences that are too long.\n7. If there are complicated concepts, explain them simply.\n8. You can use everyday examples when they help to understand the concept.\n9. Do NOT greet the user.\n10. Do NOT say \"Here you go\".\n11. Do NOT explain what you have changed.\n12. Do NOT add comments at the end.\n13. Return ONLY the simplified text.\n14. Keep the paragraphs and the structure whenever possible.\n15. Write in the same language as the original text.\n\nTEXT TO SIMPLIFY:\n\n\n{input}\n        ", "prompt_humanizer": "\nRewrite the text with complete freedom of wording. I do not want a simple word substitution:\nI want you to build a new, natural and coherent version of the text.\n\nNATURAL STYLE DICTIONARY:\n\nAvoid overusing:\n- \"Firstly\"\n- \"Secondly\"\n- \"On the other hand\"\n- \"Moreover\"\n- \"It is worth noting that\"\n- \"It is important to point out that\"\n- \"In this regard\"\n- \"Consequently\"\n- \"In this way\"\n- \"In conclusion\"\n- \"In short\"\n- \"To sum up\"\n- \"It is essential to\"\n- \"It must be emphasized that\"\n- \"There is no doubt that\"\n- \"Nowadays\"\n- \"Throughout history\"\n- \"As mentioned above\"\n- \"Finally\"\n\nThey are not forbidden. Use them only when they really fit.\n\nVOCABULARY PREFERENCES:\n\nInstead of constantly looking for more sophisticated words:\n- \"utilize\" → \"use\" when the context allows it\n- \"perform\" → \"do\" when it sounds natural\n- \"carry out\" → \"do\" or \"make\"\n- \"acquire\" → \"get\" or \"obtain\" depending on the context\n- \"subsequently\" → \"later\" or \"then\"\n- \"previously\" → \"before\"\n- \"numerous\" → \"many\" when formality is not needed\n- \"approximately\" → \"about\" only in informal contexts\n- \"due to the fact that\" → \"because\" when it does not change the tone\n- \"in order to\" → \"to\" when that is enough\n- \"in relation to\" → \"about\" or \"regarding\" when it sounds better\n- \"commence\" → \"start\" when there is no need to keep a formal register\n\nIMPORTANT:\nDo not make these substitutions automatically. They are examples of preferences, not rules.\nIf the original word is the best option, keep it.\n\nWRITING RULES:\n\n1. Rewrite sentences from scratch when necessary.\n2. Do not keep the structure of the original out of obligation.\n3. You may change the order of the ideas within an explanation if it improves readability.\n4. You may merge sentences.\n5. You may split sentences that are too long.\n6. You may completely change the connectors.\n7. You may remove repetitions.\n8. You may keep repetitions when they are natural or necessary.\n9. Do not try to use a different synonym every time a word appears.\n10. Do not make all sentences the same length.\n11. Do not make all paragraphs have exactly the same structure.\n12. Do not start all sentences in a similar way.\n13. Do not force connectors between all ideas.\n14. Let some ideas be directly related without adding an artificial connector.\n15. Avoid sentences that are overly perfect, generic or formulaic.\n16. Do not add filler.\n17. Do not add new information.\n18. Do not change data, figures, names or concepts.\n19. Keep the original meaning.\n20. Keep the original language.\n\nFREEDOM:\n\nYou have permission to change practically the whole shape of the text:\nvocabulary, syntax, order of the sentences, length of the sentences,\nconnectors, paragraph structure and the way the ideas are explained.\n\nThe only thing you must keep is the information and the meaning.\n\nThe result must work as an independent text.\nIt must not look like a word-by-word version of the original.\n\nTEXT TYPE:\n{estilo}\n\n--- ORIGINAL TEXT ---\n{input}\n--- END OF ORIGINAL TEXT ---\n\nReturn only the new version of the text.\n\n", "prompt_planner": "Plan my week. Do not use Pomodoros.\n\nTASKS:\n{tasks}\n\nSCHEDULES:\n{availability}\n\nRULES:\n- Respect the schedules exactly.\n- Prioritize deadlines and upcoming exams.\n- Respect the durations given; if a duration is missing, estimate a reasonable one.\n- Split long tasks if needed.\n- Do not fill everything: leave free time.\n- Do not overlap blocks.\n- If everything does not fit, schedule the priorities first and send the rest to pending.\n- Use normal blocks like 16:00-17:30.\n- Return ONLY valid JSON, without Markdown.\n- Write all the text values in English.\n\nFORMAT:\n{\"title\":\"Organized week\",\"summary\":\"brief\",\"days\":[{\"day\":\"Monday\",\"blocks\":[{\"task\":\"Math\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"high\",\"deadline\":\"Friday\",\"note\":\"\"}]},{\"day\":\"Tuesday\",\"blocks\":[]},{\"day\":\"Wednesday\",\"blocks\":[]},{\"day\":\"Thursday\",\"blocks\":[]},{\"day\":\"Friday\",\"blocks\":[]},{\"day\":\"Saturday\",\"blocks\":[]},{\"day\":\"Sunday\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}"};
+const I18N = {"color_copied": "Color copied.", "styler_empty": "Your text will appear here.", "text_copied": "Text copied.", "pw_select_one": "Select at least one type of character.", "pw_copied": "Password copied.", "img_load_first": "Load an image first.", "err_invalid_response": "The server did not return a valid response.", "err_no_reply": "TOOLBOX AI did not return any response.", "err_connect": "Error connecting to TOOLBOX AI.", "corr_write_first": "Write a text first.", "corr_loading": "🤖 Improving...", "corr_analyzing": "TOOLBOX AI is analyzing your text...", "corr_button": "✨ Improve with AI", "paste_first": "Paste a text first.", "simp_loading": "🧠 Simplifying...", "simp_working": "TOOLBOX AI is preparing a simple explanation...", "simp_button": "🧠 Make it easy", "pwm_complete": "⚠️ Fill in both words and the number.", "pwm_copied": "✅ Copied!", "pwm_copy_failed": "Could not copy automatically.", "words_suffix": " words", "hum_empty": "The rewritten text will appear here.", "copied_ok": "✅ Copied", "hum_longer": "Paste a slightly longer text to get a useful rewrite.", "hum_style_simple": "Use plain, direct and natural wording in the same language as the original text. Prioritize everyday words, clear sentences and easy reading. Do not reduce precision or remove information.", "hum_style_pro": "Use professional and, where appropriate, academic writing in the same language as the original text. It must be precise, clear and serious, but without sounding rigid, overly formal or mechanical.", "hum_loading": "🧠 Rewriting...", "hum_analyzing": "Analyzing the text...", "hum_checking": "Reviewing vocabulary, structure, rhythm, repetitions and clarity...", "hum_empty_ai": "The AI did not return any text. Please try again.", "hum_done": "✅ Text rewritten. Review it before using it.", "hum_status_default": "Keeps the meaning and improves clarity, rhythm, variety and naturalness.", "hum_copy_result": "📋 Copy result", "hum_failed": "The rewrite could not be completed.", "hum_button": "✨ Humanize text", "pomo_focus": "Time to study / work", "pomo_short": "Short break", "pomo_long": "Long break", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Start", "pomo_t_all": "🍅 You have finished all the sessions!", "pomo_m_all": "You can take your long break.", "pomo_t_session": "🍅 Session finished!", "pomo_m_session": "You can rest for a few minutes.", "pomo_t_break": "⏰ Break finished!", "pomo_m_break": "Time to get back to studying or working.", "pomo_t_long": "🌿 Long break finished!", "pomo_m_long": "You can get back to work.", "pomo_session": "Session {n} of {total}", "ocr_preparing": "Preparing recognition...", "ocr_lang": "eng", "ocr_ok": "✅ Text detected successfully.", "ocr_none": "No text was found in the image.", "ocr_fail": "❌ The text could not be recognized. Try another image.", "ocr_first": "Detect some text first.", "ocr_copied": "✅ Text copied.", "planner_same_monday": "Monday's schedule copied to the rest of the week.", "planner_same_all": "The same schedule was applied to every day.", "planner_clear_confirm": "Do you want to delete the tasks and the generated plan?", "planner_bad_json": "The AI returned a response that could not be turned into a plan. Please try again.", "planner_bad_days": "The AI did not return the expected day structure.", "planner_write_first": "First write everything you have to do.", "planner_activate_day": "Turn on at least one day and set an available time slot.", "planner_time_error": "The start time must be earlier than the end time.", "planner_loading": "🤖 Organizing...", "planner_status_creating": "Creating a realistic plan with your tasks and schedules...", "planner_done": "✅ Week organized successfully.", "planner_unknown": "Unknown error.", "planner_button": "✨ Create my week", "planner_rate_limit": "Groq is temporarily limiting requests. Wait a few seconds and try again. This version no longer retries automatically so it does not use more requests.", "planner_title_default": "Your organized week", "planner_summary_default": "I have distributed your tasks taking into account your available time and their priorities.", "planner_unavailable": "Not available", "planner_undo": "↶ Undo", "planner_mark_done": "✓ Done", "planner_load_fail": "The saved plan could not be loaded", "planner_fail": "The plan could not be created.", "planner_free_word": "free", "planner_activate": "Turn on", "planner_pending_one": "pending", "planner_pending_many": "pending", "planner_planned": "scheduled", "planner_free_day": "Free day", "planner_free_time": "Free time", "day_mon": "Monday", "day_mon_s": "Mon", "day_tue": "Tuesday", "day_tue_s": "Tue", "day_wed": "Wednesday", "day_wed_s": "Wed", "day_thu": "Thursday", "day_thu_s": "Thu", "day_fri": "Friday", "day_fri_s": "Fri", "day_sat": "Saturday", "day_sat_s": "Sat", "day_sun": "Sunday", "day_sun_s": "Sun", "prompt_corrector": "\nYou are the TOOLBOX text proofreader.\n\nCorrect only the text provided by the user.\n\nCorrect:\n- Spelling\n- Accents and diacritics\n- Punctuation\n- Capital and lowercase letters\n- Grammar\n- Agreement\n- Typography\n- Typing mistakes\n\nIMPORTANT RULES:\n\n1. Keep the original meaning exactly.\n2. Do not add new information.\n3. Do not greet the user.\n4. Do not explain the corrections.\n5. Do not add introductions such as \"Here you go\".\n6. Do not add farewells.\n7. Do not make comments.\n8. Return ONLY the corrected text.\n9. Keep the paragraphs and the format of the original text whenever possible.\n10. Keep the language of the original text.\n\nTEXT TO CORRECT:\n\n{input}\n        ", "prompt_simplifier": "\nYou are the TOOLBOX Text Simplifier.\n\nYour task is to turn the user's complicated text\ninto a text that is much easier to understand.\n\nIMPORTANT RULES:\n\n1. Explain the same content using simple words.\n2. Keep ALL the important information.\n3. Do not invent information.\n4. Do not change the meaning.\n5. Replace difficult words with easy ones.\n6. Split sentences that are too long.\n7. If there are complicated concepts, explain them simply.\n8. You can use everyday examples when they help to understand the concept.\n9. Do NOT greet the user.\n10. Do NOT say \"Here you go\".\n11. Do NOT explain what you have changed.\n12. Do NOT add comments at the end.\n13. Return ONLY the simplified text.\n14. Keep the paragraphs and the structure whenever possible.\n15. Write in the same language as the original text.\n\nTEXT TO SIMPLIFY:\n\n\n{input}\n        ", "prompt_humanizer": "\nRewrite the text with complete freedom of wording. I do not want a simple word substitution:\nI want you to build a new, natural and coherent version of the text.\n\nNATURAL STYLE DICTIONARY:\n\nAvoid overusing:\n- \"Firstly\"\n- \"Secondly\"\n- \"On the other hand\"\n- \"Moreover\"\n- \"It is worth noting that\"\n- \"It is important to point out that\"\n- \"In this regard\"\n- \"Consequently\"\n- \"In this way\"\n- \"In conclusion\"\n- \"In short\"\n- \"To sum up\"\n- \"It is essential to\"\n- \"It must be emphasized that\"\n- \"There is no doubt that\"\n- \"Nowadays\"\n- \"Throughout history\"\n- \"As mentioned above\"\n- \"Finally\"\n\nThey are not forbidden. Use them only when they really fit.\n\nVOCABULARY PREFERENCES:\n\nInstead of constantly looking for more sophisticated words:\n- \"utilize\" → \"use\" when the context allows it\n- \"perform\" → \"do\" when it sounds natural\n- \"carry out\" → \"do\" or \"make\"\n- \"acquire\" → \"get\" or \"obtain\" depending on the context\n- \"subsequently\" → \"later\" or \"then\"\n- \"previously\" → \"before\"\n- \"numerous\" → \"many\" when formality is not needed\n- \"approximately\" → \"about\" only in informal contexts\n- \"due to the fact that\" → \"because\" when it does not change the tone\n- \"in order to\" → \"to\" when that is enough\n- \"in relation to\" → \"about\" or \"regarding\" when it sounds better\n- \"commence\" → \"start\" when there is no need to keep a formal register\n\nIMPORTANT:\nDo not make these substitutions automatically. They are examples of preferences, not rules.\nIf the original word is the best option, keep it.\n\nWRITING RULES:\n\n1. Rewrite sentences from scratch when necessary.\n2. Do not keep the structure of the original out of obligation.\n3. You may change the order of the ideas within an explanation if it improves readability.\n4. You may merge sentences.\n5. You may split sentences that are too long.\n6. You may completely change the connectors.\n7. You may remove repetitions.\n8. You may keep repetitions when they are natural or necessary.\n9. Do not try to use a different synonym every time a word appears.\n10. Do not make all sentences the same length.\n11. Do not make all paragraphs have exactly the same structure.\n12. Do not start all sentences in a similar way.\n13. Do not force connectors between all ideas.\n14. Let some ideas be directly related without adding an artificial connector.\n15. Avoid sentences that are overly perfect, generic or formulaic.\n16. Do not add filler.\n17. Do not add new information.\n18. Do not change data, figures, names or concepts.\n19. Keep the original meaning.\n20. Keep the original language.\n\nFREEDOM:\n\nYou have permission to change practically the whole shape of the text:\nvocabulary, syntax, order of the sentences, length of the sentences,\nconnectors, paragraph structure and the way the ideas are explained.\n\nThe only thing you must keep is the information and the meaning.\n\nThe result must work as an independent text.\nIt must not look like a word-by-word version of the original.\n\nTEXT TYPE:\n{estilo}\n\n--- ORIGINAL TEXT ---\n{input}\n--- END OF ORIGINAL TEXT ---\n\nReturn only the new version of the text.\n\n", "prompt_planner": "Plan my week. Do not use Pomodoros.\n\nTASKS:\n{tasks}\n\nSCHEDULES:\n{availability}\n\nRULES:\n- Respect the schedules exactly.\n- Prioritize deadlines and upcoming exams.\n- Respect the durations given; if a duration is missing, estimate a reasonable one.\n- Split long tasks if needed.\n- Do not fill everything: leave free time.\n- Do not overlap blocks.\n- If everything does not fit, schedule the priorities first and send the rest to pending.\n- Use normal blocks like 16:00-17:30.\n- Return ONLY valid JSON, without Markdown.\n- Write all the text values in English.\n\nFORMAT:\n{\"title\":\"Organized week\",\"summary\":\"brief\",\"days\":[{\"day\":\"Monday\",\"blocks\":[{\"task\":\"Math\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"high\",\"deadline\":\"Friday\",\"note\":\"\"}]},{\"day\":\"Tuesday\",\"blocks\":[]},{\"day\":\"Wednesday\",\"blocks\":[]},{\"day\":\"Thursday\",\"blocks\":[]},{\"day\":\"Friday\",\"blocks\":[]},{\"day\":\"Saturday\",\"blocks\":[]},{\"day\":\"Sunday\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}", "fav_add": "Add to favorites", "fav_remove": "Remove from favorites", "pdf_err_lib": "The PDF engine could not be loaded. Check your internet connection and try again.", "pdf_err_encrypted": "“{name}” is password-protected and cannot be processed.", "pdf_err_invalid": "“{name}” is not a valid PDF or it is damaged.", "pdf_err_type": "“{name}” is not a supported file.", "pdf_err_big": "“{name}” is too large (maximum 200 MB).", "pdf_err_image": "The image “{name}” could not be read.", "pdf_page_one": "{n} page", "pdf_pages_many": "{n} pages", "pdf_remove": "Remove", "pdf_up": "Move up", "pdf_down": "Move down", "pdf_need_two": "Add at least two PDFs to merge them.", "pdf_need_one": "Add a file first.", "pdf_processing": "Processing {i} of {n}…", "pdf_reading": "Reading file…", "pdf_saving": "Saving…", "pdf_done_merge": "✅ PDFs merged successfully.", "pdf_done_split": "✅ PDF split into {n} files.", "pdf_done_extract": "✅ Pages extracted successfully.", "pdf_done_images": "✅ PDF created successfully.", "pdf_done_compress": "✅ PDF compressed: from {from} to {to} ({pct}% smaller).", "pdf_compress_bigger": "The result is not smaller than the original ({from} → {to}). This PDF is already well optimized.", "pdf_compress_none": "This PDF is already optimized: light compression barely reduces it ({from} → {to}). Try strong compression if you do not need to select the text.", "pdf_compress_note": "Keep in mind that the text in this PDF can no longer be selected.", "pdf_download_pdf": "💾 Download PDF", "pdf_download_zip": "💾 Download ZIP", "pdf_ranges_empty": "Type the pages you want (for example: 1-3, 5).", "pdf_range_invalid": "I do not understand “{token}”. Use numbers and ranges, like 1-3, 5.", "pdf_range_out": "Page {n} does not exist: the PDF has {total}.", "pdf_range_order": "The range “{token}” is backwards. Write it from lowest to highest.", "pdf_split_n_invalid": "Enter a valid number of pages (1 or more).", "pdf_split_ranges_empty": "Type the ranges (for example: 1-3; 4-6; 7).", "pdf_unknown": "An unexpected error occurred. Please try again."};
 
 function t(key, vars) {
     let text = (I18N[key] !== undefined) ? I18N[key] : key;
@@ -3621,6 +4217,104 @@ function syncThemeButton() {
    BUSCADOR
 ========================================================= */
 
+/* ---------- FAVORITAS ---------- */
+
+const FAV_KEY = "toolboxFavorites";
+
+let favorites = [];
+
+try {
+    const raw = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
+    if (Array.isArray(raw)) favorites = raw.filter(x => typeof x === "string");
+} catch (e) {}
+
+function toolIdOf(card) {
+
+    if (card.dataset.tool) return card.dataset.tool;
+
+    const button = card.querySelector(".open");
+
+    const match = button && (button.getAttribute("onclick") || "").match(/abrir\('([^']+)'\)/);
+
+    card.dataset.tool = match ? match[1] : "";
+
+    return card.dataset.tool;
+}
+
+function isFavorite(id) {
+    return !!id && favorites.includes(id);
+}
+
+function saveFavorites() {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(favorites)); } catch (e) {}
+}
+
+function updateFavoriteUI() {
+
+    document.querySelectorAll(".tool-card").forEach(card => {
+
+        const id = toolIdOf(card);
+
+        const button = card.querySelector(".fav-btn");
+
+        if (!button) return;
+
+        const fav = isFavorite(id);
+
+        card.classList.toggle("is-fav", fav);
+
+        button.textContent = fav ? "★" : "☆";
+
+        button.setAttribute("aria-pressed", String(fav));
+
+        const label = fav ? t("fav_remove") : t("fav_add");
+
+        button.title = label;
+        button.setAttribute("aria-label", label);
+
+    });
+}
+
+function toggleFavorite(id) {
+
+    if (!id) return;
+
+    favorites = isFavorite(id)
+        ? favorites.filter(x => x !== id)
+        : favorites.concat(id);
+
+    saveFavorites();
+
+    updateFavoriteUI();
+
+    applyToolFilters();
+}
+
+function setupFavorites() {
+
+    document.querySelectorAll(".tool-card").forEach(card => {
+
+        const id = toolIdOf(card);
+
+        if (!id || card.querySelector(".fav-btn")) return;
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "fav-btn";
+
+        button.addEventListener("click", event => {
+            event.stopPropagation();
+            toggleFavorite(id);
+        });
+
+        card.appendChild(button);
+
+    });
+
+    updateFavoriteUI();
+}
+
 let currentCategory = "all";
 
 function normalizeText(text) {
@@ -3642,9 +4336,13 @@ function applyToolFilters() {
         .querySelectorAll(".tool-card")
         .forEach(card => {
 
+            const fav = isFavorite(toolIdOf(card));
+
             const matchesCategory =
                 currentCategory === "all" ||
-                card.dataset.category === currentCategory;
+                (currentCategory === "favoritas"
+                    ? fav
+                    : card.dataset.category === currentCategory);
 
             const matchesText =
                 !query ||
@@ -3654,13 +4352,21 @@ function applyToolFilters() {
 
             card.style.display = show ? "" : "none";
 
+            // las favoritas salen primero (la rejilla respeta "order")
+            card.style.order = fav ? "0" : "1";
+
             if (show) visible++;
 
         });
 
-    const none = document.getElementById("noResults");
+    const emptyFavorites =
+        currentCategory === "favoritas" && favorites.length === 0;
 
-    if (none) none.hidden = visible > 0;
+    const none = document.getElementById("noResults");
+    const noFav = document.getElementById("noFavorites");
+
+    if (none) none.hidden = visible > 0 || emptyFavorites;
+    if (noFav) noFav.hidden = !emptyFavorites;
 
 }
 
@@ -6039,6 +6745,1069 @@ window.abrir = function(id) {
 
 
 /* =========================================================
+   HERRAMIENTAS PDF — todo se procesa en el navegador
+   (las librerías se cargan solo cuando se abre una herramienta)
+========================================================= */
+
+const PDF_LIB_URL = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
+const PDFJS_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.6.205/legacy/build/pdf.min.mjs";
+const PDFJS_WORKER_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.6.205/legacy/build/pdf.worker.min.mjs";
+const PDF_MAX_BYTES = 200 * 1024 * 1024;
+
+class PdfError extends Error {}
+
+const pdfScriptCache = {};
+
+function pdfLoadScript(url) {
+
+    if (!pdfScriptCache[url]) {
+
+        pdfScriptCache[url] = new Promise((resolve, reject) => {
+
+            const script = document.createElement("script");
+
+            script.src = url;
+            script.async = true;
+            script.onload = resolve;
+
+            script.onerror = () => {
+                delete pdfScriptCache[url];
+                reject(new PdfError(t("pdf_err_lib")));
+            };
+
+            document.head.appendChild(script);
+
+        });
+
+    }
+
+    return pdfScriptCache[url];
+}
+
+async function pdfGetLib() {
+
+    if (!window.PDFLib) await pdfLoadScript(PDF_LIB_URL);
+
+    return window.PDFLib;
+}
+
+let pdfjsPromise = null;
+
+function pdfGetJs() {
+
+    if (!pdfjsPromise) {
+
+        pdfjsPromise = import(PDFJS_URL)
+            .then(mod => {
+                mod.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_URL;
+                return mod;
+            })
+            .catch(() => {
+                pdfjsPromise = null;
+                throw new PdfError(t("pdf_err_lib"));
+            });
+
+    }
+
+    return pdfjsPromise;
+}
+
+async function pdfLoadDoc(lib, bytes, name) {
+
+    try {
+        return await lib.PDFDocument.load(bytes);
+    } catch (error) {
+
+        if (/encrypt/i.test((error && error.message) || "")) {
+            throw new PdfError(t("pdf_err_encrypted", { name }));
+        }
+
+        throw new PdfError(t("pdf_err_invalid", { name }));
+    }
+}
+
+function pdfFormatBytes(bytes) {
+
+    const number = (value, digits) =>
+        value.toLocaleString(LANG, { maximumFractionDigits: digits });
+
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return number(bytes / 1024, 0) + " KB";
+
+    return number(bytes / (1024 * 1024), bytes < 10 * 1024 * 1024 ? 2 : 1) + " MB";
+}
+
+function pdfPagesText(n) {
+    return t(n === 1 ? "pdf_page_one" : "pdf_pages_many", { n });
+}
+
+function pdfBaseName(name) {
+    return String(name || "documento").replace(/\.[^.]+$/, "").replace(/[\\/:*?"<>|]+/g, "_") || "documento";
+}
+
+const pdfYield = () => new Promise(resolve => setTimeout(resolve, 0));
+
+/* ---------- páginas: "1-3, 5, 8-" ---------- */
+
+function pdfParsePages(text, total) {
+
+    const cleaned = String(text || "").trim().replace(/\s*[-–—]\s*/g, "-");
+
+    if (!cleaned) return { error: t("pdf_ranges_empty") };
+
+    const pages = [];
+
+    for (const raw of cleaned.split(/[,;\s]+/)) {
+
+        const token = raw.trim();
+
+        if (!token) continue;
+
+        let match = token.match(/^(\d+)$/);
+
+        if (match) {
+
+            const n = Number(match[1]);
+
+            if (n < 1 || n > total) return { error: t("pdf_range_out", { n, total }) };
+
+            pages.push(n - 1);
+
+            continue;
+        }
+
+        match = token.match(/^(\d+)-(\d*)$/);
+
+        if (match) {
+
+            const a = Number(match[1]);
+            const b = match[2] === "" ? total : Number(match[2]);
+
+            if (a < 1 || a > total) return { error: t("pdf_range_out", { n: a, total }) };
+            if (b < 1 || b > total) return { error: t("pdf_range_out", { n: b, total }) };
+            if (b < a) return { error: t("pdf_range_order", { token }) };
+
+            for (let i = a; i <= b; i++) pages.push(i - 1);
+
+            continue;
+        }
+
+        return { error: t("pdf_range_invalid", { token }) };
+    }
+
+    if (!pages.length) return { error: t("pdf_ranges_empty") };
+
+    return { pages };
+}
+
+/* ---------- ZIP sin compresión (no necesita librerías) ---------- */
+
+const PDF_CRC_TABLE = (() => {
+
+    const table = new Uint32Array(256);
+
+    for (let n = 0; n < 256; n++) {
+
+        let c = n;
+
+        for (let k = 0; k < 8; k++) {
+            c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        }
+
+        table[n] = c >>> 0;
+    }
+
+    return table;
+})();
+
+function pdfCrc32(bytes) {
+
+    let c = 0xFFFFFFFF;
+
+    for (let i = 0; i < bytes.length; i++) {
+        c = PDF_CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+    }
+
+    return (c ^ 0xFFFFFFFF) >>> 0;
+}
+
+function pdfMakeZip(files) {
+
+    const encoder = new TextEncoder();
+    const parts = [];
+    const central = [];
+
+    let offset = 0;
+    let centralSize = 0;
+
+    const now = new Date();
+
+    const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+    const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+
+    for (const file of files) {
+
+        const name = encoder.encode(file.name);
+        const crc = pdfCrc32(file.data);
+        const size = file.data.length;
+
+        const local = new DataView(new ArrayBuffer(30));
+
+        local.setUint32(0, 0x04034b50, true);
+        local.setUint16(4, 20, true);
+        local.setUint16(6, 0x0800, true);
+        local.setUint16(8, 0, true);
+        local.setUint16(10, dosTime, true);
+        local.setUint16(12, dosDate, true);
+        local.setUint32(14, crc, true);
+        local.setUint32(18, size, true);
+        local.setUint32(22, size, true);
+        local.setUint16(26, name.length, true);
+        local.setUint16(28, 0, true);
+
+        parts.push(local.buffer, name, file.data);
+
+        const entry = new DataView(new ArrayBuffer(46));
+
+        entry.setUint32(0, 0x02014b50, true);
+        entry.setUint16(4, 20, true);
+        entry.setUint16(6, 20, true);
+        entry.setUint16(8, 0x0800, true);
+        entry.setUint16(10, 0, true);
+        entry.setUint16(12, dosTime, true);
+        entry.setUint16(14, dosDate, true);
+        entry.setUint32(16, crc, true);
+        entry.setUint32(20, size, true);
+        entry.setUint32(24, size, true);
+        entry.setUint16(28, name.length, true);
+        entry.setUint32(42, offset, true);
+
+        central.push(entry.buffer, name);
+
+        centralSize += 46 + name.length;
+        offset += 30 + name.length + size;
+    }
+
+    const end = new DataView(new ArrayBuffer(22));
+
+    end.setUint32(0, 0x06054b50, true);
+    end.setUint16(8, files.length, true);
+    end.setUint16(10, files.length, true);
+    end.setUint32(12, centralSize, true);
+    end.setUint32(16, offset, true);
+
+    return new Blob([...parts, ...central, end.buffer], { type: "application/zip" });
+}
+
+/* ---------- imágenes ---------- */
+
+function pdfLoadImage(file) {
+
+    return new Promise((resolve, reject) => {
+
+        const url = URL.createObjectURL(file);
+
+        const img = new Image();
+
+        img.onload = () => {
+            URL.revokeObjectURL(url);
+            resolve(img);
+        };
+
+        img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new PdfError(t("pdf_err_image", { name: file.name })));
+        };
+
+        img.src = url;
+
+    });
+}
+
+function pdfCanvasToJpeg(canvas, quality) {
+
+    return new Promise((resolve, reject) => {
+
+        canvas.toBlob(blob => {
+
+            if (!blob) {
+                reject(new PdfError(t("pdf_unknown")));
+                return;
+            }
+
+            blob.arrayBuffer().then(buffer => resolve(new Uint8Array(buffer)));
+
+        }, "image/jpeg", quality);
+
+    });
+}
+
+/* ---------- controlador de cada herramienta ---------- */
+
+function initPdfTool(panel) {
+
+    const kind = panel.dataset.pdfTool;
+
+    const q = role => panel.querySelector('[data-role="' + role + '"]');
+
+    const dropZone = q("drop");
+    const input = q("input");
+    const list = q("list");
+    const runButton = q("run");
+    const clearButton = q("clear");
+    const status = q("status");
+    const progress = q("progress");
+    const bar = q("bar");
+    const result = q("result");
+
+    const multiple = input.hasAttribute("multiple");
+    const isImages = kind === "images";
+
+    let items = [];
+    let busy = false;
+    let counter = 0;
+    let resultUrls = [];
+
+    const opt = name => panel.querySelector('[data-opt="' + name + '"]');
+    const radio = name => {
+        const checked = panel.querySelector('input[name="' + name + '"]:checked');
+        return checked ? checked.value : "";
+    };
+
+    const setStatus = (text, type) => {
+        status.textContent = text || "";
+        status.className = "pdf-status" + (type ? " " + type : "");
+    };
+
+    const setProgress = fraction => {
+
+        if (fraction === null) {
+            progress.hidden = true;
+            return;
+        }
+
+        progress.hidden = false;
+        bar.style.width = Math.round(Math.max(0, Math.min(1, fraction)) * 100) + "%";
+    };
+
+    const clearResult = () => {
+        resultUrls.forEach(url => URL.revokeObjectURL(url));
+        resultUrls = [];
+        result.hidden = true;
+        result.innerHTML = "";
+    };
+
+    const releaseItem = item => {
+        if (item.url) URL.revokeObjectURL(item.url);
+    };
+
+    const minimumItems = kind === "merge" ? 2 : 1;
+
+    const updateButtons = () => {
+
+        const hasError = items.some(item => item.error);
+
+        runButton.disabled = busy || items.length < minimumItems || hasError;
+
+        if (clearButton) clearButton.disabled = busy || !items.length;
+    };
+
+    const readBytes = async file => new Uint8Array(await file.arrayBuffer());
+
+    /* ----- lista de archivos ----- */
+
+    function renderList() {
+
+        list.innerHTML = "";
+
+        items.forEach((item, index) => {
+
+            const li = document.createElement("li");
+
+            li.className = "file-item" + (item.error ? " error" : "");
+
+            let thumb;
+
+            if (isImages && item.url) {
+                thumb = document.createElement("img");
+                thumb.src = item.url;
+                thumb.alt = "";
+                thumb.className = "file-thumb";
+            } else {
+                thumb = document.createElement("div");
+                thumb.className = "file-thumb";
+                thumb.textContent = "📄";
+            }
+
+            const info = document.createElement("div");
+
+            info.className = "file-info";
+
+            const name = document.createElement("span");
+            name.className = "file-name";
+            name.textContent = item.file.name;
+            name.title = item.file.name;
+
+            const meta = document.createElement("span");
+            meta.className = "file-meta";
+
+            let metaText = pdfFormatBytes(item.file.size);
+
+            if (item.pages !== null) metaText += " · " + pdfPagesText(item.pages);
+
+            meta.textContent = metaText;
+
+            info.append(name, meta);
+
+            if (item.error) {
+                const error = document.createElement("span");
+                error.className = "file-error";
+                error.textContent = item.error;
+                info.appendChild(error);
+            }
+
+            const actions = document.createElement("div");
+
+            actions.className = "file-actions";
+
+            const makeButton = (label, title, handler, disabled) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = label;
+                button.title = title;
+                button.setAttribute("aria-label", title);
+                button.disabled = !!disabled || busy;
+                button.addEventListener("click", handler);
+                return button;
+            };
+
+            if (multiple) {
+                actions.append(
+                    makeButton("↑", t("pdf_up"), () => move(index, -1), index === 0),
+                    makeButton("↓", t("pdf_down"), () => move(index, 1), index === items.length - 1)
+                );
+            }
+
+            actions.appendChild(makeButton("✕", t("pdf_remove"), () => remove(index)));
+
+            li.append(thumb, info, actions);
+
+            list.appendChild(li);
+
+        });
+
+        updateButtons();
+    }
+
+    function move(index, delta) {
+
+        const target = index + delta;
+
+        if (target < 0 || target >= items.length) return;
+
+        [items[index], items[target]] = [items[target], items[index]];
+
+        clearResult();
+        renderList();
+    }
+
+    function remove(index) {
+
+        releaseItem(items[index]);
+
+        items.splice(index, 1);
+
+        clearResult();
+        setStatus("");
+        renderList();
+    }
+
+    function clearAll() {
+
+        items.forEach(releaseItem);
+        items = [];
+
+        clearResult();
+        setStatus("");
+        renderList();
+    }
+
+    async function readPageCount(item) {
+
+        try {
+
+            const lib = await pdfGetLib();
+
+            const doc = await pdfLoadDoc(lib, await readBytes(item.file), item.file.name);
+
+            item.pages = doc.getPageCount();
+
+        } catch (error) {
+
+            item.error = error instanceof PdfError ? error.message : t("pdf_err_invalid", { name: item.file.name });
+
+        }
+
+        renderList();
+    }
+
+    async function addFiles(fileList) {
+
+        clearResult();
+        setStatus("");
+
+        const errors = [];
+
+        let files = Array.from(fileList || []);
+
+        if (!multiple) files = files.slice(0, 1);
+
+        for (const file of files) {
+
+            const okType = isImages
+                ? (/^image\//.test(file.type) || /\.(jpe?g|png|webp|gif|bmp|avif)$/i.test(file.name))
+                : (file.type === "application/pdf" || /\.pdf$/i.test(file.name));
+
+            if (!okType) {
+                errors.push(t("pdf_err_type", { name: file.name }));
+                continue;
+            }
+
+            if (file.size > PDF_MAX_BYTES) {
+                errors.push(t("pdf_err_big", { name: file.name }));
+                continue;
+            }
+
+            if (!multiple) {
+                items.forEach(releaseItem);
+                items = [];
+            }
+
+            const item = { id: ++counter, file, pages: null, error: "", url: null };
+
+            if (isImages) item.url = URL.createObjectURL(file);
+
+            items.push(item);
+
+            if (!isImages) readPageCount(item);
+        }
+
+        if (errors.length) setStatus(errors.join(" "), "error");
+
+        renderList();
+    }
+
+    /* ----- resultado ----- */
+
+    function showResult(output) {
+
+        clearResult();
+
+        const box = document.createElement("div");
+
+        const message = document.createElement("p");
+        message.textContent = output.info || "";
+
+        const downloads = document.createElement("div");
+        downloads.className = "pdf-downloads";
+
+        output.files.forEach(file => {
+
+            const url = URL.createObjectURL(file.blob);
+
+            resultUrls.push(url);
+
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = file.name;
+            link.textContent = (file.zip ? t("pdf_download_zip") : t("pdf_download_pdf")) + " · " + pdfFormatBytes(file.blob.size);
+
+            downloads.appendChild(link);
+
+        });
+
+        box.append(message, downloads);
+
+        result.appendChild(box);
+        result.hidden = false;
+
+        setStatus(output.title, "ok");
+    }
+
+    function requireOne() {
+
+        if (!items.length) throw new PdfError(t("pdf_need_one"));
+
+        return items[0];
+    }
+
+    /* ----- herramientas ----- */
+
+    const runners = {
+
+        async merge() {
+
+            if (items.length < 2) throw new PdfError(t("pdf_need_two"));
+
+            const lib = await pdfGetLib();
+
+            const out = await lib.PDFDocument.create();
+
+            for (let i = 0; i < items.length; i++) {
+
+                setProgress(i / items.length);
+                setStatus(t("pdf_processing", { i: i + 1, n: items.length }));
+                await pdfYield();
+
+                const file = items[i].file;
+
+                const source = await pdfLoadDoc(lib, await readBytes(file), file.name);
+
+                const pages = await out.copyPages(source, source.getPageIndices());
+
+                pages.forEach(page => out.addPage(page));
+            }
+
+            setStatus(t("pdf_saving"));
+
+            const bytes = await out.save();
+
+            return {
+                title: t("pdf_done_merge"),
+                info: pdfPagesText(out.getPageCount()),
+                files: [{ name: "toolbox-merged.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        },
+
+        async split() {
+
+            const item = requireOne();
+
+            const lib = await pdfGetLib();
+
+            const source = await pdfLoadDoc(lib, await readBytes(item.file), item.file.name);
+
+            const total = source.getPageCount();
+
+            const mode = radio("pdfSplitMode");
+
+            let groups = [];
+
+            if (mode === "each") {
+
+                for (let i = 0; i < total; i++) groups.push([i]);
+
+            } else if (mode === "every") {
+
+                const n = parseInt(opt("splitEvery").value, 10);
+
+                if (!Number.isFinite(n) || n < 1) throw new PdfError(t("pdf_split_n_invalid"));
+
+                for (let i = 0; i < total; i += n) {
+                    groups.push(Array.from({ length: Math.min(n, total - i) }, (_, k) => i + k));
+                }
+
+            } else {
+
+                const text = opt("splitRanges").value;
+
+                if (!text.trim()) throw new PdfError(t("pdf_split_ranges_empty"));
+
+                for (const part of text.split(";")) {
+
+                    if (!part.trim()) continue;
+
+                    const parsed = pdfParsePages(part, total);
+
+                    if (parsed.error) throw new PdfError(parsed.error);
+
+                    groups.push(parsed.pages);
+                }
+
+                if (!groups.length) throw new PdfError(t("pdf_split_ranges_empty"));
+            }
+
+            const base = pdfBaseName(item.file.name);
+
+            const digits = String(groups.length).length;
+
+            const files = [];
+
+            for (let g = 0; g < groups.length; g++) {
+
+                setProgress(g / groups.length);
+                setStatus(t("pdf_processing", { i: g + 1, n: groups.length }));
+                await pdfYield();
+
+                const out = await lib.PDFDocument.create();
+
+                const pages = await out.copyPages(source, groups[g]);
+
+                pages.forEach(page => out.addPage(page));
+
+                const label = mode === "each"
+                    ? "page-" + String(groups[g][0] + 1).padStart(String(total).length, "0")
+                    : "part-" + String(g + 1).padStart(digits, "0");
+
+                files.push({ name: base + "_" + label + ".pdf", data: await out.save() });
+            }
+
+            setStatus(t("pdf_saving"));
+
+            if (files.length === 1) {
+
+                return {
+                    title: t("pdf_done_split", { n: 1 }),
+                    info: pdfPagesText(groups[0].length),
+                    files: [{ name: files[0].name, blob: new Blob([files[0].data], { type: "application/pdf" }) }]
+                };
+            }
+
+            return {
+                title: t("pdf_done_split", { n: files.length }),
+                info: pdfPagesText(total),
+                files: [{ name: base + "_split.zip", zip: true, blob: pdfMakeZip(files) }]
+            };
+        },
+
+        async extract() {
+
+            const item = requireOne();
+
+            const lib = await pdfGetLib();
+
+            const source = await pdfLoadDoc(lib, await readBytes(item.file), item.file.name);
+
+            const parsed = pdfParsePages(opt("extractPages").value, source.getPageCount());
+
+            if (parsed.error) throw new PdfError(parsed.error);
+
+            setStatus(t("pdf_processing", { i: 1, n: 1 }));
+            await pdfYield();
+
+            const out = await lib.PDFDocument.create();
+
+            const pages = await out.copyPages(source, parsed.pages);
+
+            pages.forEach(page => out.addPage(page));
+
+            const bytes = await out.save();
+
+            return {
+                title: t("pdf_done_extract"),
+                info: pdfPagesText(out.getPageCount()),
+                files: [{ name: pdfBaseName(item.file.name) + "_extract.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        },
+
+        async compress() {
+
+            const item = requireOne();
+
+            const lib = await pdfGetLib();
+
+            const originalBytes = await readBytes(item.file);
+
+            const original = item.file.size;
+
+            const mode = radio("pdfCompressMode");
+
+            const out = await lib.PDFDocument.create();
+
+            let note = "";
+
+            if (mode === "light") {
+
+                // Se copian solo las páginas a un documento nuevo: así se descartan
+                // objetos sin usar y restos de ediciones anteriores.
+                const source = await pdfLoadDoc(lib, originalBytes, item.file.name);
+
+                setStatus(t("pdf_processing", { i: 1, n: 1 }));
+                await pdfYield();
+
+                const pages = await out.copyPages(source, source.getPageIndices());
+
+                pages.forEach(page => out.addPage(page));
+
+            } else {
+
+                const levels = {
+                    low: { scale: 1.1, quality: 0.5 },
+                    medium: { scale: 1.5, quality: 0.65 },
+                    high: { scale: 2.1, quality: 0.8 }
+                };
+
+                const level = levels[opt("compressQuality").value] || levels.medium;
+
+                const pdfjs = await pdfGetJs();
+
+                let pdf;
+
+                try {
+                    pdf = await pdfjs.getDocument({ data: originalBytes.slice() }).promise;
+                } catch (error) {
+                    if (error && error.name === "PasswordException") {
+                        throw new PdfError(t("pdf_err_encrypted", { name: item.file.name }));
+                    }
+                    throw new PdfError(t("pdf_err_invalid", { name: item.file.name }));
+                }
+
+                for (let p = 1; p <= pdf.numPages; p++) {
+
+                    setProgress((p - 1) / pdf.numPages);
+                    setStatus(t("pdf_processing", { i: p, n: pdf.numPages }));
+                    await pdfYield();
+
+                    const page = await pdf.getPage(p);
+
+                    const base = page.getViewport({ scale: 1 });
+
+                    let scale = level.scale;
+
+                    const longest = Math.max(base.width, base.height) * scale;
+
+                    if (longest > 6000) scale *= 6000 / longest;
+
+                    const viewport = page.getViewport({ scale });
+
+                    const canvas = document.createElement("canvas");
+
+                    canvas.width = Math.max(1, Math.ceil(viewport.width));
+                    canvas.height = Math.max(1, Math.ceil(viewport.height));
+
+                    const context = canvas.getContext("2d");
+
+                    context.fillStyle = "#ffffff";
+                    context.fillRect(0, 0, canvas.width, canvas.height);
+
+                    await page.render({ canvas, canvasContext: context, viewport }).promise;
+
+                    const jpeg = await pdfCanvasToJpeg(canvas, level.quality);
+
+                    const image = await out.embedJpg(jpeg);
+
+                    const outPage = out.addPage([base.width, base.height]);
+
+                    outPage.drawImage(image, { x: 0, y: 0, width: base.width, height: base.height });
+
+                    canvas.width = canvas.height = 0;
+
+                    page.cleanup();
+                }
+
+                note = " " + t("pdf_compress_note");
+            }
+
+            setStatus(t("pdf_saving"));
+
+            const bytes = await out.save({ useObjectStreams: true });
+
+            const size = bytes.length;
+
+            const pagesText = pdfPagesText(out.getPageCount());
+
+            const percent = Math.round((1 - size / original) * 100);
+
+            if (mode === "light" && percent < 2) {
+                throw new PdfError(t("pdf_compress_none", { from: pdfFormatBytes(original), to: pdfFormatBytes(size) }));
+            }
+
+            if (size >= original) {
+
+                return {
+                    title: t("pdf_compress_bigger", { from: pdfFormatBytes(original), to: pdfFormatBytes(size) }),
+                    info: pagesText + note,
+                    files: [{ name: pdfBaseName(item.file.name) + "_compressed.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+                };
+            }
+
+            return {
+                title: t("pdf_done_compress", { from: pdfFormatBytes(original), to: pdfFormatBytes(size), pct: percent }),
+                info: pagesText + note,
+                files: [{ name: pdfBaseName(item.file.name) + "_compressed.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        },
+
+        async images() {
+
+            if (!items.length) throw new PdfError(t("pdf_need_one"));
+
+            const lib = await pdfGetLib();
+
+            const out = await lib.PDFDocument.create();
+
+            const pageMode = opt("imgPage").value;
+            const margin = Number(opt("imgMargin").value) || 0;
+            const quality = opt("imgQuality").value;
+
+            const limits = {
+                high: { max: 0, jpeg: 0.92 },
+                balanced: { max: 2200, jpeg: 0.85 },
+                small: { max: 1400, jpeg: 0.72 }
+            };
+
+            const limit = limits[quality] || limits.balanced;
+
+            const sizes = { a4: [595.28, 841.89], letter: [612, 792] };
+
+            for (let i = 0; i < items.length; i++) {
+
+                setProgress(i / items.length);
+                setStatus(t("pdf_processing", { i: i + 1, n: items.length }));
+                await pdfYield();
+
+                const file = items[i].file;
+
+                const img = await pdfLoadImage(file);
+
+                let width = img.naturalWidth;
+                let height = img.naturalHeight;
+
+                if (!width || !height) throw new PdfError(t("pdf_err_image", { name: file.name }));
+
+                if (limit.max && Math.max(width, height) > limit.max) {
+                    const ratio = limit.max / Math.max(width, height);
+                    width = Math.round(width * ratio);
+                    height = Math.round(height * ratio);
+                }
+
+                // Se dibuja en un canvas: así se respeta la orientación de las fotos
+                // del móvil y las imágenes con transparencia quedan sobre fondo blanco.
+                const canvas = document.createElement("canvas");
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const context = canvas.getContext("2d");
+
+                context.fillStyle = "#ffffff";
+                context.fillRect(0, 0, width, height);
+                context.drawImage(img, 0, 0, width, height);
+
+                const jpeg = await pdfCanvasToJpeg(canvas, limit.jpeg);
+
+                canvas.width = canvas.height = 0;
+
+                const embedded = await out.embedJpg(jpeg);
+
+                let pageWidth;
+                let pageHeight;
+
+                if (pageMode === "fit") {
+
+                    pageWidth = Math.min(14400, width * 0.75 + margin * 2);
+                    pageHeight = Math.min(14400, height * 0.75 + margin * 2);
+
+                } else {
+
+                    const base = sizes[pageMode] || sizes.a4;
+
+                    const landscape = width > height;
+
+                    pageWidth = landscape ? base[1] : base[0];
+                    pageHeight = landscape ? base[0] : base[1];
+                }
+
+                const page = out.addPage([pageWidth, pageHeight]);
+
+                const availableWidth = pageWidth - margin * 2;
+                const availableHeight = pageHeight - margin * 2;
+
+                const ratio = Math.min(availableWidth / width, availableHeight / height);
+
+                const drawWidth = width * ratio;
+                const drawHeight = height * ratio;
+
+                page.drawImage(embedded, {
+                    x: (pageWidth - drawWidth) / 2,
+                    y: (pageHeight - drawHeight) / 2,
+                    width: drawWidth,
+                    height: drawHeight
+                });
+            }
+
+            setStatus(t("pdf_saving"));
+
+            const bytes = await out.save();
+
+            return {
+                title: t("pdf_done_images"),
+                info: pdfPagesText(out.getPageCount()),
+                files: [{ name: "toolbox-images.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        }
+
+    };
+
+    /* ----- eventos ----- */
+
+    input.addEventListener("change", () => {
+        addFiles(input.files);
+        input.value = "";
+    });
+
+    ["dragenter", "dragover"].forEach(type => {
+        dropZone.addEventListener(type, event => {
+            event.preventDefault();
+            dropZone.classList.add("dragover");
+        });
+    });
+
+    ["dragleave", "drop"].forEach(type => {
+        dropZone.addEventListener(type, event => {
+            event.preventDefault();
+            dropZone.classList.remove("dragover");
+        });
+    });
+
+    dropZone.addEventListener("drop", event => {
+        if (event.dataTransfer) addFiles(event.dataTransfer.files);
+    });
+
+    if (clearButton) clearButton.addEventListener("click", clearAll);
+
+    runButton.addEventListener("click", async () => {
+
+        if (busy) return;
+
+        busy = true;
+
+        clearResult();
+        setProgress(0);
+        setStatus(t("pdf_reading"));
+        renderList();
+
+        try {
+
+            const output = await runners[kind]();
+
+            showResult(output);
+
+        } catch (error) {
+
+            setStatus(error instanceof PdfError ? error.message : t("pdf_unknown"), "error");
+
+            if (!(error instanceof PdfError)) console.error(error);
+
+        } finally {
+
+            busy = false;
+            setProgress(null);
+            renderList();
+
+        }
+
+    });
+
+    renderList();
+}
+
+function initPdfTools() {
+    document.querySelectorAll("[data-pdf-tool]").forEach(initPdfTool);
+}
+
+/* =========================================================
    SELECTOR DE IDIOMA, AVISO DE IDIOMA, ENLACES #HERRAMIENTA
 ========================================================= */
 
@@ -6162,6 +7931,12 @@ function openToolFromHash() {
 }
 
 window.addEventListener("hashchange", openToolFromHash);
+
+setupFavorites();
+
+applyToolFilters();
+
+initPdfTools();
 
 syncThemeButton();
 

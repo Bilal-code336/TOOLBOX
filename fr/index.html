@@ -1945,6 +1945,239 @@ body.light .search input { color: var(--text); }
     .lang-btn { padding: 0 10px; }
     .lang-hint { bottom: 86px; }
 }
+
+/* =========================================================
+   FAVORITAS
+========================================================= */
+
+.fav-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--button);
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1;
+    transition: transform .2s, color .2s, border-color .2s, background .2s;
+}
+
+.fav-btn:hover {
+    transform: scale(1.1);
+    color: #facc15;
+    border-color: rgba(250,204,21,.6);
+}
+
+.tool-card.is-fav {
+    border-color: rgba(250,204,21,.45);
+    box-shadow: 0 0 0 1px rgba(250,204,21,.12), 0 14px 40px rgba(250,204,21,.07);
+}
+
+.tool-card.is-fav .fav-btn {
+    color: #facc15;
+    border-color: rgba(250,204,21,.5);
+    background: rgba(250,204,21,.12);
+}
+
+/* =========================================================
+   HERRAMIENTAS PDF
+========================================================= */
+
+.file-drop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 34px 20px;
+    text-align: center;
+    border: 2px dashed var(--border2);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+
+.file-drop:hover,
+.file-drop.dragover,
+.file-drop:focus-within {
+    border-color: var(--purple2);
+    background: rgba(124,58,237,.06);
+}
+
+.file-drop-icon { font-size: 40px; }
+.file-drop strong { font-size: 16px; }
+.file-drop small { color: var(--muted); }
+
+.file-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+}
+
+.file-list {
+    list-style: none;
+    margin: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--input);
+}
+
+.file-item.error { border-color: rgba(239,68,68,.55); }
+
+.file-thumb {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: var(--button);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.file-info { min-width: 0; }
+
+.file-name {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-meta { display: block; color: var(--muted); font-size: 12.5px; }
+.file-error { display: block; color: #f87171; font-size: 12.5px; margin-top: 2px; }
+
+.file-actions { display: flex; gap: 4px; }
+
+.file-actions button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 9px;
+    background: var(--button);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.file-actions button:hover:not(:disabled) { background: var(--purple); color: #fff; }
+.file-actions button:disabled { opacity: .35; cursor: not-allowed; }
+
+.pdf-options {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.pdf-options legend { padding: 0 8px; font-weight: 700; font-size: 14px; }
+
+.pdf-radio {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.pdf-radio.block { align-items: flex-start; }
+.pdf-radio input[type="radio"] { width: auto; margin-top: 3px; accent-color: var(--purple2); }
+
+.pdf-inline-input { width: 80px; padding: 8px 10px; }
+.pdf-inline-input.wide { width: min(260px, 100%); }
+
+.pdf-select {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.pdf-select.wide { margin-top: 18px; }
+.pdf-text-input { width: 100%; }
+
+.pdf-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4px 14px;
+    margin-top: 6px;
+}
+
+.pdf-hint { margin-top: 10px; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+
+.tool-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.pdf-progress {
+    height: 8px;
+    margin-top: 16px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--button);
+}
+
+.pdf-progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--purple3));
+    transition: width .15s;
+}
+
+.pdf-status { margin-top: 12px; font-size: 14px; color: var(--muted); }
+.pdf-status.error { color: #f87171; }
+.pdf-status.ok { color: var(--green); font-weight: 700; }
+
+.pdf-result {
+    margin-top: 14px;
+    padding: 16px;
+    border: 1px solid rgba(34,197,94,.4);
+    border-radius: 14px;
+    background: rgba(34,197,94,.07);
+}
+
+.pdf-result p { margin-bottom: 10px; color: var(--muted); font-size: 13.5px; }
+.pdf-downloads { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.pdf-downloads a {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pdf-downloads a:hover { background: var(--purple2); }
+
+@media (max-width: 600px) {
+    .file-item { grid-template-columns: auto 1fr; }
+    .file-actions { grid-column: 1 / -1; justify-content: flex-end; }
+}
 </style>
 </head>
 
@@ -2071,6 +2304,13 @@ body.light .search input { color: var(--text); }
 
         <button
             class="category"
+            onclick="filtrar('favoritas',this)"
+        >
+            ⭐ Favoris
+        </button>
+
+        <button
+            class="category"
             onclick="filtrar('ia',this)"
         >
             🤖 IA
@@ -2088,6 +2328,13 @@ body.light .search input { color: var(--text); }
             onclick="filtrar('imagen',this)"
         >
             🖼️ Image
+        </button>
+
+        <button
+            class="category"
+            onclick="filtrar('pdf',this)"
+        >
+            📄 PDF
         </button>
 
         <button
@@ -2344,6 +2591,121 @@ body.light .search input { color: var(--text); }
         </div>
 
 
+        <!-- PDF: pdfMerge -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="fusionner pdf combiner assembler plusieurs pdf en un seul"
+        >
+            <div class="icon">📎</div>
+
+            <h3>Fusionner des PDF</h3>
+
+            <p>
+                Combine plusieurs PDF en un seul et choisis l’ordre.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfMerge')"
+            >
+                Ouvrir
+            </button>
+        </div>
+
+        <!-- PDF: pdfSplit -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="diviser pdf séparer découper couper pages"
+        >
+            <div class="icon">✂️</div>
+
+            <h3>Diviser un PDF</h3>
+
+            <p>
+                Sépare un PDF en pages individuelles, par plages ou toutes les N pages.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfSplit')"
+            >
+                Ouvrir
+            </button>
+        </div>
+
+        <!-- PDF: pdfCompress -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="compresser pdf réduire poids taille fichier alléger"
+        >
+            <div class="icon">🗜️</div>
+
+            <h3>Compresser un PDF</h3>
+
+            <p>
+                Réduis le poids de ton PDF pour l’envoyer ou le téléverser plus facilement.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfCompress')"
+            >
+                Ouvrir
+            </button>
+        </div>
+
+        <!-- PDF: imgToPdf -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="images en pdf photos jpg png convertir créer pdf image"
+        >
+            <div class="icon">🖼️</div>
+
+            <h3>Images en PDF</h3>
+
+            <p>
+                Transforme des photos et des captures en un PDF ordonné, avec le format de page de ton choix.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('imgToPdf')"
+            >
+                Ouvrir
+            </button>
+        </div>
+
+        <!-- PDF: pdfExtract -->
+
+        <div
+            class="tool-card"
+            data-category="pdf"
+            data-name="extraire pages pdf récupérer sélectionner supprimer pages"
+        >
+            <div class="icon">📑</div>
+
+            <h3>Extraire des pages d’un PDF</h3>
+
+            <p>
+                Récupère uniquement les pages dont tu as besoin dans un PDF.
+            </p>
+
+            <button
+                class="open"
+                onclick="abrir('pdfExtract')"
+            >
+                Ouvrir
+            </button>
+        </div>
+
         <!-- CONTRASEÑAS -->
 
         <div
@@ -2419,6 +2781,240 @@ CONTRASEÑA FACIL
 
     </div>
 <p class="no-results" id="noResults" hidden>Aucun outil trouvé. Essaie un autre mot.</p>
+<p class="no-results" id="noFavorites" hidden>Tu n’as pas encore d’outils favoris. Appuie sur la ☆ d’un outil pour l’enregistrer ici.</p>
+
+    <div id="pdfMerge" class="tool-panel pdf-tool" data-pdf-tool="merge">
+
+        <div class="tool-head">
+            <div>
+                <h2>📎 Fusionner des PDF</h2>
+                <p class="tool-sub">Combine plusieurs PDF en un seul. Tout est traité dans ton navigateur : tes fichiers ne sont envoyés nulle part.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Glisse tes PDF ici ou clique pour les choisir</strong>
+            <small>Tu peux ajouter plusieurs fichiers et les ordonner ensuite.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf" multiple>
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>📎 Fusionner des PDF</button>
+            <button class="secondary" data-role="clear" type="button">🗑️ Tout retirer</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="pdfSplit" class="tool-panel pdf-tool" data-pdf-tool="split">
+
+        <div class="tool-head">
+            <div>
+                <h2>✂️ Diviser un PDF</h2>
+                <p class="tool-sub">Sépare un PDF en plusieurs fichiers. Tout est traité dans ton navigateur : tes fichiers ne sont envoyés nulle part.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Glisse un PDF ici ou clique pour le choisir</strong>
+            <small>Un seul fichier.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf">
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <fieldset class="pdf-options">
+            <legend>Comment veux-tu le diviser ?</legend>
+
+            <label class="pdf-radio">
+                <input type="radio" name="pdfSplitMode" value="each" checked>
+                <span>Une page par fichier</span>
+            </label>
+
+            <label class="pdf-radio">
+                <input type="radio" name="pdfSplitMode" value="every">
+                <span>Toutes les</span>
+                <input class="pdf-inline-input" data-opt="splitEvery" type="number" min="1" value="2" inputmode="numeric">
+                <span>pages</span>
+            </label>
+
+            <label class="pdf-radio">
+                <input type="radio" name="pdfSplitMode" value="ranges">
+                <span>Par plages</span>
+                <input class="pdf-inline-input wide" data-opt="splitRanges" type="text" placeholder="1-3 ; 4-6 ; 7">
+            </label>
+
+            <p class="pdf-hint">Chaque plage séparée par « ; » devient un fichier. Dans un groupe, tu peux utiliser des virgules : 1-3, 5.</p>
+        </fieldset>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>✂️ Diviser un PDF</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="pdfCompress" class="tool-panel pdf-tool" data-pdf-tool="compress">
+
+        <div class="tool-head">
+            <div>
+                <h2>🗜️ Compresser un PDF</h2>
+                <p class="tool-sub">Réduis le poids de ton PDF. Tout est traité dans ton navigateur : tes fichiers ne sont envoyés nulle part.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Glisse un PDF ici ou clique pour le choisir</strong>
+            <small>Un seul fichier.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf">
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <fieldset class="pdf-options">
+            <legend>Type de compression</legend>
+
+            <label class="pdf-radio block">
+                <input type="radio" name="pdfCompressMode" value="light" checked>
+                <span><strong>Légère</strong> — garde le texte sélectionnable, mais réduit peu le poids.</span>
+            </label>
+
+            <label class="pdf-radio block">
+                <input type="radio" name="pdfCompressMode" value="strong">
+                <span><strong>Forte</strong> — transforme les pages en images : réduit beaucoup le poids, mais le texte n’est plus sélectionnable.</span>
+            </label>
+
+            <label class="pdf-select">
+                <span>Qualité d’image (compression forte)</span>
+                <select data-opt="compressQuality">
+                    <option value="low">Basse (fichier très petit)</option>
+                    <option value="medium" selected>Moyenne (recommandée)</option>
+                    <option value="high">Haute (plus lourd)</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>🗜️ Compresser un PDF</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="imgToPdf" class="tool-panel pdf-tool" data-pdf-tool="images">
+
+        <div class="tool-head">
+            <div>
+                <h2>🖼️ Images en PDF</h2>
+                <p class="tool-sub">Transforme tes photos et tes captures en un seul PDF. Tout est traité dans ton navigateur : tes fichiers ne sont envoyés nulle part.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">🖼️</span>
+            <strong>Glisse tes images ici ou clique pour les choisir</strong>
+            <small>JPG, PNG, WebP… Tu peux en ajouter plusieurs et les ordonner ensuite.</small>
+            <input class="file-input" data-role="input" type="file" accept="image/*" multiple>
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <div class="pdf-options-grid">
+
+            <label class="pdf-select">
+                <span>Format de page</span>
+                <select data-opt="imgPage">
+                    <option value="a4" selected>A4</option>
+                    <option value="letter">Letter</option>
+                    <option value="fit">Identique à l’image</option>
+                </select>
+            </label>
+
+            <label class="pdf-select">
+                <span>Marge</span>
+                <select data-opt="imgMargin">
+                    <option value="0">Sans marge</option>
+                    <option value="24" selected>Petite</option>
+                    <option value="48">Grande</option>
+                </select>
+            </label>
+
+            <label class="pdf-select">
+                <span>Taille du fichier</span>
+                <select data-opt="imgQuality">
+                    <option value="high">Haute qualité (original)</option>
+                    <option value="balanced" selected>Équilibré (recommandé)</option>
+                    <option value="small">Petit (plus de compression)</option>
+                </select>
+            </label>
+
+        </div>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>🖼️ Créer le PDF</button>
+            <button class="secondary" data-role="clear" type="button">🗑️ Tout retirer</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
+    <div id="pdfExtract" class="tool-panel pdf-tool" data-pdf-tool="extract">
+
+        <div class="tool-head">
+            <div>
+                <h2>📑 Extraire des pages d’un PDF</h2>
+                <p class="tool-sub">Récupère uniquement les pages dont tu as besoin. Tout est traité dans ton navigateur : tes fichiers ne sont envoyés nulle part.</p>
+            </div>
+            <button class="close" onclick="cerrar()" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <label class="file-drop" data-role="drop">
+            <span class="file-drop-icon" aria-hidden="true">📄</span>
+            <strong>Glisse un PDF ici ou clique pour le choisir</strong>
+            <small>Un seul fichier.</small>
+            <input class="file-input" data-role="input" type="file" accept="application/pdf,.pdf">
+        </label>
+
+        <ul class="file-list" data-role="list"></ul>
+
+        <label class="pdf-select wide">
+            <span>Pages à extraire</span>
+            <input class="pdf-text-input" data-opt="extractPages" type="text" placeholder="1-3, 5, 8-10">
+        </label>
+
+        <p class="pdf-hint">Utilise des numéros et des plages séparés par des virgules. Les pages seront extraites dans l’ordre où tu les écris.</p>
+
+        <div class="tool-actions">
+            <button class="primary" data-role="run" type="button" disabled>📑 Extraire les pages</button>
+        </div>
+
+        <div class="pdf-progress" data-role="progress" hidden><div class="pdf-progress-bar" data-role="bar"></div></div>
+        <div class="pdf-status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="pdf-result" data-role="result" hidden></div>
+
+    </div>
+
 <div id="passwordMemorable" class="tool-panel">
 
     <div class="tool-head"><div><h2>🔐 Générateur de mots de passe mémorables</h2><p class="tool-sub">Crée des mots de passe faciles à retenir et difficiles à deviner.</p></div><button class="close" onclick="cerrar()" type="button" aria-label="Fermer">✕</button></div>
@@ -3538,7 +4134,7 @@ CONTRASEÑA FACIL
 ========================================================= */
 
 const LANG = "fr";
-const I18N = {"color_copied": "Couleur copiée.", "styler_empty": "Ton texte apparaîtra ici.", "text_copied": "Texte copié.", "pw_select_one": "Sélectionne au moins un type de caractère.", "pw_copied": "Mot de passe copié.", "img_load_first": "Charge d’abord une image.", "err_invalid_response": "Le serveur n’a pas renvoyé de réponse valide.", "err_no_reply": "TOOLBOX AI n’a renvoyé aucune réponse.", "err_connect": "Erreur de connexion à TOOLBOX AI.", "corr_write_first": "Écris d’abord un texte.", "corr_loading": "🤖 Amélioration...", "corr_analyzing": "TOOLBOX AI analyse ton texte...", "corr_button": "✨ Améliorer avec l’IA", "paste_first": "Colle d’abord un texte.", "simp_loading": "🧠 Simplification...", "simp_working": "TOOLBOX AI prépare une explication simple...", "simp_button": "🧠 Rendre facile", "pwm_complete": "⚠️ Remplis les deux mots et le nombre.", "pwm_copied": "✅ Copié !", "pwm_copy_failed": "Impossible de copier automatiquement.", "words_suffix": " mots", "hum_empty": "Le texte réécrit apparaîtra ici.", "copied_ok": "✅ Copié", "hum_longer": "Colle un texte un peu plus long pour obtenir une réécriture utile.", "hum_style_simple": "Utilise une formulation simple, directe et naturelle, dans la même langue que le texte original. Privilégie les mots courants, les phrases claires et une lecture facile. Ne réduis pas la précision et ne supprime aucune information.", "hum_style_pro": "Utilise une rédaction professionnelle et, le cas échéant, académique, dans la même langue que le texte original. Elle doit être précise, claire et sérieuse, sans paraître rigide, trop formelle ou mécanique.", "hum_loading": "🧠 Réécriture...", "hum_analyzing": "Analyse du texte...", "hum_checking": "Vérification du vocabulaire, de la structure, du rythme, des répétitions et de la clarté...", "hum_empty_ai": "L’IA n’a renvoyé aucun texte. Réessaie.", "hum_done": "✅ Texte réécrit. Relis-le avant de l’utiliser.", "hum_status_default": "Conserve le sens et améliore la clarté, le rythme, la variété et le naturel.", "hum_copy_result": "📋 Copier le résultat", "hum_failed": "La réécriture n’a pas pu être terminée.", "hum_button": "✨ Humaniser le texte", "pomo_focus": "C’est l’heure d’étudier / de travailler", "pomo_short": "Pause courte", "pomo_long": "Pause longue", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Démarrer", "pomo_t_all": "🍅 Tu as terminé toutes les sessions !", "pomo_m_all": "Tu peux prendre ta pause longue.", "pomo_t_session": "🍅 Session terminée !", "pomo_m_session": "Tu peux te reposer quelques minutes.", "pomo_t_break": "⏰ Pause terminée !", "pomo_m_break": "C’est le moment de retourner étudier ou travailler.", "pomo_t_long": "🌿 Pause longue terminée !", "pomo_m_long": "Tu peux te remettre au travail.", "pomo_session": "Session {n} sur {total}", "ocr_preparing": "Préparation de la reconnaissance...", "ocr_lang": "fra+eng", "ocr_ok": "✅ Texte détecté avec succès.", "ocr_none": "Aucun texte n’a été trouvé dans l’image.", "ocr_fail": "❌ Impossible de reconnaître le texte. Essaie avec une autre image.", "ocr_first": "Détecte d’abord un texte.", "ocr_copied": "✅ Texte copié.", "planner_same_monday": "L’horaire du lundi a été copié sur le reste de la semaine.", "planner_same_all": "Le même horaire a été appliqué à tous les jours.", "planner_clear_confirm": "Veux-tu supprimer les tâches et le plan généré ?", "planner_bad_json": "L’IA a renvoyé une réponse qui n’a pas pu être convertie en plan. Réessaie.", "planner_bad_days": "L’IA n’a pas renvoyé la structure de jours attendue.", "planner_write_first": "Écris d’abord tout ce que tu as à faire.", "planner_activate_day": "Active au moins un jour et définis un créneau disponible.", "planner_time_error": "L’heure de début doit être antérieure à l’heure de fin.", "planner_loading": "🤖 Organisation...", "planner_status_creating": "Création d’un plan réaliste avec tes tâches et tes horaires...", "planner_done": "✅ Semaine organisée avec succès.", "planner_unknown": "Erreur inconnue.", "planner_button": "✨ Créer ma semaine", "planner_rate_limit": "Groq limite temporairement les requêtes. Attends quelques secondes et réessaie. Cette version ne refait plus de tentatives automatiques pour ne pas consommer plus de requêtes.", "planner_title_default": "Ta semaine organisée", "planner_summary_default": "J’ai réparti tes tâches en tenant compte de ton temps disponible et de leurs priorités.", "planner_unavailable": "Indisponible", "planner_undo": "↶ Annuler", "planner_mark_done": "✓ Fait", "planner_load_fail": "Impossible de charger le plan enregistré", "planner_fail": "Le plan n’a pas pu être créé.", "planner_free_word": "libre", "planner_activate": "Activer", "planner_pending_one": "en attente", "planner_pending_many": "en attente", "planner_planned": "planifiées", "planner_free_day": "Jour libre", "planner_free_time": "Temps libre", "day_mon": "Lundi", "day_mon_s": "Lun", "day_tue": "Mardi", "day_tue_s": "Mar", "day_wed": "Mercredi", "day_wed_s": "Mer", "day_thu": "Jeudi", "day_thu_s": "Jeu", "day_fri": "Vendredi", "day_fri_s": "Ven", "day_sat": "Samedi", "day_sat_s": "Sam", "day_sun": "Dimanche", "day_sun_s": "Dim", "prompt_corrector": "\nTu es le correcteur de textes de TOOLBOX.\n\nCorrige exclusivement le texte fourni par l'utilisateur.\n\nCorrige :\n- L'orthographe\n- Les accents\n- La ponctuation\n- Les majuscules et les minuscules\n- La grammaire\n- Les accords\n- La typographie\n- Les fautes de frappe\n\nRÈGLES IMPORTANTES :\n\n1. Conserve exactement le sens d'origine.\n2. N'ajoute aucune information nouvelle.\n3. Ne salue pas l'utilisateur.\n4. N'explique pas les corrections.\n5. N'ajoute pas d'introductions du type « Voici ».\n6. N'ajoute pas de formule de politesse finale.\n7. Ne fais aucun commentaire.\n8. Renvoie UNIQUEMENT le texte corrigé.\n9. Conserve les paragraphes et le format du texte original autant que possible.\n10. Conserve la langue du texte original.\n\nTEXTE À CORRIGER :\n\n{input}\n        ", "prompt_simplifier": "\nTu es le Simplificateur de textes de TOOLBOX.\n\nTa tâche est de transformer le texte compliqué de l'utilisateur\nen un texte beaucoup plus facile à comprendre.\n\nRÈGLES IMPORTANTES :\n\n1. Explique le même contenu avec des mots simples.\n2. Conserve TOUTES les informations importantes.\n3. N'invente aucune information.\n4. Ne change pas le sens.\n5. Remplace les mots difficiles par des mots faciles.\n6. Découpe les phrases trop longues.\n7. S'il y a des concepts compliqués, explique-les simplement.\n8. Tu peux utiliser des exemples du quotidien quand ils aident à comprendre le concept.\n9. NE salue PAS l'utilisateur.\n10. NE dis PAS « Voici ».\n11. N'explique PAS ce que tu as changé.\n12. NE fais PAS de commentaires à la fin.\n13. Renvoie UNIQUEMENT le texte simplifié.\n14. Conserve les paragraphes et la structure autant que possible.\n15. Écris dans la même langue que le texte original.\n\nTEXTE À SIMPLIFIER :\n\n\n{input}\n        ", "prompt_humanizer": "\nRéécris le texte en toute liberté de rédaction. Je ne veux pas une simple substitution de mots :\nje veux que tu construises une version nouvelle, naturelle et cohérente du texte.\n\nDICTIONNAIRE DE STYLE NATUREL :\n\nÉvite d'abuser de :\n- « Tout d'abord »\n- « Ensuite »\n- « D'autre part »\n- « Par ailleurs »\n- « Il convient de souligner que »\n- « Il est important de noter que »\n- « En ce sens »\n- « Par conséquent »\n- « De cette manière »\n- « En conclusion »\n- « En définitive »\n- « Pour conclure »\n- « Il est essentiel de »\n- « Il faut souligner que »\n- « Il ne fait aucun doute que »\n- « De nos jours »\n- « Tout au long de l'histoire »\n- « Comme mentionné précédemment »\n- « Enfin »\n\nElles ne sont pas interdites. Utilise-les uniquement quand elles conviennent vraiment.\n\nPRÉFÉRENCES DE VOCABULAIRE :\n\nAu lieu de chercher constamment des mots plus sophistiqués :\n- « effectuer » → « faire » quand c'est naturel\n- « réaliser » → « faire » quand le contexte le permet\n- « acquérir » → « obtenir » ou « se procurer » selon le contexte\n- « ultérieurement » → « plus tard »\n- « préalablement » → « avant »\n- « de nombreux » → « beaucoup de » quand la formalité n'est pas nécessaire\n- « approximativement » → « environ » ou « à peu près » seulement dans les contextes informels\n- « en raison du fait que » → « parce que » quand cela ne change pas le ton\n- « afin de » → « pour » quand cela suffit\n- « en relation avec » → « sur » ou « au sujet de » quand cela sonne mieux\n- « mettre en œuvre » → « faire » quand il n'est pas nécessaire de garder un registre formel\n\nIMPORTANT :\nNe fais pas ces substitutions automatiquement. Ce sont des exemples de préférences, pas des règles.\nSi le mot d'origine est la meilleure option, garde-le.\n\nRÈGLES D'ÉCRITURE :\n\n1. Réécris les phrases de zéro quand c'est nécessaire.\n2. Ne conserve pas la structure de l'original par obligation.\n3. Tu peux changer l'ordre des idées dans une explication si cela améliore la lecture.\n4. Tu peux fusionner des phrases.\n5. Tu peux découper des phrases trop longues.\n6. Tu peux changer complètement les connecteurs.\n7. Tu peux supprimer des répétitions.\n8. Tu peux conserver des répétitions quand elles sont naturelles ou nécessaires.\n9. N'essaie pas d'utiliser un synonyme différent à chaque fois qu'un mot apparaît.\n10. Ne donne pas la même longueur à toutes les phrases.\n11. Ne donne pas exactement la même structure à tous les paragraphes.\n12. Ne commence pas toutes les phrases de la même façon.\n13. Ne force pas de connecteurs entre toutes les idées.\n14. Laisse certaines idées directement liées sans ajouter de connecteur artificiel.\n15. Évite les phrases trop parfaites, génériques ou toutes faites.\n16. N'ajoute pas de remplissage.\n17. N'ajoute aucune information nouvelle.\n18. Ne change pas les données, les chiffres, les noms ou les concepts.\n19. Conserve le sens original.\n20. Conserve la langue d'origine.\n\nLIBERTÉ :\n\nTu as la permission de changer pratiquement toute la forme du texte :\nvocabulaire, syntaxe, ordre des phrases, longueur des phrases,\nconnecteurs, structure des paragraphes et manière d'expliquer les idées.\n\nLa seule chose que tu dois conserver, c'est l'information et le sens.\n\nLe résultat doit fonctionner comme un texte indépendant.\nIl ne doit pas ressembler à une version mot à mot de l'original.\n\nTYPE DE TEXTE :\n{estilo}\n\n--- TEXTE ORIGINAL ---\n{input}\n--- FIN DU TEXTE ORIGINAL ---\n\nRenvoie uniquement la nouvelle version du texte.\n\n", "prompt_planner": "Planifie ma semaine. N'utilise pas de Pomodoros.\n\nTÂCHES :\n{tasks}\n\nHORAIRES :\n{availability}\n\nRÈGLES :\n- Respecte exactement les horaires.\n- Donne la priorité aux échéances et aux examens proches.\n- Respecte les durées indiquées ; s'il manque une durée, estime-en une raisonnable.\n- Découpe les tâches longues si nécessaire.\n- Ne remplis pas tout : laisse du temps libre.\n- Ne fais pas se chevaucher les blocs.\n- Si tout ne tient pas, planifie d'abord les priorités et envoie le reste dans pending.\n- Utilise des blocs normaux comme 16:00-17:30.\n- Renvoie UNIQUEMENT du JSON valide, sans Markdown.\n- Écris toutes les valeurs textuelles en français.\n\nFORMAT :\n{\"title\":\"Semaine organisée\",\"summary\":\"bref\",\"days\":[{\"day\":\"Lundi\",\"blocks\":[{\"task\":\"Maths\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"haute\",\"deadline\":\"vendredi\",\"note\":\"\"}]},{\"day\":\"Mardi\",\"blocks\":[]},{\"day\":\"Mercredi\",\"blocks\":[]},{\"day\":\"Jeudi\",\"blocks\":[]},{\"day\":\"Vendredi\",\"blocks\":[]},{\"day\":\"Samedi\",\"blocks\":[]},{\"day\":\"Dimanche\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}"};
+const I18N = {"color_copied": "Couleur copiée.", "styler_empty": "Ton texte apparaîtra ici.", "text_copied": "Texte copié.", "pw_select_one": "Sélectionne au moins un type de caractère.", "pw_copied": "Mot de passe copié.", "img_load_first": "Charge d’abord une image.", "err_invalid_response": "Le serveur n’a pas renvoyé de réponse valide.", "err_no_reply": "TOOLBOX AI n’a renvoyé aucune réponse.", "err_connect": "Erreur de connexion à TOOLBOX AI.", "corr_write_first": "Écris d’abord un texte.", "corr_loading": "🤖 Amélioration...", "corr_analyzing": "TOOLBOX AI analyse ton texte...", "corr_button": "✨ Améliorer avec l’IA", "paste_first": "Colle d’abord un texte.", "simp_loading": "🧠 Simplification...", "simp_working": "TOOLBOX AI prépare une explication simple...", "simp_button": "🧠 Rendre facile", "pwm_complete": "⚠️ Remplis les deux mots et le nombre.", "pwm_copied": "✅ Copié !", "pwm_copy_failed": "Impossible de copier automatiquement.", "words_suffix": " mots", "hum_empty": "Le texte réécrit apparaîtra ici.", "copied_ok": "✅ Copié", "hum_longer": "Colle un texte un peu plus long pour obtenir une réécriture utile.", "hum_style_simple": "Utilise une formulation simple, directe et naturelle, dans la même langue que le texte original. Privilégie les mots courants, les phrases claires et une lecture facile. Ne réduis pas la précision et ne supprime aucune information.", "hum_style_pro": "Utilise une rédaction professionnelle et, le cas échéant, académique, dans la même langue que le texte original. Elle doit être précise, claire et sérieuse, sans paraître rigide, trop formelle ou mécanique.", "hum_loading": "🧠 Réécriture...", "hum_analyzing": "Analyse du texte...", "hum_checking": "Vérification du vocabulaire, de la structure, du rythme, des répétitions et de la clarté...", "hum_empty_ai": "L’IA n’a renvoyé aucun texte. Réessaie.", "hum_done": "✅ Texte réécrit. Relis-le avant de l’utiliser.", "hum_status_default": "Conserve le sens et améliore la clarté, le rythme, la variété et le naturel.", "hum_copy_result": "📋 Copier le résultat", "hum_failed": "La réécriture n’a pas pu être terminée.", "hum_button": "✨ Humaniser le texte", "pomo_focus": "C’est l’heure d’étudier / de travailler", "pomo_short": "Pause courte", "pomo_long": "Pause longue", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Démarrer", "pomo_t_all": "🍅 Tu as terminé toutes les sessions !", "pomo_m_all": "Tu peux prendre ta pause longue.", "pomo_t_session": "🍅 Session terminée !", "pomo_m_session": "Tu peux te reposer quelques minutes.", "pomo_t_break": "⏰ Pause terminée !", "pomo_m_break": "C’est le moment de retourner étudier ou travailler.", "pomo_t_long": "🌿 Pause longue terminée !", "pomo_m_long": "Tu peux te remettre au travail.", "pomo_session": "Session {n} sur {total}", "ocr_preparing": "Préparation de la reconnaissance...", "ocr_lang": "fra+eng", "ocr_ok": "✅ Texte détecté avec succès.", "ocr_none": "Aucun texte n’a été trouvé dans l’image.", "ocr_fail": "❌ Impossible de reconnaître le texte. Essaie avec une autre image.", "ocr_first": "Détecte d’abord un texte.", "ocr_copied": "✅ Texte copié.", "planner_same_monday": "L’horaire du lundi a été copié sur le reste de la semaine.", "planner_same_all": "Le même horaire a été appliqué à tous les jours.", "planner_clear_confirm": "Veux-tu supprimer les tâches et le plan généré ?", "planner_bad_json": "L’IA a renvoyé une réponse qui n’a pas pu être convertie en plan. Réessaie.", "planner_bad_days": "L’IA n’a pas renvoyé la structure de jours attendue.", "planner_write_first": "Écris d’abord tout ce que tu as à faire.", "planner_activate_day": "Active au moins un jour et définis un créneau disponible.", "planner_time_error": "L’heure de début doit être antérieure à l’heure de fin.", "planner_loading": "🤖 Organisation...", "planner_status_creating": "Création d’un plan réaliste avec tes tâches et tes horaires...", "planner_done": "✅ Semaine organisée avec succès.", "planner_unknown": "Erreur inconnue.", "planner_button": "✨ Créer ma semaine", "planner_rate_limit": "Groq limite temporairement les requêtes. Attends quelques secondes et réessaie. Cette version ne refait plus de tentatives automatiques pour ne pas consommer plus de requêtes.", "planner_title_default": "Ta semaine organisée", "planner_summary_default": "J’ai réparti tes tâches en tenant compte de ton temps disponible et de leurs priorités.", "planner_unavailable": "Indisponible", "planner_undo": "↶ Annuler", "planner_mark_done": "✓ Fait", "planner_load_fail": "Impossible de charger le plan enregistré", "planner_fail": "Le plan n’a pas pu être créé.", "planner_free_word": "libre", "planner_activate": "Activer", "planner_pending_one": "en attente", "planner_pending_many": "en attente", "planner_planned": "planifiées", "planner_free_day": "Jour libre", "planner_free_time": "Temps libre", "day_mon": "Lundi", "day_mon_s": "Lun", "day_tue": "Mardi", "day_tue_s": "Mar", "day_wed": "Mercredi", "day_wed_s": "Mer", "day_thu": "Jeudi", "day_thu_s": "Jeu", "day_fri": "Vendredi", "day_fri_s": "Ven", "day_sat": "Samedi", "day_sat_s": "Sam", "day_sun": "Dimanche", "day_sun_s": "Dim", "prompt_corrector": "\nTu es le correcteur de textes de TOOLBOX.\n\nCorrige exclusivement le texte fourni par l'utilisateur.\n\nCorrige :\n- L'orthographe\n- Les accents\n- La ponctuation\n- Les majuscules et les minuscules\n- La grammaire\n- Les accords\n- La typographie\n- Les fautes de frappe\n\nRÈGLES IMPORTANTES :\n\n1. Conserve exactement le sens d'origine.\n2. N'ajoute aucune information nouvelle.\n3. Ne salue pas l'utilisateur.\n4. N'explique pas les corrections.\n5. N'ajoute pas d'introductions du type « Voici ».\n6. N'ajoute pas de formule de politesse finale.\n7. Ne fais aucun commentaire.\n8. Renvoie UNIQUEMENT le texte corrigé.\n9. Conserve les paragraphes et le format du texte original autant que possible.\n10. Conserve la langue du texte original.\n\nTEXTE À CORRIGER :\n\n{input}\n        ", "prompt_simplifier": "\nTu es le Simplificateur de textes de TOOLBOX.\n\nTa tâche est de transformer le texte compliqué de l'utilisateur\nen un texte beaucoup plus facile à comprendre.\n\nRÈGLES IMPORTANTES :\n\n1. Explique le même contenu avec des mots simples.\n2. Conserve TOUTES les informations importantes.\n3. N'invente aucune information.\n4. Ne change pas le sens.\n5. Remplace les mots difficiles par des mots faciles.\n6. Découpe les phrases trop longues.\n7. S'il y a des concepts compliqués, explique-les simplement.\n8. Tu peux utiliser des exemples du quotidien quand ils aident à comprendre le concept.\n9. NE salue PAS l'utilisateur.\n10. NE dis PAS « Voici ».\n11. N'explique PAS ce que tu as changé.\n12. NE fais PAS de commentaires à la fin.\n13. Renvoie UNIQUEMENT le texte simplifié.\n14. Conserve les paragraphes et la structure autant que possible.\n15. Écris dans la même langue que le texte original.\n\nTEXTE À SIMPLIFIER :\n\n\n{input}\n        ", "prompt_humanizer": "\nRéécris le texte en toute liberté de rédaction. Je ne veux pas une simple substitution de mots :\nje veux que tu construises une version nouvelle, naturelle et cohérente du texte.\n\nDICTIONNAIRE DE STYLE NATUREL :\n\nÉvite d'abuser de :\n- « Tout d'abord »\n- « Ensuite »\n- « D'autre part »\n- « Par ailleurs »\n- « Il convient de souligner que »\n- « Il est important de noter que »\n- « En ce sens »\n- « Par conséquent »\n- « De cette manière »\n- « En conclusion »\n- « En définitive »\n- « Pour conclure »\n- « Il est essentiel de »\n- « Il faut souligner que »\n- « Il ne fait aucun doute que »\n- « De nos jours »\n- « Tout au long de l'histoire »\n- « Comme mentionné précédemment »\n- « Enfin »\n\nElles ne sont pas interdites. Utilise-les uniquement quand elles conviennent vraiment.\n\nPRÉFÉRENCES DE VOCABULAIRE :\n\nAu lieu de chercher constamment des mots plus sophistiqués :\n- « effectuer » → « faire » quand c'est naturel\n- « réaliser » → « faire » quand le contexte le permet\n- « acquérir » → « obtenir » ou « se procurer » selon le contexte\n- « ultérieurement » → « plus tard »\n- « préalablement » → « avant »\n- « de nombreux » → « beaucoup de » quand la formalité n'est pas nécessaire\n- « approximativement » → « environ » ou « à peu près » seulement dans les contextes informels\n- « en raison du fait que » → « parce que » quand cela ne change pas le ton\n- « afin de » → « pour » quand cela suffit\n- « en relation avec » → « sur » ou « au sujet de » quand cela sonne mieux\n- « mettre en œuvre » → « faire » quand il n'est pas nécessaire de garder un registre formel\n\nIMPORTANT :\nNe fais pas ces substitutions automatiquement. Ce sont des exemples de préférences, pas des règles.\nSi le mot d'origine est la meilleure option, garde-le.\n\nRÈGLES D'ÉCRITURE :\n\n1. Réécris les phrases de zéro quand c'est nécessaire.\n2. Ne conserve pas la structure de l'original par obligation.\n3. Tu peux changer l'ordre des idées dans une explication si cela améliore la lecture.\n4. Tu peux fusionner des phrases.\n5. Tu peux découper des phrases trop longues.\n6. Tu peux changer complètement les connecteurs.\n7. Tu peux supprimer des répétitions.\n8. Tu peux conserver des répétitions quand elles sont naturelles ou nécessaires.\n9. N'essaie pas d'utiliser un synonyme différent à chaque fois qu'un mot apparaît.\n10. Ne donne pas la même longueur à toutes les phrases.\n11. Ne donne pas exactement la même structure à tous les paragraphes.\n12. Ne commence pas toutes les phrases de la même façon.\n13. Ne force pas de connecteurs entre toutes les idées.\n14. Laisse certaines idées directement liées sans ajouter de connecteur artificiel.\n15. Évite les phrases trop parfaites, génériques ou toutes faites.\n16. N'ajoute pas de remplissage.\n17. N'ajoute aucune information nouvelle.\n18. Ne change pas les données, les chiffres, les noms ou les concepts.\n19. Conserve le sens original.\n20. Conserve la langue d'origine.\n\nLIBERTÉ :\n\nTu as la permission de changer pratiquement toute la forme du texte :\nvocabulaire, syntaxe, ordre des phrases, longueur des phrases,\nconnecteurs, structure des paragraphes et manière d'expliquer les idées.\n\nLa seule chose que tu dois conserver, c'est l'information et le sens.\n\nLe résultat doit fonctionner comme un texte indépendant.\nIl ne doit pas ressembler à une version mot à mot de l'original.\n\nTYPE DE TEXTE :\n{estilo}\n\n--- TEXTE ORIGINAL ---\n{input}\n--- FIN DU TEXTE ORIGINAL ---\n\nRenvoie uniquement la nouvelle version du texte.\n\n", "prompt_planner": "Planifie ma semaine. N'utilise pas de Pomodoros.\n\nTÂCHES :\n{tasks}\n\nHORAIRES :\n{availability}\n\nRÈGLES :\n- Respecte exactement les horaires.\n- Donne la priorité aux échéances et aux examens proches.\n- Respecte les durées indiquées ; s'il manque une durée, estime-en une raisonnable.\n- Découpe les tâches longues si nécessaire.\n- Ne remplis pas tout : laisse du temps libre.\n- Ne fais pas se chevaucher les blocs.\n- Si tout ne tient pas, planifie d'abord les priorités et envoie le reste dans pending.\n- Utilise des blocs normaux comme 16:00-17:30.\n- Renvoie UNIQUEMENT du JSON valide, sans Markdown.\n- Écris toutes les valeurs textuelles en français.\n\nFORMAT :\n{\"title\":\"Semaine organisée\",\"summary\":\"bref\",\"days\":[{\"day\":\"Lundi\",\"blocks\":[{\"task\":\"Maths\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"haute\",\"deadline\":\"vendredi\",\"note\":\"\"}]},{\"day\":\"Mardi\",\"blocks\":[]},{\"day\":\"Mercredi\",\"blocks\":[]},{\"day\":\"Jeudi\",\"blocks\":[]},{\"day\":\"Vendredi\",\"blocks\":[]},{\"day\":\"Samedi\",\"blocks\":[]},{\"day\":\"Dimanche\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}", "fav_add": "Ajouter aux favoris", "fav_remove": "Retirer des favoris", "pdf_err_lib": "Le moteur PDF n’a pas pu être chargé. Vérifie ta connexion internet et réessaie.", "pdf_err_encrypted": "« {name} » est protégé par un mot de passe et ne peut pas être traité.", "pdf_err_invalid": "« {name} » n’est pas un PDF valide ou il est endommagé.", "pdf_err_type": "« {name} » n’est pas un fichier compatible.", "pdf_err_big": "« {name} » est trop volumineux (200 Mo maximum).", "pdf_err_image": "L’image « {name} » n’a pas pu être lue.", "pdf_page_one": "{n} page", "pdf_pages_many": "{n} pages", "pdf_remove": "Retirer", "pdf_up": "Monter", "pdf_down": "Descendre", "pdf_need_two": "Ajoute au moins deux PDF pour les fusionner.", "pdf_need_one": "Ajoute d’abord un fichier.", "pdf_processing": "Traitement de {i} sur {n}…", "pdf_reading": "Lecture du fichier…", "pdf_saving": "Enregistrement…", "pdf_done_merge": "✅ PDF fusionnés avec succès.", "pdf_done_split": "✅ PDF divisé en {n} fichiers.", "pdf_done_extract": "✅ Pages extraites avec succès.", "pdf_done_images": "✅ PDF créé avec succès.", "pdf_done_compress": "✅ PDF compressé : de {from} à {to} ({pct} % de moins).", "pdf_compress_bigger": "Le résultat n’est pas plus petit que l’original ({from} → {to}). Ce PDF est déjà bien optimisé.", "pdf_compress_none": "Ce PDF est déjà optimisé : la compression légère le réduit à peine ({from} → {to}). Essaie la compression forte si tu n’as pas besoin de sélectionner le texte.", "pdf_compress_note": "Attention : le texte de ce PDF n’est plus sélectionnable.", "pdf_download_pdf": "💾 Télécharger le PDF", "pdf_download_zip": "💾 Télécharger le ZIP", "pdf_ranges_empty": "Écris les pages que tu veux (par exemple : 1-3, 5).", "pdf_range_invalid": "Je ne comprends pas « {token} ». Utilise des numéros et des plages, comme 1-3, 5.", "pdf_range_out": "La page {n} n’existe pas : le PDF en compte {total}.", "pdf_range_order": "La plage « {token} » est à l’envers. Écris-la du plus petit au plus grand.", "pdf_split_n_invalid": "Indique un nombre de pages valide (1 ou plus).", "pdf_split_ranges_empty": "Écris les plages (par exemple : 1-3 ; 4-6 ; 7).", "pdf_unknown": "Une erreur inattendue s’est produite. Réessaie."};
 
 function t(key, vars) {
     let text = (I18N[key] !== undefined) ? I18N[key] : key;
@@ -3621,6 +4217,104 @@ function syncThemeButton() {
    BUSCADOR
 ========================================================= */
 
+/* ---------- FAVORITAS ---------- */
+
+const FAV_KEY = "toolboxFavorites";
+
+let favorites = [];
+
+try {
+    const raw = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
+    if (Array.isArray(raw)) favorites = raw.filter(x => typeof x === "string");
+} catch (e) {}
+
+function toolIdOf(card) {
+
+    if (card.dataset.tool) return card.dataset.tool;
+
+    const button = card.querySelector(".open");
+
+    const match = button && (button.getAttribute("onclick") || "").match(/abrir\('([^']+)'\)/);
+
+    card.dataset.tool = match ? match[1] : "";
+
+    return card.dataset.tool;
+}
+
+function isFavorite(id) {
+    return !!id && favorites.includes(id);
+}
+
+function saveFavorites() {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(favorites)); } catch (e) {}
+}
+
+function updateFavoriteUI() {
+
+    document.querySelectorAll(".tool-card").forEach(card => {
+
+        const id = toolIdOf(card);
+
+        const button = card.querySelector(".fav-btn");
+
+        if (!button) return;
+
+        const fav = isFavorite(id);
+
+        card.classList.toggle("is-fav", fav);
+
+        button.textContent = fav ? "★" : "☆";
+
+        button.setAttribute("aria-pressed", String(fav));
+
+        const label = fav ? t("fav_remove") : t("fav_add");
+
+        button.title = label;
+        button.setAttribute("aria-label", label);
+
+    });
+}
+
+function toggleFavorite(id) {
+
+    if (!id) return;
+
+    favorites = isFavorite(id)
+        ? favorites.filter(x => x !== id)
+        : favorites.concat(id);
+
+    saveFavorites();
+
+    updateFavoriteUI();
+
+    applyToolFilters();
+}
+
+function setupFavorites() {
+
+    document.querySelectorAll(".tool-card").forEach(card => {
+
+        const id = toolIdOf(card);
+
+        if (!id || card.querySelector(".fav-btn")) return;
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "fav-btn";
+
+        button.addEventListener("click", event => {
+            event.stopPropagation();
+            toggleFavorite(id);
+        });
+
+        card.appendChild(button);
+
+    });
+
+    updateFavoriteUI();
+}
+
 let currentCategory = "all";
 
 function normalizeText(text) {
@@ -3642,9 +4336,13 @@ function applyToolFilters() {
         .querySelectorAll(".tool-card")
         .forEach(card => {
 
+            const fav = isFavorite(toolIdOf(card));
+
             const matchesCategory =
                 currentCategory === "all" ||
-                card.dataset.category === currentCategory;
+                (currentCategory === "favoritas"
+                    ? fav
+                    : card.dataset.category === currentCategory);
 
             const matchesText =
                 !query ||
@@ -3654,13 +4352,21 @@ function applyToolFilters() {
 
             card.style.display = show ? "" : "none";
 
+            // las favoritas salen primero (la rejilla respeta "order")
+            card.style.order = fav ? "0" : "1";
+
             if (show) visible++;
 
         });
 
-    const none = document.getElementById("noResults");
+    const emptyFavorites =
+        currentCategory === "favoritas" && favorites.length === 0;
 
-    if (none) none.hidden = visible > 0;
+    const none = document.getElementById("noResults");
+    const noFav = document.getElementById("noFavorites");
+
+    if (none) none.hidden = visible > 0 || emptyFavorites;
+    if (noFav) noFav.hidden = !emptyFavorites;
 
 }
 
@@ -6039,6 +6745,1069 @@ window.abrir = function(id) {
 
 
 /* =========================================================
+   HERRAMIENTAS PDF — todo se procesa en el navegador
+   (las librerías se cargan solo cuando se abre una herramienta)
+========================================================= */
+
+const PDF_LIB_URL = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
+const PDFJS_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.6.205/legacy/build/pdf.min.mjs";
+const PDFJS_WORKER_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.6.205/legacy/build/pdf.worker.min.mjs";
+const PDF_MAX_BYTES = 200 * 1024 * 1024;
+
+class PdfError extends Error {}
+
+const pdfScriptCache = {};
+
+function pdfLoadScript(url) {
+
+    if (!pdfScriptCache[url]) {
+
+        pdfScriptCache[url] = new Promise((resolve, reject) => {
+
+            const script = document.createElement("script");
+
+            script.src = url;
+            script.async = true;
+            script.onload = resolve;
+
+            script.onerror = () => {
+                delete pdfScriptCache[url];
+                reject(new PdfError(t("pdf_err_lib")));
+            };
+
+            document.head.appendChild(script);
+
+        });
+
+    }
+
+    return pdfScriptCache[url];
+}
+
+async function pdfGetLib() {
+
+    if (!window.PDFLib) await pdfLoadScript(PDF_LIB_URL);
+
+    return window.PDFLib;
+}
+
+let pdfjsPromise = null;
+
+function pdfGetJs() {
+
+    if (!pdfjsPromise) {
+
+        pdfjsPromise = import(PDFJS_URL)
+            .then(mod => {
+                mod.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_URL;
+                return mod;
+            })
+            .catch(() => {
+                pdfjsPromise = null;
+                throw new PdfError(t("pdf_err_lib"));
+            });
+
+    }
+
+    return pdfjsPromise;
+}
+
+async function pdfLoadDoc(lib, bytes, name) {
+
+    try {
+        return await lib.PDFDocument.load(bytes);
+    } catch (error) {
+
+        if (/encrypt/i.test((error && error.message) || "")) {
+            throw new PdfError(t("pdf_err_encrypted", { name }));
+        }
+
+        throw new PdfError(t("pdf_err_invalid", { name }));
+    }
+}
+
+function pdfFormatBytes(bytes) {
+
+    const number = (value, digits) =>
+        value.toLocaleString(LANG, { maximumFractionDigits: digits });
+
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return number(bytes / 1024, 0) + " KB";
+
+    return number(bytes / (1024 * 1024), bytes < 10 * 1024 * 1024 ? 2 : 1) + " MB";
+}
+
+function pdfPagesText(n) {
+    return t(n === 1 ? "pdf_page_one" : "pdf_pages_many", { n });
+}
+
+function pdfBaseName(name) {
+    return String(name || "documento").replace(/\.[^.]+$/, "").replace(/[\\/:*?"<>|]+/g, "_") || "documento";
+}
+
+const pdfYield = () => new Promise(resolve => setTimeout(resolve, 0));
+
+/* ---------- páginas: "1-3, 5, 8-" ---------- */
+
+function pdfParsePages(text, total) {
+
+    const cleaned = String(text || "").trim().replace(/\s*[-–—]\s*/g, "-");
+
+    if (!cleaned) return { error: t("pdf_ranges_empty") };
+
+    const pages = [];
+
+    for (const raw of cleaned.split(/[,;\s]+/)) {
+
+        const token = raw.trim();
+
+        if (!token) continue;
+
+        let match = token.match(/^(\d+)$/);
+
+        if (match) {
+
+            const n = Number(match[1]);
+
+            if (n < 1 || n > total) return { error: t("pdf_range_out", { n, total }) };
+
+            pages.push(n - 1);
+
+            continue;
+        }
+
+        match = token.match(/^(\d+)-(\d*)$/);
+
+        if (match) {
+
+            const a = Number(match[1]);
+            const b = match[2] === "" ? total : Number(match[2]);
+
+            if (a < 1 || a > total) return { error: t("pdf_range_out", { n: a, total }) };
+            if (b < 1 || b > total) return { error: t("pdf_range_out", { n: b, total }) };
+            if (b < a) return { error: t("pdf_range_order", { token }) };
+
+            for (let i = a; i <= b; i++) pages.push(i - 1);
+
+            continue;
+        }
+
+        return { error: t("pdf_range_invalid", { token }) };
+    }
+
+    if (!pages.length) return { error: t("pdf_ranges_empty") };
+
+    return { pages };
+}
+
+/* ---------- ZIP sin compresión (no necesita librerías) ---------- */
+
+const PDF_CRC_TABLE = (() => {
+
+    const table = new Uint32Array(256);
+
+    for (let n = 0; n < 256; n++) {
+
+        let c = n;
+
+        for (let k = 0; k < 8; k++) {
+            c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        }
+
+        table[n] = c >>> 0;
+    }
+
+    return table;
+})();
+
+function pdfCrc32(bytes) {
+
+    let c = 0xFFFFFFFF;
+
+    for (let i = 0; i < bytes.length; i++) {
+        c = PDF_CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+    }
+
+    return (c ^ 0xFFFFFFFF) >>> 0;
+}
+
+function pdfMakeZip(files) {
+
+    const encoder = new TextEncoder();
+    const parts = [];
+    const central = [];
+
+    let offset = 0;
+    let centralSize = 0;
+
+    const now = new Date();
+
+    const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+    const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+
+    for (const file of files) {
+
+        const name = encoder.encode(file.name);
+        const crc = pdfCrc32(file.data);
+        const size = file.data.length;
+
+        const local = new DataView(new ArrayBuffer(30));
+
+        local.setUint32(0, 0x04034b50, true);
+        local.setUint16(4, 20, true);
+        local.setUint16(6, 0x0800, true);
+        local.setUint16(8, 0, true);
+        local.setUint16(10, dosTime, true);
+        local.setUint16(12, dosDate, true);
+        local.setUint32(14, crc, true);
+        local.setUint32(18, size, true);
+        local.setUint32(22, size, true);
+        local.setUint16(26, name.length, true);
+        local.setUint16(28, 0, true);
+
+        parts.push(local.buffer, name, file.data);
+
+        const entry = new DataView(new ArrayBuffer(46));
+
+        entry.setUint32(0, 0x02014b50, true);
+        entry.setUint16(4, 20, true);
+        entry.setUint16(6, 20, true);
+        entry.setUint16(8, 0x0800, true);
+        entry.setUint16(10, 0, true);
+        entry.setUint16(12, dosTime, true);
+        entry.setUint16(14, dosDate, true);
+        entry.setUint32(16, crc, true);
+        entry.setUint32(20, size, true);
+        entry.setUint32(24, size, true);
+        entry.setUint16(28, name.length, true);
+        entry.setUint32(42, offset, true);
+
+        central.push(entry.buffer, name);
+
+        centralSize += 46 + name.length;
+        offset += 30 + name.length + size;
+    }
+
+    const end = new DataView(new ArrayBuffer(22));
+
+    end.setUint32(0, 0x06054b50, true);
+    end.setUint16(8, files.length, true);
+    end.setUint16(10, files.length, true);
+    end.setUint32(12, centralSize, true);
+    end.setUint32(16, offset, true);
+
+    return new Blob([...parts, ...central, end.buffer], { type: "application/zip" });
+}
+
+/* ---------- imágenes ---------- */
+
+function pdfLoadImage(file) {
+
+    return new Promise((resolve, reject) => {
+
+        const url = URL.createObjectURL(file);
+
+        const img = new Image();
+
+        img.onload = () => {
+            URL.revokeObjectURL(url);
+            resolve(img);
+        };
+
+        img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new PdfError(t("pdf_err_image", { name: file.name })));
+        };
+
+        img.src = url;
+
+    });
+}
+
+function pdfCanvasToJpeg(canvas, quality) {
+
+    return new Promise((resolve, reject) => {
+
+        canvas.toBlob(blob => {
+
+            if (!blob) {
+                reject(new PdfError(t("pdf_unknown")));
+                return;
+            }
+
+            blob.arrayBuffer().then(buffer => resolve(new Uint8Array(buffer)));
+
+        }, "image/jpeg", quality);
+
+    });
+}
+
+/* ---------- controlador de cada herramienta ---------- */
+
+function initPdfTool(panel) {
+
+    const kind = panel.dataset.pdfTool;
+
+    const q = role => panel.querySelector('[data-role="' + role + '"]');
+
+    const dropZone = q("drop");
+    const input = q("input");
+    const list = q("list");
+    const runButton = q("run");
+    const clearButton = q("clear");
+    const status = q("status");
+    const progress = q("progress");
+    const bar = q("bar");
+    const result = q("result");
+
+    const multiple = input.hasAttribute("multiple");
+    const isImages = kind === "images";
+
+    let items = [];
+    let busy = false;
+    let counter = 0;
+    let resultUrls = [];
+
+    const opt = name => panel.querySelector('[data-opt="' + name + '"]');
+    const radio = name => {
+        const checked = panel.querySelector('input[name="' + name + '"]:checked');
+        return checked ? checked.value : "";
+    };
+
+    const setStatus = (text, type) => {
+        status.textContent = text || "";
+        status.className = "pdf-status" + (type ? " " + type : "");
+    };
+
+    const setProgress = fraction => {
+
+        if (fraction === null) {
+            progress.hidden = true;
+            return;
+        }
+
+        progress.hidden = false;
+        bar.style.width = Math.round(Math.max(0, Math.min(1, fraction)) * 100) + "%";
+    };
+
+    const clearResult = () => {
+        resultUrls.forEach(url => URL.revokeObjectURL(url));
+        resultUrls = [];
+        result.hidden = true;
+        result.innerHTML = "";
+    };
+
+    const releaseItem = item => {
+        if (item.url) URL.revokeObjectURL(item.url);
+    };
+
+    const minimumItems = kind === "merge" ? 2 : 1;
+
+    const updateButtons = () => {
+
+        const hasError = items.some(item => item.error);
+
+        runButton.disabled = busy || items.length < minimumItems || hasError;
+
+        if (clearButton) clearButton.disabled = busy || !items.length;
+    };
+
+    const readBytes = async file => new Uint8Array(await file.arrayBuffer());
+
+    /* ----- lista de archivos ----- */
+
+    function renderList() {
+
+        list.innerHTML = "";
+
+        items.forEach((item, index) => {
+
+            const li = document.createElement("li");
+
+            li.className = "file-item" + (item.error ? " error" : "");
+
+            let thumb;
+
+            if (isImages && item.url) {
+                thumb = document.createElement("img");
+                thumb.src = item.url;
+                thumb.alt = "";
+                thumb.className = "file-thumb";
+            } else {
+                thumb = document.createElement("div");
+                thumb.className = "file-thumb";
+                thumb.textContent = "📄";
+            }
+
+            const info = document.createElement("div");
+
+            info.className = "file-info";
+
+            const name = document.createElement("span");
+            name.className = "file-name";
+            name.textContent = item.file.name;
+            name.title = item.file.name;
+
+            const meta = document.createElement("span");
+            meta.className = "file-meta";
+
+            let metaText = pdfFormatBytes(item.file.size);
+
+            if (item.pages !== null) metaText += " · " + pdfPagesText(item.pages);
+
+            meta.textContent = metaText;
+
+            info.append(name, meta);
+
+            if (item.error) {
+                const error = document.createElement("span");
+                error.className = "file-error";
+                error.textContent = item.error;
+                info.appendChild(error);
+            }
+
+            const actions = document.createElement("div");
+
+            actions.className = "file-actions";
+
+            const makeButton = (label, title, handler, disabled) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = label;
+                button.title = title;
+                button.setAttribute("aria-label", title);
+                button.disabled = !!disabled || busy;
+                button.addEventListener("click", handler);
+                return button;
+            };
+
+            if (multiple) {
+                actions.append(
+                    makeButton("↑", t("pdf_up"), () => move(index, -1), index === 0),
+                    makeButton("↓", t("pdf_down"), () => move(index, 1), index === items.length - 1)
+                );
+            }
+
+            actions.appendChild(makeButton("✕", t("pdf_remove"), () => remove(index)));
+
+            li.append(thumb, info, actions);
+
+            list.appendChild(li);
+
+        });
+
+        updateButtons();
+    }
+
+    function move(index, delta) {
+
+        const target = index + delta;
+
+        if (target < 0 || target >= items.length) return;
+
+        [items[index], items[target]] = [items[target], items[index]];
+
+        clearResult();
+        renderList();
+    }
+
+    function remove(index) {
+
+        releaseItem(items[index]);
+
+        items.splice(index, 1);
+
+        clearResult();
+        setStatus("");
+        renderList();
+    }
+
+    function clearAll() {
+
+        items.forEach(releaseItem);
+        items = [];
+
+        clearResult();
+        setStatus("");
+        renderList();
+    }
+
+    async function readPageCount(item) {
+
+        try {
+
+            const lib = await pdfGetLib();
+
+            const doc = await pdfLoadDoc(lib, await readBytes(item.file), item.file.name);
+
+            item.pages = doc.getPageCount();
+
+        } catch (error) {
+
+            item.error = error instanceof PdfError ? error.message : t("pdf_err_invalid", { name: item.file.name });
+
+        }
+
+        renderList();
+    }
+
+    async function addFiles(fileList) {
+
+        clearResult();
+        setStatus("");
+
+        const errors = [];
+
+        let files = Array.from(fileList || []);
+
+        if (!multiple) files = files.slice(0, 1);
+
+        for (const file of files) {
+
+            const okType = isImages
+                ? (/^image\//.test(file.type) || /\.(jpe?g|png|webp|gif|bmp|avif)$/i.test(file.name))
+                : (file.type === "application/pdf" || /\.pdf$/i.test(file.name));
+
+            if (!okType) {
+                errors.push(t("pdf_err_type", { name: file.name }));
+                continue;
+            }
+
+            if (file.size > PDF_MAX_BYTES) {
+                errors.push(t("pdf_err_big", { name: file.name }));
+                continue;
+            }
+
+            if (!multiple) {
+                items.forEach(releaseItem);
+                items = [];
+            }
+
+            const item = { id: ++counter, file, pages: null, error: "", url: null };
+
+            if (isImages) item.url = URL.createObjectURL(file);
+
+            items.push(item);
+
+            if (!isImages) readPageCount(item);
+        }
+
+        if (errors.length) setStatus(errors.join(" "), "error");
+
+        renderList();
+    }
+
+    /* ----- resultado ----- */
+
+    function showResult(output) {
+
+        clearResult();
+
+        const box = document.createElement("div");
+
+        const message = document.createElement("p");
+        message.textContent = output.info || "";
+
+        const downloads = document.createElement("div");
+        downloads.className = "pdf-downloads";
+
+        output.files.forEach(file => {
+
+            const url = URL.createObjectURL(file.blob);
+
+            resultUrls.push(url);
+
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = file.name;
+            link.textContent = (file.zip ? t("pdf_download_zip") : t("pdf_download_pdf")) + " · " + pdfFormatBytes(file.blob.size);
+
+            downloads.appendChild(link);
+
+        });
+
+        box.append(message, downloads);
+
+        result.appendChild(box);
+        result.hidden = false;
+
+        setStatus(output.title, "ok");
+    }
+
+    function requireOne() {
+
+        if (!items.length) throw new PdfError(t("pdf_need_one"));
+
+        return items[0];
+    }
+
+    /* ----- herramientas ----- */
+
+    const runners = {
+
+        async merge() {
+
+            if (items.length < 2) throw new PdfError(t("pdf_need_two"));
+
+            const lib = await pdfGetLib();
+
+            const out = await lib.PDFDocument.create();
+
+            for (let i = 0; i < items.length; i++) {
+
+                setProgress(i / items.length);
+                setStatus(t("pdf_processing", { i: i + 1, n: items.length }));
+                await pdfYield();
+
+                const file = items[i].file;
+
+                const source = await pdfLoadDoc(lib, await readBytes(file), file.name);
+
+                const pages = await out.copyPages(source, source.getPageIndices());
+
+                pages.forEach(page => out.addPage(page));
+            }
+
+            setStatus(t("pdf_saving"));
+
+            const bytes = await out.save();
+
+            return {
+                title: t("pdf_done_merge"),
+                info: pdfPagesText(out.getPageCount()),
+                files: [{ name: "toolbox-merged.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        },
+
+        async split() {
+
+            const item = requireOne();
+
+            const lib = await pdfGetLib();
+
+            const source = await pdfLoadDoc(lib, await readBytes(item.file), item.file.name);
+
+            const total = source.getPageCount();
+
+            const mode = radio("pdfSplitMode");
+
+            let groups = [];
+
+            if (mode === "each") {
+
+                for (let i = 0; i < total; i++) groups.push([i]);
+
+            } else if (mode === "every") {
+
+                const n = parseInt(opt("splitEvery").value, 10);
+
+                if (!Number.isFinite(n) || n < 1) throw new PdfError(t("pdf_split_n_invalid"));
+
+                for (let i = 0; i < total; i += n) {
+                    groups.push(Array.from({ length: Math.min(n, total - i) }, (_, k) => i + k));
+                }
+
+            } else {
+
+                const text = opt("splitRanges").value;
+
+                if (!text.trim()) throw new PdfError(t("pdf_split_ranges_empty"));
+
+                for (const part of text.split(";")) {
+
+                    if (!part.trim()) continue;
+
+                    const parsed = pdfParsePages(part, total);
+
+                    if (parsed.error) throw new PdfError(parsed.error);
+
+                    groups.push(parsed.pages);
+                }
+
+                if (!groups.length) throw new PdfError(t("pdf_split_ranges_empty"));
+            }
+
+            const base = pdfBaseName(item.file.name);
+
+            const digits = String(groups.length).length;
+
+            const files = [];
+
+            for (let g = 0; g < groups.length; g++) {
+
+                setProgress(g / groups.length);
+                setStatus(t("pdf_processing", { i: g + 1, n: groups.length }));
+                await pdfYield();
+
+                const out = await lib.PDFDocument.create();
+
+                const pages = await out.copyPages(source, groups[g]);
+
+                pages.forEach(page => out.addPage(page));
+
+                const label = mode === "each"
+                    ? "page-" + String(groups[g][0] + 1).padStart(String(total).length, "0")
+                    : "part-" + String(g + 1).padStart(digits, "0");
+
+                files.push({ name: base + "_" + label + ".pdf", data: await out.save() });
+            }
+
+            setStatus(t("pdf_saving"));
+
+            if (files.length === 1) {
+
+                return {
+                    title: t("pdf_done_split", { n: 1 }),
+                    info: pdfPagesText(groups[0].length),
+                    files: [{ name: files[0].name, blob: new Blob([files[0].data], { type: "application/pdf" }) }]
+                };
+            }
+
+            return {
+                title: t("pdf_done_split", { n: files.length }),
+                info: pdfPagesText(total),
+                files: [{ name: base + "_split.zip", zip: true, blob: pdfMakeZip(files) }]
+            };
+        },
+
+        async extract() {
+
+            const item = requireOne();
+
+            const lib = await pdfGetLib();
+
+            const source = await pdfLoadDoc(lib, await readBytes(item.file), item.file.name);
+
+            const parsed = pdfParsePages(opt("extractPages").value, source.getPageCount());
+
+            if (parsed.error) throw new PdfError(parsed.error);
+
+            setStatus(t("pdf_processing", { i: 1, n: 1 }));
+            await pdfYield();
+
+            const out = await lib.PDFDocument.create();
+
+            const pages = await out.copyPages(source, parsed.pages);
+
+            pages.forEach(page => out.addPage(page));
+
+            const bytes = await out.save();
+
+            return {
+                title: t("pdf_done_extract"),
+                info: pdfPagesText(out.getPageCount()),
+                files: [{ name: pdfBaseName(item.file.name) + "_extract.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        },
+
+        async compress() {
+
+            const item = requireOne();
+
+            const lib = await pdfGetLib();
+
+            const originalBytes = await readBytes(item.file);
+
+            const original = item.file.size;
+
+            const mode = radio("pdfCompressMode");
+
+            const out = await lib.PDFDocument.create();
+
+            let note = "";
+
+            if (mode === "light") {
+
+                // Se copian solo las páginas a un documento nuevo: así se descartan
+                // objetos sin usar y restos de ediciones anteriores.
+                const source = await pdfLoadDoc(lib, originalBytes, item.file.name);
+
+                setStatus(t("pdf_processing", { i: 1, n: 1 }));
+                await pdfYield();
+
+                const pages = await out.copyPages(source, source.getPageIndices());
+
+                pages.forEach(page => out.addPage(page));
+
+            } else {
+
+                const levels = {
+                    low: { scale: 1.1, quality: 0.5 },
+                    medium: { scale: 1.5, quality: 0.65 },
+                    high: { scale: 2.1, quality: 0.8 }
+                };
+
+                const level = levels[opt("compressQuality").value] || levels.medium;
+
+                const pdfjs = await pdfGetJs();
+
+                let pdf;
+
+                try {
+                    pdf = await pdfjs.getDocument({ data: originalBytes.slice() }).promise;
+                } catch (error) {
+                    if (error && error.name === "PasswordException") {
+                        throw new PdfError(t("pdf_err_encrypted", { name: item.file.name }));
+                    }
+                    throw new PdfError(t("pdf_err_invalid", { name: item.file.name }));
+                }
+
+                for (let p = 1; p <= pdf.numPages; p++) {
+
+                    setProgress((p - 1) / pdf.numPages);
+                    setStatus(t("pdf_processing", { i: p, n: pdf.numPages }));
+                    await pdfYield();
+
+                    const page = await pdf.getPage(p);
+
+                    const base = page.getViewport({ scale: 1 });
+
+                    let scale = level.scale;
+
+                    const longest = Math.max(base.width, base.height) * scale;
+
+                    if (longest > 6000) scale *= 6000 / longest;
+
+                    const viewport = page.getViewport({ scale });
+
+                    const canvas = document.createElement("canvas");
+
+                    canvas.width = Math.max(1, Math.ceil(viewport.width));
+                    canvas.height = Math.max(1, Math.ceil(viewport.height));
+
+                    const context = canvas.getContext("2d");
+
+                    context.fillStyle = "#ffffff";
+                    context.fillRect(0, 0, canvas.width, canvas.height);
+
+                    await page.render({ canvas, canvasContext: context, viewport }).promise;
+
+                    const jpeg = await pdfCanvasToJpeg(canvas, level.quality);
+
+                    const image = await out.embedJpg(jpeg);
+
+                    const outPage = out.addPage([base.width, base.height]);
+
+                    outPage.drawImage(image, { x: 0, y: 0, width: base.width, height: base.height });
+
+                    canvas.width = canvas.height = 0;
+
+                    page.cleanup();
+                }
+
+                note = " " + t("pdf_compress_note");
+            }
+
+            setStatus(t("pdf_saving"));
+
+            const bytes = await out.save({ useObjectStreams: true });
+
+            const size = bytes.length;
+
+            const pagesText = pdfPagesText(out.getPageCount());
+
+            const percent = Math.round((1 - size / original) * 100);
+
+            if (mode === "light" && percent < 2) {
+                throw new PdfError(t("pdf_compress_none", { from: pdfFormatBytes(original), to: pdfFormatBytes(size) }));
+            }
+
+            if (size >= original) {
+
+                return {
+                    title: t("pdf_compress_bigger", { from: pdfFormatBytes(original), to: pdfFormatBytes(size) }),
+                    info: pagesText + note,
+                    files: [{ name: pdfBaseName(item.file.name) + "_compressed.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+                };
+            }
+
+            return {
+                title: t("pdf_done_compress", { from: pdfFormatBytes(original), to: pdfFormatBytes(size), pct: percent }),
+                info: pagesText + note,
+                files: [{ name: pdfBaseName(item.file.name) + "_compressed.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        },
+
+        async images() {
+
+            if (!items.length) throw new PdfError(t("pdf_need_one"));
+
+            const lib = await pdfGetLib();
+
+            const out = await lib.PDFDocument.create();
+
+            const pageMode = opt("imgPage").value;
+            const margin = Number(opt("imgMargin").value) || 0;
+            const quality = opt("imgQuality").value;
+
+            const limits = {
+                high: { max: 0, jpeg: 0.92 },
+                balanced: { max: 2200, jpeg: 0.85 },
+                small: { max: 1400, jpeg: 0.72 }
+            };
+
+            const limit = limits[quality] || limits.balanced;
+
+            const sizes = { a4: [595.28, 841.89], letter: [612, 792] };
+
+            for (let i = 0; i < items.length; i++) {
+
+                setProgress(i / items.length);
+                setStatus(t("pdf_processing", { i: i + 1, n: items.length }));
+                await pdfYield();
+
+                const file = items[i].file;
+
+                const img = await pdfLoadImage(file);
+
+                let width = img.naturalWidth;
+                let height = img.naturalHeight;
+
+                if (!width || !height) throw new PdfError(t("pdf_err_image", { name: file.name }));
+
+                if (limit.max && Math.max(width, height) > limit.max) {
+                    const ratio = limit.max / Math.max(width, height);
+                    width = Math.round(width * ratio);
+                    height = Math.round(height * ratio);
+                }
+
+                // Se dibuja en un canvas: así se respeta la orientación de las fotos
+                // del móvil y las imágenes con transparencia quedan sobre fondo blanco.
+                const canvas = document.createElement("canvas");
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const context = canvas.getContext("2d");
+
+                context.fillStyle = "#ffffff";
+                context.fillRect(0, 0, width, height);
+                context.drawImage(img, 0, 0, width, height);
+
+                const jpeg = await pdfCanvasToJpeg(canvas, limit.jpeg);
+
+                canvas.width = canvas.height = 0;
+
+                const embedded = await out.embedJpg(jpeg);
+
+                let pageWidth;
+                let pageHeight;
+
+                if (pageMode === "fit") {
+
+                    pageWidth = Math.min(14400, width * 0.75 + margin * 2);
+                    pageHeight = Math.min(14400, height * 0.75 + margin * 2);
+
+                } else {
+
+                    const base = sizes[pageMode] || sizes.a4;
+
+                    const landscape = width > height;
+
+                    pageWidth = landscape ? base[1] : base[0];
+                    pageHeight = landscape ? base[0] : base[1];
+                }
+
+                const page = out.addPage([pageWidth, pageHeight]);
+
+                const availableWidth = pageWidth - margin * 2;
+                const availableHeight = pageHeight - margin * 2;
+
+                const ratio = Math.min(availableWidth / width, availableHeight / height);
+
+                const drawWidth = width * ratio;
+                const drawHeight = height * ratio;
+
+                page.drawImage(embedded, {
+                    x: (pageWidth - drawWidth) / 2,
+                    y: (pageHeight - drawHeight) / 2,
+                    width: drawWidth,
+                    height: drawHeight
+                });
+            }
+
+            setStatus(t("pdf_saving"));
+
+            const bytes = await out.save();
+
+            return {
+                title: t("pdf_done_images"),
+                info: pdfPagesText(out.getPageCount()),
+                files: [{ name: "toolbox-images.pdf", blob: new Blob([bytes], { type: "application/pdf" }) }]
+            };
+        }
+
+    };
+
+    /* ----- eventos ----- */
+
+    input.addEventListener("change", () => {
+        addFiles(input.files);
+        input.value = "";
+    });
+
+    ["dragenter", "dragover"].forEach(type => {
+        dropZone.addEventListener(type, event => {
+            event.preventDefault();
+            dropZone.classList.add("dragover");
+        });
+    });
+
+    ["dragleave", "drop"].forEach(type => {
+        dropZone.addEventListener(type, event => {
+            event.preventDefault();
+            dropZone.classList.remove("dragover");
+        });
+    });
+
+    dropZone.addEventListener("drop", event => {
+        if (event.dataTransfer) addFiles(event.dataTransfer.files);
+    });
+
+    if (clearButton) clearButton.addEventListener("click", clearAll);
+
+    runButton.addEventListener("click", async () => {
+
+        if (busy) return;
+
+        busy = true;
+
+        clearResult();
+        setProgress(0);
+        setStatus(t("pdf_reading"));
+        renderList();
+
+        try {
+
+            const output = await runners[kind]();
+
+            showResult(output);
+
+        } catch (error) {
+
+            setStatus(error instanceof PdfError ? error.message : t("pdf_unknown"), "error");
+
+            if (!(error instanceof PdfError)) console.error(error);
+
+        } finally {
+
+            busy = false;
+            setProgress(null);
+            renderList();
+
+        }
+
+    });
+
+    renderList();
+}
+
+function initPdfTools() {
+    document.querySelectorAll("[data-pdf-tool]").forEach(initPdfTool);
+}
+
+/* =========================================================
    SELECTOR DE IDIOMA, AVISO DE IDIOMA, ENLACES #HERRAMIENTA
 ========================================================= */
 
@@ -6162,6 +7931,12 @@ function openToolFromHash() {
 }
 
 window.addEventListener("hashchange", openToolFromHash);
+
+setupFavorites();
+
+applyToolFilters();
+
+initPdfTools();
 
 syncThemeButton();
 
