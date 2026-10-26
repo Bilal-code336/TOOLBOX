@@ -6,6 +6,8 @@ import traceback
 from collections import defaultdict, deque
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlparse
+import base64
+import io
 
 import requests
 from flask import (
@@ -18,8 +20,16 @@ from flask import (
     send_from_directory,
     stream_with_context,
 )
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, static_folder=".")
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB max file size
+app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'uploads')
+
+# Crear carpeta de uploads si no existe
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg', 'gif', 'md'}
 
 # ============================================================
 # CONFIGURACIÓN (todo por variables de entorno en Render 👇)
@@ -986,6 +996,260 @@ def ai():
             "error": mensaje_error_amigable(error)
         }), 500
 
+
+# ============================================================
+# FUNCIONES DE IA MEJORADA
+# ============================================================
+
+def allowed_file(filename):
+    """Verifica si la extensión del archivo está permitida"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def extraer_texto_archivo(filepath):
+    """Extrae texto de diferentes tipos de archivos"""
+    extension = filepath.rsplit('.', 1)[1].lower()
+
+    try:
+        if extension == 'txt' or extension == 'md':
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return f.read()
+
+        elif extension == 'pdf':
+            try:
+                import PyPDF2
+                texto = ""
+                with open(filepath, 'rb') as f:
+                    pdf_reader = PyPDF2.PdfReader(f)
+                    for page in pdf_reader.pages:
+                        texto += page.extract_text() + "\n"
+                return texto
+            except ImportError:
+                return "[PDF detectado pero PyPDF2 no está instalado. Instala con: pip install PyPDF2]"
+
+        elif extension in ['doc', 'docx']:
+            try:
+                import docx
+                doc = docx.Document(filepath)
+                texto = "\n".join([paragraph.text for paragraph in doc.paragraphs])
+                return texto
+            except ImportError:
+                return "[Documento Word detectado pero python-docx no está instalado. Instala con: pip install python-docx]"
+
+        elif extension in ['png', 'jpg', 'jpeg', 'gif']:
+            # Para imágenes, retornamos la ruta para que se pueda procesar con visión
+            with open(filepath, 'rb') as f:
+                imagen_base64 = base64.b64encode(f.read()).decode('utf-8')
+                return f"[IMAGEN: {extension.upper()}] (convertida a base64 para análisis con IA de visión)"
+
+        else:
+            return "[Formato de archivo no soportado]"
+
+    except Exception as e:
+        return f"[Error al procesar archivo: {str(e)}]"
+
+def analizar_documento_largo(texto, max_chunk=4000):
+    """
+    Divide un documento largo en chunks y genera un análisis completo
+    """
+    # Dividir en chunks
+    palabras = texto.split()
+    chunks = []
+    chunk_actual = []
+    longitud_actual = 0
+
+    for palabra in palabras:
+        if longitud_actual + len(palabra) + 1 > max_chunk:
+            chunks.append(" ".join(chunk_actual))
+            chunk_actual = [palabra]
+            longitud_actual = len(palabra)
+        else:
+            chunk_actual.append(palabra)
+            longitud_actual += len(palabra) + 1
+
+    if chunk_actual:
+        chunks.append(" ".join(chunk_actual))
+
+    return {
+        "total_chunks": len(chunks),
+        "chunks": chunks,
+        "longitud_total": len(texto),
+        "palabras_aproximadas": len(palabras)
+    }
+
+def generar_resumen_conversacion(messages):
+    """
+    Genera un resumen automático de una conversación
+    """
+    # Construir el texto de la conversación
+    conversacion = []
+    for msg in messages:
+        if msg.get("role") == "user":
+            conversacion.append(f"Usuario: {msg.get('content', '')}")
+        elif msg.get("role") == "assistant":
+            conversacion.append(f"TOOLBOX AI: {msg.get('content', '')}")
+
+    texto_conversacion = "\n\n".join(conversacion)
+
+    # Limitar si es muy largo
+    if len(texto_conversacion) > 8000:
+        texto_conversacion = texto_conversacion[:8000] + "...[conversación truncada]"
+
+    prompt = f"""Eres un asistente experto en resumir conversaciones.
+
+Analiza la siguiente conversación y genera un resumen claro y conciso que incluya:
+1. Tema principal de la conversación
+2. Puntos clave discutidos (3-5 puntos)
+3. Conclusiones o resultados principales
+4. Acciones pendientes (si las hay)
+
+Conversación:
+{texto_conversacion}
+
+Responde con un resumen estructurado en formato Markdown."""
+
+    try:
+        respuesta = llamar_groq([
+            {"role": "user", "content": prompt}
+        ], timeout=30)
+
+        return respuesta.get("content", "No se pudo generar el resumen")
+    except Exception as e:
+        return f"Error al generar resumen: {str(e)}"
+
+# ============================================================
+# ENDPOINTS DE IA MEJORADA
+# ============================================================
+
+@app.route('/api/upload', methods=['POST'])
+def upload_file():
+    """Endpoint para subir archivos"""
+    if 'file' not in request.files:
+        return jsonify({"error": "No se envió ningún archivo"}), 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({"error": "No se seleccionó ningún archivo"}), 400
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        timestamp = int(time.time())
+        filename = f"{timestamp}_{filename}"
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+        file.save(filepath)
+
+        # Extraer texto del archivo
+        texto_extraido = extraer_texto_archivo(filepath)
+
+        return jsonify({
+            "ok": True,
+            "filename": filename,
+            "filepath": filepath,
+            "texto": texto_extraido,
+            "message": "Archivo subido y procesado correctamente"
+        })
+
+    return jsonify({"error": "Tipo de archivo no permitido"}), 400
+
+@app.route('/api/analyze-document', methods=['POST'])
+def analyze_document():
+    """Endpoint para analizar documentos largos"""
+    data = request.get_json(silent=True) or {}
+    texto = data.get('texto', '')
+
+    if not texto:
+        return jsonify({"error": "No se proporcionó texto para analizar"}), 400
+
+    # Analizar el documento
+    analisis = analizar_documento_largo(texto)
+
+    # Generar resúmenes de cada chunk
+    resumenes = []
+    for i, chunk in enumerate(analisis['chunks'][:5]):  # Limitar a 5 chunks
+        try:
+            prompt = f"Resume este fragmento de texto en 2-3 oraciones:\n\n{chunk}"
+            respuesta = llamar_groq([{"role": "user", "content": prompt}], timeout=20)
+            resumenes.append({
+                "chunk": i + 1,
+                "resumen": respuesta.get("content", "")
+            })
+        except Exception as e:
+            resumenes.append({
+                "chunk": i + 1,
+                "resumen": f"Error: {str(e)}"
+            })
+
+    # Generar resumen general
+    try:
+        texto_para_resumen = texto[:6000] if len(texto) > 6000 else texto
+        prompt_general = f"""Analiza este documento y proporciona:
+1. Resumen ejecutivo (2-3 párrafos)
+2. Temas principales (lista de 3-5 puntos)
+3. Conclusiones clave
+
+Documento:
+{texto_para_resumen}"""
+
+        respuesta = llamar_groq([{"role": "user", "content": prompt_general}], timeout=30)
+        resumen_general = respuesta.get("content", "")
+    except Exception as e:
+        resumen_general = f"Error al generar resumen general: {str(e)}"
+
+    return jsonify({
+        "ok": True,
+        "analisis": analisis,
+        "resumenes_por_chunk": resumenes,
+        "resumen_general": resumen_general
+    })
+
+@app.route('/api/generate-image', methods=['POST'])
+def generate_image():
+    """
+    Endpoint para generar imágenes con IA
+    Nota: Requiere integración con DALL-E, Stable Diffusion u otro servicio
+    """
+    data = request.get_json(silent=True) or {}
+    prompt = data.get('prompt', '')
+
+    if not prompt:
+        return jsonify({"error": "No se proporcionó un prompt para generar la imagen"}), 400
+
+    # Aquí integrarías con una API de generación de imágenes
+    # Por ahora, retornamos un mensaje informativo
+    return jsonify({
+        "ok": False,
+        "message": "La generación de imágenes requiere configurar una API externa como DALL-E, Stable Diffusion o similar.",
+        "info": "Para activar esta función, necesitas:",
+        "pasos": [
+            "1. Obtener API key de OpenAI (DALL-E) o Stability AI",
+            "2. Configurar la variable de entorno correspondiente",
+            "3. Instalar las librerías necesarias"
+        ],
+        "prompt_recibido": prompt
+    })
+
+@app.route('/api/summarize-conversation', methods=['POST'])
+def summarize_conversation():
+    """Endpoint para generar resumen de conversaciones"""
+    data = request.get_json(silent=True) or {}
+    messages = data.get('messages', [])
+
+    if not messages or len(messages) == 0:
+        return jsonify({"error": "No se proporcionaron mensajes para resumir"}), 400
+
+    try:
+        resumen = generar_resumen_conversacion(messages)
+
+        return jsonify({
+            "ok": True,
+            "resumen": resumen,
+            "mensajes_analizados": len(messages)
+        })
+    except Exception as e:
+        return jsonify({
+            "error": f"Error al generar resumen: {str(e)}"
+        }), 500
 
 # ============================================================
 # INICIAR SERVIDOR
