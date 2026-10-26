@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" translate="yes">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-1369473611696992">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1369473611696992" crossorigin="anonymous"></script>
+<title>Blog & Tutorials — TOOLBOX | Free Online Tools and AI</title>
+<meta name="description" content="TOOLBOX blog and tutorials: guides on artificial intelligence, prompts, studying with AI, outlines and summaries, plus PDF, OCR, images, and security. Free online tools with no software downloads, on Android, Windows, and any browser.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="canonical" href="https://toolbox-zci6.onrender.com/blog.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "TOOLBOX — Blog & Tutorials",
+  "url": "https://toolbox-zci6.onrender.com/blog.html",
+  "description": "Practical guides and tutorials on artificial intelligence, online tools, productivity, studying, text, images, files, and digital security.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TOOLBOX",
+    "url": "https://toolbox-zci6.onrender.com/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is TOOLBOX an app or a program I need to download?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. TOOLBOX is a web platform: there is no software to download or install. It works in your browser on Android, Windows, macOS, Linux, or any device with an internet connection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, TOOLBOX tools are free, and you do not need to create an account to use them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files and data safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The image converter, editor, and OCR process content in your browser without sending it to a server. AI tools do send the text you enter to generate a response, so avoid including sensitive information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use TOOLBOX on my phone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The website is adapted to small screens, and you do not need to install an app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What tools does TOOLBOX include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI text humanizer and proofreader, text simplifier, Pomodoro timer, OCR, image editor, PNG-to-JPG converter, calculator, text styler, password generators, and color generator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is TOOLBOX AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is TOOLBOX’s AI assistant. You can chat with it and ask for outlines, summaries, tables, explanations, or programming help. It works in your browser, with nothing to install."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it create outlines and summaries?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. With the Outline, Summary, Explain Simply, Step by Step, Table, and Quiz format shortcuts, the response adapts to the format you choose. Outlines appear as a visual tree that is easy to review."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my AI conversations saved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are saved in your device’s browser, and you can delete them whenever you want. To generate each response, the text you enter is sent to the AI service, so avoid including passwords, personal data, or sensitive information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI make mistakes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It can make mistakes or confidently invent information, especially numbers, sources, and recent topics. Always verify important information with reliable sources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a prompt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the instruction you give AI. The clearer you are about what you want, who it is for, and the format you need, the better the responses tend to be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can TOOLBOX AI search the internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When a question depends on current information, it searches the web on its own, lets you know while it is searching, and displays linked sources. To do this, it sends a query generated from your message to a search engine, so avoid including personal data. Always check the sources."
+      }
+    }
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+ --bg:#080b12;--bg2:#0c111c;--nav:rgba(8,11,18,.88);
+ --card:#111827;--card2:#0d131f;--panel:#101724;--input:#080d16;
+ --border:#29344a;--border2:#344158;--text:#fff;--muted:#8995aa;
+ --purple:#7c3aed;--purple2:#8b5cf6;--purple3:#a78bfa;--button:#202a3d;
+}
+body.light{
+ --bg:#f4f6f9;--bg2:#fff;--nav:rgba(255,255,255,.94);
+ --card:#fff;--card2:#f4f6f8;--panel:#fff;--input:#f1f3f5;
+ --border:#d9dee7;--border2:#c7ced9;--text:#111827;--muted:#5f6b7a;--button:#e6eaf0;
+}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% -20%,rgba(124,58,237,.14),transparent 45%),var(--bg);color:var(--text);line-height:1.7;min-height:100vh;transition:background .25s,color .25s}
+a{color:inherit}
+nav{height:70px;position:sticky;top:0;z-index:5000;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.logo{font-size:25px;font-weight:800;letter-spacing:-.7px;text-decoration:none}.logo span{color:var(--purple2)}
+.nav-right{display:flex;align-items:center;gap:16px}.nav-link{color:var(--muted);text-decoration:none;transition:.2s;padding:0}.nav-link:hover{color:var(--text)}
+.theme{width:40px;height:40px;border:none;border-radius:11px;background:var(--button);color:var(--text);font-size:18px;cursor:pointer}
+.hero{text-align:center;padding:100px 20px 75px;background:radial-gradient(circle at 50% 0%,rgba(124,58,237,.40),transparent 40%),radial-gradient(circle at 20% 30%,rgba(139,92,246,.10),transparent 30%);position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}.hero:before{width:250px;height:250px;background:#7c3aed;left:3%;top:20%;opacity:.10}.hero:after{width:220px;height:220px;background:#a78bfa;right:3%;bottom:5%;opacity:.08}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:9px 17px;border-radius:50px;background:rgba(124,58,237,.12);border:1px solid rgba(139,92,246,.4);color:var(--purple3);margin-bottom:22px;font-size:14px;position:relative}
+h1{font-size:clamp(44px,8vw,82px);line-height:1;margin-bottom:22px;letter-spacing:-3px;position:relative;color:var(--text)}h1 span{color:var(--purple2)}
+.hero p{color:var(--muted);max-width:700px;margin:auto auto 35px;font-size:18px;line-height:1.6;position:relative}
+.container{width:min(1150px,92%);margin:auto;padding-top:50px}
+.featured{margin-top:-20px;position:relative;z-index:2;background:linear-gradient(145deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:20px;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,.25);overflow:hidden}.featured:before{content:"";position:absolute;width:180px;height:180px;right:-80px;top:-80px;border-radius:50%;background:rgba(124,58,237,.10);filter:blur(10px);pointer-events:none}
+.featured-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:25px;align-items:center}.eyebrow{color:var(--purple3);text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:1.2px}.featured h2{font-size:30px;line-height:1.2;margin:9px 0 12px}.featured p{color:var(--muted)}
+.btn{display:inline-block;margin-top:18px;padding:11px 16px;border-radius:10px;text-decoration:none;font-weight:700;background:var(--purple);border:1px solid var(--purple2);color:#fff;transition:.2s}.btn:hover{background:var(--purple2);transform:translateY(-1px)}
+.featured-stat{border:1px solid var(--border);border-radius:18px;padding:22px;background:rgba(8,11,18,.4)}.featured-stat strong{display:block;font-size:32px}.featured-stat span{color:var(--muted);font-size:14px}
+.section{padding:70px 0 10px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}.section-head h2{font-size:31px}.section-head p{color:var(--muted);max-width:650px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}.card{position:relative;overflow:hidden;background:linear-gradient(145deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:20px;padding:25px;min-height:245px;transition:transform .25s,border .25s,box-shadow .25s;display:flex;flex-direction:column}.card:before{content:"";position:absolute;width:130px;height:130px;right:-60px;top:-60px;border-radius:50%;background:rgba(124,58,237,.08);filter:blur(10px)}.card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.7);box-shadow:0 20px 50px rgba(0,0,0,.28)}.card-icon{font-size:39px;margin-bottom:17px;position:relative}.tag{font-size:11px;color:#c4b5fd;text-transform:uppercase;font-weight:800;letter-spacing:.8px}.card h3{font-size:19px;line-height:1.3;margin:7px 0 10px}.card p{color:var(--muted);font-size:14px;flex:1}.read{display:inline-block;margin-top:17px;color:#c4b5fd;text-decoration:none;font-weight:700;font-size:14px}.read:hover{text-decoration:underline}
+.blog-index{margin:38px 0 12px;background:linear-gradient(145deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:18px;padding:18px 20px;position:sticky;top:82px;z-index:10;box-shadow:0 14px 35px rgba(0,0,0,.18)}.blog-index-title{font-size:14px;font-weight:800;margin-bottom:12px}.blog-index-links{display:flex;flex-wrap:wrap;gap:8px}.blog-index-links a{padding:8px 11px;border:1px solid var(--border);border-radius:10px;color:var(--muted);text-decoration:none;font-size:13px;background:var(--card2);transition:.2s}.blog-index-links a:hover{border-color:var(--purple2);color:var(--text);transform:translateY(-1px)}
+.article{margin-top:18px;background:linear-gradient(145deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:20px;padding:34px;box-shadow:0 10px 30px rgba(0,0,0,.10)}.article:target{border-color:#6d4db0;box-shadow:0 0 0 3px rgba(124,58,237,.10)}.article h2{font-size:28px;line-height:1.25;margin:5px 0 8px}.article-meta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:10px 0 2px;color:var(--muted);font-size:13px}.article-intro{margin-top:14px}
+.article-meta span{display:inline-flex;align-items:center;gap:5px}.article-meta strong{color:#c4b5fd;font-weight:700}.article-intro{color:#b4bfd0;font-size:16px;max-width:850px}.article-content{max-width:900px;margin-top:25px}.article-content h3{font-size:20px;margin:25px 0 9px}.article-content p{color:#b7c0ce;margin:9px 0}.article-content ul{padding-left:22px;color:#b7c0ce}.article-content li{margin:6px 0}.tip{margin-top:20px;padding:17px 18px;border:1px solid rgba(139,92,246,.35);border-left:4px solid var(--purple2);background:rgba(124,58,237,.08);border-radius:12px;color:#d6d1e5}.tool-link{color:#c4b5fd;font-weight:700;text-decoration:none}.tool-link:hover{text-decoration:underline}.back-top{display:inline-block;margin-top:20px;color:#a78bfa;text-decoration:none;font-size:13px;font-weight:700}.back-top:hover{text-decoration:underline}
+.faq{margin-top:50px}.faq-item{padding:20px 0;border-bottom:1px solid var(--border)}.faq-item h3{font-size:17px;margin-bottom:7px}.faq-item p{color:var(--muted)}
+.cta{margin:70px 0;background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(17,24,39,.8));border:1px solid var(--border);border-radius:22px;text-align:center;padding:42px 25px}.cta h2{font-size:29px}.cta p{color:var(--muted);max-width:650px;margin:9px auto}
+footer{margin-top:75px;padding:45px 20px;text-align:center;border-top:1px solid var(--border);color:#64748b}footer strong{color:#8b5cf6}footer a{color:#64748b;text-decoration:none}footer a:hover{color:#a78bfa}
+body.light .featured-stat{background:rgba(255,255,255,.7)}body.light .article-intro,body.light .article-content p,body.light .article-content ul,body.light .tip{color:#4b5563}body.light .tip{background:rgba(124,58,237,.06)}body.light .featured,body.light .card,body.light .article,body.light .blog-index{box-shadow:0 12px 35px rgba(15,23,42,.08)}body.light .cta{background:linear-gradient(135deg,rgba(124,58,237,.10),#fff)}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.featured-grid{grid-template-columns:1fr}.nav-link{display:none}.hero{padding-top:75px}.article{padding:24px}.blog-index{position:relative;top:auto}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}h1{letter-spacing:-1px}.section-head{display:block}.featured{padding:23px}.article h2{font-size:24px}.hero p{font-size:16px}.container{padding-top:35px}}
+
+/* =========================================================
+   MEJORAS DE INTERFAZ
+========================================================= */
+html{scroll-padding-top:150px}
+.article,.faq,.section{scroll-margin-top:150px}
+.hero{padding:84px 20px 56px}
+.container{padding-top:30px}
+
+/* Índice rápido: una sola fila, compacto y sin tapar el contenido */
+.blog-index{display:flex;align-items:center;gap:16px;margin:30px 0 6px;padding:10px 14px;border-radius:16px;top:80px;background:var(--bg2);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.blog-index-title{flex:0 0 auto;margin:0;font-size:13px;white-space:nowrap}
+.blog-index-links{flex:1 1 auto;min-width:0;flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 6px;margin-bottom:-6px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
+.blog-index-links a{flex:0 0 auto;white-space:nowrap}
+.blog-index-links a.active{border-color:var(--purple2);color:var(--text);background:rgba(124,58,237,.18)}
+
+/* Tarjetas: toda la tarjeta es clicable */
+.read{position:static}
+.read:after{content:"";position:absolute;inset:0;z-index:1}
+.card:hover .read{text-decoration:underline;color:#fff}
+
+/* Artículos: lectura más cómoda */
+.article{padding:36px 38px}
+.article-content{max-width:760px}
+.article-content p,.article-content li{font-size:16px;line-height:1.8}
+.article-content h3{margin:30px 0 8px;font-size:19px}
+.article-meta span{background:rgba(124,58,237,.10);border:1px solid rgba(139,92,246,.25);padding:3px 11px;border-radius:999px;font-size:12.5px}
+.tip{margin-top:26px}
+.back-top{margin-top:30px;padding:8px 15px;border:1px solid var(--border2);border-radius:999px;font-size:13px;transition:.2s}
+.back-top:hover{border-color:var(--purple2);background:rgba(124,58,237,.12);text-decoration:none}
+
+/* FAQ en tarjetas */
+.faq-item{padding:18px 20px;margin-bottom:10px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(145deg,var(--card),var(--card2));transition:border-color .2s}
+.faq-item:hover{border-color:rgba(139,92,246,.5)}
+
+/* Pie de página: enlaces en una fila */
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin:22px 0}
+.footer-links a{padding:4px 2px}
+
+/* Accesibilidad */
+a:focus-visible,button:focus-visible{outline:2px solid var(--purple3);outline-offset:3px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+@media(max-width:800px){
+  html{scroll-padding-top:90px}.article,.faq,.section{scroll-margin-top:90px}
+  .blog-index{position:relative;top:auto;flex-direction:column;align-items:stretch;gap:10px}
+  .blog-index-title{white-space:normal}
+}
+@media(max-width:520px){.article{padding:24px 20px}.hero{padding:64px 18px 40px}}
+
+/* =========================================================
+   IA + INTERFAZ v2
+========================================================= */
+[hidden]{display:none!important}
+.hero-actions,.cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text)}
+.btn-ghost:hover{border-color:var(--purple2);background:rgba(124,58,237,.12)}
+#readBar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--purple),var(--purple3));z-index:6000;transition:width .1s linear}
+/* banner TOOLBOX AI */
+.ai-banner{display:flex;align-items:center;gap:18px;margin:20px 0 0;padding:20px 22px;border-radius:20px;border:1px solid rgba(139,92,246,.4);background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(17,24,39,.7));box-shadow:0 14px 40px rgba(124,58,237,.12)}
+.ai-banner-icon{flex:0 0 auto;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;background:linear-gradient(145deg,#26304a,#0b1019);box-shadow:0 0 28px rgba(124,58,237,.4);animation:aiFloat 4s ease-in-out infinite}
+@keyframes aiFloat{50%{transform:translateY(-4px) rotate(3deg)}}
+.ai-banner-text{flex:1;min-width:0}.ai-banner-text strong{display:block;font-size:17px;margin-bottom:2px}.ai-banner-text span{color:var(--muted);font-size:14px;line-height:1.55}
+.ai-banner .btn{flex:0 0 auto;white-space:nowrap}
+body.light .ai-banner{background:linear-gradient(135deg,rgba(124,58,237,.12),#fff)}
+/* buscador y filtros */
+.blog-filters{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:2px 0 22px}
+.filter-search{display:flex;align-items:center;gap:8px;flex:1 1 240px;max-width:340px;padding:0 14px;border:1px solid var(--border);border-radius:13px;background:var(--card2);transition:border-color .2s,box-shadow .2s}
+.filter-search:focus-within{border-color:var(--purple2);box-shadow:0 0 0 3px rgba(139,92,246,.12)}
+.filter-search span{color:var(--muted)}
+.filter-search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--text);padding:12px 0;font:inherit;font-size:14px}
+.filter-chips{display:flex;flex-wrap:wrap;gap:8px}
+.fchip{padding:9px 14px;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--muted);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.fchip:hover{color:var(--text);border-color:var(--purple2);transform:translateY(-1px)}
+.fchip.on{color:#fff;border-color:transparent;background:linear-gradient(135deg,var(--purple),#6d28d9);box-shadow:0 6px 18px rgba(124,58,237,.3)}
+.no-results{margin-top:18px;padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--border2);border-radius:16px}
+.card{animation:cardIn .4s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}}
+/* índice de cada artículo */
+.toc{margin:0 0 22px;border:1px solid var(--border);border-radius:14px;background:var(--card2);overflow:hidden}
+.toc summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.toc summary::-webkit-details-marker{display:none}
+.toc summary::after{content:"＋";color:var(--purple3);font-size:16px;transition:transform .25s}
+.toc[open] summary::after{transform:rotate(45deg)}
+.toc ol{margin:0;padding:2px 16px 14px 38px;columns:2;column-gap:28px}
+.toc li{margin:5px 0;break-inside:avoid;font-size:14px}.toc a{color:var(--muted);text-decoration:none}.toc a:hover{color:var(--purple3);text-decoration:underline}
+/* ejemplos de prompts */
+.prompt-box{position:relative;margin:12px 0;padding:14px 16px 14px 18px;border-radius:14px;border:1px solid var(--border);background:var(--card2)}
+.prompt-box p{margin:0!important;padding-right:70px}
+.prompt-label{display:inline-block;margin-bottom:6px;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.prompt-box.bad{border-left:4px solid #ef4444}.prompt-box.bad .prompt-label{background:rgba(239,68,68,.15);color:#fca5a5}
+.prompt-box.good{border-left:4px solid #22c55e}.prompt-box.good .prompt-label{background:rgba(34,197,94,.15);color:#86efac}
+body.light .prompt-box.bad .prompt-label{color:#b91c1c}body.light .prompt-box.good .prompt-label{color:#15803d}
+.prompt-copy{position:absolute;right:10px;top:10px;padding:5px 11px;border:1px solid var(--border2);border-radius:999px;background:var(--card);color:var(--muted);font:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.prompt-copy:hover{color:var(--text);border-color:var(--purple2)}.prompt-copy.ok{color:#22c55e;border-color:#22c55e}
+/* tablas, código y marcas dentro de artículos */
+.table-wrap{margin:16px 0;overflow-x:auto;border:1px solid var(--border);border-radius:14px}
+.article-content table{width:100%;border-collapse:collapse;font-size:15px}
+.article-content th,.article-content td{padding:11px 15px;text-align:left;border-bottom:1px solid var(--border)}
+.article-content th{background:rgba(139,92,246,.13);font-weight:800}.article-content tr:last-child td{border-bottom:0}
+.article-content tbody tr:hover{background:rgba(139,92,246,.07)}
+.article-content ol{padding-left:22px;color:#b7c0ce}.article-content ol li{margin:6px 0}.article-content li::marker{color:var(--purple3);font-weight:700}
+body.light .article-content ol{color:#4b5563}
+.article-content code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;padding:2px 7px;border-radius:7px;border:1px solid var(--border2);background:rgba(139,92,246,.12)}
+.article-content mark{background:rgba(250,204,21,.3);color:inherit;padding:0 3px;border-radius:4px}
+.article-content u{text-decoration-color:var(--purple2);text-decoration-thickness:2px;text-underline-offset:3px}
+.article-meta .read-time{color:var(--muted)}
+/* volver arriba */
+#toTop{position:fixed;right:22px;bottom:24px;width:44px;height:44px;border-radius:50%;border:1px solid var(--border2);background:var(--card);color:var(--text);font-size:18px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;transform:translateY(12px);pointer-events:none;transition:all .25s;z-index:900}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}#toTop:hover{background:var(--purple);color:#fff}
+@media(max-width:800px){.ai-banner{flex-direction:column;align-items:flex-start}.toc ol{columns:1}.filter-search{max-width:none}}
+@media(max-width:520px){.fchip{padding:8px 12px}.hero-actions .btn,.cta-actions .btn{width:100%;text-align:center}}
+body.light .article-meta strong{color:#6d28d9}body.light .toc a{color:#4b5563}
+</style>
+</head>
+<body>
+<div id="readBar" aria-hidden="true"></div>
+<nav>
+  <a href="/" class="logo" style="text-decoration:none">🧰 TOOL<span>BOX</span></a>
+  <div class="nav-right">
+    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link" href="/#herramientas">Tools</a>
+    <a class="nav-link" href="/TOOLBOXAI">✦ TOOLBOX AI</a>
+    <a class="nav-link" href="/blog.html">Blog / Tutorials</a>
+    <button class="theme" id="themeButton" onclick="tema()">🌙</button>
+  </div>
+</nav>
+<header class="hero">
+  <div class="badge">📚 BLOG · GUIDES · TUTORIALS · AI</div>
+  <h1>Learn to do more with <span>TOOLBOX.</span></h1>
+  <p>Practical guides and simple explanations to help you study, work, write, use artificial intelligence, and get more out of free online tools—without downloading software or installing an app. They work on Android, Windows, and other platforms.</p>
+  <div class="hero-actions"><a class="btn" href="#ultimos">Browse tutorials →</a><a class="btn btn-ghost" href="/TOOLBOXAI">✦ Try TOOLBOX AI</a></div>
+</header>
+<main class="container">
+  <section class="featured">
+    <div class="featured-grid">
+      <div>
+        <div class="eyebrow">Featured guide</div>
+        <h2>How to Choose the Right Online Tool for Each Task</h2>
+        <p>You do not always need to install a program. Learn how to choose the right tool based on the file type, your goal, and the time you have.</p>
+        <a class="btn" href="#elegir-herramienta">Read the guide →</a>
+      </div>
+      <div class="featured-stat"><strong>Gratis</strong><span>Guides designed to help you complete specific tasks without hassle.</span></div>
+    </div>
+  </section>
+  <section class="ai-banner" aria-label="TOOLBOX AI">
+    <div class="ai-banner-icon" aria-hidden="true">✦</div>
+    <div class="ai-banner-text"><strong>Discover TOOLBOX AI</strong><span>A free assistant for creating outlines, summaries, and tables, explaining topics, searching the web with sources, and helping you code. Your conversations are saved on your device.</span></div>
+    <a class="btn" href="/TOOLBOXAI">Try TOOLBOX AI →</a>
+  </section>
+  <div class="blog-index" id="indice">
+  <div class="blog-index-title">🧭 Quick index · jump straight to the tutorial you need</div>
+  <div class="blog-index-links">
+    <a href="#elegir-herramienta">🧰 Choosing a tool</a>
+    <a href="#que-es-ia">🤖 What is AI</a>
+    <a href="#ia-toolbox">✦ TOOLBOX AI</a>
+    <a href="#prompts">💬 Prompts</a>
+    <a href="#estudiar-ia">🎓 Studying with AI</a>
+    <a href="#textos-ia">✍️ AI and text</a>
+    <a href="#limites-ia">⚠️ AI limitations</a>
+    <a href="#png-jpg">📄 PNG vs JPG</a>
+    <a href="#ocr">🔎 OCR</a>
+    <a href="#pomodoro">🍅 Pomodoro</a>
+    <a href="#contrasenas">🔐 Passwords</a>
+    <a href="#colores">🎨 Colors</a>
+    <a href="#calculadora">🧮 Calculator</a>
+    <a href="#pdf">📄 PDF</a>
+    <a href="#sin-instalar">📱 No installation</a>
+    <a href="#privacidad-seguridad">🛡️ Privacy</a>
+  </div>
+</div>
+<section class="section" id="ultimos">
+    <div class="section-head">
+      <div><h2>✨ Tutorials and Guides</h2><p>Practical content related to the tools available on TOOLBOX.</p></div>
+    </div>
+    <div class="blog-filters" id="blogFilters">
+      <div class="filter-search"><span aria-hidden="true">⌕</span><input id="blogSearch" type="search" placeholder="Search tutorials…" autocomplete="off" aria-label="Search tutorials"></div>
+      <div class="filter-chips" role="group" aria-label="Filter by category">
+        <button type="button" class="fchip on" data-cat="all">All</button>
+        <button type="button" class="fchip" data-cat="ia">🤖 IA</button>
+        <button type="button" class="fchip" data-cat="archivos">📄 Files & Images</button>
+        <button type="button" class="fchip" data-cat="productividad">🍅 Productivity</button>
+        <button type="button" class="fchip" data-cat="seguridad">🛡️ Security & Privacy</button>
+        <button type="button" class="fchip" data-cat="utilidades">🧰 Utilities</button>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card" data-cat="ia"><div class="card-icon">🤖</div><div class="tag">IA</div><h3>Generative AI Explained Simply</h3><p>How an AI assistant works, what it is good at, and what it is not—without the jargon.</p><a class="read" href="#que-es-ia">Read guide →</a></article>
+      <article class="card" data-cat="ia"><div class="card-icon">✦</div><div class="tag">IA · TOOLBOX AI</div><h3>TOOLBOX AI: What It Can Do and How to Get the Most Out of It</h3><p>Chats, automatic titles, outlines, tables, web searches with sources, and keyboard shortcuts.</p><a class="read" href="#ia-toolbox">Read guide →</a></article>
+      <article class="card" data-cat="ia"><div class="card-icon">💬</div><div class="tag">IA</div><h3>How to Write Better Prompts for Better Answers</h3><p>A simple formula, before-and-after examples, and a reusable template.</p><a class="read" href="#prompts">Read guide →</a></article>
+      <article class="card" data-cat="ia"><div class="card-icon">🎓</div><div class="tag">IA · Estudio</div><h3>How to Study with AI Without Stopping Learning</h3><p>Outlines, summaries, quizzes, and a study workflow that helps you truly understand.</p><a class="read" href="#estudiar-ia">Read guide →</a></article>
+      <article class="card" data-cat="ia"><div class="card-icon">✍️</div><div class="tag">IA · Texto</div><h3>Humanizer, Proofreader, or Simplifier: Which Should You Use?</h3><p>What each AI text tool does and the order in which to use them.</p><a class="read" href="#textos-ia">Read guide →</a></article>
+      <article class="card" data-cat="ia"><div class="card-icon">⚠️</div><div class="tag">IA · Uso responsable</div><h3>AI Limitations: Errors, Hallucinations, and How to Verify</h3><p>Warning signs and habits that help you avoid blindly trusting an answer.</p><a class="read" href="#limites-ia">Read guide →</a></article>
+      <article class="card" data-cat="archivos"><div class="card-icon">📄</div><div class="tag">Files</div><h3>PNG to JPG: Which Format to Choose and When</h3><p>Learn the differences between PNG and JPG and when converting an image can help you share it or save space.</p><a class="read" href="#png-jpg">Read tutorial →</a></article>
+      <article class="card" data-cat="archivos"><div class="card-icon">🔎</div><div class="tag">Text & Images</div><h3>How to Extract Text from an Image with OCR</h3><p>Learn what OCR is, what it is used for, and how to turn a photo of a document into editable text.</p><a class="read" href="#ocr">Read tutorial →</a></article>
+      <article class="card" data-cat="productividad"><div class="card-icon">🍅</div><div class="tag">Productivity</div><h3>Pomodoro: A Simple Way to Organize Your Study Time</h3><p>A practical guide to working in blocks, taking breaks, and maintaining a simple routine.</p><a class="read" href="#pomodoro">Read tutorial →</a></article>
+      <article class="card" data-cat="seguridad"><div class="card-icon">🔐</div><div class="tag">Security</div><h3>What Makes a Password Secure?</h3><p>Length, variety, and basic habits to improve account security and avoid easy-to-guess passwords.</p><a class="read" href="#contrasenas">Read guide →</a></article>
+      <article class="card" data-cat="utilidades"><div class="card-icon">🎨</div><div class="tag">Images</div><h3>How to Choose Colors for a Website</h3><p>Learn how to create a clear, readable, and consistent color palette for a website or digital project.</p><a class="read" href="#colores">Read guide →</a></article>
+      <article class="card" data-cat="utilidades"><div class="card-icon">🧮</div><div class="tag">Utilities</div><h3>When to Use an Online Calculator</h3><p>From quick operations to everyday calculations: ways to use a digital calculator without wasting time.</p><a class="read" href="#calculadora">Read guide →</a></article>
+      <article class="card" data-cat="archivos"><div class="card-icon">📄</div><div class="tag">Files</div><h3>Convert a Document or Image to PDF Without Installing Anything</h3><p>When a PDF is preferable to other formats and how to create one without downloading software to your computer.</p><a class="read" href="#pdf">Read guide →</a></article>
+      <article class="card" data-cat="utilidades"><div class="card-icon">📱</div><div class="tag">Compatibility</div><h3>Online Tools on Android, Windows, and Any Platform</h3><p>Why you do not need a separate app or program for each system: everything works in your browser.</p><a class="read" href="#sin-instalar">Read guide →</a></article>
+      <article class="card" data-cat="seguridad"><div class="card-icon">🛡️</div><div class="tag">Privacy</div><h3>Is It Safe to Use Online Tools with Your Data?</h3><p>What to check before trusting a website and why processing in your own browser can be safer.</p><a class="read" href="#privacidad-seguridad">Read guide →</a></article>
+    </div>
+    <p class="no-results" id="noResults" hidden>No tutorials match your search. Try another word or select “All”.</p>
+  </section>
+  <section class="section" id="guias">
+    <div class="section-head"><div><h2>📖 In-Depth Guides</h2><p>More detailed explanations designed to provide real value, not just keywords.</p></div></div>
+    <article class="article" id="elegir-herramienta">
+      <div class="eyebrow">Guide · Online Tools</div>
+      <h2>How to Choose the Right Online Tool for Each Task</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">When you have a specific task, choosing the right tool can save you a lot of time. The key is not to use lots of tools, but to find the one that fits what you want to accomplish.</p>
+      <div class="article-content">
+        <h3>1. First, define what you want to achieve</h3>
+        <p>Before looking for a tool, describe the final result: do you want to edit an image, convert a file, extract text, organize your time, or proofread a document? The more specific the task, the easier it is to find the right tool.</p>
+        <h3>2. Check which format you need</h3>
+        <p>Files have different characteristics. For example, PNG is useful when you need transparency, while JPG is often practical for photographs and smaller files. Choosing the right format avoids unnecessary conversions.</p>
+        <h3>3. Prioritize easy-to-use tools</h3>
+        <p>A good tool should clearly explain what it does, what data it needs, and what result it produces. It should also work well on mobile and desktop and avoid requiring an account for a simple task when one is not necessary.</p>
+        <h3>4. Check privacy</h3>
+        <p>If you are working with personal documents, images, or private information, pay attention to how the content is processed. Whenever possible, avoid uploading sensitive information to services you do not know.</p>
+        <h3>5. Focus on the result, not just the tool’s name</h3>
+        <p>Two tools may look similar but be designed for different situations. For example, if you only need to change an image format, there is no reason to use a full editor with dozens of controls. If you want to proofread text, you do not need an image-editing tool either. Starting with the result you need reduces the time spent trying options that do not help.</p>
+        <p>A simple way to decide is to ask yourself three questions: what do I have now, what do I want to get, and how much control do I need over the process? If you have a PNG image and need a JPG to share it, the need is specific. If a photograph needs several adjustments, an image editor may be more useful. The same logic applies to text, files, productivity, and other utilities.</p>
+        <h3>6. Check whether the tool works on your device</h3>
+        <p>Before starting a long task, check that the tool fits the screen you are using. An online tool can be especially convenient when it works directly in your browser, because you do not have to find a version specifically for Windows, Android, or another system. On mobile, buttons should be easy to tap and results easy to save or copy.</p>
+        <p>It is also useful to check whether you need an account. For a one-off task, a tool that works without registration can save time. If a tool asks for permissions, files, or information that do not seem necessary, stop and check what is being requested and why.</p>
+        <h3>7. Run a small test before working on the final file</h3>
+        <p>When a file is important, first test with a copy or an example that contains no sensitive information. This lets you check the result quality, final format, and whether the tool preserves what you need. This is especially useful when converting images, recognizing text with OCR, or editing documents.</p>
+        <p>If you need to write, summarize, explain, or structure information, an AI assistant such as <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a> puede ser un buen punto de partida. Antes de empezar, echa un vistazo a <a class="tool-link" href="#que-es-ia">qué es la IA generativa</a> para saber cuándo conviene usarla.</p>
+        <div class="tip">💡 <strong>Consejo:</strong> on TOOLBOX, you can start from the home page and use search to quickly find a tool by name or task type.</div>
+        <div class="tip">💡 <strong>Idea práctica:</strong> save your favorite tools according to the tasks they solve. Next time you need to convert an image, extract text, calculate something, or work with text, you will not have to start searching from scratch.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="que-es-ia">
+      <div class="eyebrow">Guide · Artificial Intelligence</div>
+      <h2>Generative AI Explained Simply</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>10 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+      <p class="article-intro">Cuando hablas con un asistente como TOOLBOX AI no estás consultando una base de datos de respuestas guardadas: un modelo de lenguaje construye cada respuesta paso a paso. Entender cómo funciona te ayuda a usarlo mejor y a no esperar de él lo que no puede dar.</p>
+      <div class="article-content">
+        <h3>¿What does “generative” mean??</h3>
+        <p>Una IA generativa produce contenido nuevo —texto, código, resúmenes, ideas— a partir de los patrones que ha aprendido de enormes cantidades de ejemplos. No busca una frase ya escrita y la copia: la compone en el momento, según lo que le pidas.</p>
+        <h3>How does it decide what to answer?</h3>
+        <p>Un modelo de lenguaje aprende durante su entrenamiento qué palabras suelen aparecer junto a otras y en qué contexto. Al responder, calcula cuál es la continuación más probable y repite el proceso una y otra vez hasta completar el texto.</p>
+        <p>Por eso suena natural y coherente. Pero «suena bien» no significa «es cierto»: la IA puede redactar con mucha seguridad algo que sea incorrecto.</p>
+        <h3>What it does well</h3>
+        <ul><li>Explicar un tema con distintos niveles de dificultad.</li><li>Resumir, reformular y ordenar ideas.</li><li>Crear esquemas, tablas comparativas y listas de pasos.</li><li>Proponer borradores, títulos, ejemplos y preguntas de práctica.</li><li>Ayudar con código sencillo y explicarlo línea a línea.</li></ul>
+        <h3>What it struggles with</h3>
+        <p>Los datos muy recientes que no conoce, las cifras exactas, las citas literales, las fuentes concretas y los cálculos largos. También conviene ser prudente en temas donde un error tiene consecuencias, como salud, leyes o dinero. Lo explicamos con más detalle en <a class="tool-link" href="#limites-ia">los límites de la IA</a>.</p>
+        <h3>A model, a tool, and a service are not the same thing</h3>
+        <p>El <strong>modelo</strong> es el «cerebro» que genera el texto. La <strong>herramienta</strong> —como TOOLBOX AI— es lo que ves: el chat, el historial, los formatos y los botones. Y el <strong>servicio</strong> es la infraestructura que ejecuta el modelo; en TOOLBOX AI las respuestas se generan a través de Groq. Que una herramienta sea cómoda no cambia las limitaciones del modelo que hay detrás.</p>
+        <h3>How to get started without overcomplicating things</h3>
+        <p>Elige una tarea pequeña —resumir un párrafo, explicar un concepto, ordenar una lista de ideas— y compara el resultado con lo que ya sabes. Así aprendes cuándo acierta y cuándo conviene revisar. Cuando quieras mejorar los resultados, lee <a class="tool-link" href="#prompts">cómo escribir buenas instrucciones</a> y prueba <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a>.</p>
+        <div class="tip">🤖 <strong>Key idea:</strong> la IA es un excelente punto de partida, no una fuente definitiva. Úsala para avanzar más rápido y contrasta siempre lo importante.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+      </div>
+    </article>
+    <article class="article" id="ia-toolbox">
+      <div class="eyebrow">Guide · TOOLBOX AI</div>
+      <h2>TOOLBOX AI: What It Can Do and How to Get the Most Out of It</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>10 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+      <p class="article-intro">TOOLBOX AI es el asistente de inteligencia artificial integrado en TOOLBOX. Es un chat gratuito pensado para estudiar, escribir, aprender y trabajar, con formatos que facilitan leer y reutilizar las respuestas.</p>
+      <div class="article-content">
+        <h3>A chat that organizes your conversations</h3>
+        <p>Cada conversación se guarda en tu dispositivo y se agrupa por fecha: fijadas, hoy, ayer, últimos 7 días y anteriores. Puedes buscar por título o por el contenido de los mensajes, fijar las que más usas y eliminar las que no necesitas, con opción de deshacer durante unos segundos.</p>
+        <h3>Automatic titles and renaming</h3>
+        <p>Después de la primera respuesta, TOOLBOX AI propone un nombre corto para la conversación. Si prefieres otro, haz clic sobre el título (o usa el lápiz del menú lateral) y escríbelo tú. Una vez que le pones nombre, ya no se vuelve a cambiar solo; y si quieres que la IA lo elija de nuevo, está la opción «Que la IA elija el mejor nombre» en el menú ⋯.</p>
+        <h3>Formatted answers, not just text</h3>
+        <p>Las respuestas pueden incluir títulos, listas con niveles, tablas, avisos de colores, texto <mark>resaltado</mark> o <u>subrayado</u> para lo importante, bloques de código con colores y un botón para copiarlos. Cuando conviene, también dibuja <strong>esquemas visuales</strong> en forma de árbol, ideales para repasar un tema de un vistazo.</p>
+        <h3>Formatting shortcuts</h3>
+        <p>Encima del cuadro de texto encontrarás seis atajos: <strong>Esquema</strong>, <strong>Resumen</strong>, <strong>Explícamelo fácil</strong>, <strong>Paso a paso</strong>, <strong>Tabla</strong> y <strong>Test</strong>. Pulsa uno, escribe tu tema y la respuesta se adaptará a ese formato. Se aplica solo al siguiente mensaje, así que puedes cambiar de formato cuando quieras.</p>
+        <h3>Web search with sources</h3>
+        <p>Cuando tu pregunta depende de información actual —noticias, precios, versiones de programas, resultados— TOOLBOX AI puede buscar en internet por su cuenta, sin que tengas que pedirlo. Mientras lo hace, el chat te avisa de qué está buscando y cuántas fuentes está leyendo.</p>
+        <p>En la respuesta verás pequeños números <strong>[1]</strong>, <strong>[2]</strong> que enlazan a la página de la que sale cada dato, y debajo, una lista con las fuentes consultadas. Si no encuentra información fiable, debería decirlo en lugar de inventarla. Aun así, abre las fuentes para comprobar lo importante.</p>
+        <h3>Control the conversation</h3>
+        <ul><li><strong>Editar</strong> un mensaje tuyo y volver a enviarlo.</li><li><strong>Regenerar</strong> la última respuesta si no te convence.</li><li><strong>Detener</strong> una respuesta mientras se escribe.</li><li><strong>Copiar</strong> una respuesta o una conversación entera.</li><li><strong>Exportar</strong> la conversación en Markdown (.md) o texto (.txt).</li></ul>
+        <h3>Keyboard shortcuts</h3>
+        <code>Enter</code> envía el mensaje y <code>Shift</code> + <code>Enter</code> añade un salto de línea. Con <code>Ctrl</code> + <code>K</code> buscas conversaciones y con <code>Alt</code> + <code>N</code> empiezas una nueva.
+        <h3>What happens to your data</h3>
+        <p>Tus conversaciones se guardan en el navegador de tu dispositivo y puedes borrarlas cuando quieras. Eso sí: para generar cada respuesta, el texto que escribes se envía al servicio de IA y, si hace falta buscar en la web, una consulta generada a partir de tu mensaje se envía a un buscador. Por eso no incluyas contraseñas, datos personales ni información sensible. Más detalles en <a class="tool-link" href="#privacidad-seguridad">privacidad y seguridad</a>.</p>
+        <h3>Try it now</h3>
+        <p>Abre <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a>, pulsa <strong>Esquema</strong> y escribe un tema que estés estudiando. En unos segundos tendrás un mapa visual para repasarlo.</p>
+        <div class="tip">✦ <strong>Tip:</strong> combina atajos con tus propias palabras. Por ejemplo: pulsa <em>Tabla</em> y pide «compara PNG, JPG y WebP para una web».</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+      </div>
+    </article>
+    <article class="article" id="prompts">
+      <div class="eyebrow">Guide · Artificial Intelligence</div>
+      <h2>Cómo escribir buenas instrucciones (prompts) para obtener mejores respuestas</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>10 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+      <p class="article-intro">Un «prompt» es la instrucción que le das a la IA. La diferencia entre una respuesta genérica y una realmente útil suele estar en cómo la pides, y se aprende con unos pocos hábitos sencillos.</p>
+      <div class="article-content">
+        <h3>A good prompt answers four questions</h3>
+        <ul><li><strong>Qué</strong> necesitas exactamente (resumir, explicar, comparar, corregir…).</li><li><strong>Contexto:</strong> para quién es y qué nivel tiene.</li><li><strong>Formato:</strong> lista, tabla, esquema, número de palabras…</li><li><strong>Límites:</strong> tono, extensión o cosas que quieres evitar.</li></ul>
+        <h3>Compare these two examples</h3>
+        <div class="prompt-box bad"><span class="prompt-label">Poco claro</span><p>Explícame la fotosíntesis.</p></div>
+        <div class="prompt-box good"><span class="prompt-label">Mejor</span><p>Explícame la fotosíntesis para un alumno de 1.º de ESO en 5 puntos, con una analogía cotidiana y un ejemplo.</p></div>
+        <p>El segundo indica a quién va dirigido, cuántos puntos quieres y qué recursos usar. La IA ya no tiene que adivinar.</p>
+        <h3>Ask for the format you need</h3>
+        <p>Si quieres una tabla, pídela. Si prefieres pasos numerados o un esquema, dilo. En TOOLBOX AI puedes apoyarte en los atajos de formato (<a class="tool-link" href="#ia-toolbox">los explicamos aquí</a>) y añadir tus propias indicaciones.</p>
+        <h3>Provide the material to work with</h3>
+        <p>Si quieres que resuma, corrija o reformule un texto, pégalo en el mensaje en lugar de describirlo. Cuanto más claro sea el material de partida, menos probable es que la respuesta se desvíe.</p>
+        <h3>Iterate: the first answer is a draft</h3>
+        <p>No hace falta acertar a la primera. Pide cambios concretos: «hazlo más corto», «añade un ejemplo», «sin tecnicismos», «ahora en formato tabla». Conversar y ajustar suele funcionar mejor que intentar escribir la instrucción perfecta.</p>
+        <h3>A reusable template</h3>
+        <div class="prompt-box good"><span class="prompt-label">Plantilla</span><p>Actúa como [rol]. Necesito [tarea] sobre [tema] para [público]. Formato: [formato]. Extensión: [límite]. Si te falta información, pregúntamela antes de responder.</p></div>
+        <h3>Common mistakes</h3>
+        <ul><li>Instrucciones demasiado vagas («háblame de historia»).</li><li>Pedir varias cosas muy distintas en un solo mensaje.</li><li>No decir el formato ni el nivel.</li><li>Aceptar la primera respuesta sin revisarla.</li></ul>
+        <div class="tip">💬 <strong>Quick rule:</strong> si una persona necesitaría hacerte preguntas para entender qué quieres, la IA también. Respóndelas por adelantado en el propio mensaje.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+      </div>
+    </article>
+    <article class="article" id="estudiar-ia">
+      <div class="eyebrow">Guide · Studying with AI</div>
+      <h2>How to Study with AI Without Stopping Learning</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>10 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+      <p class="article-intro">Bien usada, la inteligencia artificial es como un profesor particular que siempre tiene tiempo. Mal usada, es una forma de copiar sin entender. La clave está en usarla para comprender, practicar y repasar, no para sustituir tu esfuerzo.</p>
+      <div class="article-content">
+        <h3>Use it as a tutor, not a copy machine</h3>
+        <p>En lugar de pedir «hazme el trabajo», pide que te explique, que te ponga ejemplos y que compruebe si lo has entendido. Aprender consiste en procesar la información, y eso no se puede delegar.</p>
+        <h3>Five useful ways to use it</h3>
+        <ul><li><strong>Esquema del tema:</strong> pídelo para ver la estructura general antes de profundizar.</li><li><strong>Resumen de tus apuntes:</strong> pega tu texto y pide los puntos clave.</li><li><strong>Explicación fácil:</strong> cuando algo no te entra, pide una analogía o un ejemplo.</li><li><strong>Test de práctica:</strong> la mejor forma de comprobar qué has aprendido.</li><li><strong>Plan de estudio:</strong> reparte el temario por días y bloques de tiempo.</li></ul>
+        <h3>A recommended study workflow</h3>
+        <ol><li>Lee primero el tema tú mismo.</li><li>Pide un esquema para organizar lo que has leído.</li><li>Explica el tema con tus palabras y pide que corrija lo que esté mal.</li><li>Haz un test y apunta los fallos.</li><li>Repasa solo lo que has fallado.</li></ol>
+        <h3>Combine it with other tools</h3>
+        <p>Si tus apuntes están en una foto, extrae el texto con el <a class="tool-link" href="#ocr">OCR</a> y pégalo en la IA para resumirlo. Para organizar el tiempo, apóyate en el <a class="tool-link" href="#pomodoro">método Pomodoro</a>: un bloque para leer, otro para el test y otro para repasar.</p>
+        <h3>Watch out for these mistakes</h3>
+        <ul><li>Dar por buena una respuesta sin contrastarla con tu libro o tus apuntes.</li><li>Copiar sin entender: en un examen no tendrás la IA.</li><li>Compartir datos personales o trabajos con información sensible.</li><li>Ignorar las normas de tu centro o profesor sobre el uso de IA.</li></ul>
+        <div class="tip">🎓 <strong>Try this:</strong> pega tus apuntes en <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a>, pulsa <em>Test</em> y pide 5 preguntas. Si fallas alguna, pide que te la explique de forma sencilla.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+      </div>
+    </article>
+    <article class="article" id="textos-ia">
+      <div class="eyebrow">Guide · AI and Text</div>
+      <h2>Humanizador, corrector y simplificador: qué herramienta de texto usar en cada caso</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>10 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+      <p class="article-intro">TOOLBOX incluye varias herramientas de texto con IA y cada una resuelve un problema distinto. Elegir bien ahorra tiempo y evita que un texto acabe peor de lo que empezó.</p>
+      <div class="article-content">
+        <h3>AI proofreader: to remove errors</h3>
+        <p>Revisa ortografía, tildes, puntuación, mayúsculas y gramática, manteniendo el significado original. Es la herramienta que conviene usar al final, cuando el contenido ya está decidido. Pruébalo en el <a class="tool-link" href="/#corrector">corrector de TOOLBOX</a>.</p>
+        <h3>Humanizador de texto: para que suene natural</h3>
+        <p>Reescribe el texto para que sea más claro, natural y cercano, con dos estilos: <em>profesional / académico</em> y <em>sencillo</em>. Cambia vocabulario, ritmo y estructura sin alterar el contenido. Puedes usarlo desde el <a class="tool-link" href="/#humanizador">humanizador de texto</a>.</p>
+        <p>Conviene tener claras sus limitaciones: es una ayuda de redacción, no una garantía de que ningún detector lo clasifique de una forma u otra, y no sustituye tu revisión. Léelo, ajusta lo que no suene a ti y comprueba que los datos siguen siendo correctos.</p>
+        <h3>Simplificador de textos: para entender algo difícil</h3>
+        <p>Convierte un texto complicado —un artículo, unos apuntes, una explicación técnica— en una versión con palabras sencillas, frases más cortas y ejemplos cuando ayudan. Está en el <a class="tool-link" href="/#simplificador">simplificador de textos IA</a>.</p>
+        <h3>¿Cuál necesito?</h3>
+        <div class="table-wrap"><table><thead><tr><th>Si necesitas…</th><th>Usa…</th></tr></thead><tbody><tr><td>Corregir faltas y puntuación</td><td>Corrector de texto IA</td></tr><tr><td>Que un texto suene menos robótico</td><td>Humanizador de texto</td></tr><tr><td>Entender un texto difícil</td><td>Simplificador de textos IA</td></tr><tr><td>Un esquema, resumen o tabla</td><td>TOOLBOX AI con los atajos de formato</td></tr></tbody></table></div>
+        <h3>Un orden de trabajo que funciona</h3>
+        <ol><li>Escribe o genera un primer borrador.</li><li>Reescríbelo con el humanizador si suena mecánico.</li><li>Pasa el corrector para quitar errores.</li><li>Haz una lectura final en voz alta: es la mejor prueba.</li></ol>
+        <h3>Úsalo con responsabilidad</h3>
+        <p>Si tu centro, empresa o cliente tiene normas sobre el uso de IA, respétalas. Y recuerda que el texto sigue siendo tuyo: la responsabilidad de lo que dice —y de que sea verdad— es tuya.</p>
+        <div class="tip">✍️ <strong>Consejo:</strong> para textos largos, trabaja por párrafos. Es más fácil revisar los cambios y la IA mantiene mejor el significado.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+      </div>
+    </article>
+    <article class="article" id="limites-ia">
+      <div class="eyebrow">Guide · Responsible Use</div>
+      <h2>AI Limitations: Errors, Hallucinations, and How to Verify lo que responde</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>10 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+      <p class="article-intro">La inteligencia artificial es muy útil, pero se equivoca, y lo hace con un tono convincente. Saber cuándo desconfiar es parte de usarla bien.</p>
+      <div class="article-content">
+        <h3>Por qué se equivoca</h3>
+        <p>Un modelo de lenguaje genera texto plausible, no verifica hechos. Si no tiene una información fiable, puede completar el hueco con algo que suena correcto pero es inventado. A esto se le suele llamar «alucinación» y afecta a datos, nombres, fechas, estudios y fuentes.</p>
+        <h3>Señales de alerta</h3>
+        <ul><li>Cifras muy exactas sin indicar de dónde salen.</li><li>Citas textuales o referencias a estudios concretos.</li><li>Enlaces, nombres de libros o autores que no reconoces.</li><li>Una seguridad total sobre un tema discutido o muy reciente.</li></ul>
+        <h3>Cómo comprobar lo que responde</h3>
+        <ol><li>Contrasta lo importante con dos fuentes fiables (libros, webs oficiales, instituciones).</li><li>Pídele que señale qué partes no está seguro de saber.</li><li>Repite la pregunta de otra forma y compara las respuestas.</li><li>Pídele los pasos para poder verificar el dato tú mismo.</li></ol>
+        <h3>Temas delicados</h3>
+        <p>En salud, asuntos legales y decisiones financieras, trata la respuesta como orientación general y consulta con un profesional. Un error en estos temas puede tener consecuencias reales.</p>
+        <h3>Información reciente</h3>
+        <p>Un modelo no siempre conoce lo último que ha ocurrido: noticias, versiones nuevas de programas, cambios de normativa o precios. Si necesitas datos actuales, búscalos en una fuente actualizada. TOOLBOX AI puede buscar en la web cuando lo necesita y muestra sus fuentes, pero una búsqueda tampoco garantiza que la información sea correcta: abre los enlaces y contrasta.</p>
+        <h3>Sesgos y privacidad</h3>
+        <p>La IA aprende de textos humanos y puede reflejar sus sesgos, así que conviene leer sus respuestas con espíritu crítico. Y por privacidad, evita introducir contraseñas, datos personales o información confidencial; en <a class="tool-link" href="#privacidad-seguridad">esta guía</a> explicamos qué revisar antes de compartir información con cualquier herramienta online.</p>
+        <div class="tip">⚠️ <strong>Regla de oro:</strong> cuanto más importante sea el dato, más necesario es comprobarlo fuera de la IA.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+      </div>
+    </article>
+    <article class="article" id="png-jpg">
+      <div class="eyebrow">Tutorial · Images</div>
+      <h2>PNG a JPG: diferencias y cuándo conviene convertir una imagen</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">PNG y JPG son dos formatos de imagen muy conocidos, pero están pensados para necesidades diferentes.</p>
+      <div class="article-content">
+        <h3>PNG: ideal cuando necesitas calidad y transparencia</h3>
+        <p>PNG utiliza compresión sin pérdida y puede conservar transparencias. Por eso es habitual encontrarlo en logotipos, iconos, capturas de pantalla y gráficos con zonas de color definido.</p>
+        <h3>JPG: práctico para fotografías</h3>
+        <p>JPG utiliza compresión con pérdida y suele producir archivos más pequeños. Es una opción habitual para fotografías y para imágenes que necesitas compartir o almacenar ocupando menos espacio.</p>
+        <h3>¿Cuándo convertir PNG a JPG?</h3>
+        <p>Puede tener sentido cuando la transparencia no es necesaria y quieres un archivo más compatible o ligero. Si la imagen tiene transparencia, recuerda que al pasarla a JPG esa característica no se conserva.</p>
+        <p>Para una conversión rápida puedes utilizar el <a class="tool-link" href="/#pngjpg">convertidor PNG → JPG de TOOLBOX</a>.</p>
+        <h3>¿Qué significa que PNG tenga compresión sin pérdida?</h3>
+        <p>En una imagen PNG, la compresión está diseñada para reducir el tamaño del archivo sin eliminar información de la imagen de la misma forma que ocurre con la compresión con pérdida. Esto resulta interesante cuando hay bordes definidos, texto, iconos o gráficos en los que pequeñas modificaciones pueden hacerse visibles. Por eso PNG suele ser una opción habitual para elementos gráficos que necesitan conservar detalles y, además, puede mantener transparencia.</p>
+        <p>JPG sigue otro enfoque. Su compresión puede reducir bastante el tamaño de una fotografía, pero parte de la información original se descarta. En una fotografía normal esto puede ser una ventaja porque permite conseguir un archivo más manejable sin que la diferencia sea importante para un uso cotidiano. Si vuelves a guardar una imagen JPG repetidamente, sin embargo, la compresión puede terminar siendo más apreciable.</p>
+        <h3>¿Qué ocurre con la transparencia?</h3>
+        <p>La transparencia es uno de los puntos más importantes al convertir PNG a JPG. JPG no conserva un fondo transparente como PNG. Si un logotipo o gráfico tiene zonas transparentes, tendrás que decidir qué fondo debe aparecer antes de utilizar el resultado. Para una fotografía sin transparencia, este inconveniente normalmente no existe.</p>
+        <h3>Ejemplo práctico</h3>
+        <p>Imagina que tienes una captura de pantalla PNG y quieres enviarla por una plataforma que admite JPG. Si no contiene transparencia y el tamaño del archivo es innecesariamente grande, convertirla puede ser una opción razonable. En cambio, si se trata de un logotipo con fondo transparente que vas a colocar sobre diferentes fondos, conservar PNG suele tener más sentido.</p>
+        <p>También conviene pensar en el destino. Para una fotografía que solo vas a compartir, un JPG de buena calidad suele ser cómodo. Para editar una imagen varias veces o conservar un gráfico con transparencia, puede ser mejor mantener el original PNG y crear una copia en JPG cuando la necesites.</p>
+        <h3>Antes de convertir, conserva el original</h3>
+        <p>Una buena costumbre es no sustituir inmediatamente el archivo original. Guarda la imagen PNG y utiliza el JPG como una copia destinada a compartir, subir o almacenar. De esta forma siempre puedes volver al archivo original si más adelante necesitas otra conversión o una edición diferente.</p>
+        <div class="tip">💡 <strong>Consejo:</strong> si solo quieres una conversión rápida, prueba el <a class="tool-link" href="/#pngjpg">convertidor PNG → JPG de TOOLBOX</a> y compara el tamaño y la calidad del resultado antes de eliminar el archivo original.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="ocr">
+      <div class="eyebrow">Tutorial · OCR</div>
+      <h2>How to Extract Text from an Image with OCR</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">El OCR permite reconocer caracteres que aparecen en una fotografía, captura o documento escaneado y convertirlos en texto que puedes editar.</p>
+      <div class="article-content">
+        <h3>¿Para qué sirve?</h3>
+        <p>Es útil cuando tienes apuntes fotografiados, una página impresa o una captura y necesitas reutilizar el contenido sin escribirlo todo manualmente.</p>
+        <h3>Consejos para obtener mejores resultados</h3>
+        <ul><li>Utiliza una imagen nítida y con buena iluminación.</li><li>Evita que el texto aparezca inclinado cuando sea posible.</li><li>Procura que las letras tengan suficiente contraste con el fondo.</li><li>Revisa el resultado después del reconocimiento: algunos caracteres pueden confundirse.</li></ul>
+        <h3>Cómo funciona el reconocimiento de texto</h3>
+        <p>OCR son las siglas de reconocimiento óptico de caracteres. En lugar de tratar una fotografía como una simple imagen, el sistema analiza las formas que aparecen en ella e intenta reconocer letras, números y otros caracteres. El resultado es texto que puedes seleccionar, copiar y editar. Esto puede ahorrar bastante tiempo cuando el contenido original está en papel o solo existe como una captura.</p>
+        <h3>Un ejemplo cotidiano</h3>
+        <p>Supón que tienes una foto de una página de apuntes. Escribir manualmente cada línea puede llevar mucho tiempo. Con OCR puedes obtener una primera versión del texto y después revisarla. Lo mismo puede ocurrir con una captura de una dirección, una lista, un fragmento de un documento o una imagen con información que necesitas reutilizar.</p>
+        <h3>La calidad de la imagen influye mucho</h3>
+        <p>El OCR no puede leer con la misma facilidad todas las imágenes. Una fotografía desenfocada, con sombras fuertes, letras pequeñas o un fondo con mucho ruido puede producir más errores. Por eso conviene empezar con una imagen clara, bien iluminada y con el texto lo más recto posible. Si puedes elegir entre una foto borrosa y una captura nítida, la segunda suele ser una mejor fuente.</p>
+        <h3>Revisa siempre el texto obtenido</h3>
+        <p>El reconocimiento automático no significa que el resultado sea perfecto. Caracteres parecidos pueden confundirse y algunos símbolos, tildes, tablas o saltos de línea pueden necesitar corrección. La revisión es especialmente importante si vas a utilizar el texto en un trabajo, documento o publicación.</p>
+        <p>Una buena rutina consiste en revisar primero títulos y palabras difíciles, después números y finalmente el formato general. Así detectas rápidamente los errores que podrían cambiar el significado del contenido. Si la imagen original contiene varias columnas o una estructura compleja, presta especial atención al orden en el que aparece el texto reconocido.</p>
+        <h3>OCR y privacidad</h3>
+        <p>Antes de procesar documentos personales, comprueba cómo funciona la herramienta que vas a utilizar. Si el reconocimiento se realiza localmente en el navegador, el tratamiento del archivo es diferente de un servicio que necesita enviarlo a un servidor. En cualquier caso, evita introducir información sensible cuando no sea necesario.</p>
+        <p>En TOOLBOX puedes probar el <a class="tool-link" href="/#ocr">OCR de imágenes</a> directamente desde el navegador y utilizar el resultado como punto de partida para editar o copiar el texto.</p>
+        <p>Cuando tengas el texto, puedes pedirle a <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a> que lo resuma, lo convierta en un esquema o lo explique con palabras sencillas. Hay más ideas en <a class="tool-link" href="#estudiar-ia">cómo estudiar con IA</a>.</p>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="pomodoro">
+      <div class="eyebrow">Guía · Productivity</div>
+      <h2>Pomodoro: cómo organizar sesiones de estudio y trabajo</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">La técnica Pomodoro divide el trabajo en periodos de concentración y descansos. Es una forma sencilla de empezar una tarea sin intentar hacerlo todo de golpe.</p>
+      <div class="article-content">
+        <h3>Empieza con un objetivo concreto</h3>
+        <p>En lugar de sentarte con una meta demasiado amplia, define una acción concreta para la sesión: leer unas páginas, resolver ejercicios, escribir un apartado o revisar un documento.</p>
+        <h3>Trabaja por bloques</h3>
+        <p>Durante el bloque de concentración intenta centrarte en una sola tarea. Al terminar, realiza un descanso y vuelve después al siguiente bloque.</p>
+        <h3>Adapta el método a tu rutina</h3>
+        <p>No existe una duración universal que funcione igual para todo el mundo. Lo importante es encontrar bloques que puedas mantener de forma cómoda y utilizar los descansos de manera regular.</p>
+        <p>Puedes probar el <a class="tool-link" href="/#pomodoro">temporizador Pomodoro de TOOLBOX</a> para llevar el tiempo sin instalar nada.</p>
+        <h3>¿Cómo empezar una sesión Pomodoro?</h3>
+        <p>Empieza por elegir una tarea concreta y preparar lo que necesitas antes de iniciar el temporizador. Si vas a estudiar, por ejemplo, puedes decidir que durante el bloque vas a leer un tema y anotar las ideas principales. Si vas a trabajar con un documento, puedes dedicar el bloque a escribir un apartado concreto. Tener un objetivo claro hace que el tiempo de concentración sea más fácil de aprovechar.</p>
+        <h3>Qué hacer durante el descanso</h3>
+        <p>El descanso sirve para separar una sesión de otra. Puedes levantarte, beber agua, cambiar de actividad durante unos minutos o simplemente alejarte de la tarea. No es necesario convertir el descanso en otra sesión de trabajo. La idea es volver al siguiente bloque con la mente más despejada.</p>
+        <h3>Qué hacer si te interrumpen</h3>
+        <p>Las interrupciones son normales. Si aparece una tarea urgente, anótala para no olvidarla y decide si puedes continuar después. Si una notificación no es importante, puedes dejarla para el descanso. El objetivo del método no es crear una rutina perfecta, sino ayudarte a proteger periodos de atención.</p>
+        <h3>Adapta la duración a la tarea</h3>
+        <p>La técnica se popularizó con bloques concretos, pero una herramienta de temporizador no tiene por qué obligarte a utilizar siempre la misma duración. Una tarea sencilla puede necesitar un bloque corto, mientras que una actividad que requiere concentración profunda puede funcionar mejor con un periodo diferente. Lo importante es mantener una separación clara entre concentración y descanso.</p>
+        <h3>Cómo saber si te está funcionando</h3>
+        <p>Después de varios días puedes observar si terminas más tareas, si empiezas con menos resistencia o si los descansos te ayudan a mantener la atención. Si una configuración te resulta incómoda, cámbiala. La productividad no consiste en seguir un cronómetro de forma rígida, sino en encontrar una estructura que puedas mantener.</p>
+        <p>El <a class="tool-link" href="/#pomodoro">temporizador Pomodoro de TOOLBOX</a> te permite controlar las sesiones desde el navegador y mantener la herramienta separada de tu lista de tareas o de tu planificación semanal.</p>
+        <p>También puedes anotar al terminar cada sesión qué parte has completado. Esta pequeña revisión ayuda a decidir cuál será el siguiente paso y evita perder tiempo pensando de nuevo por dónde continuar. Si una tarea necesita varias sesiones, dividirla en objetivos pequeños puede hacer que el progreso sea más visible.</p>
+        <p>Si estudias, combina el método con la IA: pídele a <a class="tool-link" href="/TOOLBOXAI">TOOLBOX AI</a> un plan dividido en bloques y síguelo con el temporizador. Más ideas en <a class="tool-link" href="#estudiar-ia">estudiar con IA sin dejar de aprender</a>.</p>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="contrasenas">
+      <div class="eyebrow">Guía · Security digital</div>
+      <h2>What Makes a Password Secure?</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">Una contraseña fuerte debe ser difícil de adivinar y, sobre todo, no debería reutilizarse en servicios importantes.</p>
+      <div class="article-content">
+        <h3>La longitud importa</h3>
+        <p>Las contraseñas más largas suelen ofrecer más combinaciones posibles. Evita datos fáciles de relacionar contigo, como nombres, fechas o palabras demasiado obvias.</p>
+        <h3>No reutilices la misma contraseña</h3>
+        <p>Si una contraseña se filtra en un servicio, reutilizarla en otras cuentas aumenta el riesgo. Utilizar contraseñas diferentes reduce ese problema.</p>
+        <h3>Utiliza un gestor cuando sea necesario</h3>
+        <p>Cuando tienes muchas cuentas, memorizar una contraseña diferente para cada servicio puede resultar complicado. Un gestor de contraseñas puede ayudarte a almacenarlas de forma organizada.</p>
+        <p>También puedes consultar las <a class="tool-link" href="/#password">herramientas de contraseñas de TOOLBOX</a> para generar contraseñas aleatorias o memorables.</p>
+        <h3>Qué hace que una contraseña sea más resistente</h3>
+        <p>La longitud es uno de los factores más importantes. Una contraseña larga ofrece muchas más combinaciones posibles que una contraseña corta y predecible. También es recomendable evitar información pública o fácil de relacionar contigo, como nombres, fechas, equipos, lugares o palabras que utilizas habitualmente.</p>
+        <h3>Por qué no conviene repetir contraseñas</h3>
+        <p>Utilizar la misma contraseña en varios servicios crea un efecto dominó. Si una cuenta queda comprometida y la contraseña se reutiliza en otro sitio, esa segunda cuenta también puede quedar expuesta. Utilizar una contraseña diferente para cada servicio limita el impacto de un problema en una sola cuenta.</p>
+        <h3>Contraseñas memorables y contraseñas aleatorias</h3>
+        <p>No todas las situaciones requieren el mismo tipo de contraseña. Una contraseña aleatoria puede ser útil cuando no necesitas memorizarla y puedes guardarla en un gestor. Una contraseña memorable puede resultar más práctica cuando necesitas recordarla, siempre que tenga suficiente longitud y no esté basada en información obvia.</p>
+        <h3>Protege también la cuenta, no solo la contraseña</h3>
+        <p>Cuando un servicio ofrece autenticación en dos pasos, activarla añade una capa adicional de protección. También conviene mantener actualizados el correo de recuperación y otros métodos de seguridad. Una buena contraseña es importante, pero forma parte de un conjunto de hábitos de seguridad.</p>
+        <h3>Qué evitar</h3>
+        <p>Evita contraseñas extremadamente cortas, secuencias fáciles, palabras evidentes y combinaciones que todo el mundo podría relacionar contigo. Tampoco compartas tus contraseñas por mensajes o las guardes en lugares públicos. Si sospechas que una contraseña ha quedado expuesta, cámbiala en el servicio correspondiente y revisa si se reutilizaba en otras cuentas.</p>
+        <p>Si utilizas un gestor de contraseñas, procura protegerlo con una contraseña principal sólida y activar las opciones de seguridad disponibles. La comodidad de no tener que recordar todas las claves debe ir acompañada de buenos hábitos para proteger el acceso al propio gestor.</p>
+        <p>Una buena práctica adicional es revisar de vez en cuando las cuentas que ya no utilizas y eliminar accesos innecesarios. Mantener menos cuentas activas reduce la cantidad de servicios que tienes que proteger y hace más sencillo detectar cualquier actividad que no reconozcas.</p>
+        <div class="tip">💡 <strong>Consejo:</strong> las <a class="tool-link" href="/#password">herramientas de contraseñas de TOOLBOX</a> pueden ayudarte a generar opciones aleatorias o memorables. Úsalas como ayuda para crear contraseñas diferentes y evita publicar o compartir la contraseña que finalmente elijas.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="colores">
+      <div class="eyebrow">Guía · Diseño web</div>
+      <h2>How to Choose Colors for a Website</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">Una buena combinación de colores no necesita ser complicada. Lo importante es que exista jerarquía visual y que el texto siga siendo fácil de leer.</p>
+      <div class="article-content">
+        <h3>Empieza con un color principal</h3>
+        <p>Elige un color que represente el estilo del proyecto y úsalo para elementos importantes como botones, enlaces o detalles visuales.</p>
+        <h3>Añade colores secundarios con moderación</h3>
+        <p>Un segundo tono puede servir para destacar información, mientras que los fondos neutros ayudan a que la interfaz no resulte saturada.</p>
+        <h3>Comprueba el contraste</h3>
+        <p>El texto debe distinguirse claramente del fondo. Un diseño bonito pierde utilidad si cuesta leerlo.</p>
+        <p>Para experimentar puedes utilizar el <a class="tool-link" href="/#color">generador de colores de TOOLBOX</a>.</p>
+        <h3>Una paleta sencilla suele funcionar mejor</h3>
+        <p>No necesitas utilizar muchos colores para conseguir una interfaz atractiva. Una combinación habitual puede partir de un color principal, un color de apoyo y tonos neutros para fondos y texto. Cuantos más colores introduzcas sin una función clara, más difícil será saber qué elemento es importante.</p>
+        <h3>Asigna una función a cada color</h3>
+        <p>El color principal puede utilizarse para botones y acciones destacadas. Un segundo tono puede marcar estados o elementos secundarios. Los tonos neutros ayudan a separar secciones y mantener el contenido como protagonista. Esta lógica crea una jerarquía visual que permite reconocer rápidamente qué se puede pulsar y qué información es simplemente descriptiva.</p>
+        <h3>El contraste es más importante que el efecto visual</h3>
+        <p>Un texto debe poder leerse sin esfuerzo tanto en una pantalla grande como en un móvil. Comprueba especialmente botones, enlaces y textos pequeños. Los fondos con mucho detalle pueden dificultar la lectura, por lo que un fondo sencillo suele ser una buena base para una interfaz.</p>
+        <h3>Piensa en el modo oscuro y el modo claro</h3>
+        <p>Si tu página ofrece diferentes temas, comprueba que los colores sigan teniendo suficiente contraste en ambos. Un tono que funciona bien sobre un fondo oscuro puede necesitar un ajuste cuando se utiliza sobre blanco. También es conveniente que los estados de botones y enlaces sigan siendo reconocibles sin depender únicamente del color.</p>
+        <h3>Ejemplo para una web</h3>
+        <p>Imagina una página con fondo oscuro, texto claro y un color morado como identidad visual. El morado puede reservarse para acciones importantes, enlaces y pequeños detalles, mientras que los fondos y bordes utilizan tonos más neutros. El resultado suele sentirse más ordenado que una interfaz donde cada tarjeta utiliza un color diferente.</p>
+        <p>Puedes experimentar con el <a class="tool-link" href="/#color">generador de colores de TOOLBOX</a> para probar tonos y construir una combinación que después puedas revisar en tu diseño real.</p>
+        <p>Antes de dar una paleta por terminada, pruébala con contenido real: títulos, párrafos, botones y mensajes de error. Ver los colores dentro de la interfaz completa ayuda a detectar combinaciones que parecían correctas por separado pero que no funcionan tan bien juntas.</p>
+        <p>Si trabajas en equipo, documentar los colores principales también ayuda a mantener la coherencia. Puedes guardar los códigos de los tonos utilizados para que botones, enlaces y nuevos apartados mantengan el mismo lenguaje visual a medida que el proyecto crece.</p>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="calculadora">
+      <div class="eyebrow">Guía · Utilities</div>
+      <h2>When to Use an Online Calculator</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">Las calculadoras digitales son útiles para operaciones rápidas, comprobaciones y cálculos cotidianos cuando quieres evitar errores al hacerlos manualmente.</p>
+      <div class="article-content">
+        <h3>Comprueba siempre qué operación estás haciendo</h3>
+        <p>Antes de introducir los números, identifica si necesitas sumar, restar, multiplicar, dividir o utilizar una combinación de operaciones.</p>
+        <h3>Úsala como comprobación</h3>
+        <p>En ejercicios de estudio puede servir para verificar un resultado después de haber planteado el procedimiento. Así puedes detectar errores sin sustituir la comprensión del problema.</p>
+        <p>Puedes abrir la <a class="tool-link" href="/#calculator">calculadora online de TOOLBOX</a> desde la página principal.</p>
+        <h3>Para qué sirve una calculadora online</h3>
+        <p>Una calculadora online es especialmente útil cuando necesitas una operación rápida y no quieres abrir una aplicación independiente. Puede servir para comprobar una suma, calcular un porcentaje, dividir cantidades, revisar una cuenta o hacer una operación que prefieres verificar antes de utilizar el resultado.</p>
+        <h3>Porcentajes y cálculos cotidianos</h3>
+        <p>Los porcentajes aparecen en muchas situaciones: descuentos, aumentos, repartos y comparaciones. En vez de hacer la operación mentalmente cuando los números son grandes, puedes utilizar una calculadora como comprobación. Es importante, eso sí, introducir primero la operación que realmente representa el problema.</p>
+        <h3>Úsala para comprobar, no para sustituir el razonamiento</h3>
+        <p>En el estudio, una calculadora puede confirmar un resultado después de plantear correctamente el procedimiento. Si el resultado parece extraño, vuelve al planteamiento y revisa las operaciones. Una herramienta digital es más útil cuando te ayuda a detectar un error que cuando introduces números sin saber qué estás calculando.</p>
+        <h3>Revisa el orden de las operaciones</h3>
+        <p>Cuando una expresión combina varias operaciones, el resultado depende del orden en que se realizan. Si tienes dudas, divide el cálculo en pasos sencillos o utiliza paréntesis cuando la herramienta los admita. Esto reduce errores y hace que puedas comprobar cada parte de la operación.</p>
+        <h3>Un ejemplo sencillo</h3>
+        <p>Si una compra cuesta 80 euros y quieres calcular un 15 % de descuento, primero identifica qué representa el porcentaje y después realiza el cálculo. La calculadora puede ayudarte con la parte numérica, pero comprender qué significa el 15 % es lo que permite saber si el resultado tiene sentido.</p>
+        <p>La <a class="tool-link" href="/#calculator">calculadora online de TOOLBOX</a> está pensada para operaciones rápidas desde el navegador, sin necesidad de instalar una aplicación específica para ese cálculo.</p>
+        <p>Cuando termines un cálculo importante, comprueba también si la unidad utilizada es la correcta. Un resultado numéricamente correcto puede ser inútil si mezclas euros con céntimos, minutos con horas o unidades diferentes. Revisar este detalle solo lleva unos segundos y evita muchos errores cotidianos.</p>
+        <p>Para cálculos repetitivos, puedes separar primero los datos y después introducirlos en la calculadora. Es una forma sencilla de evitar pulsaciones equivocadas y de poder repetir el proceso si necesitas comprobarlo más tarde.</p>
+        <p>Si el cálculo forma parte de una tarea más grande, guarda también los datos de partida y el resultado final. Así podrás repetir la operación o explicar de dónde salió el número si necesitas revisarlo después.</p>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="pdf">
+      <div class="eyebrow">Guía · Files y PDF</div>
+      <h2>Pasar un documento o una imagen a PDF sin instalar programas</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">El PDF es uno de los formatos más utilizados para compartir documentos, porque se visualiza igual en cualquier dispositivo y mantiene el diseño original. No siempre hace falta un programa de escritorio para conseguirlo.</p>
+      <div class="article-content">
+        <h3>¿Por qué se usa tanto el PDF?</h3>
+        <p>A diferencia de otros formatos editables, un PDF conserva el formato exacto del documento (tipografía, márgenes, imágenes) sin importar qué dispositivo o sistema operativo lo abra, lo que lo hace ideal para enviar trabajos, facturas o formularios rellenados.</p>
+        <h3>Cuándo conviene convertir a PDF</h3>
+        <p>Tiene sentido cuando quieres que un documento ya no se edite por accidente, cuando necesitas enviar varias páginas o imágenes como un único archivo, o cuando un formulario o trámite te pide específicamente ese formato.</p>
+        <h3>Hazlo desde el navegador, sin descargar software</h3>
+        <p>Muchas tareas relacionadas con PDF no requieren instalar un programa aparte: convertir una imagen, unir archivos o preparar un documento final puede hacerse directamente en la web, sin ocupar espacio en tu dispositivo ni depender del sistema operativo que uses.</p>
+        <h3>PDF no significa necesariamente un programa instalado</h3>
+        <p>El formato PDF es útil porque está pensado para conservar la presentación de un documento al compartirlo. Esto facilita enviar trabajos, formularios, instrucciones o conjuntos de páginas sin depender de que la otra persona tenga exactamente el mismo programa con el que se creó el archivo.</p>
+        <h3>Cuándo es buena idea utilizar PDF</h3>
+        <p>Si el objetivo es compartir una versión final, el PDF puede resultar más cómodo que un formato editable. También puede ser útil cuando varias imágenes deben entregarse juntas o cuando un trámite indica expresamente que el archivo debe estar en PDF. Antes de convertir, comprueba siempre los requisitos concretos del sitio o de la persona que recibirá el documento.</p>
+        <h3>Comprueba el resultado después de convertir</h3>
+        <p>No basta con crear el archivo. Abre el PDF y revisa que las páginas estén en el orden correcto, que las imágenes se vean completas y que el texto conserve una lectura adecuada. Si el documento original tenía elementos especiales, como enlaces o formularios, comprueba que sigan funcionando cuando sea importante.</p>
+        <h3>El tamaño del archivo también importa</h3>
+        <p>Un PDF con muchas fotografías puede ocupar bastante espacio. Si tienes que enviarlo por correo o subirlo a una plataforma con límite de tamaño, puede ser necesario optimizar las imágenes antes de crear el documento final. No conviene reducir la calidad sin comprobar primero cuánto necesitas conservar.</p>
+        <h3>Una rutina sencilla para trabajar con documentos</h3>
+        <p>Primero prepara el contenido, después revisa el orden de las páginas y finalmente crea o convierte el archivo. Mantén una copia del original para poder modificarlo más adelante. Esta pequeña organización evita tener que reconstruir un documento desde cero si descubres un error después de compartirlo.</p>
+        <p>Las herramientas online pueden ser útiles para tareas concretas relacionadas con archivos porque permiten trabajar desde el navegador. En TOOLBOX, por ejemplo, puedes utilizar el <a class="tool-link" href="/#pngjpg">conversor PNG → JPG</a> cuando necesites preparar una imagen antes de incorporarla a un documento.</p>
+        <div class="tip">💡 <strong>Consejo:</strong> si solo necesitas convertir una imagen a otro formato antes de incluirla en un documento, el <a class="tool-link" href="/#pngjpg">conversor PNG → JPG de TOOLBOX</a> te puede ahorrar ese paso previo.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="sin-instalar">
+      <div class="eyebrow">Guía · Compatibility</div>
+      <h2>Por qué no necesitas una app para cada plataforma</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">Es habitual pensar que para hacer una tarea digital hace falta descargar un programa o una app distinta según el dispositivo. Con herramientas basadas en el navegador, eso deja de ser necesario.</p>
+      <div class="article-content">
+        <h3>Un único sitio, cualquier sistema operativo</h3>
+        <p>Una herramienta que funciona en el navegador se comporta igual en Android, Windows, macOS o Linux, porque no depende de un software instalado sino de la propia web. No hay versiones distintas que mantener ni "app para Android" frente a "programa para Windows".</p>
+        <h3>Sin descargas, sin espacio ocupado</h3>
+        <p>Al no instalar nada, no ocupas almacenamiento en tu móvil ni en tu ordenador, y evitas el proceso de buscar, descargar y actualizar un programa cada vez que lo necesitas.</p>
+        <h3>Accesible desde cualquier dispositivo al instante</h3>
+        <p>Puedes empezar una tarea en el ordenador y seguir luego desde el móvil simplemente abriendo la misma dirección web, sin depender de si esa plataforma tiene una app disponible.</p>
+        <p>Todas las <a class="tool-link" href="/#herramientas">herramientas de TOOLBOX</a> funcionan así: se abren directamente desde el navegador, sin pasos adicionales.</p>
+        <h3>Qué ventajas tiene trabajar desde el navegador</h3>
+        <p>La principal ventaja de una herramienta online es la simplicidad. Abres la página, realizas la tarea y continúas. No tienes que localizar un instalador, esperar una instalación ni comprobar si existe una versión compatible con tu sistema. Para necesidades puntuales, esta diferencia puede ahorrar bastante tiempo.</p>
+        <h3>Especialmente útil cuando cambias de dispositivo</h3>
+        <p>Si utilizas un ordenador en casa y un móvil fuera, una herramienta web puede resultar cómoda porque la dirección es la misma. Siempre que la función esté adaptada al dispositivo, puedes acceder desde el navegador sin tener que buscar una aplicación diferente. Esto también resulta práctico en ordenadores donde no tienes permisos para instalar programas.</p>
+        <h3>Pero una herramienta online no significa que todo sea igual</h3>
+        <p>El navegador es el punto de acceso, pero cada servicio puede procesar los datos de una manera distinta. Algunas funciones pueden ejecutarse directamente en el dispositivo y otras necesitan comunicarse con un servidor. Por eso conviene leer la información de privacidad cuando trabajas con archivos personales o datos sensibles.</p>
+        <h3>Qué mirar antes de usar una herramienta</h3>
+        <p>Comprueba que la página explique claramente qué hace, que la interfaz sea comprensible y que puedas recuperar el resultado. También es recomendable evitar sitios que pidan información que no parece necesaria para una tarea sencilla. Si una herramienta gratuita exige datos personales sin explicar para qué los necesita, es razonable buscar otra opción.</p>
+        <h3>Ideal para tareas rápidas</h3>
+        <p>Convertir una imagen, calcular una cantidad, extraer texto de una foto o utilizar un temporizador son ejemplos de tareas que pueden resolverse rápidamente desde el navegador. En estos casos, una colección de herramientas digitales reunidas en un mismo sitio puede ser más práctica que instalar un programa distinto para cada necesidad.</p>
+        <p>TOOLBOX reúne herramientas de texto, imagen, productividad, cálculo y otras utilidades en un mismo sitio. Puedes volver a la sección de <a class="tool-link" href="/#herramientas">herramientas online</a> y elegir la que corresponda a tu tarea.</p>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+    <article class="article" id="privacidad-seguridad">
+      <div class="eyebrow">Guía · Privacy and Security</div>
+      <h2>Is It Safe to Use Online Tools with Your Data?</h2>
+      <div class="article-meta">
+  <span>📅 Published on <strong>7 de octubre de 2026</strong></span>
+  <span>✍️ Written by <strong>the TOOLBOX team</strong></span>
+</div>
+        <p class="article-intro">Antes de usar cualquier sitio web para trabajar con tus archivos o información, conviene saber qué ocurre con esos datos y dónde se procesan.</p>
+      <div class="article-content">
+        <h3>Qué revisar antes de confiar en un sitio</h3>
+        <p>Comprueba si la web explica claramente qué hace con los archivos que subes, si los envía a un servidor externo o si el procesado ocurre directamente en tu propio navegador. Esa diferencia importa, sobre todo con documentos o imágenes personales.</p>
+        <h3>Procesar en el navegador frente a subir a un servidor</h3>
+        <p>Algunas tareas, como convertir una imagen o editarla, pueden realizarse enteramente en tu navegador sin que el archivo llegue a enviarse a ningún servidor. Cuando eso es posible, suele ser la opción más segura para tus datos.</p>
+        <h3>Buenas prácticas generales</h3>
+        <ul><li>Evita subir documentos con información sensible a sitios que no conozcas.</li><li>Revisa si existe una política de privacidad accesible.</li><li>Prefiere herramientas que indiquen claramente si el procesado es local o en servidor.</li></ul>
+        <p>Puedes consultar la <a class="tool-link" href="/privacidad.html">política de privacidad de TOOLBOX</a> para ver cómo se gestionan los datos en cada herramienta.</p>
+        <h3>No todas las herramientas online procesan los datos de la misma forma</h3>
+        <p>Que una herramienta funcione desde un navegador no significa automáticamente que el archivo se quede en el dispositivo. Algunas funciones se ejecutan localmente y otras necesitan enviar información a un servidor para realizar el procesamiento. Por eso, cuando la privacidad importa, no conviene asumir: hay que comprobar cómo funciona el servicio concreto.</p>
+        <h3>Qué información merece especial cuidado</h3>
+        <p>Documentos con datos personales, fotografías privadas, credenciales, información financiera o cualquier contenido que no quieras compartir deben tratarse con especial precaución. Si una tarea puede hacerse sin incluir esos datos, es preferible no introducirlos. Cuando necesites trabajar con un archivo sensible, revisa primero la política de privacidad y la explicación del procesamiento.</p>
+        <h3>HTTPS y privacidad no son exactamente lo mismo</h3>
+        <p>Que una página utilice HTTPS es importante porque ayuda a proteger la comunicación entre el navegador y el sitio, pero no responde por sí solo a la pregunta de qué hace el servicio con la información después. Para entender el tratamiento de los datos hay que consultar también la política de privacidad y las condiciones de la herramienta.</p>
+        <h3>Qué hacer con las herramientas de inteligencia artificial</h3>
+        <p>Las herramientas de IA funcionan de una manera diferente a una función que procesa todo localmente. Para generar una respuesta, el texto introducido puede tener que enviarse al servicio de inteligencia artificial correspondiente. Por eso no deberías introducir contraseñas, datos privados o información sensible en una herramienta de IA solo para probarla.</p>
+        <h3>Una comprobación rápida antes de subir un archivo</h3>
+        <p>Pregúntate: ¿necesito realmente subir este archivo?, ¿puedo utilizar una copia sin datos personales?, ¿la web explica cómo se procesa?, ¿sé qué resultado voy a obtener? Si no tienes claras estas respuestas, es mejor detenerte y revisar la información antes de continuar.</p>
+        <p>En TOOLBOX puedes consultar la <a class="tool-link" href="/privacidad.html">política de privacidad</a> para conocer cómo se gestionan los datos de las diferentes funciones. La información de privacidad debe acompañar a las herramientas, no sustituirse por una promesa genérica de seguridad.</p>
+        <p>Si quieres saber qué puede y qué no puede hacer un asistente de IA, lee también <a class="tool-link" href="#limites-ia">los límites de la IA</a> y <a class="tool-link" href="#ia-toolbox">qué datos guarda TOOLBOX AI</a>.</p>
+        <div class="tip">🛡️ <strong>Regla sencilla:</strong> utiliza solo los datos necesarios para completar una tarea y evita introducir información sensible cuando no sea imprescindible.</div>
+        <a class="back-top" href="#indice">↑ Back to the quick index</a>
+</div>
+    </article>
+  </section>
+  <section class="faq" id="preguntas">
+    <div class="section-head"><div><h2>❓ Preguntas frecuentes</h2><p>Respuestas rápidas sobre el contenido y las herramientas de TOOLBOX.</p></div></div>
+    <div class="faq-item"><h3>¿Qué es TOOLBOX?</h3><p>TOOLBOX reúne herramientas online para tareas de texto, imágenes, productividad, cálculo, seguridad y otras utilidades, con el objetivo de resolver tareas desde un mismo sitio.</p></div>
+    <div class="faq-item"><h3>¿Necesito instalar programas?</h3><p>Las herramientas disponibles en TOOLBOX están pensadas para utilizarse desde el navegador, por lo que muchas tareas pueden realizarse directamente online.</p></div>
+    <div class="faq-item"><h3>¿Para quién están pensadas estas guías?</h3><p>Para estudiantes, personas que trabajan con documentos e imágenes y cualquier usuario que quiera aprender trucos prácticos para realizar tareas digitales de forma más sencilla.</p></div>
+    <div class="faq-item"><h3>¿Se publicarán nuevos tutoriales?</h3><p>Sí. La sección puede crecer con nuevas guías sobre herramientas online, estudio, productividad, texto, imágenes, archivos y seguridad digital.</p></div>
+    <div class="faq-item"><h3>Is TOOLBOX an app or a program I need to download?</h3><p>No. TOOLBOX es una plataforma web: no hay que descargar ni instalar ningún software. Funciona directamente desde el navegador en Android, Windows, macOS, Linux o cualquier dispositivo con conexión a internet.</p></div>
+    <div class="faq-item"><h3>Is it free?</h3><p>Yes, TOOLBOX tools are free, and you do not need to create an account to use them.</p></div>
+    <div class="faq-item"><h3>Are my files and data safe?</h3><p>Tools como el conversor de imágenes, el editor o el OCR procesan el contenido en tu propio navegador, sin enviarlo a un servidor. Las herramientas de inteligencia artificial sí envían el texto que escribes para poder generar una respuesta, así que evita incluir información sensible. Puedes ver más detalles en la <a class="tool-link" href="/privacidad.html">política de privacidad</a>.</p></div>
+    <div class="faq-item"><h3>Can I use TOOLBOX on my phone?</h3><p>Sí. La web está adaptada a pantallas pequeñas, por lo que puedes usar cualquiera de las herramientas desde un móvil Android o iPhone sin instalar ninguna aplicación.</p></div>
+    <div class="faq-item"><h3>What tools does TOOLBOX include?</h3><p>Humanizador y corrector de texto con IA, simplificador de textos, temporizador Pomodoro, OCR para extraer texto de imágenes, editor de imágenes, conversor PNG a JPG, calculadora, estilizador de texto, generadores de contraseñas y generador de colores.</p></div>
+      <div class="faq-item"><h3>What is TOOLBOX AI?</h3><p>It is TOOLBOX’s AI assistant. You can chat with it and ask for outlines, summaries, tables, explanations, or programming help. It works in your browser, with nothing to install.</p></div>
+    <div class="faq-item"><h3>Can it create outlines and summaries?</h3><p>Yes. With the Outline, Summary, Explain Simply, Step by Step, Table, and Quiz format shortcuts, the response adapts to the format you choose. Outlines appear as a visual tree that is easy to review.</p></div>
+    <div class="faq-item"><h3>Are my AI conversations saved?</h3><p>They are saved in your device’s browser, and you can delete them whenever you want. To generate each response, the text you enter is sent to the AI service, so avoid including passwords, personal data, or sensitive information.</p></div>
+    <div class="faq-item"><h3>Can AI make mistakes?</h3><p>Yes. It can make mistakes or confidently invent information, especially numbers, sources, and recent topics. Always verify important information with reliable sources.</p></div>
+    <div class="faq-item"><h3>What is a prompt?</h3><p>It is the instruction you give AI. The clearer you are about what you want, who it is for, and the format you need, the better the responses tend to be.</p></div>
+    <div class="faq-item"><h3>Can TOOLBOX AI search the internet?</h3><p>Yes. When a question depends on current information, it searches the web on its own, lets you know while it is searching, and displays linked sources. To do this, it sends a query generated from your message to a search engine, so avoid including personal data. Always check the sources.</p></div>
+  </section>
+  <section class="cta">
+    <h2>🧰 ¿Buscas una herramienta?</h2>
+    <p>Vuelve a TOOLBOX y encuentra calculadoras, herramientas de texto, imagen, productividad, seguridad y mucho más desde un solo lugar.</p>
+    <div class="cta-actions"><a class="btn" href="/#herramientas">Ver herramientas →</a><a class="btn btn-ghost" href="/TOOLBOXAI">✦ Try TOOLBOX AI</a></div>
+  </section>
+</main>
+<footer>
+  <div style="font-size:30px"><span>🧰 TOOLBOX 2.5</span></div>
+  <br>
+  <div style="font-size:20px">Todas tus herramientas en un solo sitio.</div>
+  <br>
+  <strong>Sin costes, sin complicaciones</strong>
+  <br><br>
+  <div class="footer-links">
+    <a href="/TOOLBOXAI">✦ TOOLBOX AI</a>
+    <a href="/privacidad.html">🔒 Política de privacidad</a>
+    <a href="/terminos.html">📜 Términos y condiciones</a>
+    <a href="/cookies.html">🍪 Uso de cookies</a>
+    <a href="/contacto.html">📧 Contacta con nosotros</a>
+  </div>
+  © 2026 TOOLBOX
+</footer>
+<button id="toTop" type="button" aria-label="Volver arriba" title="Volver arriba">↑</button>
+<script>
+function tema(){
+  document.body.classList.toggle('light');
+  const light=document.body.classList.contains('light');
+  localStorage.setItem('toolboxTheme',light?'light':'dark');
+  document.getElementById('themeButton').textContent=light?'☀️':'🌙';
+}
+(function(){
+  const light=localStorage.getItem('toolboxTheme')==='light';
+  if(light){document.body.classList.add('light');document.getElementById('themeButton').textContent='☀️';}
+})();
+
+(function(){
+  const links=[...document.querySelectorAll('.blog-index-links a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const arts=[...map.keys()].map(id=>document.getElementById(id)).filter(Boolean);
+  if(!('IntersectionObserver' in window)||!arts.length)return;
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      links.forEach(l=>l.classList.remove('active'));
+      const a=map.get(e.target.id);
+      if(a){a.classList.add('active');
+        const box=a.parentElement;
+        box.scrollTo({left:a.offsetLeft-box.clientWidth/2+a.clientWidth/2,behavior:'smooth'});}
+    });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  arts.forEach(a=>io.observe(a));
+})();
+
+(function(){
+  const $=(q,r)=>(r||document).querySelector(q), $$=(q,r)=>[...(r||document).querySelectorAll(q)];
+  const norm=t=>t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+  /* filtros + buscador de tutoriales */
+  const cards=$$('.grid .card'), chips=$$('.fchip'), q=$('#blogSearch'), none=$('#noResults');
+  let cat='all';
+  const apply=()=>{const t=norm(q.value.trim());let n=0;
+    cards.forEach(c=>{const ok=(cat==='all'||c.dataset.cat===cat)&&(!t||norm(c.textContent).includes(t));c.hidden=!ok;if(ok)n++;});
+    none.hidden=n>0;};
+  chips.forEach(b=>b.addEventListener('click',()=>{cat=b.dataset.cat;chips.forEach(x=>x.classList.toggle('on',x===b));apply();}));
+  q&&q.addEventListener('input',apply);
+
+  /* tiempo de lectura + índice interno de cada artículo */
+  $$('.article').forEach(a=>{
+    const content=$('.article-content',a); if(!content)return;
+    const words=(content.textContent||'').trim().split(/\s+/).length;
+    const meta=$('.article-meta',a);
+    if(meta){const s=document.createElement('span');s.className='read-time';s.textContent='⏱️ '+Math.max(1,Math.round(words/200))+' min de lectura';meta.appendChild(s);}
+    const hs=$$('h3',content); if(hs.length<4)return;
+    const d=document.createElement('details');d.className='toc';
+    const sm=document.createElement('summary');sm.textContent='📑 En este artículo · '+hs.length+' secciones';d.appendChild(sm);
+    const ol=document.createElement('ol');
+    hs.forEach((h,i)=>{h.id=a.id+'-s'+(i+1);const li=document.createElement('li'),l=document.createElement('a');l.href='#'+h.id;l.textContent=h.textContent;li.appendChild(l);ol.appendChild(li);});
+    d.appendChild(ol);content.insertBefore(d,content.firstChild);
+  });
+
+  /* copiar ejemplos de prompts */
+  $$('.prompt-box.good').forEach(b=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='prompt-copy';btn.textContent='Copiar';
+    btn.addEventListener('click',async()=>{const t=$('p',b).textContent;
+      try{await navigator.clipboard.writeText(t);}catch(e){const x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy');}catch(_){}x.remove();}
+      btn.textContent='✓ Copiado';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok');},1400);});
+    b.appendChild(btn);
+  });
+
+  /* barra de progreso + botón volver arriba */
+  const bar=$('#readBar'), top=$('#toTop');
+  const onScroll=()=>{const h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    if(bar)bar.style.width=(max>0?h.scrollTop/max*100:0)+'%';
+    if(top)top.classList.toggle('show',h.scrollTop>700);};
+  top&&top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
