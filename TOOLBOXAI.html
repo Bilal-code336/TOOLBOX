@@ -400,6 +400,146 @@ body.light .md-code{background:#0f172a}
 .src-card.extra{display:none}.src-grid.expanded .src-card.extra{display:flex}
 .web-note{margin-top:10px;padding:8px 12px;border-radius:10px;font-size:12.5px;color:var(--amber);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35)}
 
+
+
+/* =========================================================
+   TOOLBOX AI — REDISEÑO VISUAL 2026
+   Inspiración: asistentes modernos, identidad TOOLBOX morada.
+   Incluye tema claro con contraste real y superficies limpias.
+========================================================= */
+:root{
+  color-scheme:dark;
+  --bg:#0b0c12; --bg2:#101118; --card:#151620; --card2:#191a25;
+  --panel:#12131b; --input:#171821; --border:#292a38; --border2:#39394b;
+  --text:#f5f5fa; --text2:#d8d8e4; --muted:#9999ad; --button:#20212d;
+  --purple:#8057e8; --purple2:#9b7bff; --purple3:#c3b2ff;
+  --shadow:0 14px 40px rgba(0,0,0,.22); --ease:cubic-bezier(.2,.8,.2,1);
+}
+body.light{
+  color-scheme:light;
+  --bg:#fbfbfd; --bg2:#f5f5f9; --card:#ffffff; --card2:#f7f6fb;
+  --panel:#ffffff; --input:#ffffff; --border:#e6e4ee; --border2:#d6d2e2;
+  --text:#242333; --text2:#464459; --muted:#77758d; --button:#f0eef7;
+  --purple:#7045d6; --purple2:#825be8; --purple3:#6843c5;
+  --shadow:0 10px 32px rgba(41,30,75,.08);
+  background:#fbfbfd;
+}
+html{scrollbar-color:var(--border2) transparent}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.012em;background:var(--bg);color:var(--text)}
+button,input,textarea{font:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--purple2);outline-offset:3px}
+.app{background:var(--bg)}
+.sidebar{background:var(--bg2);border-right:1px solid var(--border);padding:18px 14px 14px}
+.sb-top{margin-bottom:22px;padding:2px 4px}
+.brand{gap:11px;text-decoration:none}
+.brand-logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#9b7bff,#6d42d4);box-shadow:0 5px 15px rgba(112,69,214,.22);display:grid;place-items:center}
+.brand-logo span:first-child{font-size:23px;line-height:1}
+.brand-logo span:last-child{display:none}
+.brand strong{font-size:14px;letter-spacing:.035em;font-weight:760}
+.brand small{font-size:11px;color:var(--muted);margin-top:2px}
+.new-chat{min-height:43px;border-radius:13px;background:var(--purple);box-shadow:none;font-size:13px;font-weight:650;transition:background .18s,border-color .18s,transform .18s}
+.new-chat:hover{background:var(--purple2);box-shadow:0 5px 18px rgba(112,69,214,.16);transform:translateY(-1px)}
+.new-chat>span{font-size:19px;font-weight:400}
+.search{margin:15px 0 12px;border-radius:12px;background:var(--card);min-height:40px}
+.search:focus-within{border-color:var(--purple2);box-shadow:0 0 0 3px color-mix(in srgb,var(--purple2) 12%,transparent)}
+.conv-list{gap:3px}
+.conv-item,.conversation-item{border-radius:10px}
+.conv-item:hover,.conversation-item:hover{background:var(--card2)}
+.conv-item.active,.conversation-item.active{background:color-mix(in srgb,var(--purple) 12%,var(--card));border-color:color-mix(in srgb,var(--purple) 24%,var(--border))}
+.sb-foot{border-top:1px solid var(--border);padding-top:13px}
+.status{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 11px}
+.status strong{font-size:12px;font-weight:650}
+.status small,.foot-note{font-size:10.5px;color:var(--muted)}
+.head{height:64px;min-height:64px;padding:0 clamp(16px,3vw,34px);background:color-mix(in srgb,var(--bg) 92%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
+.head-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:color-mix(in srgb,var(--purple) 14%,var(--card));color:var(--purple3);font-size:18px}
+.head-title small{font-size:11px;color:var(--muted);letter-spacing:.01em}
+.icon-btn{border:1px solid transparent;border-radius:10px;transition:background .18s,border-color .18s,color .18s; color:var(--text2)}
+.icon-btn:hover{background:var(--card);border-color:var(--border);color:var(--text);transform:none}
+.menu{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:14px;padding:6px}
+.menu button{border-radius:8px;font-size:13px;padding:10px 12px}
+.menu button:hover{background:var(--card2)}
+.messages{padding:clamp(20px,3.5vh,38px) clamp(16px,4vw,44px) 14px}
+.thread{max-width:790px;gap:27px;padding-bottom:24px}
+.welcome{max-width:760px;margin:clamp(28px,7vh,74px) auto 0;padding:0 8px}
+.welcome-logo{width:66px;height:66px;border-radius:22px;margin-bottom:24px;background:linear-gradient(145deg,color-mix(in srgb,var(--purple) 17%,var(--card)),var(--card));border:1px solid color-mix(in srgb,var(--purple) 25%,var(--border));box-shadow:0 10px 34px color-mix(in srgb,var(--purple) 12%,transparent);animation:none;color:var(--purple3)}
+.welcome h1{font-size:clamp(31px,4.2vw,43px);font-weight:680;letter-spacing:-.055em;line-height:1.13;margin-bottom:14px}
+.welcome h1 span{background:linear-gradient(110deg,var(--purple3),var(--purple));-webkit-background-clip:text;background-clip:text}
+.welcome p{font-size:15px;line-height:1.75;max-width:530px;margin-bottom:30px;color:var(--muted)}
+.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:690px;margin:0 auto}
+.card-s{padding:16px 17px;border-radius:15px;background:var(--card);border:1px solid var(--border);gap:13px;min-height:84px;transition:background .18s,border-color .18s,transform .18s}
+.card-s:hover{transform:translateY(-2px);background:var(--card2);border-color:color-mix(in srgb,var(--purple) 45%,var(--border));box-shadow:0 7px 20px rgba(0,0,0,.05)}
+.card-s .ic{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:11px;background:color-mix(in srgb,var(--purple) 12%,var(--card2));font-size:19px}
+.card-s strong{font-size:13px;font-weight:680;letter-spacing:-.01em;margin:1px 0 4px}
+.card-s small{display:block;font-size:11.5px;line-height:1.5;color:var(--muted)}
+.ai-row{gap:14px;align-items:flex-start}
+.ai-avatar{flex:0 0 30px;width:30px;height:30px;border-radius:10px;background:linear-gradient(145deg,#9673f7,#6840cb);color:white;display:grid;place-items:center;box-shadow:none}
+.ai-bubble{min-width:0;max-width:100%;font-size:14.5px;line-height:1.78;color:var(--text2)}
+.user-bubble,.user .bubble,.message.user{background:var(--card2);border:1px solid var(--border);border-radius:18px;padding:12px 16px;color:var(--text)}
+.md h1,.md h2,.md h3{letter-spacing:-.035em;color:var(--text);line-height:1.3;margin:1.3em 0 .55em}
+.md h1{font-size:1.55em}.md h2{font-size:1.3em}.md h3{font-size:1.1em}
+.md p{margin:.55em 0 1em}.md li{margin:.3em 0}.md a{color:var(--purple3);text-decoration:underline;text-underline-offset:3px}
+.md pre{border:1px solid var(--border);border-radius:13px;background:var(--card2);box-shadow:none}
+.md :not(pre)>code{border:1px solid var(--border);background:var(--card2);border-radius:5px;padding:2px 5px;font-size:.9em}
+.composer-wrap{padding:10px clamp(14px,3vw,32px) 12px;background:linear-gradient(to top,var(--bg) 78%,color-mix(in srgb,var(--bg) 0%,transparent))}
+.chips{max-width:790px;margin-bottom:10px;gap:7px}
+.chip{font-size:11.5px;padding:7px 11px;border-radius:9px;background:var(--bg2);border-color:var(--border);font-weight:560}
+.chip:hover{transform:none;background:var(--card2)}
+.chip.on{background:color-mix(in srgb,var(--purple) 15%,var(--card));color:var(--purple3);border-color:color-mix(in srgb,var(--purple) 40%,var(--border));box-shadow:none}
+.composer{max-width:790px;border-radius:20px;background:var(--card);border:1px solid var(--border2);box-shadow:0 7px 28px rgba(0,0,0,.045);overflow:hidden}
+.composer:focus-within{border-color:var(--purple2);box-shadow:0 0 0 3px color-mix(in srgb,var(--purple2) 12%,transparent)}
+#aiInput{padding:17px 18px 8px;min-height:58px;font-size:14px;line-height:1.65;color:var(--text)}
+#aiInput::placeholder{color:var(--muted);opacity:.85}
+.composer-bar{padding:6px 10px 10px}
+.send{width:37px;height:37px;border-radius:12px;background:var(--purple);box-shadow:none}
+.send:hover{background:var(--purple2);transform:translateY(-1px);box-shadow:none}
+#counter{font-size:10px;color:var(--muted)}
+.disclaimer{max-width:790px;margin:9px auto 0;font-size:10px;line-height:1.5;color:var(--muted);opacity:.9}
+.fab{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);color:var(--text2)}
+.fab:hover{background:var(--card2);color:var(--purple3);transform:translateY(-2px)}
+.modal .dialog{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:20px}
+.btn{border-radius:10px}
+.toasts>div{border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);border-radius:12px}
+/* Modo claro: evitar transparencias grises y mantener texto legible. */
+body.light .sidebar{background:#f6f5fa;border-right-color:#e5e2ed}
+body.light .head{background:rgba(251,251,253,.92);border-bottom-color:#e8e5ef}
+body.light .composer-wrap{background:linear-gradient(to top,#fbfbfd 78%,rgba(251,251,253,0))}
+body.light .composer{background:#fff;border-color:#ded9eb;box-shadow:0 8px 28px rgba(59,43,104,.06)}
+body.light .card-s{background:#fff;border-color:#e7e3ef}
+body.light .card-s:hover{background:#fbfaff;box-shadow:0 7px 20px rgba(59,43,104,.07)}
+body.light .chip{background:#fff;border-color:#e5e1ed;color:#656078}
+body.light .chip.on{background:#f0eaff;color:#6038c4;border-color:#d7c8ff}
+body.light .user-bubble,body.light .user .bubble,body.light .message.user{background:#f3f0fa;border-color:#e6dff5}
+body.light .md pre{background:#f6f5fa;border-color:#e3dfec}
+body.light .status{background:#fff;border-color:#e5e2ed}
+body.light .menu{background:#fff;border-color:#e5e2ed}
+body.light .menu button:hover{background:#f4f1fa}
+body.light .welcome-logo{background:linear-gradient(145deg,#f2edff,#fff);border-color:#e1d6ff;box-shadow:0 10px 30px rgba(112,69,214,.09)}
+body.light .new-chat{color:#fff;background:#7045d6}
+body.light .new-chat:hover{background:#825be8}
+/* Responsive refinements */
+@media(max-width:860px){
+ .sidebar{background:var(--bg2);padding:16px 13px}
+ .head{min-height:58px;height:58px;padding:0 14px}
+ .welcome{margin-top:28px}
+ .welcome h1{font-size:clamp(29px,7vw,38px)}
+ .welcome p{font-size:13.5px;margin-bottom:24px}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .card-s{padding:13px;gap:10px;min-height:80px}
+ .card-s .ic{width:31px;height:31px;flex-basis:31px;font-size:17px}
+ .card-s small{font-size:10.5px}
+ .thread{gap:22px}
+}
+@media(max-width:480px){
+ .cards{grid-template-columns:1fr;max-width:360px}
+ .card-s{min-height:68px;align-items:center}
+ .welcome-logo{width:58px;height:58px;border-radius:18px;margin-bottom:20px}
+ .welcome p{max-width:330px}
+ .messages{padding-top:15px}
+ .composer{border-radius:17px}
+ .disclaimer{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.welcome-logo,.card-s{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -1297,7 +1437,9 @@ function renderHeader() {
 ========================================================= */
 function buildWelcome() {
   const w = el('div', 'welcome');
-  w.appendChild(el('div', 'welcome-logo', '✦'));
+  const welcomeLogo = el('div', 'welcome-logo');
+  welcomeLogo.innerHTML = '<svg viewBox="0 0 48 48" width="42" height="42" fill="none" aria-hidden="true"><path d="M24 4.5 28.7 19.3 43.5 24l-14.8 4.7L24 43.5l-4.7-14.8L4.5 24l14.8-4.7L24 4.5Z" fill="url(#tbxGrad)"/><path d="M36.5 3.5v8M32.5 7.5h8M8 34v6M5 37h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><defs><linearGradient id="tbxGrad" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#c4b5fd"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs></svg>';
+  w.appendChild(welcomeLogo);
   const h = el('h1'); h.append('Hola, soy '); h.appendChild(el('span', null, 'TOOLBOX AI')); w.appendChild(h);
   w.appendChild(el('p', null, 'Tu asistente inteligente. Puedo explicarte temas, hacerte esquemas, resúmenes y tablas, ayudarte a estudiar, mejorar textos y programar contigo. Si hace falta, busco en la web y te muestro las fuentes.'));
   const cards = el('div', 'cards');
