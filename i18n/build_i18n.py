@@ -25,6 +25,7 @@ LANGS = {
     'es': {'name': 'Español', 'code': 'ES', 'path': '/', 'file': 'index.html', 'og': 'es_ES', 'label': 'Idioma'},
     'en': {'name': 'English', 'code': 'EN', 'path': '/en/', 'file': 'en/index.html', 'og': 'en_US', 'label': 'Language'},
     'fr': {'name': 'Français', 'code': 'FR', 'path': '/fr/', 'file': 'fr/index.html', 'og': 'fr_FR', 'label': 'Langue'},
+    'ar': {'name': 'العربية', 'code': 'AR', 'path': '/ar/', 'file': 'ar/index.html', 'og': 'ar', 'label': 'اللغة'},
 }
 
 ES_META = {
@@ -44,6 +45,7 @@ FLAG_SPRITE = '''<svg width="0" height="0" style="position:absolute" aria-hidden
 <path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.5" clip-path="url(#flag-en-clip)"/>
 <path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="4.4"/>
 <path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="2.6"/></g>
+<g id="flag-ar"><rect width="24" height="16" fill="#006C35"/><text x="12" y="11" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="bold">ﷲ</text></g>
 </defs>
 </svg>'''
 
@@ -62,13 +64,13 @@ def load(name):
 tpl = open(os.path.join(HERE, 'index.tpl.html'), encoding='utf-8').read()
 es_js = load('lang_es').JS
 dicts = {'es': {'META': ES_META, 'HTML': {}, 'JS': es_js}}
-for code in ('en', 'fr'):
+for code in ('en', 'fr', 'ar'):
     m = load('lang_' + code)
     dicts[code] = {'META': m.META, 'HTML': m.HTML, 'JS': m.JS}
 
 # ---- comprobaciones de cobertura de las claves del JavaScript ----
 problems = []
-for code in ('en', 'fr'):
+for code in ('en', 'fr', 'ar'):
     missing = set(es_js) - set(dicts[code]['JS'])
     extra = set(dicts[code]['JS']) - set(es_js)
     if missing:
@@ -159,6 +161,7 @@ STYLERS = {
 STYLE_LABELS = {
     'en': {'bold': 'Bold', 'italic': 'Italic', 'bolditalic': 'Bold italic', 'gothic': 'Gothic', 'double': 'Double', 'mono': 'Mono'},
     'fr': {'bold': 'Gras', 'italic': 'Italique', 'bolditalic': 'Gras italique', 'gothic': 'Gothique', 'double': 'Double', 'mono': 'Mono'},
+    'ar': {'bold': 'عريض', 'italic': 'مائل', 'bolditalic': 'عريض مائل', 'gothic': 'قوطي', 'double': 'مزدوج', 'mono': 'أحادي'},
 }
 
 
@@ -234,7 +237,7 @@ for code, cfg in LANGS.items():
     path = os.path.join(OUT, cfg['file'])
     os.makedirs(os.path.dirname(path), exist_ok=True)
     open(path, 'w', encoding='utf-8').write(doc)
-    print('✔', cfg['file'], '(%d KB)' % (len(doc.encode('utf-8')) // 1024))
+    print('OK', cfg['file'], '(%d KB)' % (len(doc.encode('utf-8')) // 1024))
 
 # ---- sitemap con hreflang ----
 other = ['/TOOLBOXAI', '/blog.html', '/privacidad.html', '/terminos.html', '/cookies.html', '/contacto.html']
@@ -249,7 +252,7 @@ for p in other:
     sm.append('  <url>\n    <loc>%s%s</loc>\n    <lastmod>%s</lastmod>\n  </url>' % (BASE, p, LASTMOD))
 sm.append('</urlset>')
 open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8').write('\n'.join(sm) + '\n')
-print('✔ sitemap.xml')
+print('OK sitemap.xml')
 
 # ---- informe de errores ----
 for code, miss in all_missing.items():
