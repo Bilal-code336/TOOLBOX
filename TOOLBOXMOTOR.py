@@ -128,10 +128,11 @@ def inicio():
 #   /      → español (index.html)
 #   /en/   → inglés  (en/index.html)
 #   /fr/   → francés (fr/index.html)
+#   /ar/   → árabe (ar/index.html)
 # Para añadir otro idioma: crea su carpeta y añade su código aquí.
 # ============================================================
 
-IDIOMAS_WEB = ("en", "fr")
+IDIOMAS_WEB = ("en", "fr", "ar")
 
 
 def _pagina_idioma(codigo):
