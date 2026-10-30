@@ -540,6 +540,141 @@ body.light .new-chat:hover{background:#825be8}
 }
 @media(prefers-reduced-motion:reduce){.welcome-logo,.card-s{animation:none!important;transition:none!important}}
 
+
+/* =========================================================
+   TOOLBOX AI — SIGNATURE PREMIUM INTERFACE
+   Redesign visual: respuestas abiertas, estrella viva y motion útil.
+========================================================= */
+:root{
+  --bg:#090811;--bg2:#100e1b;--card:#151323;--card2:#1b182b;
+  --panel:#12101e;--input:#171426;--border:#302943;--border2:#44365f;
+  --text:#f7f4ff;--text2:#ded8ee;--muted:#a49ab8;
+  --purple:#8957f5;--purple2:#a987ff;--purple3:#d0bdff;
+  --shadow:0 24px 70px rgba(0,0,0,.34);
+}
+body.light{
+  --bg:#faf9fd;--bg2:#f3f0fa;--card:#fff;--card2:#f7f4fc;
+  --panel:#fff;--input:#fff;--border:#e6dff1;--border2:#d5c9e8;
+  --text:#211a30;--text2:#49415a;--muted:#746b83;
+  --purple:#7041d4;--purple2:#8358e9;--purple3:#6840bb;
+  --shadow:0 22px 60px rgba(55,35,91,.10);
+}
+::selection{background:rgba(151,108,255,.32);color:var(--text)}
+html{scrollbar-color:var(--border2) transparent}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.018em}
+.app{
+ background:
+  radial-gradient(ellipse at 78% -18%,rgba(137,87,245,.19),transparent 42%),
+  radial-gradient(ellipse at 0% 100%,rgba(91,55,155,.08),transparent 36%),var(--bg);
+}
+.sidebar{background:color-mix(in srgb,var(--bg2) 94%,transparent);border-right-color:var(--border)}
+.brand-logo{background:linear-gradient(145deg,#a987ff,#6338c9);border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 28px rgba(137,87,245,.28)}
+.new-chat{background:linear-gradient(115deg,#7543df,#986cf8 55%,#7543df);background-size:180% 100%;box-shadow:0 9px 26px rgba(119,68,222,.24)}
+.new-chat:hover{background-position:100% 0;box-shadow:0 12px 32px rgba(137,87,245,.34)}
+.head{background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom-color:var(--border)}
+.head-icon{background:rgba(137,87,245,.13);color:var(--purple3)}
+.messages{padding-top:clamp(24px,4vh,46px)}
+.thread{max-width:820px;gap:32px;padding-bottom:30px}
+.ai-row.bot{gap:0}
+.ai-row.bot .avatar,.ai-row.bot .ai-avatar{display:none!important}
+.ai-row.bot .ai-col{max-width:100%;width:100%;gap:9px}
+.ai-row.bot .ai-bubble{
+ background:transparent!important;border:0!important;box-shadow:none!important;
+ border-radius:0!important;padding:0!important;overflow:visible;
+ color:var(--text2);font-size:15px;line-height:1.82;
+}
+.ai-row.bot .ai-bubble.is-error{padding:13px 16px!important;border:1px solid rgba(239,68,68,.35)!important;border-radius:13px!important;background:rgba(239,68,68,.07)!important}
+.ai-row.bot .ai-meta{padding-left:0}
+.ai-row.user .ai-col{max-width:min(680px,88%)}
+.ai-row.user .ai-bubble,.user-bubble,.user .bubble,.message.user{
+ background:linear-gradient(135deg,#30234b,#241b39)!important;
+ border:1px solid rgba(178,145,255,.18)!important;border-radius:18px 18px 5px 18px!important;
+ padding:12px 16px!important;color:#f7f2ff!important;box-shadow:0 8px 24px rgba(0,0,0,.12)!important;
+}
+body.light .ai-row.user .ai-bubble,body.light .user-bubble,body.light .user .bubble,body.light .message.user{
+ background:#eee8fa!important;color:#302347!important;border-color:#ded1f5!important;
+}
+.ai-row.bot .md{max-width:74ch}
+.ai-row.bot .md p{margin:.25em 0 1em}
+.ai-row.bot .md h1,.ai-row.bot .md h2,.ai-row.bot .md h3{margin-top:1.25em}
+.ai-row.bot .md h2::before{display:none}
+.typing-row{align-items:center!important;min-height:36px}
+.typing-row .avatar{display:none!important}
+.typing-row .ai-col{width:100%;max-width:100%}
+.typing-row .ai-bubble{
+ display:flex!important;flex-direction:column;gap:10px!important;
+ padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;
+}
+.typing-row .live-head{display:flex;align-items:center;gap:12px;min-height:32px}
+.typing-row .dots{width:28px;height:28px;display:grid;place-items:center;position:relative;flex:0 0 28px}
+.typing-row .dots span{display:none!important}
+.typing-row .dots::before{
+ content:"✦";position:absolute;inset:0;display:grid;place-items:center;
+ font-size:27px;line-height:1;color:#c8adff;
+ text-shadow:0 0 8px rgba(176,135,255,.95),0 0 20px rgba(137,87,245,.8),0 0 38px rgba(137,87,245,.45);
+ animation:toolboxStar 2.1s ease-in-out infinite;
+}
+.typing-row .typing-label{font-size:13px;color:var(--muted);letter-spacing:.005em}
+@keyframes toolboxStar{
+ 0%,100%{opacity:.58;transform:scale(.88) rotate(-8deg);filter:brightness(.85) drop-shadow(0 0 3px rgba(176,135,255,.35))}
+ 50%{opacity:1;transform:scale(1.12) rotate(8deg);filter:brightness(1.35) drop-shadow(0 0 10px rgba(176,135,255,.9))}
+}
+.typing-row .live-list{margin:0 0 0 40px;gap:8px}
+.typing-row .live-item{font-size:12px}
+.typing-row .live-text{color:var(--muted)}
+.ai-bubble.streaming::after{content:"";width:7px;height:1.05em;margin-left:3px;background:var(--purple2);border-radius:2px;animation:blink .8s steps(2) infinite}
+.welcome{margin-top:clamp(36px,8vh,86px)}
+.welcome-logo{position:relative;background:linear-gradient(145deg,#211735,#100d1b);border:1px solid rgba(184,151,255,.25);box-shadow:0 18px 60px rgba(119,72,218,.22),inset 0 1px rgba(255,255,255,.12);color:#d8c6ff}
+.welcome-logo::after{content:"";position:absolute;inset:-9px;border-radius:30px;border:1px solid rgba(169,135,255,.18);animation:logoHalo 3.8s ease-in-out infinite}
+@keyframes logoHalo{0%,100%{opacity:.25;transform:scale(.97)}50%{opacity:.8;transform:scale(1.045)}}
+.welcome h1{letter-spacing:-.052em;font-weight:720}
+.welcome h1 span{background:linear-gradient(100deg,#d4c2ff 5%,#a47aff 48%,#e3d8ff 88%);background-size:180% auto;-webkit-background-clip:text;background-clip:text;animation:titleGlow 8s linear infinite}
+@keyframes titleGlow{to{background-position:180% center}}
+.welcome p{max-width:560px}
+.cards{max-width:710px;gap:11px}
+.card-s{background:color-mix(in srgb,var(--card) 92%,transparent);border-color:var(--border);border-radius:15px;transition:transform .24s cubic-bezier(.16,1,.3,1),border-color .24s,background .24s,box-shadow .24s}
+.card-s:hover{transform:translateY(-3px);border-color:rgba(169,135,255,.62);box-shadow:0 14px 34px rgba(71,45,121,.14)}
+.card-s .ic{background:rgba(137,87,245,.12);color:var(--purple3);border:1px solid rgba(137,87,245,.12);border-radius:11px}
+.composer-wrap{padding-bottom:max(14px,env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 82%,transparent)}
+.composer{border-radius:19px;border-color:color-mix(in srgb,var(--purple2) 28%,var(--border));box-shadow:0 12px 38px rgba(0,0,0,.12)}
+.composer:focus-within{border-color:var(--purple2);box-shadow:0 0 0 3px rgba(169,135,255,.13),0 14px 38px rgba(0,0,0,.14)}
+.send{background:linear-gradient(145deg,#a27aff,#7041d4);box-shadow:0 5px 17px rgba(112,65,212,.3)}
+.send:hover:not(:disabled){box-shadow:0 8px 22px rgba(112,65,212,.4)}
+.chip{transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .2s,background .2s}
+.chip:hover{transform:translateY(-2px)}
+.icon-btn,.mini,.act,.btn{transition:all .18s cubic-bezier(.16,1,.3,1)}
+.icon-btn:hover{transform:translateY(-1px)}
+.menu,.dialog,.toast{backdrop-filter:blur(18px)}
+.md-code{border-color:#39304d;box-shadow:0 12px 34px rgba(0,0,0,.14)}
+.md-code-head{background:#171322}
+.md-code pre{scrollbar-color:#51416d #171322}
+.md a{color:var(--purple3)}
+body.light .welcome-logo{background:linear-gradient(145deg,#f0e8ff,#fff);color:#7147ca}
+body.light .welcome-logo::after{border-color:rgba(112,65,212,.2)}
+body.light .welcome h1 span{background:linear-gradient(100deg,#6c43c6,#9a70ef,#6840bb);background-clip:text;-webkit-background-clip:text}
+body.light .card-s{background:#fff}
+body.light .typing-row .dots::before{color:#8156db;text-shadow:0 0 8px rgba(129,86,219,.4),0 0 20px rgba(129,86,219,.25)}
+body.light .ai-row.bot .md{color:#49415a}
+@media(max-width:860px){
+ .messages{padding-top:24px}
+ .thread{gap:26px}
+ .ai-row.bot .ai-bubble{font-size:15px;line-height:1.75}
+ .typing-row .live-list{margin-left:38px}
+}
+@media(max-width:520px){
+ .welcome{margin-top:5vh}
+ .welcome-logo{width:70px;height:70px}
+ .welcome h1{font-size:clamp(29px,8vw,36px)}
+ .cards{grid-template-columns:1fr;max-width:390px}
+ .ai-row.user .ai-col{max-width:92%}
+ .ai-row.bot .md{max-width:100%}
+ .thread{gap:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .typing-row .dots::before,.welcome-logo::after,.welcome h1 span{animation:none!important}
+ .card-s,.chip,.icon-btn,.send{transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -2062,6 +2197,275 @@ function bind() {
   updateCounter(); resizeInput();
 })();
 
+</script>
+
+<!-- Community Upload Modal -->
+<div class="modal-overlay" id="uploadModal" hidden>
+  <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="uploadModalTitle">
+    <header class="modal-header">
+      <h2 id="uploadModalTitle">Subir herramienta a Community Tools</h2>
+      <button type="button" class="modal-close" id="closeUploadModal" aria-label="Cerrar">×</button>
+    </header>
+    <form id="uploadForm" class="modal-body">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="toolName">Nombre de la herramienta *</label>
+          <input type="text" id="toolName" name="name" required maxlength="100" placeholder="Mi Calculadora">
+        </div>
+        <div class="form-field">
+          <label for="toolAuthor">Tu nombre (opcional)</label>
+          <input type="text" id="toolAuthor" name="author" maxlength="50" placeholder="Anónimo">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="toolDescription">Descripción *</label>
+        <textarea id="toolDescription" name="description" required maxlength="1000" rows="3" placeholder="Qué hace tu herramienta..."></textarea>
+      </div>
+      <div class="form-field">
+        <label for="toolTags">Etiquetas (separadas por comas)</label>
+        <input type="text" id="toolTags" name="tags" placeholder="juego, utilidad, matemáticas" maxlength="300">
+        <small class="form-hint">Máx 10 etiquetas, 30 chars cada una</small>
+      </div>
+      <div class="form-field">
+        <label for="toolCode">Código HTML/JS *</label>
+        <textarea id="toolCode" name="code" required rows="15" placeholder="<html><body><script>...</script></body></html>"></textarea>
+        <small class="form-hint">Código completo HTML con CSS/JS embebido. Sin imports externos. Máx 50KB.</small>
+      </div>
+      <div class="form-field">
+        <label>Vista previa en vivo</label>
+        <iframe id="toolPreview" sandbox="allow-scripts allow-same-origin" srcdoc="<html><body style='font-family:sans-serif;padding:2rem;text-align:center;color:#666'>Escribe código para ver vista previa</body></html>"></iframe>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="cancelUpload">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="submitUpload">
+          <span class="btn-text">Subir y revisar</span>
+          <span class="btn-loading" hidden>Revisando con IA…</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast container (reusing existing toasts, but adding styles) -->
+<style>
+/* Upload Modal */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 1rem; overflow-y: auto;
+}
+.modal-overlay[hidden] { display: none; }
+.modal {
+  background: var(--card, #fff); border-radius: 12px;
+  width: 100%; max-width: 900px; max-height: 90vh;
+  display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.modal-wide { max-width: 1000px; }
+.modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 1.5rem; border-bottom: 1px solid var(--border, #eee);
+}
+.modal-header h2 { margin: 0; font-size: 1.25rem; }
+.modal-close {
+  background: none; border: none; font-size: 1.5rem; cursor: pointer;
+  color: var(--muted, #666); width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center; border-radius: 8px;
+}
+.modal-close:hover { background: var(--hover, #f0f0f0); }
+.modal-body { padding: 1.5rem; overflow-y: auto; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-field label { font-weight: 500; font-size: 0.9rem; }
+.form-field input, .form-field textarea {
+  padding: 0.6rem 0.8rem; border: 1px solid var(--border, #ddd);
+  border-radius: 8px; font-family: inherit; font-size: 0.95rem;
+  background: var(--input, #fff); color: var(--text, #111);
+}
+.form-field input:focus, .form-field textarea:focus {
+  outline: none; border-color: var(--accent, #0066ff); box-shadow: 0 0 0 3px var(--accent-alpha, rgba(0,102,255,0.15));
+}
+.form-field textarea { resize: vertical; min-height: 80px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.85rem; line-height: 1.5; }
+.form-hint { font-size: 0.75rem; color: var(--muted, #666); }
+#toolPreview { width: 100%; height: 300px; border: 1px solid var(--border, #ddd); border-radius: 8px; background: #fff; }
+.form-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border, #eee); }
+.btn { padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 500; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-primary { background: var(--purple, #0066ff); color: white; }
+.btn-secondary { background: var(--button, #f0f0f0); color: var(--text, #111); }
+.btn-loading { display: none; }
+.btn:disabled .btn-text { display: none; }
+.btn:disabled .btn-loading { display: inline; }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .modal { background: var(--card); }
+  .form-field input, .form-field textarea { background: var(--input); border-color: var(--border); color: var(--text); }
+  .modal-close:hover { background: var(--hover); }
+  .btn-secondary { background: var(--button); color: var(--text); }
+  #toolPreview { background: var(--card); border-color: var(--border); }
+}
+
+/* Upload button in header */
+#communityUploadBtn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 10px;
+  background: color-mix(in srgb, var(--purple) 15%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--purple) 35%, var(--border));
+  color: var(--purple3); font-weight: 600; font-size: 13px;
+  transition: background .18s, border-color .18s, color .18s, transform .18s;
+}
+#communityUploadBtn:hover {
+  background: color-mix(in srgb, var(--purple) 25%, var(--card));
+  border-color: var(--purple2); color: var(--purple3); transform: translateY(-1px);
+}
+body.light #communityUploadBtn {
+  background: color-mix(in srgb, var(--purple) 12%, #fff);
+  border-color: color-mix(in srgb, var(--purple) 30%, var(--border));
+}
+</style>
+
+<script>
+// Community Upload Modal
+(function() {
+  const modal = document.getElementById('uploadModal');
+  const openBtn = document.getElementById('communityUploadBtn');
+  const closeBtn = document.getElementById('closeUploadModal');
+  const cancelBtn = document.getElementById('cancelUpload');
+  const form = document.getElementById('uploadForm');
+  const codeInput = document.getElementById('toolCode');
+  const preview = document.getElementById('toolPreview');
+  const submitBtn = document.getElementById('submitUpload');
+  const toasts = document.getElementById('toasts');
+
+  let previewUpdateTimer = null;
+
+  function showToast(message, type = 'info') {
+    const t = document.createElement('div');
+    t.className = 'toast animate-slide-down';
+    t.style.borderLeft = '4px solid ' +
+      (type === 'success' ? 'var(--green, #22c55e)' :
+       type === 'error' ? 'var(--red, #ef4444)' :
+       type === 'warning' ? 'var(--amber, #f59e0b)' :
+       'var(--purple2, #9b7bff)');
+    t.appendChild(document.createTextNode(message));
+    toasts.appendChild(t);
+    requestAnimationFrame(() => {
+      t.style.animation = 'slideUp .3s var(--ease) both';
+    });
+    const kill = () => {
+      if (!t.parentNode) return;
+      t.classList.add('out');
+      setTimeout(() => t.remove(), 260);
+    };
+    setTimeout(kill, type === 'error' ? 7000 : 3000);
+  }
+
+  function openModal() {
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('toolName').focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    form.reset();
+    preview.srcdoc = "<html><body style='font-family:sans-serif;padding:2rem;text-align:center;color:#666'>Escribe código para ver vista previa</body></html>";
+  }
+
+  function updatePreview() {
+    const code = codeInput.value;
+    if (!code.trim()) {
+      preview.srcdoc = "<html><body style='font-family:sans-serif;padding:2rem;text-align:center;color:#666'>Escribe código para ver vista previa</body></html>";
+      return;
+    }
+    let html = code.trim();
+    if (!html.startsWith('<html') && !html.startsWith('<!DOCTYPE')) {
+      html = "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><meta http-equiv='Content-Security-Policy' content=\"connect-src 'none'; frame-src 'none'; object-src 'none'\"></head><body>" + html + "</body></html>";
+    }
+    preview.srcdoc = html;
+  }
+
+  function debounce(fn, ms) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), ms);
+    };
+  }
+
+  const debouncedPreview = debounce(updatePreview, 500);
+
+  if (openBtn) openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  if (codeInput) codeInput.addEventListener('input', debouncedPreview);
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+      const tags = formData.get('tags').split(',').map(t => t.trim()).filter(Boolean);
+
+      try {
+        const resp = await fetch('/api/community/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.get('name'),
+            description: formData.get('description'),
+            code: formData.get('code'),
+            tags: tags,
+            author: formData.get('author') || 'Anónimo'
+          })
+        });
+
+        const data = await resp.json();
+
+        if (data.ok) {
+          showToast(data.message, 'success');
+          closeModal();
+        } else {
+          let msg = data.error || 'Error al subir';
+          if (data.review && data.review.findings) {
+            msg += '\n\n' + data.review.findings.slice(0, 3).join('\n');
+          }
+          showToast(msg, 'error');
+        }
+      } catch (err) {
+        showToast('Error de conexión: ' + err.message, 'error');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+})();
+
+// Add upload button to header
+(function() {
+  const headRight = document.querySelector('.head-right');
+  if (headRight && !document.getElementById('communityUploadBtn')) {
+    const btn = document.createElement('button');
+    btn.id = 'communityUploadBtn';
+    btn.className = 'icon-btn';
+    btn.type = 'button';
+    btn.title = 'Subir herramienta a Community Tools';
+    btn.setAttribute('aria-label', 'Subir herramienta a Community Tools');
+    btn.innerHTML = '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
+    // Insert before themeBtn
+    const themeBtn = document.getElementById('themeBtn');
+    if (themeBtn) {
+      headRight.insertBefore(btn, themeBtn);
+    } else {
+      headRight.appendChild(btn);
+    }
+  }
+})();
 </script>
 </body>
 </html>
