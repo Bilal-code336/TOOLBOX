@@ -1258,6 +1258,16 @@ async function readStream(res, onEvent) {
       if (ev.type === 'done') final = ev; else if (onEvent) onEvent(ev);
     }
   }
+  // Procesar lo que quede en el buffer al final
+  if (buf.trim()) {
+    const lines = buf.split('\n');
+    for (const line of lines) {
+      if (!line.startsWith('data:')) continue;
+      let ev; try { ev = JSON.parse(line.slice(5).trim()); } catch (e) { continue; }
+      if (ev.type === 'error') throw new Error(ev.error || 'Error conectando con TOOLBOX AI.');
+      if (ev.type === 'done') final = ev; else if (onEvent) onEvent(ev);
+    }
+  }
   if (!final) throw new Error('La respuesta se cortó antes de terminar. Inténtalo de nuevo.');
   return final;
 }

@@ -59,8 +59,8 @@ NVIDIA_URL = os.environ.get(
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY")
 TAVILY_URL = os.environ.get("TAVILY_URL", "https://api.tavily.com/search")
 BUSQUEDA_RESULTADOS = int(os.environ.get("BUSQUEDA_RESULTADOS", "5"))
-BUSQUEDA_MAX_RONDAS = int(os.environ.get("BUSQUEDA_MAX_RONDAS", "3"))
-BUSQUEDAS_MAX_POR_RESPUESTA = int(os.environ.get("BUSQUEDAS_MAX_POR_RESPUESTA", "4"))
+BUSQUEDA_MAX_RONDAS = int(os.environ.get("BUSQUEDA_MAX_RONDAS", "2"))
+BUSQUEDAS_MAX_POR_RESPUESTA = int(os.environ.get("BUSQUEDAS_MAX_POR_RESPUESTA", "3"))
 # Protege tu cuota gratuita de búsquedas frente a abusos
 BUSQUEDAS_POR_IP_HORA = int(os.environ.get("BUSQUEDAS_POR_IP_HORA", "20"))
 BUSQUEDAS_MAX_DIA = int(os.environ.get("BUSQUEDAS_MAX_DIA", "300"))
@@ -423,9 +423,9 @@ HERRAMIENTA_WEB = {
 }
 
 
-def llamar_nvidia(mensajes, tools=None, timeout=60):
+def llamar_nvidia(mensajes, tools=None, timeout=120):
     """Llama a Nemotron 3 Ultra en NVIDIA."""
-    cuerpo = {"model": MODELO_NVIDIA, "messages": mensajes}
+    cuerpo = {"model": MODELO_NVIDIA, "messages": mensajes, "stream": False}
     if tools:
         cuerpo["tools"] = tools
         cuerpo["tool_choice"] = "auto"
@@ -434,8 +434,8 @@ def llamar_nvidia(mensajes, tools=None, timeout=60):
         r = requests.post(NVIDIA_URL, headers=cabeceras_nvidia(), json=cuerpo, timeout=timeout)
     except requests.Timeout:
         raise ErrorNVIDIA(504, "Nemotron ha tardado demasiado en responder. Inténtalo de nuevo.")
-    except requests.RequestException:
-        raise ErrorNVIDIA(502, "No se pudo conectar con NVIDIA.")
+    except requests.RequestException as e:
+        raise ErrorNVIDIA(502, f"No se pudo conectar con NVIDIA: {e}")
 
     if r.status_code >= 400:
         detalle = ""
