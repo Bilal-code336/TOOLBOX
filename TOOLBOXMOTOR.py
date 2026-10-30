@@ -35,25 +35,25 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg', 'gif', 
 # CONFIGURACIÓN (todo por variables de entorno en Render 👇)
 # ============================================================
 #
-#   GROQ_API_KEY      → obligatoria (la que ya tienes)
+#   NVIDIA_API_KEY    → obligatoria para Nemotron 3 Ultra
 #   TAVILY_API_KEY    → recomendada: activa la búsqueda en la web
 #                       (plan gratuito en https://tavily.com)
 #
 # Opcionales:
-#   MODELO_GROQ, GROQ_REASONING_EFFORT (low | medium | high),
+#   MODELO_NVIDIA, NVIDIA_URL,
 #   BUSQUEDAS_POR_IP_HORA, BUSQUEDAS_MAX_DIA, BUSQUEDA_MAX_RONDAS
 # ============================================================
 
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-print("🔑 ¿API KEY encontrada?:", GROQ_API_KEY is not None)
-print("🔑 Inicio de la clave:", GROQ_API_KEY[:3] if GROQ_API_KEY else "NO HAY CLAVE")
-print("🔑 Longitud:", len(GROQ_API_KEY) if GROQ_API_KEY else 0)
+# --- NVIDIA Nemotron ---
+NVIDIA_API_KEY = os.environ.get("NVIDIA_API_KEY")
+print("[OK] NVIDIA API KEY encontrada?:", NVIDIA_API_KEY is not None)
+print("[OK] Inicio de la clave:", NVIDIA_API_KEY[:3] if NVIDIA_API_KEY else "NO HAY CLAVE")
+print("[OK] Longitud:", len(NVIDIA_API_KEY) if NVIDIA_API_KEY else 0)
 
-MODELO_GROQ = os.environ.get("MODELO_GROQ", "openai/gpt-oss-120b")
-GROQ_URL = os.environ.get(
-    "GROQ_URL", "https://api.groq.com/openai/v1/chat/completions"
+MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA", "nvidia/nemotron-3-ultra-550b-a55b")
+NVIDIA_URL = os.environ.get(
+    "NVIDIA_URL", "https://integrate.api.nvidia.com/v1/chat/completions"
 )
-GROQ_REASONING_EFFORT = os.environ.get("GROQ_REASONING_EFFORT")  # opcional
 
 # --- Búsqueda web ---
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY")
@@ -66,14 +66,14 @@ BUSQUEDAS_POR_IP_HORA = int(os.environ.get("BUSQUEDAS_POR_IP_HORA", "20"))
 BUSQUEDAS_MAX_DIA = int(os.environ.get("BUSQUEDAS_MAX_DIA", "300"))
 
 print(
-    "🔎 Búsqueda web:",
+    "[INFO] Búsqueda web:",
     "Tavily" if TAVILY_API_KEY else "sin TAVILY_API_KEY (se intentará DuckDuckGo si está instalado 'ddgs')",
 )
 
 # ============================================================
 
 
-class ErrorGroq(Exception):
+class ErrorNVIDIA(Exception):
     def __init__(self, status, detalle):
         super().__init__(detalle)
         self.status = status
@@ -84,34 +84,34 @@ class BusquedaError(Exception):
     pass
 
 
-def cabeceras_groq():
+def cabeceras_nvidia():
     return {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Authorization": f"Bearer {NVIDIA_API_KEY}",
         "Content-Type": "application/json",
     }
 
 
 try:
-    if not GROQ_API_KEY:
-        raise ValueError("No hay GROQ_API_KEY configurada")
+    if not NVIDIA_API_KEY:
+        raise ValueError("No hay NVIDIA_API_KEY configurada")
 
     respuesta_prueba = requests.post(
-        GROQ_URL,
-        headers=cabeceras_groq(),
+        NVIDIA_URL,
+        headers=cabeceras_nvidia(),
         json={
-            "model": MODELO_GROQ,
+            "model": MODELO_NVIDIA,
             "messages": [{"role": "user", "content": "Hola"}],
         },
         timeout=15,
     )
     respuesta_prueba.raise_for_status()
-    groq_client_ok = True
-    print("\n📡 Prueba de conexión Groq: CONECTADO")
-    print("✅ Cliente Groq validado correctamente.\n")
+    nvidia_client_ok = True
+    print("\n[OK] Prueba de conexión NVIDIA Nemotron: CONECTADO")
+    print("[OK] Cliente NVIDIA validado correctamente.\n")
 
 except Exception as error:
-    groq_client_ok = False
-    print(f"\n❌ ERROR CRÍTICO CONECTANDO CON GROQ: {error}\n")
+    nvidia_client_ok = False
+    print(f"\n[ERROR] ERROR CRÍTICO CONECTANDO CON NVIDIA: {error}\n")
 
 
 # ============================================================
@@ -238,8 +238,7 @@ def hola():
 def status():
     return jsonify({
         "ok": True,
-        "gemini": groq_client_ok,
-        "groq": groq_client_ok,
+        "nvidia": nvidia_client_ok,
         "busqueda_web": proveedor_busqueda(),
         "servidor": "online"
     })
@@ -260,277 +259,62 @@ def hora_madrid():
         from zoneinfo import ZoneInfo
         return datetime.now(ZoneInfo("Europe/Madrid"))
     except Exception:
-        ahora = datetime.now(timezone.utc)
-        # Aproximación si no hay base de zonas horarias: CET/CEST
-        mes = ahora.month
-        verano = 4 <= mes <= 9 or (mes == 3 and ahora.day >= 25) or (mes == 10 and ahora.day < 25)
-        return ahora + timedelta(hours=2 if verano else 1)
-
-
-def fecha_actual_texto():
-    d = hora_madrid()
-    return (
-        f"{DIAS[d.weekday()]} {d.day} de {MESES[d.month - 1]} de {d.year}, "
-        f"{d.strftime('%H:%M')} (hora de Madrid)"
-    )
-
-
-def dominio(url):
-    try:
-        host = urlparse(url).netloc.lower()
-        return host[4:] if host.startswith("www.") else host
-    except Exception:
-        return ""
-
-
-def limpiar_texto(texto):
-    return re.sub(r"\s+", " ", str(texto or "")).strip()
+        return datetime.now(timezone.utc) + timedelta(hours=1)
 
 
 def ip_cliente():
-    reenviada = request.headers.get("X-Forwarded-For", "")
-    if reenviada:
-        return reenviada.split(",")[0].strip()
-    return request.remote_addr or "desconocida"
+    return request.headers.get("X-Forwarded-For", request.remote_addr).split(",")[0].strip()
 
 
-# ============================================================
-# CONSTRUIR CONVERSACIÓN (modos simples: corrector, humanizador…)
-# ============================================================
+def limpiar_texto(texto):
+    return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]", "", texto or "")
 
-ROLES_ASISTENTE = ["assistant", "model", "toolbox", "bot"]
+
+ROLES_ASISTENTE = {"assistant", "toolbox", "ai", "bot", "model", "system"}
 
 
 def construir_conversacion(messages):
-    conversation_text = ""
-
-    for message in messages:
-        if not isinstance(message, dict):
+    lineas = []
+    for m in (messages or [])[-12:]:
+        rol = m.get("role", m.get("sender", "user"))
+        texto = m.get("content", m.get("text", ""))
+        if not isinstance(texto, str):
+            texto = str(texto)
+        texto = texto.strip()
+        if not texto:
             continue
-
-        role = message.get("role", message.get("sender", "user"))
-        content = message.get("content", message.get("text", ""))
-
-        if not isinstance(content, str):
-            content = str(content)
-
-        if not content.strip():
-            continue
-
-        if role in ROLES_ASISTENTE:
-            conversation_text += f"\n\nTOOLBOX AI:\n{content}"
+        if rol in ROLES_ASISTENTE:
+            lineas.append(f"TOOLBOX AI: {texto}")
         else:
-            conversation_text += f"\n\nUSUARIO:\n{content}"
-
-    return conversation_text
-
-
-# ============================================================
-# PROMPTS
-# ============================================================
-
-# Prompt de siempre: se mantiene para las herramientas de texto
-# (corrector, simplificador, humanizador…).
-SYSTEM_PROMPT = """
-Eres TOOLBOX AI. Inteligencia artificial central de la app TOOLBOX.
-Responde normalmente en español, de forma amable, directa y práctica.
-Ayuda a la gente a entender cosas y con lo que necesiten y sobre todo
-con la programación si te lo piden (Python, HTML, CSS, JS).
-"""
-
-BLOQUE_WEB_ACTIVA = """
-BÚSQUEDA EN LA WEB
-Tienes la herramienta buscar_en_web. Úsala por tu cuenta cuando necesites información actual
-o que pueda haber cambiado: noticias, precios, versiones, normativa, datos de empresas/personas,
-resultados deportivos, horarios, o cuando el usuario pida buscar o comprobar algo reciente.
-No la uses para conocimiento general estable, explicaciones, matemáticas, programación,
-redacción creativa ni conversación normal.
-- Haz consultas cortas y concretas (3-8 palabras). Puedes hacer varias búsquedas si hace falta.
-- Basa tu respuesta en los resultados. Si no hay info fiable, dilo claro en lugar de inventar.
-- Cita cada dato clave con su número de fuente entre corchetes [1] [2] justo después de la frase.
-- NO menciones "según la fuente X", "en la web dice", "he buscado y...", "la página X comenta".
-  Responde de forma natural como si supieras la info; la interfaz ya muestra las fuentes aparte.
-- No añadas lista de fuentes al final.
-"""
-
-BLOQUE_WEB_INACTIVA = """
-En esta conversación no tienes acceso a internet. Si el usuario pregunta por algo muy reciente
-o que pueda haber cambiado, avísale de que tu información puede estar desactualizada.
-"""
-
-
-IDIOMAS_NOMBRE = {"es": "español", "en": "inglés", "fr": "francés"}
+            lineas.append(f"USUARIO: {texto}")
+    return "\n".join(lineas)
 
 
 def linea_idioma(codigo):
-    """Indica a la IA el idioma de la página desde la que escribe el usuario."""
-    nombre = IDIOMAS_NOMBRE.get(str(codigo or "").lower()[:2])
-    if not nombre:
+    if not codigo:
         return ""
-    return (
-        f"\nIdioma de la interfaz del usuario: {nombre}. Responde en {nombre} "
-        "salvo que el usuario escriba en otro idioma.\n"
-    )
-
-
-def construir_system_prompt(web_disponible, idioma=None):
-    return (
-        SYSTEM_PROMPT.strip()
-        + linea_idioma(idioma)
-        + f"\n\nFecha y hora actuales: {fecha_actual_texto()}.\n"
-        + "Puedes usar Markdown cuando mejore la lectura (listas, tablas, código).\n"
-        + (BLOQUE_WEB_ACTIVA if web_disponible else BLOQUE_WEB_INACTIVA)
-    )
-
-
-HERRAMIENTA_WEB = {
-    "type": "function",
-    "function": {
-        "name": "buscar_en_web",
-        "description": (
-            "Busca información actual en internet y devuelve fuentes numeradas. "
-            "Úsala para noticias, precios, versiones, resultados, normativa o datos "
-            "que puedan haber cambiado, o cuando el usuario pida buscar o dar fuentes."
-        ),
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Consulta corta y precisa (3 a 8 palabras). Incluye el año si es relevante.",
-                },
-                "recency": {
-                    "type": "string",
-                    "enum": ["day", "week", "month", "year"],
-                    "description": "Opcional: limita los resultados a lo más reciente.",
-                },
-            },
-            "required": ["query"],
-        },
-    },
-}
-
-
-# ============================================================
-# BUSCADOR WEB
-# ============================================================
-
-def ddg_disponible():
-    try:
-        import ddgs  # noqa: F401
-        return True
-    except ImportError:
-        try:
-            import duckduckgo_search  # noqa: F401
-            return True
-        except ImportError:
-            return False
+    return {
+        "es": "\nResponde en español.",
+        "en": "\nRespond in English.",
+        "fr": "\nRépondez en français.",
+        "ar": "\nأجب بالعربية.",
+    }.get(codigo, "")
 
 
 def proveedor_busqueda():
     if TAVILY_API_KEY:
         return "tavily"
-    if ddg_disponible():
+    try:
+        import ddgs  # noqa: F401
         return "duckduckgo"
-    return None
-
-
-def _buscar_tavily(consulta, recency):
-    cabeceras = {
-        "Authorization": f"Bearer {TAVILY_API_KEY}",
-        "Content-Type": "application/json",
-    }
-    cuerpo = {
-        "query": consulta,
-        "search_depth": "basic",
-        "max_results": BUSQUEDA_RESULTADOS,
-        "include_answer": False,
-    }
-    if recency in ("day", "week", "month", "year"):
-        cuerpo["time_range"] = recency
-        if recency in ("day", "week"):
-            cuerpo["topic"] = "news"
-
-    try:
-        r = requests.post(TAVILY_URL, headers=cabeceras, json=cuerpo, timeout=20)
-        if r.status_code == 401:  # algunas cuentas antiguas usan la clave en el cuerpo
-            r = requests.post(
-                TAVILY_URL,
-                headers={"Content-Type": "application/json"},
-                json={**cuerpo, "api_key": TAVILY_API_KEY},
-                timeout=20,
-            )
-        if r.status_code in (400, 422):  # parámetros opcionales no admitidos
-            basico = {"query": consulta, "max_results": BUSQUEDA_RESULTADOS}
-            r = requests.post(TAVILY_URL, headers=cabeceras, json=basico, timeout=20)
-    except requests.RequestException:
-        raise BusquedaError("No se pudo conectar con el buscador.")
-
-    if r.status_code in (401, 403):
-        raise BusquedaError("El buscador no acepta la clave TAVILY_API_KEY.")
-    if r.status_code in (429, 432, 433):
-        raise BusquedaError("Se ha alcanzado el límite del buscador por ahora.")
-    if r.status_code >= 400:
-        raise BusquedaError(f"El buscador respondió con un error ({r.status_code}).")
-
-    try:
-        datos = r.json()
-    except ValueError:
-        raise BusquedaError("El buscador devolvió una respuesta no válida.")
-
-    resultados = []
-    for it in (datos.get("results") or [])[:BUSQUEDA_RESULTADOS]:
-        url = it.get("url")
-        if not url:
-            continue
-        resultados.append({
-            "title": limpiar_texto(it.get("title")) or dominio(url),
-            "url": url,
-            "snippet": limpiar_texto(it.get("content"))[:700],
-        })
-    return resultados
-
-
-def _buscar_duckduckgo(consulta):
-    try:
-        from ddgs import DDGS
-    except ImportError:
-        try:
-            from duckduckgo_search import DDGS
-        except ImportError:
-            raise BusquedaError(
-                "No hay buscador configurado. Añade la variable TAVILY_API_KEY en Render."
-            )
-    try:
-        items = list(DDGS().text(consulta, region="es-es", max_results=BUSQUEDA_RESULTADOS))
     except Exception:
-        raise BusquedaError("No se pudo buscar con DuckDuckGo en este momento.")
-
-    resultados = []
-    for it in items:
-        url = it.get("href") or it.get("url")
-        if not url:
-            continue
-        resultados.append({
-            "title": limpiar_texto(it.get("title")) or dominio(url),
-            "url": url,
-            "snippet": limpiar_texto(it.get("body"))[:700],
-        })
-    return resultados
+        return None
 
 
-def buscar_en_web(consulta, recency=None):
-    proveedor = proveedor_busqueda()
-    if proveedor == "tavily":
-        return _buscar_tavily(consulta, recency)
-    if proveedor == "duckduckgo":
-        return _buscar_duckduckgo(consulta)
-    raise BusquedaError(
-        "No hay buscador configurado. Añade la variable TAVILY_API_KEY en Render."
-    )
+# ============================================================
+# BÚSQUEDA WEB
+# ============================================================
 
-
-# --- Límites de uso para proteger tu cuota ---
 _busquedas_ip = defaultdict(deque)
 _busquedas_dia = {"fecha": "", "total": 0}
 
@@ -557,24 +341,101 @@ def permitir_busqueda(ip):
     return True, ""
 
 
+def _buscar_tavily(consulta, recency=None):
+    cuerpo = {
+        "query": consulta,
+        "max_results": BUSQUEDA_RESULTADOS,
+        "search_depth": "basic",
+        "include_answer": False,
+    }
+    if recency:
+        cuerpo["recency_days"] = int(recency)
+
+    r = requests.post(
+        TAVILY_URL,
+        headers={"Authorization": f"Bearer {TAVILY_API_KEY}", "Content-Type": "application/json"},
+        json=cuerpo,
+        timeout=15,
+    )
+    if r.status_code >= 400:
+        raise BusquedaError(f"Tavily {r.status_code}: {r.text[:200]}")
+    datos = r.json()
+    return [
+        {
+            "id": i + 1,
+            "title": item.get("title", ""),
+            "url": item.get("url", ""),
+            "domain": urlparse(item.get("url", "")).netloc.replace("www.", ""),
+            "snippet": item.get("content", "")[:300],
+        }
+        for i, item in enumerate(datos.get("results", []))
+    ]
+
+
+def _buscar_duckduckgo(consulta):
+    try:
+        from ddgs import DDGS
+    except Exception:
+        raise BusquedaError("DuckDuckGo no disponible (instala 'ddgs').")
+
+    with DDGS() as ddgs:
+        resultados = list(ddgs.text(consulta, max_results=BUSQUEDA_RESULTADOS))
+
+    return [
+        {
+            "id": i + 1,
+            "title": item.get("title", ""),
+            "url": item.get("href", ""),
+            "domain": urlparse(item.get("href", "")).netloc.replace("www.", ""),
+            "snippet": item.get("body", "")[:300],
+        }
+        for i, item in enumerate(resultados)
+    ]
+
+
+def buscar_en_web(consulta, recency=None):
+    if TAVILY_API_KEY:
+        return _buscar_tavily(consulta, recency)
+    try:
+        return _buscar_duckduckgo(consulta)
+    except Exception as e:
+        raise BusquedaError(str(e))
+
+
 # ============================================================
-# LLAMADAS A GROQ
+# LLAMADAS A NVIDIA
 # ============================================================
 
-def llamar_groq(mensajes, tools=None, timeout=60):
-    cuerpo = {"model": MODELO_GROQ, "messages": mensajes}
+HERRAMIENTA_WEB = {
+    "type": "function",
+    "function": {
+        "name": "buscar_en_web",
+        "description": "Busca información actualizada en la web. Úsala cuando necesites datos recientes, noticias, precios, documentación actual, etc.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "Consulta de búsqueda (máx 200 caracteres)"},
+                "recency": {"type": "string", "description": "Recencia en días: '1', '7', '30', '365'"}
+            },
+            "required": ["query"]
+        }
+    }
+}
+
+
+def llamar_nvidia(mensajes, tools=None, timeout=60):
+    """Llama a Nemotron 3 Ultra en NVIDIA."""
+    cuerpo = {"model": MODELO_NVIDIA, "messages": mensajes}
     if tools:
         cuerpo["tools"] = tools
         cuerpo["tool_choice"] = "auto"
-    if GROQ_REASONING_EFFORT:
-        cuerpo["reasoning_effort"] = GROQ_REASONING_EFFORT
 
     try:
-        r = requests.post(GROQ_URL, headers=cabeceras_groq(), json=cuerpo, timeout=timeout)
+        r = requests.post(NVIDIA_URL, headers=cabeceras_nvidia(), json=cuerpo, timeout=timeout)
     except requests.Timeout:
-        raise ErrorGroq(504, "TOOLBOX AI ha tardado demasiado en responder. Inténtalo de nuevo.")
+        raise ErrorNVIDIA(504, "Nemotron ha tardado demasiado en responder. Inténtalo de nuevo.")
     except requests.RequestException:
-        raise ErrorGroq(502, "No se pudo conectar con el servicio de IA.")
+        raise ErrorNVIDIA(502, "No se pudo conectar con NVIDIA.")
 
     if r.status_code >= 400:
         detalle = ""
@@ -582,18 +443,18 @@ def llamar_groq(mensajes, tools=None, timeout=60):
             detalle = (r.json().get("error") or {}).get("message", "")
         except ValueError:
             detalle = r.text[:200]
-        raise ErrorGroq(r.status_code, detalle or f"Error {r.status_code}")
+        raise ErrorNVIDIA(r.status_code, detalle or f"Error {r.status_code}")
 
     try:
         return r.json()["choices"][0]["message"]
     except (ValueError, KeyError, IndexError):
-        raise ErrorGroq(502, "El servicio de IA devolvió una respuesta no válida.")
+        raise ErrorNVIDIA(502, "Nemotron devolvió una respuesta no válida.")
 
 
 def mensaje_error_amigable(e):
-    if isinstance(e, ErrorGroq):
+    if isinstance(e, ErrorNVIDIA):
         if e.status == 429:
-            return "TOOLBOX AI está recibiendo muchas peticiones. Inténtalo de nuevo en unos segundos."
+            return "Nemotron está recibiendo muchas peticiones. Inténtalo de nuevo en unos segundos."
         if e.status in (401, 403):
             return "El servicio de IA no ha aceptado la clave configurada."
         return e.detalle or "Error en el servicio de IA."
@@ -689,15 +550,15 @@ def chat_eventos(mensajes_cliente, usar_web, ip, idioma=None):
         usar_herramienta = web_disponible and ronda < BUSQUEDA_MAX_RONDAS
 
         try:
-            msg = llamar_groq(conversacion, [HERRAMIENTA_WEB] if usar_herramienta else None)
-        except ErrorGroq as e:
+            msg = llamar_nvidia(conversacion, [HERRAMIENTA_WEB] if usar_herramienta else None)
+        except ErrorNVIDIA as e:
             # Si falla justo al usar herramientas (p. ej. llamada mal formada),
             # reintentamos una vez sin búsqueda en lugar de dar error.
             if usar_herramienta and e.status == 400:
                 web_disponible = False
                 web_error = web_error or "No se pudo usar la búsqueda en la web en esta respuesta."
                 conversacion[0]["content"] = construir_system_prompt(False, idioma)
-                msg = llamar_groq(conversacion, None)
+                msg = llamar_nvidia(conversacion, None)
             else:
                 raise
 
@@ -782,71 +643,66 @@ def chat_eventos(mensajes_cliente, usar_web, ip, idioma=None):
                 yield {"type": "search_error", "query": consulta, "error": str(e)}
                 conversacion.append({
                     "role": "tool", "tool_call_id": id_llamada,
-                    "content": f"Error al buscar: {e} Responde sin la búsqueda y avisa de que la información puede estar desactualizada.",
+                    "content": f"Error buscando: {e}. Responde sin buscar.",
                 })
                 continue
 
+            # Deduplicar fuentes globales
             nuevos = []
             for r in resultados:
-                existente = url_a_fuente.get(r["url"])
-                if existente:
-                    if existente not in nuevos:
-                        nuevos.append(existente)
-                    continue
-                f = {
-                    "id": len(fuentes) + 1,
-                    "title": r["title"],
-                    "url": r["url"],
-                    "domain": dominio(r["url"]),
-                    "snippet": r["snippet"],
-                }
-                fuentes.append(f)
-                url_a_fuente[r["url"]] = f
-                nuevos.append(f)
+                if r["url"] not in url_a_fuente:
+                    url_a_fuente[r["url"]] = len(fuentes) + 1
+                    fuentes.append(r)
+                    nuevos.append(r)
+                else:
+                    # Reemplazar id local por id global
+                    r["id"] = url_a_fuente[r["url"]]
 
-            busquedas.append({"query": consulta, "results": len(nuevos)})
-            yield {
-                "type": "results",
-                "query": consulta,
-                "sources": [fuente_publica(f) for f in nuevos],
-            }
+            busquedas.append({"query": consulta, "results": nuevos})
+            yield {"type": "results", "query": consulta, "results": nuevos}
+
+            # Inyectar resultados en la conversación
+            texto_resultados = formatear_resultados_para_modelo(consulta, nuevos)
             conversacion.append({
                 "role": "tool", "tool_call_id": id_llamada,
-                "content": formatear_resultados_para_modelo(consulta, nuevos),
+                "content": texto_resultados,
             })
 
-        yield {"type": "writing"}
 
-    # No debería llegar aquí (la última ronda no tiene herramientas)
-    yield {
-        "type": "done", "reply": "No pude completar la respuesta.",
-        "sources": [fuente_publica(f) for f in fuentes], "searches": busquedas,
-        "searched": bool(busquedas), "web_error": web_error,
-    }
+def construir_system_prompt(web_disponible, idioma=None):
+    base = (
+        "Eres TOOLBOX AI, un asistente útil, honesto y conciso. "
+        "Respondes en el idioma del usuario (o español por defecto). "
+        "Puedes usar Markdown cuando mejore la lectura: títulos, listas, **negrita**, "
+        "==resaltado==, ++subrayado++, ~~tachado~~, tablas, listas de tareas, "
+        "citas con avisos (> 💡 **Consejo:**, > ⚠️ **Ojo:**, > ℹ️ **Nota:**), "
+        "bloques de código con lenguaje, y esquemas visuales (```esquema con tema central "
+        "en la primera línea y ramas con sangría de 2 espacios). "
+        "No uses más de un esquema por respuesta salvo que lo pidan. "
+        "Si el usuario solo conversa o hace una pregunta corta, responde en texto natural sin formato pesado."
+    )
+    if web_disponible:
+        base += (
+            "\n\nTIENES ACCESO A BÚSQUEDA WEB: usa la herramienta 'buscar_en_web' cuando "
+            "necesites información actual, noticias, precios, documentación reciente, etc. "
+            "Cita cada dato con su número entre corchetes [1], [2]... "
+            "No busques para conocimiento general o preguntas triviales."
+        )
+    base += linea_idioma(idioma)
+    return base
 
 
 def extraer_peticion(data):
-    """Saca mensajes y último texto del JSON, aceptando los formatos antiguos."""
-    messages = data.get("messages", data.get("history", []))
-
-    if isinstance(messages, dict) and "messages" in messages:
-        messages = messages["messages"]
-    if not isinstance(messages, list):
-        messages = []
-
-    ultimo_texto = data.get("message", data.get("text", data.get("texto", "")))
-    if isinstance(ultimo_texto, dict):
-        ultimo_texto = ultimo_texto.get("content", ultimo_texto.get("text", ""))
-
-    if messages and not ultimo_texto:
-        ultimo = messages[-1]
-        if isinstance(ultimo, dict):
-            ultimo_texto = ultimo.get("content", ultimo.get("text", ""))
-
-    if not ultimo_texto or str(ultimo_texto).strip() == "":
-        ultimo_texto = "Hola"
-
-    return messages[-30:], ultimo_texto
+    """Extrae (messages, ultimo_texto) del JSON entrante (compatibilidad varios formatos)."""
+    messages = data.get("messages") or data.get("history") or []
+    ultimo_texto = (
+        data.get("prompt")
+        or data.get("message")
+        or data.get("text")
+        or (messages[-1].get("content") if messages else "")
+        or ""
+    )
+    return messages, str(ultimo_texto)
 
 
 def sse(evento):
@@ -860,8 +716,8 @@ def sse(evento):
 @app.route("/api/ai/stream", methods=["POST"])
 def ai_stream():
 
-    if not groq_client_ok:
-        return jsonify({"ok": False, "error": "Groq no configurado."}), 500
+    if not nvidia_client_ok:
+        return jsonify({"ok": False, "error": "NVIDIA Nemotron no configurado."}), 500
 
     data = request.get_json(silent=True) or {}
     messages, ultimo_texto = extraer_peticion(data)
@@ -896,10 +752,10 @@ def ai_stream():
 @app.route("/api/chat", methods=["POST"])
 def ai():
 
-    if not groq_client_ok:
+    if not nvidia_client_ok:
         return jsonify({
             "ok": False,
-            "error": "Groq no configurado."
+            "error": "NVIDIA Nemotron no configurado."
         }), 500
 
     try:
@@ -940,7 +796,7 @@ def ai():
                 "TOOLBOX AI:"
             )
 
-            msg = llamar_groq([
+            msg = llamar_nvidia([
                 {"role": "system", "content": SYSTEM_PROMPT + linea_idioma(data.get("lang"))},
                 {"role": "user", "content": prompt_final},
             ], timeout=30)
@@ -1004,264 +860,225 @@ def allowed_file(filename):
     """Verifica si la extensión del archivo está permitida"""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 def extraer_texto_archivo(filepath):
     """Extrae texto de diferentes tipos de archivos"""
     extension = filepath.rsplit('.', 1)[1].lower()
 
     try:
-        if extension == 'txt' or extension == 'md':
+        if extension == 'txt':
             with open(filepath, 'r', encoding='utf-8') as f:
                 return f.read()
-
+        elif extension == 'md':
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return f.read()
         elif extension == 'pdf':
             try:
-                import PyPDF2
+                import fitz  # PyMuPDF
+                doc = fitz.open(filepath)
                 texto = ""
-                with open(filepath, 'rb') as f:
-                    pdf_reader = PyPDF2.PdfReader(f)
-                    for page in pdf_reader.pages:
-                        texto += page.extract_text() + "\n"
+                for page in doc:
+                    texto += page.get_text()
+                doc.close()
                 return texto
-            except ImportError:
-                return "[PDF detectado pero PyPDF2 no está instalado. Instala con: pip install PyPDF2]"
-
-        elif extension in ['doc', 'docx']:
+            except Exception:
+                return ""
+        elif extension in ('doc', 'docx'):
             try:
                 import docx
                 doc = docx.Document(filepath)
-                texto = "\n".join([paragraph.text for paragraph in doc.paragraphs])
-                return texto
-            except ImportError:
-                return "[Documento Word detectado pero python-docx no está instalado. Instala con: pip install python-docx]"
-
-        elif extension in ['png', 'jpg', 'jpeg', 'gif']:
-            # Para imágenes, retornamos la ruta para que se pueda procesar con visión
-            with open(filepath, 'rb') as f:
-                imagen_base64 = base64.b64encode(f.read()).decode('utf-8')
-                return f"[IMAGEN: {extension.upper()}] (convertida a base64 para análisis con IA de visión)"
-
+                return "\n".join([p.text for p in doc.paragraphs])
+            except Exception:
+                return ""
         else:
-            return "[Formato de archivo no soportado]"
+            return ""
+    except Exception:
+        return ""
 
-    except Exception as e:
-        return f"[Error al procesar archivo: {str(e)}]"
 
-def analizar_documento_largo(texto, max_chunk=4000):
-    """
-    Divide un documento largo en chunks y genera un análisis completo
-    """
-    # Dividir en chunks
-    palabras = texto.split()
-    chunks = []
-    chunk_actual = []
-    longitud_actual = 0
+# Prompts del sistema para herramientas de texto
+SYSTEM_PROMPT = (
+    "Eres TOOLBOX AI, un asistente experto en procesamiento de texto. "
+    "Recibes un texto del usuario y debes transformarlo según la herramienta solicitada. "
+    "Mantén siempre el significado original. No añadas información nueva. "
+    "No saludes, no te despidas, no expliques qué hiciste. "
+    "Devuelve ÚNICAMENTE el texto transformado."
+)
 
-    for palabra in palabras:
-        if longitud_actual + len(palabra) + 1 > max_chunk:
-            chunks.append(" ".join(chunk_actual))
-            chunk_actual = [palabra]
-            longitud_actual = len(palabra)
-        else:
-            chunk_actual.append(palabra)
-            longitud_actual += len(palabra) + 1
 
-    if chunk_actual:
-        chunks.append(" ".join(chunk_actual))
+# --- Corrector ---
+PROMPT_CORRECTOR = (
+    "Corrige el texto del usuario: ortografía, tildes, puntuación, mayúsculas/minúsculas, "
+    "gramática, concordancia, tipografía y errores de escritura. "
+    "Mantén exactamente el significado, párrafos y formato original. "
+    "Devuelve solo el texto corregido."
+)
 
-    return {
-        "total_chunks": len(chunks),
-        "chunks": chunks,
-        "longitud_total": len(texto),
-        "palabras_aproximadas": len(palabras)
-    }
+# --- Simplificador ---
+PROMPT_SIMPLIFICADOR = (
+    "Simplifica el texto del usuario: explica lo mismo con palabras sencillas, "
+    "frases más cortas, ejemplos cotidianos si ayudan. Mantén TODA la información importante. "
+    "No inventes, no cambies el significado. Devuelve solo el texto simplificado."
+)
 
-def generar_resumen_conversacion(messages):
-    """
-    Genera un resumen automático de una conversación
-    """
-    # Construir el texto de la conversación
-    conversacion = []
-    for msg in messages:
-        if msg.get("role") == "user":
-            conversacion.append(f"Usuario: {msg.get('content', '')}")
-        elif msg.get("role") == "assistant":
-            conversacion.append(f"TOOLBOX AI: {msg.get('content', '')}")
+# --- Humanizador ---
+PROMPT_HUMANIZADOR_BASE = (
+    "Reescribe el texto con total libertad de redacción. No hagas sustituciones palabra por palabra: "
+    "construye una versión nueva, natural y coherente. "
+    "Evita abusar de conectores formales (\"en primer lugar\", \"por consiguiente\", \"en conclusión\", etc.). "
+    "Prefiere vocabulario natural: \"usar\" sobre \"utilizar\", \"hacer\" sobre \"realizar\", "
+    "\"después\" sobre \"posteriormente\", \"porque\" sobre \"debido a que\". "
+    "Puedes cambiar orden de ideas, fusionar/dividir frases, eliminar repeticiones. "
+    "El resultado debe leer como texto independiente, no como traducción. "
+    "Mantén significado, datos, nombres y idioma original."
+)
 
-    texto_conversacion = "\n\n".join(conversacion)
+ESTILOS_HUMANIZADOR = {
+    "simple": "Usa un español sencillo, directo y natural. Prioriza palabras habituales, frases claras y lectura fácil. No rebajes precisión ni elimines información.",
+    "pro": "Usa redacción profesional y, cuando corresponda, académica. Precisa, clara y seria, pero sin sonar rígida, excesivamente formal o mecánica.",
+}
 
-    # Limitar si es muy largo
-    if len(texto_conversacion) > 8000:
-        texto_conversacion = texto_conversacion[:8000] + "...[conversación truncada]"
 
-    prompt = f"""Eres un asistente experto en resumir conversaciones.
+# --- Planificador ---
+PROMPT_PLANIFICADOR = (
+    "Planifica mi semana. No uses Pomodoros.\n\n"
+    "TAREAS:\n{tasks}\n\n"
+    "HORARIOS:\n{availability}\n\n"
+    "REGLAS:\n"
+    "- Respeta exactamente los horarios.\n"
+    "- Prioriza fechas límite y exámenes cercanos.\n"
+    "- Respeta las duraciones indicadas; si falta duración, estima una razonable.\n"
+    "- Divide tareas largas si hace falta.\n"
+    "- No llenes todo: deja tiempo libre.\n"
+    "- No solapes bloques.\n"
+    "- Si no cabe todo, programa primero lo prioritario y manda el resto a pending.\n"
+    "- Usa bloques normales como 16:00-17:30.\n"
+    "- Devuelve SOLO JSON válido, sin Markdown.\n\n"
+    "FORMATO:\n"
+    "{\"title\":\"Semana organizada\",\"summary\":\"breve\",\"days\":["
+    "{\"day\":\"Lunes\",\"blocks\":[{\"task\":\"Matemáticas\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"alta\",\"deadline\":\"viernes\",\"note\":\"\"}]},"
+    "{\"day\":\"Martes\",\"blocks\":[]},{\"day\":\"Miércoles\",\"blocks\":[]},"
+    "{\"day\":\"Jueves\",\"blocks\":[]},{\"day\":\"Viernes\",\"blocks\":[]},"
+    "{\"day\":\"Sábado\",\"blocks\":[]},{\"day\":\"Domingo\",\"blocks\":[]}],"
+    "\"insights\":[],\"pending\":[]}"
+)
 
-Analiza la siguiente conversación y genera un resumen claro y conciso que incluya:
-1. Tema principal de la conversación
-2. Puntos clave discutidos (3-5 puntos)
-3. Conclusiones o resultados principales
-4. Acciones pendientes (si las hay)
-
-Conversación:
-{texto_conversacion}
-
-Responde con un resumen estructurado en formato Markdown."""
-
-    try:
-        respuesta = llamar_groq([
-            {"role": "user", "content": prompt}
-        ], timeout=30)
-
-        return respuesta.get("content", "No se pudo generar el resumen")
-    except Exception as e:
-        return f"Error al generar resumen: {str(e)}"
 
 # ============================================================
-# ENDPOINTS DE IA MEJORADA
+# UPLOAD Y ANÁLISIS DE DOCUMENTOS
 # ============================================================
 
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
-    """Endpoint para subir archivos"""
     if 'file' not in request.files:
-        return jsonify({"error": "No se envió ningún archivo"}), 400
+        return jsonify({"ok": False, "error": "No se envió archivo"}), 400
 
     file = request.files['file']
-
     if file.filename == '':
-        return jsonify({"error": "No se seleccionó ningún archivo"}), 400
+        return jsonify({"ok": False, "error": "Nombre de archivo vacío"}), 400
 
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        timestamp = int(time.time())
-        filename = f"{timestamp}_{filename}"
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    if not allowed_file(file.filename):
+        return jsonify({"ok": False, "error": "Tipo de archivo no permitido"}), 400
 
-        file.save(filepath)
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(filepath)
 
-        # Extraer texto del archivo
-        texto_extraido = extraer_texto_archivo(filepath)
+    texto = extraer_texto_archivo(filepath)
 
-        return jsonify({
-            "ok": True,
-            "filename": filename,
-            "filepath": filepath,
-            "texto": texto_extraido,
-            "message": "Archivo subido y procesado correctamente"
-        })
-
-    return jsonify({"error": "Tipo de archivo no permitido"}), 400
-
-@app.route('/api/analyze-document', methods=['POST'])
-def analyze_document():
-    """Endpoint para analizar documentos largos"""
-    data = request.get_json(silent=True) or {}
-    texto = data.get('texto', '')
-
-    if not texto:
-        return jsonify({"error": "No se proporcionó texto para analizar"}), 400
-
-    # Analizar el documento
-    analisis = analizar_documento_largo(texto)
-
-    # Generar resúmenes de cada chunk
-    resumenes = []
-    for i, chunk in enumerate(analisis['chunks'][:5]):  # Limitar a 5 chunks
-        try:
-            prompt = f"Resume este fragmento de texto en 2-3 oraciones:\n\n{chunk}"
-            respuesta = llamar_groq([{"role": "user", "content": prompt}], timeout=20)
-            resumenes.append({
-                "chunk": i + 1,
-                "resumen": respuesta.get("content", "")
-            })
-        except Exception as e:
-            resumenes.append({
-                "chunk": i + 1,
-                "resumen": f"Error: {str(e)}"
-            })
-
-    # Generar resumen general
+    # Limpiar archivo tras extraer texto
     try:
-        texto_para_resumen = texto[:6000] if len(texto) > 6000 else texto
-        prompt_general = f"""Analiza este documento y proporciona:
-1. Resumen ejecutivo (2-3 párrafos)
-2. Temas principales (lista de 3-5 puntos)
-3. Conclusiones clave
+        os.remove(filepath)
+    except Exception:
+        pass
 
-Documento:
-{texto_para_resumen}"""
-
-        respuesta = llamar_groq([{"role": "user", "content": prompt_general}], timeout=30)
-        resumen_general = respuesta.get("content", "")
-    except Exception as e:
-        resumen_general = f"Error al generar resumen general: {str(e)}"
+    if not texto.strip():
+        return jsonify({"ok": False, "error": "No se pudo extraer texto del archivo"}), 400
 
     return jsonify({
         "ok": True,
-        "analisis": analisis,
-        "resumenes_por_chunk": resumenes,
-        "resumen_general": resumen_general
+        "filename": filename,
+        "text": texto[:50000],  # límite 50k chars
+        "length": len(texto)
     })
+
+
+@app.route('/api/analyze-document', methods=['POST'])
+def analyze_document():
+    data = request.get_json(silent=True) or {}
+    texto = data.get("text", "")
+    pregunta = data.get("question", "")
+
+    if not texto.strip():
+        return jsonify({"ok": False, "error": "Texto vacío"}), 400
+
+    if not nvidia_client_ok:
+        return jsonify({"ok": False, "error": "NVIDIA Nemotron no configurado."}), 500
+
+    try:
+        if pregunta.strip():
+            prompt = f"Documento:\n{texto[:30000]}\n\nPregunta: {pregunta}\n\nResponde basándote solo en el documento."
+        else:
+            prompt = f"Resume este documento en 5-8 puntos clave, con ==lo esencial resaltado==:\n\n{texto[:30000]}"
+
+        msg = llamar_nvidia([
+            {"role": "system", "content": "Eres un analista de documentos. Responde basándote solo en el texto proporcionado."},
+            {"role": "user", "content": prompt}
+        ], timeout=60)
+
+        respuesta = msg.get("content") or "No se pudo analizar."
+
+        return jsonify({"ok": True, "result": respuesta})
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": mensaje_error_amigable(e)}), 500
+
+
+# ============================================================
+# GENERACIÓN DE IMÁGENES (placeholder)
+# ============================================================
 
 @app.route('/api/generate-image', methods=['POST'])
 def generate_image():
-    """
-    Endpoint para generar imágenes con IA
-    Nota: Requiere integración con DALL-E, Stable Diffusion u otro servicio
-    """
-    data = request.get_json(silent=True) or {}
-    prompt = data.get('prompt', '')
-
-    if not prompt:
-        return jsonify({"error": "No se proporcionó un prompt para generar la imagen"}), 400
-
-    # Aquí integrarías con una API de generación de imágenes
-    # Por ahora, retornamos un mensaje informativo
     return jsonify({
         "ok": False,
-        "message": "La generación de imágenes requiere configurar una API externa como DALL-E, Stable Diffusion o similar.",
-        "info": "Para activar esta función, necesitas:",
-        "pasos": [
-            "1. Obtener API key de OpenAI (DALL-E) o Stability AI",
-            "2. Configurar la variable de entorno correspondiente",
-            "3. Instalar las librerías necesarias"
-        ],
-        "prompt_recibido": prompt
-    })
+        "error": "Generación de imágenes no disponible en esta versión."
+    }), 501
+
+
+# ============================================================
+# RESUMEN DE CONVERSACIÓN
+# ============================================================
 
 @app.route('/api/summarize-conversation', methods=['POST'])
 def summarize_conversation():
-    """Endpoint para generar resumen de conversaciones"""
     data = request.get_json(silent=True) or {}
-    messages = data.get('messages', [])
+    messages = data.get("messages", [])
 
-    if not messages or len(messages) == 0:
-        return jsonify({"error": "No se proporcionaron mensajes para resumir"}), 400
+    if not messages:
+        return jsonify({"ok": False, "error": "Sin mensajes"}), 400
+
+    if not nvidia_client_ok:
+        return jsonify({"ok": False, "error": "NVIDIA Nemotron no configurado."}), 500
 
     try:
-        resumen = generar_resumen_conversacion(messages)
+        texto = construir_conversacion(messages)
+        prompt = f"Resume esta conversación en 3-5 puntos clave con ==resaltado==:\n\n{texto}"
 
-        return jsonify({
-            "ok": True,
-            "resumen": resumen,
-            "mensajes_analizados": len(messages)
-        })
+        msg = llamar_nvidia([
+            {"role": "system", "content": "Eres un resumidor experto. Extrae lo esencial."},
+            {"role": "user", "content": prompt}
+        ], timeout=30)
+
+        respuesta = msg.get("content") or "No se pudo resumir."
+
+        return jsonify({"ok": True, "summary": respuesta})
+
     except Exception as e:
-        return jsonify({
-            "error": f"Error al generar resumen: {str(e)}"
-        }), 500
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": mensaje_error_amigable(e)}), 500
 
-# ============================================================
-# INICIAR SERVIDOR
-# ============================================================
 
 if __name__ == "__main__":
-
-    # Render nos asignará un puerto automático
-    port = int(os.environ.get("PORT", 5000))
-
-    app.run(
-        host="0.0.0.0",
-        port=port,
-        debug=False,
-        threaded=True
-    )
+    app.run(host="0.0.0.0", port=5000)
