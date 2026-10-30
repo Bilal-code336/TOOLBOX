@@ -551,7 +551,7 @@ body.light .new-chat:hover{background:#825be8}
     <div class="sb-top">
       <a class="brand" href="/" title="Volver a TOOLBOX">
         <div class="brand-logo"><span>✦</span><span>✦</span></div>
-        <div><strong>TOOLBOX AI</strong><small>Groq · ← volver a TOOLBOX</small></div>
+        <div><strong>TOOLBOX AI</strong><small>NVIDIA Nemotron · ← volver a TOOLBOX</small></div>
       </a>
       <button class="icon-btn sb-close" id="sbClose" aria-label="Cerrar menú">✕</button>
     </div>
@@ -569,7 +569,7 @@ body.light .new-chat:hover{background:#825be8}
     <div class="sb-foot">
       <div class="status">
         <span class="dot" id="statusDot"></span>
-        <div><strong id="statusText">Groq conectado</strong><small>TOOLBOX AI</small></div>
+        <div><strong id="statusText">NVIDIA Nemotron conectado</strong><small>TOOLBOX AI</small></div>
       </div>
       <div class="foot-row">
         <small class="foot-note">Tus conversaciones se guardan solo en este dispositivo.</small>
@@ -586,7 +586,7 @@ body.light .new-chat:hover{background:#825be8}
         <div class="head-icon">✦</div>
         <div class="head-title">
           <div class="title-row" id="titleRow"></div>
-          <small id="headSub">TOOLBOX AI · Groq</small>
+          <small id="headSub">TOOLBOX AI · NVIDIA Nemotron</small>
         </div>
       </div>
       <div class="head-right">
@@ -647,7 +647,7 @@ body.light .new-chat:hover{background:#825be8}
         </div>
       </div>
       <div id="attachedFile" class="attached-file" hidden></div>
-      <div class="disclaimer">TOOLBOX AI utiliza Groq y puede buscar en la web cuando hace falta. Puede cometer errores; comprueba la información importante. · Enter envía, Shift+Enter salto de línea.</div>
+      <div class="disclaimer">TOOLBOX AI utiliza NVIDIA Nemotron y puede buscar en la web cuando hace falta. Puede cometer errores; comprueba la información importante. · Enter envía, Shift+Enter salto de línea.</div>
     </div>
   </main>
 </div>
@@ -1429,7 +1429,7 @@ function renderHeader() {
   }
   $('pinItem').textContent = c.pinned ? '📍 Quitar de fijadas' : '📌 Fijar conversación';
   const n = c.messages.length;
-  $('headSub').textContent = n ? n + (n === 1 ? ' mensaje' : ' mensajes') + ' · TOOLBOX AI · Groq' : 'TOOLBOX AI · Groq';
+  $('headSub').textContent = n ? n + (n === 1 ? ' mensaje' : ' mensajes') + ' · TOOLBOX AI · NVIDIA Nemotron' : 'TOOLBOX AI · NVIDIA Nemotron';
 }
 
 /* =========================================================
@@ -1882,7 +1882,7 @@ function setTheme(light) {
   document.body.classList.toggle('light', light); $('themeBtn').textContent = light ? '☀️' : '🌙';
   try { localStorage.setItem(CFG.themeKey, light ? 'light' : 'dark'); } catch (e) {}
 }
-function setOnline(on) { $('statusDot').classList.toggle('off', !on); $('statusText').textContent = on ? 'Groq conectado' : 'Sin conexión'; }
+function setOnline(on) { $('statusDot').classList.toggle('off', !on); $('statusText').textContent = on ? 'NVIDIA Nemotron conectado' : 'Sin conexión'; }
 
 /* =========================================================
    EVENTOS
