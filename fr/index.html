@@ -223,6 +223,116 @@ nav {
 }
 
 /* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+.hamburger-menu {
+    position: relative;
+}
+
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 11px;
+    background: var(--button);
+    color: var(--text);
+    padding: 8px;
+    transition: background .2s, transform .2s;
+}
+
+.hamburger-btn:hover {
+    background: var(--purple);
+    transform: translateY(-1px);
+}
+
+.hamburger-btn:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.hamburger-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 6000;
+    min-width: 220px;
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    animation: hamburgerPop .2s ease;
+}
+
+@keyframes hamburgerPop {
+    from { opacity: 0; transform: translateY(-8px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.hamburger-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+}
+
+.hamburger-item:hover,
+.hamburger-item:focus-visible {
+    background: var(--button);
+    color: var(--purple3);
+}
+
+.hamburger-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: color .15s;
+}
+
+.hamburger-item:hover .hamburger-icon {
+    color: var(--purple3);
+}
+
+.hamburger-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 6px 8px;
+}
+
+/* =========================================================
    HERO
 ========================================================= */
 
@@ -2233,6 +2343,33 @@ body.light .search input { color: var(--text); }
             🌙
         </button>
 
+        <div class="hamburger-menu">
+            <button class="hamburger-btn" aria-expanded="false" aria-controls="hamburgerPanel" aria-label="Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="hamburger-panel" id="hamburgerPanel" role="menu" hidden>
+                <a href="/community.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Outils Communauté
+                </a>
+                <a href="/TOOLBOXAI" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="20 21 15 16.09 10 21 10 12.09 4 8.59 9 5.09 12 3 15 5.09 20 8.59 20 12.09"/></svg>
+                    TOOLBOX AI
+                </a>
+                <a href="#herramientas" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                    Outils
+                </a>
+                <hr class="hamburger-divider">
+                <a href="/blog.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Blog / Tutoriels
+                </a>
+            </div>
+        </div>
+
     </div>
 
 </nav>
@@ -4136,7 +4273,7 @@ CONTRASEÑA FACIL
 ========================================================= */
 
 const LANG = "fr";
-const I18N = {"color_copied": "Couleur copiée.", "styler_empty": "Ton texte apparaîtra ici.", "text_copied": "Texte copié.", "pw_select_one": "Sélectionne au moins un type de caractère.", "pw_copied": "Mot de passe copié.", "img_load_first": "Charge d’abord une image.", "err_invalid_response": "Le serveur n’a pas renvoyé de réponse valide.", "err_no_reply": "TOOLBOX AI n’a renvoyé aucune réponse.", "err_connect": "Erreur de connexion à TOOLBOX AI.", "corr_write_first": "Écris d’abord un texte.", "corr_loading": "🤖 Amélioration...", "corr_analyzing": "TOOLBOX AI analyse ton texte...", "corr_button": "✨ Améliorer avec l’IA", "paste_first": "Colle d’abord un texte.", "simp_loading": "🧠 Simplification...", "simp_working": "TOOLBOX AI prépare une explication simple...", "simp_button": "🧠 Rendre facile", "pwm_complete": "⚠️ Remplis les deux mots et le nombre.", "pwm_copied": "✅ Copié !", "pwm_copy_failed": "Impossible de copier automatiquement.", "words_suffix": " mots", "hum_empty": "Le texte réécrit apparaîtra ici.", "copied_ok": "✅ Copié", "hum_longer": "Colle un texte un peu plus long pour obtenir une réécriture utile.", "hum_style_simple": "Utilise une formulation simple, directe et naturelle, dans la même langue que le texte original. Privilégie les mots courants, les phrases claires et une lecture facile. Ne réduis pas la précision et ne supprime aucune information.", "hum_style_pro": "Utilise une rédaction professionnelle et, le cas échéant, académique, dans la même langue que le texte original. Elle doit être précise, claire et sérieuse, sans paraître rigide, trop formelle ou mécanique.", "hum_loading": "🧠 Réécriture...", "hum_analyzing": "Analyse du texte...", "hum_checking": "Vérification du vocabulaire, de la structure, du rythme, des répétitions et de la clarté...", "hum_empty_ai": "L’IA n’a renvoyé aucun texte. Réessaie.", "hum_done": "✅ Texte réécrit. Relis-le avant de l’utiliser.", "hum_status_default": "Conserve le sens et améliore la clarté, le rythme, la variété et le naturel.", "hum_copy_result": "📋 Copier le résultat", "hum_failed": "La réécriture n’a pas pu être terminée.", "hum_button": "✨ Humaniser le texte", "pomo_focus": "C’est l’heure d’étudier / de travailler", "pomo_short": "Pause courte", "pomo_long": "Pause longue", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Démarrer", "pomo_t_all": "🍅 Tu as terminé toutes les sessions !", "pomo_m_all": "Tu peux prendre ta pause longue.", "pomo_t_session": "🍅 Session terminée !", "pomo_m_session": "Tu peux te reposer quelques minutes.", "pomo_t_break": "⏰ Pause terminée !", "pomo_m_break": "C’est le moment de retourner étudier ou travailler.", "pomo_t_long": "🌿 Pause longue terminée !", "pomo_m_long": "Tu peux te remettre au travail.", "pomo_session": "Session {n} sur {total}", "ocr_preparing": "Préparation de la reconnaissance...", "ocr_lang": "fra+eng", "ocr_ok": "✅ Texte détecté avec succès.", "ocr_none": "Aucun texte n’a été trouvé dans l’image.", "ocr_fail": "❌ Impossible de reconnaître le texte. Essaie avec une autre image.", "ocr_first": "Détecte d’abord un texte.", "ocr_copied": "✅ Texte copié.", "planner_same_monday": "L’horaire du lundi a été copié sur le reste de la semaine.", "planner_same_all": "Le même horaire a été appliqué à tous les jours.", "planner_clear_confirm": "Veux-tu supprimer les tâches et le plan généré ?", "planner_bad_json": "L’IA a renvoyé une réponse qui n’a pas pu être convertie en plan. Réessaie.", "planner_bad_days": "L’IA n’a pas renvoyé la structure de jours attendue.", "planner_write_first": "Écris d’abord tout ce que tu as à faire.", "planner_activate_day": "Active au moins un jour et définis un créneau disponible.", "planner_time_error": "L’heure de début doit être antérieure à l’heure de fin.", "planner_loading": "🤖 Organisation...", "planner_status_creating": "Création d’un plan réaliste avec tes tâches et tes horaires...", "planner_done": "✅ Semaine organisée avec succès.", "planner_unknown": "Erreur inconnue.", "planner_button": "✨ Créer ma semaine", "planner_rate_limit": "Groq limite temporairement les requêtes. Attends quelques secondes et réessaie. Cette version ne refait plus de tentatives automatiques pour ne pas consommer plus de requêtes.", "planner_title_default": "Ta semaine organisée", "planner_summary_default": "J’ai réparti tes tâches en tenant compte de ton temps disponible et de leurs priorités.", "planner_unavailable": "Indisponible", "planner_undo": "↶ Annuler", "planner_mark_done": "✓ Fait", "planner_load_fail": "Impossible de charger le plan enregistré", "planner_fail": "Le plan n’a pas pu être créé.", "planner_free_word": "libre", "planner_activate": "Activer", "planner_pending_one": "en attente", "planner_pending_many": "en attente", "planner_planned": "planifiées", "planner_free_day": "Jour libre", "planner_free_time": "Temps libre", "day_mon": "Lundi", "day_mon_s": "Lun", "day_tue": "Mardi", "day_tue_s": "Mar", "day_wed": "Mercredi", "day_wed_s": "Mer", "day_thu": "Jeudi", "day_thu_s": "Jeu", "day_fri": "Vendredi", "day_fri_s": "Ven", "day_sat": "Samedi", "day_sat_s": "Sam", "day_sun": "Dimanche", "day_sun_s": "Dim", "prompt_corrector": "\nTu es le correcteur de textes de TOOLBOX.\n\nCorrige exclusivement le texte fourni par l'utilisateur.\n\nCorrige :\n- L'orthographe\n- Les accents\n- La ponctuation\n- Les majuscules et les minuscules\n- La grammaire\n- Les accords\n- La typographie\n- Les fautes de frappe\n\nRÈGLES IMPORTANTES :\n\n1. Conserve exactement le sens d'origine.\n2. N'ajoute aucune information nouvelle.\n3. Ne salue pas l'utilisateur.\n4. N'explique pas les corrections.\n5. N'ajoute pas d'introductions du type « Voici ».\n6. N'ajoute pas de formule de politesse finale.\n7. Ne fais aucun commentaire.\n8. Renvoie UNIQUEMENT le texte corrigé.\n9. Conserve les paragraphes et le format du texte original autant que possible.\n10. Conserve la langue du texte original.\n\nTEXTE À CORRIGER :\n\n{input}\n        ", "prompt_simplifier": "\nTu es le Simplificateur de textes de TOOLBOX.\n\nTa tâche est de transformer le texte compliqué de l'utilisateur\nen un texte beaucoup plus facile à comprendre.\n\nRÈGLES IMPORTANTES :\n\n1. Explique le même contenu avec des mots simples.\n2. Conserve TOUTES les informations importantes.\n3. N'invente aucune information.\n4. Ne change pas le sens.\n5. Remplace les mots difficiles par des mots faciles.\n6. Découpe les phrases trop longues.\n7. S'il y a des concepts compliqués, explique-les simplement.\n8. Tu peux utiliser des exemples du quotidien quand ils aident à comprendre le concept.\n9. NE salue PAS l'utilisateur.\n10. NE dis PAS « Voici ».\n11. N'explique PAS ce que tu as changé.\n12. NE fais PAS de commentaires à la fin.\n13. Renvoie UNIQUEMENT le texte simplifié.\n14. Conserve les paragraphes et la structure autant que possible.\n15. Écris dans la même langue que le texte original.\n\nTEXTE À SIMPLIFIER :\n\n\n{input}\n        ", "prompt_humanizer": "\nRéécris le texte en toute liberté de rédaction. Je ne veux pas une simple substitution de mots :\nje veux que tu construises une version nouvelle, naturelle et cohérente du texte.\n\nDICTIONNAIRE DE STYLE NATUREL :\n\nÉvite d'abuser de :\n- « Tout d'abord »\n- « Ensuite »\n- « D'autre part »\n- « Par ailleurs »\n- « Il convient de souligner que »\n- « Il est important de noter que »\n- « En ce sens »\n- « Par conséquent »\n- « De cette manière »\n- « En conclusion »\n- « En définitive »\n- « Pour conclure »\n- « Il est essentiel de »\n- « Il faut souligner que »\n- « Il ne fait aucun doute que »\n- « De nos jours »\n- « Tout au long de l'histoire »\n- « Comme mentionné précédemment »\n- « Enfin »\n\nElles ne sont pas interdites. Utilise-les uniquement quand elles conviennent vraiment.\n\nPRÉFÉRENCES DE VOCABULAIRE :\n\nAu lieu de chercher constamment des mots plus sophistiqués :\n- « effectuer » → « faire » quand c'est naturel\n- « réaliser » → « faire » quand le contexte le permet\n- « acquérir » → « obtenir » ou « se procurer » selon le contexte\n- « ultérieurement » → « plus tard »\n- « préalablement » → « avant »\n- « de nombreux » → « beaucoup de » quand la formalité n'est pas nécessaire\n- « approximativement » → « environ » ou « à peu près » seulement dans les contextes informels\n- « en raison du fait que » → « parce que » quand cela ne change pas le ton\n- « afin de » → « pour » quand cela suffit\n- « en relation avec » → « sur » ou « au sujet de » quand cela sonne mieux\n- « mettre en œuvre » → « faire » quand il n'est pas nécessaire de garder un registre formel\n\nIMPORTANT :\nNe fais pas ces substitutions automatiquement. Ce sont des exemples de préférences, pas des règles.\nSi le mot d'origine est la meilleure option, garde-le.\n\nRÈGLES D'ÉCRITURE :\n\n1. Réécris les phrases de zéro quand c'est nécessaire.\n2. Ne conserve pas la structure de l'original par obligation.\n3. Tu peux changer l'ordre des idées dans une explication si cela améliore la lecture.\n4. Tu peux fusionner des phrases.\n5. Tu peux découper des phrases trop longues.\n6. Tu peux changer complètement les connecteurs.\n7. Tu peux supprimer des répétitions.\n8. Tu peux conserver des répétitions quand elles sont naturelles ou nécessaires.\n9. N'essaie pas d'utiliser un synonyme différent à chaque fois qu'un mot apparaît.\n10. Ne donne pas la même longueur à toutes les phrases.\n11. Ne donne pas exactement la même structure à tous les paragraphes.\n12. Ne commence pas toutes les phrases de la même façon.\n13. Ne force pas de connecteurs entre toutes les idées.\n14. Laisse certaines idées directement liées sans ajouter de connecteur artificiel.\n15. Évite les phrases trop parfaites, génériques ou toutes faites.\n16. N'ajoute pas de remplissage.\n17. N'ajoute aucune information nouvelle.\n18. Ne change pas les données, les chiffres, les noms ou les concepts.\n19. Conserve le sens original.\n20. Conserve la langue d'origine.\n\nLIBERTÉ :\n\nTu as la permission de changer pratiquement toute la forme du texte :\nvocabulaire, syntaxe, ordre des phrases, longueur des phrases,\nconnecteurs, structure des paragraphes et manière d'expliquer les idées.\n\nLa seule chose que tu dois conserver, c'est l'information et le sens.\n\nLe résultat doit fonctionner comme un texte indépendant.\nIl ne doit pas ressembler à une version mot à mot de l'original.\n\nTYPE DE TEXTE :\n{estilo}\n\n--- TEXTE ORIGINAL ---\n{input}\n--- FIN DU TEXTE ORIGINAL ---\n\nRenvoie uniquement la nouvelle version du texte.\n\n", "prompt_planner": "Planifie ma semaine. N'utilise pas de Pomodoros.\n\nTÂCHES :\n{tasks}\n\nHORAIRES :\n{availability}\n\nRÈGLES :\n- Respecte exactement les horaires.\n- Donne la priorité aux échéances et aux examens proches.\n- Respecte les durées indiquées ; s'il manque une durée, estime-en une raisonnable.\n- Découpe les tâches longues si nécessaire.\n- Ne remplis pas tout : laisse du temps libre.\n- Ne fais pas se chevaucher les blocs.\n- Si tout ne tient pas, planifie d'abord les priorités et envoie le reste dans pending.\n- Utilise des blocs normaux comme 16:00-17:30.\n- Renvoie UNIQUEMENT du JSON valide, sans Markdown.\n- Écris toutes les valeurs textuelles en français.\n\nFORMAT :\n{\"title\":\"Semaine organisée\",\"summary\":\"bref\",\"days\":[{\"day\":\"Lundi\",\"blocks\":[{\"task\":\"Maths\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"haute\",\"deadline\":\"vendredi\",\"note\":\"\"}]},{\"day\":\"Mardi\",\"blocks\":[]},{\"day\":\"Mercredi\",\"blocks\":[]},{\"day\":\"Jeudi\",\"blocks\":[]},{\"day\":\"Vendredi\",\"blocks\":[]},{\"day\":\"Samedi\",\"blocks\":[]},{\"day\":\"Dimanche\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}", "fav_add": "Ajouter aux favoris", "fav_remove": "Retirer des favoris", "pdf_err_lib": "Le moteur PDF n’a pas pu être chargé. Vérifie ta connexion internet et réessaie.", "pdf_err_encrypted": "« {name} » est protégé par un mot de passe et ne peut pas être traité.", "pdf_err_invalid": "« {name} » n’est pas un PDF valide ou il est endommagé.", "pdf_err_type": "« {name} » n’est pas un fichier compatible.", "pdf_err_big": "« {name} » est trop volumineux (200 Mo maximum).", "pdf_err_image": "L’image « {name} » n’a pas pu être lue.", "pdf_page_one": "{n} page", "pdf_pages_many": "{n} pages", "pdf_remove": "Retirer", "pdf_up": "Monter", "pdf_down": "Descendre", "pdf_need_two": "Ajoute au moins deux PDF pour les fusionner.", "pdf_need_one": "Ajoute d’abord un fichier.", "pdf_processing": "Traitement de {i} sur {n}…", "pdf_reading": "Lecture du fichier…", "pdf_saving": "Enregistrement…", "pdf_done_merge": "✅ PDF fusionnés avec succès.", "pdf_done_split": "✅ PDF divisé en {n} fichiers.", "pdf_done_extract": "✅ Pages extraites avec succès.", "pdf_done_images": "✅ PDF créé avec succès.", "pdf_done_compress": "✅ PDF compressé : de {from} à {to} ({pct} % de moins).", "pdf_compress_bigger": "Le résultat n’est pas plus petit que l’original ({from} → {to}). Ce PDF est déjà bien optimisé.", "pdf_compress_none": "Ce PDF est déjà optimisé : la compression légère le réduit à peine ({from} → {to}). Essaie la compression forte si tu n’as pas besoin de sélectionner le texte.", "pdf_compress_note": "Attention : le texte de ce PDF n’est plus sélectionnable.", "pdf_download_pdf": "💾 Télécharger le PDF", "pdf_download_zip": "💾 Télécharger le ZIP", "pdf_ranges_empty": "Écris les pages que tu veux (par exemple : 1-3, 5).", "pdf_range_invalid": "Je ne comprends pas « {token} ». Utilise des numéros et des plages, comme 1-3, 5.", "pdf_range_out": "La page {n} n’existe pas : le PDF en compte {total}.", "pdf_range_order": "La plage « {token} » est à l’envers. Écris-la du plus petit au plus grand.", "pdf_split_n_invalid": "Indique un nombre de pages valide (1 ou plus).", "pdf_split_ranges_empty": "Écris les plages (par exemple : 1-3 ; 4-6 ; 7).", "pdf_unknown": "Une erreur inattendue s’est produite. Réessaie."};
+const I18N = {"color_copied": "Couleur copiée.", "styler_empty": "Ton texte apparaîtra ici.", "text_copied": "Texte copié.", "pw_select_one": "Sélectionne au moins un type de caractère.", "pw_copied": "Mot de passe copié.", "img_load_first": "Charge d’abord une image.", "err_invalid_response": "Le serveur n’a pas renvoyé de réponse valide.", "err_no_reply": "TOOLBOX AI n’a renvoyé aucune réponse.", "err_connect": "Erreur de connexion à TOOLBOX AI.", "corr_write_first": "Écris d’abord un texte.", "corr_loading": "🤖 Amélioration...", "corr_analyzing": "TOOLBOX AI analyse ton texte...", "corr_button": "✨ Améliorer avec l’IA", "paste_first": "Colle d’abord un texte.", "simp_loading": "🧠 Simplification...", "simp_working": "TOOLBOX AI prépare une explication simple...", "simp_button": "🧠 Rendre facile", "pwm_complete": "⚠️ Remplis les deux mots et le nombre.", "pwm_copied": "✅ Copié !", "pwm_copy_failed": "Impossible de copier automatiquement.", "words_suffix": " mots", "hum_empty": "Le texte réécrit apparaîtra ici.", "copied_ok": "✅ Copié", "hum_longer": "Colle un texte un peu plus long pour obtenir une réécriture utile.", "hum_style_simple": "Utilise une formulation simple, directe et naturelle, dans la même langue que le texte original. Privilégie les mots courants, les phrases claires et une lecture facile. Ne réduis pas la précision et ne supprime aucune information.", "hum_style_pro": "Utilise une rédaction professionnelle et, le cas échéant, académique, dans la même langue que le texte original. Elle doit être précise, claire et sérieuse, sans paraître rigide, trop formelle ou mécanique.", "hum_loading": "🧠 Réécriture...", "hum_analyzing": "Analyse du texte...", "hum_checking": "Vérification du vocabulaire, de la structure, du rythme, des répétitions et de la clarté...", "hum_empty_ai": "L’IA n’a renvoyé aucun texte. Réessaie.", "hum_done": "✅ Texte réécrit. Relis-le avant de l’utiliser.", "hum_status_default": "Conserve le sens et améliore la clarté, le rythme, la variété et le naturel.", "hum_copy_result": "📋 Copier le résultat", "hum_failed": "La réécriture n’a pas pu être terminée.", "hum_button": "✨ Humaniser le texte", "pomo_focus": "C’est l’heure d’étudier / de travailler", "pomo_short": "Pause courte", "pomo_long": "Pause longue", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Démarrer", "pomo_t_all": "🍅 Tu as terminé toutes les sessions !", "pomo_m_all": "Tu peux prendre ta pause longue.", "pomo_t_session": "🍅 Session terminée !", "pomo_m_session": "Tu peux te reposer quelques minutes.", "pomo_t_break": "⏰ Pause terminée !", "pomo_m_break": "C’est le moment de retourner étudier ou travailler.", "pomo_t_long": "🌿 Pause longue terminée !", "pomo_m_long": "Tu peux te remettre au travail.", "pomo_session": "Session {n} sur {total}", "ocr_preparing": "Préparation de la reconnaissance...", "ocr_lang": "fra+eng", "ocr_ok": "✅ Texte détecté avec succès.", "ocr_none": "Aucun texte n’a été trouvé dans l’image.", "ocr_fail": "❌ Impossible de reconnaître le texte. Essaie avec une autre image.", "ocr_first": "Détecte d’abord un texte.", "ocr_copied": "✅ Texte copié.", "planner_same_monday": "L’horaire du lundi a été copié sur le reste de la semaine.", "planner_same_all": "Le même horaire a été appliqué à tous les jours.", "planner_clear_confirm": "Veux-tu supprimer les tâches et le plan généré ?", "planner_bad_json": "L’IA a renvoyé une réponse qui n’a pas pu être convertie en plan. Réessaie.", "planner_bad_days": "L’IA n’a pas renvoyé la structure de jours attendue.", "planner_write_first": "Écris d’abord tout ce que tu as à faire.", "planner_activate_day": "Active au moins un jour et définis un créneau disponible.", "planner_time_error": "L’heure de début doit être antérieure à l’heure de fin.", "planner_loading": "🤖 Organisation...", "planner_status_creating": "Création d’un plan réaliste avec tes tâches et tes horaires...", "planner_done": "✅ Semaine organisée avec succès.", "planner_unknown": "Erreur inconnue.", "planner_button": "✨ Créer ma semaine", "planner_rate_limit": "Groq limite temporairement les requêtes. Attends quelques secondes et réessaie. Cette version ne refait plus de tentatives automatiques pour ne pas consommer plus de requêtes.", "planner_title_default": "Ta semaine organisée", "planner_summary_default": "J’ai réparti tes tâches en tenant compte de ton temps disponible et de leurs priorités.", "planner_unavailable": "Indisponible", "planner_undo": "↶ Annuler", "planner_mark_done": "✓ Fait", "planner_load_fail": "Impossible de charger le plan enregistré", "planner_fail": "Le plan n’a pas pu être créé.", "planner_free_word": "libre", "planner_activate": "Activer", "planner_pending_one": "en attente", "planner_pending_many": "en attente", "planner_planned": "planifiées", "planner_free_day": "Jour libre", "planner_free_time": "Temps libre", "day_mon": "Lundi", "day_mon_s": "Lun", "day_tue": "Mardi", "day_tue_s": "Mar", "day_wed": "Mercredi", "day_wed_s": "Mer", "day_thu": "Jeudi", "day_thu_s": "Jeu", "day_fri": "Vendredi", "day_fri_s": "Ven", "day_sat": "Samedi", "day_sat_s": "Sam", "day_sun": "Dimanche", "day_sun_s": "Dim", "Comunidad Tools": "Outils Communauté", "TOOLBOX AI": "TOOLBOX AI", "Menú": "Menu", "Community Tools": "Outils Communauté", "Explora herramientas de la comunidad": "Explorer les outils de la communauté", "Buscar herramientas...": "Rechercher des outils...", "Todas las etiquetas": "Tous les tags", "Subir herramienta": "Ajouter un outil", "Vista previa": "Aperçu", "Código": "Code", "Guardar": "Enregistrer", "Hacer fork": "Fork", "Ver herramienta": "Voir l'outil", "Sin herramientas": "Aucun outil", "Cargando...": "Chargement...", "Error al cargar": "Erreur de chargement", "Subir herramienta a Community Tools": "Ajouter un outil aux Outils Communauté", "Nombre de la herramienta": "Nom de l'outil", "Tu nombre": "Ton nom", "Descripción": "Description", "Etiquetas (separadas por comas)": "Tags (séparés par des virgules)", "Código HTML/JS": "Code HTML/JS", "Vista previa en vivo": "Aperçu en direct", "Cancelar": "Annuler", "Subir y revisar": "Ajouter et examiner", "Revisando con IA...": "Examen par l'IA...", "Herramienta subida. En revisión.": "Outil ajouté. En examen.", "Error al subir": "Erreur d'ajout", "Límite de subidas alcanzado": "Limite d'ajouts atteinte", "Inténtalo más tarde": "Réessaie plus tard", "Inténtalo mañana": "Réessaie demain", "Rellena todos los campos": "Remplis tous les champs", "La herramienta ya existe": "L'outil existe déjà", "Blog / Tutoriales": "Blog / Tutoriels", "Buscar": "Rechercher", "Cambiar tema": "Changer de thème", "Cerrar": "Fermer", "Cerrar preview": "Fermer l'aperçu", "Código copiado al portapapeles. Abre TOOLBOX AI para editar.": "Code copié dans le presse-papiers. Ouvrez TOOLBOX AI pour le modifier.", "Guardado en tu TOOLBOX": "Enregistré dans votre TOOLBOX", "Guardar en mi TOOLBOX": "Enregistrer dans mon TOOLBOX", "Fork / Editar": "Fork / Modifier", "Error cargando preview": "Erreur de chargement de l'aperçu", "Error copiando al portapapeles": "Erreur de copie dans le presse-papiers", "Filtrar por categoría": "Filtrer par catégorie", "Todas": "Tous", "Herramientas": "Outils", "Herramientas de la comunidad": "Outils de la communauté", "Paginación": "Pagination", "No hay herramientas aún. ¡Sé el primero en subir una!": "Aucun outil pour l'instant. Soyez le premier à en ajouter un !", "Sin descripción": "Pas de description", "Probar": "Aperçu", "Saltar al contenido": "Aller au contenu", "Comunidad": "Communauté", "Comunidad TOOLBOX": "Communauté TOOLBOX", "Principal": "Principal", "Vista previa de la herramienta": "Aperçu de l'outil", "← Volver a TOOLBOX": "← Retour à TOOLBOX", "prompt_corrector": "\nTu es le correcteur de textes de TOOLBOX.\n\nCorrige exclusivement le texte fourni par l'utilisateur.\n\nCorrige :\n- L'orthographe\n- Les accents\n- La ponctuation\n- Les majuscules et les minuscules\n- La grammaire\n- Les accords\n- La typographie\n- Les fautes de frappe\n\nRÈGLES IMPORTANTES :\n\n1. Conserve exactement le sens d'origine.\n2. N'ajoute aucune information nouvelle.\n3. Ne salue pas l'utilisateur.\n4. N'explique pas les corrections.\n5. N'ajoute pas d'introductions du type « Voici ».\n6. N'ajoute pas de formule de politesse finale.\n7. Ne fais aucun commentaire.\n8. Renvoie UNIQUEMENT le texte corrigé.\n9. Conserve les paragraphes et le format du texte original autant que possible.\n10. Conserve la langue du texte original.\n\nTEXTE À CORRIGER :\n\n{input}\n        ", "prompt_simplifier": "\nTu es le Simplificateur de textes de TOOLBOX.\n\nTa tâche est de transformer le texte compliqué de l'utilisateur\nen un texte beaucoup plus facile à comprendre.\n\nRÈGLES IMPORTANTES :\n\n1. Explique le même contenu avec des mots simples.\n2. Conserve TOUTES les informations importantes.\n3. N'invente aucune information.\n4. Ne change pas le sens.\n5. Remplace les mots difficiles par des mots faciles.\n6. Découpe les phrases trop longues.\n7. S'il y a des concepts compliqués, explique-les simplement.\n8. Tu peux utiliser des exemples du quotidien quand ils aident à comprendre le concept.\n9. NE salue PAS l'utilisateur.\n10. NE dis PAS « Voici ».\n11. N'explique PAS ce que tu as changé.\n12. NE fais PAS de commentaires à la fin.\n13. Renvoie UNIQUEMENT le texte simplifié.\n14. Conserve les paragraphes et la structure autant que possible.\n15. Écris dans la même langue que le texte original.\n\nTEXTE À SIMPLIFIER :\n\n\n{input}\n        ", "prompt_humanizer": "\nRéécris le texte en toute liberté de rédaction. Je ne veux pas une simple substitution de mots :\nje veux que tu construises une version nouvelle, naturelle et cohérente du texte.\n\nDICTIONNAIRE DE STYLE NATUREL :\n\nÉvite d'abuser de :\n- « Tout d'abord »\n- « Ensuite »\n- « D'autre part »\n- « Par ailleurs »\n- « Il convient de souligner que »\n- « Il est important de noter que »\n- « En ce sens »\n- « Par conséquent »\n- « De cette manière »\n- « En conclusion »\n- « En définitive »\n- « Pour conclure »\n- « Il est essentiel de »\n- « Il faut souligner que »\n- « Il ne fait aucun doute que »\n- « De nos jours »\n- « Tout au long de l'histoire »\n- « Comme mentionné précédemment »\n- « Enfin »\n\nElles ne sont pas interdites. Utilise-les uniquement quand elles conviennent vraiment.\n\nPRÉFÉRENCES DE VOCABULAIRE :\n\nAu lieu de chercher constamment des mots plus sophistiqués :\n- « effectuer » → « faire » quand c'est naturel\n- « réaliser » → « faire » quand le contexte le permet\n- « acquérir » → « obtenir » ou « se procurer » selon le contexte\n- « ultérieurement » → « plus tard »\n- « préalablement » → « avant »\n- « de nombreux » → « beaucoup de » quand la formalité n'est pas nécessaire\n- « approximativement » → « environ » ou « à peu près » seulement dans les contextes informels\n- « en raison du fait que » → « parce que » quand cela ne change pas le ton\n- « afin de » → « pour » quand cela suffit\n- « en relation avec » → « sur » ou « au sujet de » quand cela sonne mieux\n- « mettre en œuvre » → « faire » quand il n'est pas nécessaire de garder un registre formel\n\nIMPORTANT :\nNe fais pas ces substitutions automatiquement. Ce sont des exemples de préférences, pas des règles.\nSi le mot d'origine est la meilleure option, garde-le.\n\nRÈGLES D'ÉCRITURE :\n\n1. Réécris les phrases de zéro quand c'est nécessaire.\n2. Ne conserve pas la structure de l'original par obligation.\n3. Tu peux changer l'ordre des idées dans une explication si cela améliore la lecture.\n4. Tu peux fusionner des phrases.\n5. Tu peux découper des phrases trop longues.\n6. Tu peux changer complètement les connecteurs.\n7. Tu peux supprimer des répétitions.\n8. Tu peux conserver des répétitions quand elles sont naturelles ou nécessaires.\n9. N'essaie pas d'utiliser un synonyme différent à chaque fois qu'un mot apparaît.\n10. Ne donne pas la même longueur à toutes les phrases.\n11. Ne donne pas exactement la même structure à tous les paragraphes.\n12. Ne commence pas toutes les phrases de la même façon.\n13. Ne force pas de connecteurs entre toutes les idées.\n14. Laisse certaines idées directement liées sans ajouter de connecteur artificiel.\n15. Évite les phrases trop parfaites, génériques ou toutes faites.\n16. N'ajoute pas de remplissage.\n17. N'ajoute aucune information nouvelle.\n18. Ne change pas les données, les chiffres, les noms ou les concepts.\n19. Conserve le sens original.\n20. Conserve la langue d'origine.\n\nLIBERTÉ :\n\nTu as la permission de changer pratiquement toute la forme du texte :\nvocabulaire, syntaxe, ordre des phrases, longueur des phrases,\nconnecteurs, structure des paragraphes et manière d'expliquer les idées.\n\nLa seule chose que tu dois conserver, c'est l'information et le sens.\n\nLe résultat doit fonctionner comme un texte indépendant.\nIl ne doit pas ressembler à une version mot à mot de l'original.\n\nTYPE DE TEXTE :\n{estilo}\n\n--- TEXTE ORIGINAL ---\n{input}\n--- FIN DU TEXTE ORIGINAL ---\n\nRenvoie uniquement la nouvelle version du texte.\n\n", "prompt_planner": "Planifie ma semaine. N'utilise pas de Pomodoros.\n\nTÂCHES :\n{tasks}\n\nHORAIRES :\n{availability}\n\nRÈGLES :\n- Respecte exactement les horaires.\n- Donne la priorité aux échéances et aux examens proches.\n- Respecte les durées indiquées ; s'il manque une durée, estime-en une raisonnable.\n- Découpe les tâches longues si nécessaire.\n- Ne remplis pas tout : laisse du temps libre.\n- Ne fais pas se chevaucher les blocs.\n- Si tout ne tient pas, planifie d'abord les priorités et envoie le reste dans pending.\n- Utilise des blocs normaux comme 16:00-17:30.\n- Renvoie UNIQUEMENT du JSON valide, sans Markdown.\n- Écris toutes les valeurs textuelles en français.\n\nFORMAT :\n{\"title\":\"Semaine organisée\",\"summary\":\"bref\",\"days\":[{\"day\":\"Lundi\",\"blocks\":[{\"task\":\"Maths\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"haute\",\"deadline\":\"vendredi\",\"note\":\"\"}]},{\"day\":\"Mardi\",\"blocks\":[]},{\"day\":\"Mercredi\",\"blocks\":[]},{\"day\":\"Jeudi\",\"blocks\":[]},{\"day\":\"Vendredi\",\"blocks\":[]},{\"day\":\"Samedi\",\"blocks\":[]},{\"day\":\"Dimanche\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}", "fav_add": "Ajouter aux favoris", "fav_remove": "Retirer des favoris", "pdf_err_lib": "Le moteur PDF n’a pas pu être chargé. Vérifie ta connexion internet et réessaie.", "pdf_err_encrypted": "« {name} » est protégé par un mot de passe et ne peut pas être traité.", "pdf_err_invalid": "« {name} » n’est pas un PDF valide ou il est endommagé.", "pdf_err_type": "« {name} » n’est pas un fichier compatible.", "pdf_err_big": "« {name} » est trop volumineux (200 Mo maximum).", "pdf_err_image": "L’image « {name} » n’a pas pu être lue.", "pdf_page_one": "{n} page", "pdf_pages_many": "{n} pages", "pdf_remove": "Retirer", "pdf_up": "Monter", "pdf_down": "Descendre", "pdf_need_two": "Ajoute au moins deux PDF pour les fusionner.", "pdf_need_one": "Ajoute d’abord un fichier.", "pdf_processing": "Traitement de {i} sur {n}…", "pdf_reading": "Lecture du fichier…", "pdf_saving": "Enregistrement…", "pdf_done_merge": "✅ PDF fusionnés avec succès.", "pdf_done_split": "✅ PDF divisé en {n} fichiers.", "pdf_done_extract": "✅ Pages extraites avec succès.", "pdf_done_images": "✅ PDF créé avec succès.", "pdf_done_compress": "✅ PDF compressé : de {from} à {to} ({pct} % de moins).", "pdf_compress_bigger": "Le résultat n’est pas plus petit que l’original ({from} → {to}). Ce PDF est déjà bien optimisé.", "pdf_compress_none": "Ce PDF est déjà optimisé : la compression légère le réduit à peine ({from} → {to}). Essaie la compression forte si tu n’as pas besoin de sélectionner le texte.", "pdf_compress_note": "Attention : le texte de ce PDF n’est plus sélectionnable.", "pdf_download_pdf": "💾 Télécharger le PDF", "pdf_download_zip": "💾 Télécharger le ZIP", "pdf_ranges_empty": "Écris les pages que tu veux (par exemple : 1-3, 5).", "pdf_range_invalid": "Je ne comprends pas « {token} ». Utilise des numéros et des plages, comme 1-3, 5.", "pdf_range_out": "La page {n} n’existe pas : le PDF en compte {total}.", "pdf_range_order": "La plage « {token} » est à l’envers. Écris-la du plus petit au plus grand.", "pdf_split_n_invalid": "Indique un nombre de pages valide (1 ou plus).", "pdf_split_ranges_empty": "Écris les plages (par exemple : 1-3 ; 4-6 ; 7).", "pdf_unknown": "Une erreur inattendue s’est produite. Réessaie.", "community_title": "🌐 Communauté TOOLBOX", "community_footer": "TOOLBOX Communauté — Outils créés par la communauté, examinés par l'IA.", "search_aria": "Rechercher des outils", "blog_tutorials": "Blog / Tutoriels", "search": "Rechercher", "search_placeholder": "Rechercher des outils...", "toggle_theme": "Changer de thème", "cancel": "Annuler", "loading": "Chargement...", "close": "Fermer", "close_preview": "Fermer l'aperçu", "community_tools": "Outils Communauté", "community": "Communauté", "community_toolbox": "Communauté TOOLBOX", "code": "Code", "code_html_js": "Code HTML/JS", "code_copied": "Code copié dans le presse-papiers. Ouvrez TOOLBOX AI pour le modifier.", "description": "Description", "error_loading": "Erreur de chargement", "error_upload": "Erreur d'ajout", "error_preview": "Erreur de chargement de l'aperçu", "error_copy": "Erreur de copie dans le presse-papiers", "tags_placeholder": "Tags (séparés par des virgules)", "explore_tools": "Explorer les outils de la communauté", "filter_label": "Filtrer par catégorie", "fork_edit": "Fork / Modifier", "saved_toolbox": "Enregistré dans votre TOOLBOX", "save": "Enregistrer", "save_toolbox": "Enregistrer dans mon TOOLBOX", "make_fork": "Fork", "tool_under_review": "Outil ajouté. En examen.", "tools": "Outils", "tools_community": "Outils de la communauté", "try_tomorrow": "Réessaie demain", "try_later": "Réessaie plus tard", "tool_exists": "L'outil existe déjà", "limit_reached": "Limite d'ajouts atteinte", "menu": "Menu", "empty_state": "Aucun outil pour l'instant. Soyez le premier à en ajouter un !", "tool_name": "Nom de l'outil", "pagination": "Pagination", "main": "Principal", "preview": "Aperçu", "fill_fields": "Remplis tous les champs", "reviewing_ai": "Examen par l'IA...", "skip_content": "Aller au contenu", "no_description": "Pas de description", "no_tools": "Aucun outil", "upload_tool": "Ajouter un outil", "upload_tool_community": "Ajouter un outil aux Outils Communauté", "upload_review": "Ajouter et examiner", "toolbox_ai": "TOOLBOX AI", "all_tags": "Tous", "all_tags_full": "Tous les tags", "your_name": "Ton nom", "view_tool": "Voir l'outil", "preview_short": "Aperçu", "preview_tool": "Aperçu de l'outil", "live_preview": "Aperçu en direct", "back_toolbox": "← Retour à TOOLBOX"};
 
 function t(key, vars) {
     let text = (I18N[key] !== undefined) ? I18N[key] : key;
@@ -4212,6 +4349,45 @@ function syncThemeButton() {
     const light = document.body.classList.contains("light");
 
     button.innerText = light ? "☀️" : "🌙";
+}
+
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+function initHamburgerMenu() {
+    const btn = document.querySelector(".hamburger-btn");
+    const panel = document.getElementById("hamburgerPanel");
+    if (!btn || !panel) return;
+
+    function closePanel() {
+        btn.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+    }
+
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+        panel.hidden = expanded;
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) {
+            closePanel();
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !panel.hidden) {
+            closePanel();
+            btn.focus();
+        }
+    });
+
+    panel.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", closePanel);
+    });
 }
 
 
@@ -5822,6 +5998,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("humanizadorInput");
     if (input) input.addEventListener("input", humanizadorActualizarContadores);
     humanizadorActualizarContadores();
+    initHamburgerMenu();
 });
 
 </script>

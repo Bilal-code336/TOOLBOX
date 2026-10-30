@@ -219,6 +219,116 @@ nav {
 }
 
 /* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+.hamburger-menu {
+    position: relative;
+}
+
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 11px;
+    background: var(--button);
+    color: var(--text);
+    padding: 8px;
+    transition: background .2s, transform .2s;
+}
+
+.hamburger-btn:hover {
+    background: var(--purple);
+    transform: translateY(-1px);
+}
+
+.hamburger-btn:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.hamburger-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 6000;
+    min-width: 220px;
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    animation: hamburgerPop .2s ease;
+}
+
+@keyframes hamburgerPop {
+    from { opacity: 0; transform: translateY(-8px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.hamburger-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+}
+
+.hamburger-item:hover,
+.hamburger-item:focus-visible {
+    background: var(--button);
+    color: var(--purple3);
+}
+
+.hamburger-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: color .15s;
+}
+
+.hamburger-item:hover .hamburger-icon {
+    color: var(--purple3);
+}
+
+.hamburger-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 6px 8px;
+}
+
+/* =========================================================
    HERO
 ========================================================= */
 
@@ -2216,6 +2326,33 @@ body.light .search input { color: var(--text); }
         >
             🌙
         </button>
+
+        <div class="hamburger-menu">
+            <button class="hamburger-btn" aria-expanded="false" aria-controls="hamburgerPanel" aria-label="Menú">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="hamburger-panel" id="hamburgerPanel" role="menu" hidden>
+                <a href="/community.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Comunidad Tools
+                </a>
+                <a href="/TOOLBOXAI" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="20 21 15 16.09 10 21 10 12.09 4 8.59 9 5.09 12 3 15 5.09 20 8.59 20 12.09"/></svg>
+                    TOOLBOX AI
+                </a>
+                <a href="#herramientas" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                    Herramientas
+                </a>
+                <hr class="hamburger-divider">
+                <a href="/blog.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Blog / Tutoriales
+                </a>
+            </div>
+        </div>
 
     </div>
 
@@ -4215,6 +4352,45 @@ function syncThemeButton() {
     button.innerText = light ? "☀️" : "🌙";
 }
 
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+function initHamburgerMenu() {
+    const btn = document.querySelector(".hamburger-btn");
+    const panel = document.getElementById("hamburgerPanel");
+    if (!btn || !panel) return;
+
+    function closePanel() {
+        btn.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+    }
+
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+        panel.hidden = expanded;
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) {
+            closePanel();
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !panel.hidden) {
+            closePanel();
+            btn.focus();
+        }
+    });
+
+    panel.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", closePanel);
+    });
+}
+
 
 /* =========================================================
    BUSCADOR
@@ -5823,6 +5999,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("humanizadorInput");
     if (input) input.addEventListener("input", humanizadorActualizarContadores);
     humanizadorActualizarContadores();
+    initHamburgerMenu();
 });
 
 </script>

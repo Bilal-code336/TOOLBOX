@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}" translate="yes">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{META_TITLE}}</title>
+<meta name="description" content="{{META_DESC}}">
+<link rel="icon" type="image/png" href="{{HOME}}favicon.png">
+<link rel="canonical" href="{{CANONICAL}}">
+{{ALTERNATES}}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TOOLBOX">
+<meta property="og:title" content="{{META_TITLE}}">
+<meta property="og:description" content="{{META_DESC}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:locale" content="{{OG_LOCALE}}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TOOLBOX",
+  "url": "https://toolbox-zci6.onrender.com/",
+  "inLanguage": "{{LANG}}",
+  "description": "Comunidad TOOLBOX — Herramientas de usuarios creadas y revisadas por IA"
+}
+</script>
+
+{{FLAG_SPRITE}}
+
+<style>
+/* =========================================================
+   TOOLBOX — ESTILO PRINCIPAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #080b12;
+    --bg2: #0c111c;
+    --nav: rgba(8,11,18,.88);
+
+    --card: #111827;
+    --card2: #0d131f;
+    --panel: #101724;
+
+    --input: #080d16;
+
+    --border: #29344a;
+    --border2: #344158;
+
+    --text: #ffffff;
+    --muted: #8995aa;
+
+    --purple: #7c3aed;
+    --purple2: #8b5cf6;
+    --purple3: #a78bfa;
+
+    --button: #202a3d;
+
+    --green: #22c55e;
+}
+
+/* =========================================================
+   MODO CLARO
+========================================================= */
+
+body.light {
+
+    --bg: #f4f6f9;
+    --bg2: #ffffff;
+    --nav: rgba(255,255,255,.94);
+
+    --card: #ffffff;
+    --card2: #f4f6f8;
+    --panel: #ffffff;
+
+    --input: #f1f3f5;
+
+    --border: #d9dee7;
+    --border2: #c7ced9;
+
+    --text: #111827;
+    --muted: #5f6b7a;
+
+    --button: #e6eaf0;
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(124,58,237,.14),
+            transparent 45%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+button,
+input,
+textarea,
+select {
+
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav {
+
+    height: 70px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: var(--nav);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.logo {
+
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -.7px;
+}
+
+.logo span {
+    color: var(--purple2);
+}
+
+.nav-right {
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.nav-link {
+
+    color: var(--muted);
+
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.nav-link:hover {
+    color: var(--text);
+}
+
+.theme {
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--button);
+
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+.hamburger-menu {
+    position: relative;
+}
+
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 11px;
+    background: var(--button);
+    color: var(--text);
+    padding: 8px;
+    transition: background .2s, transform .2s;
+}
+
+.hamburger-btn:hover {
+    background: var(--purple);
+    transform: translateY(-1px);
+}
+
+.hamburger-btn:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.hamburger-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 6000;
+    min-width: 220px;
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    animation: hamburgerPop .2s ease;
+}
+
+@keyframes hamburgerPop {
+    from { opacity: 0; transform: translateY(-8px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.hamburger-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+}
+
+.hamburger-item:hover,
+.hamburger-item:focus-visible {
+    background: var(--button);
+    color: var(--purple3);
+}
+
+.hamburger-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: color .15s;
+}
+
+.hamburger-item:hover .hamburger-icon {
+    color: var(--purple3);
+}
+
+.hamburger-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 6px 8px;
+}
+
+/* =========================================================
+   COMMUNITY PAGE STYLES
+========================================================= */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+}
+
+.search-bar {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    font-size: 15px;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.search-bar button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, .4);
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.filter-btn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--purple);
+    border-color: transparent;
+    color: #fff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, .5);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.card-title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-desc {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(139, 92, 246, .15);
+    border: 1px solid rgba(139, 92, 246, .3);
+    color: var(--purple3);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.card-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-sm {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary {
+    background: var(--button);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-sm:hover {
+    transform: translateY(-1px);
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.page-btn:hover {
+    border-color: var(--purple);
+    color: var(--purple3);
+}
+
+.page-btn.active {
+    background: var(--purple);
+    border-color: transparent;
+    color: #fff;
+}
+
+/* Preview modal */
+.preview-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .8);
+    backdrop-filter: blur(8px);
+    animation: modalFade .2s ease;
+}
+
+@keyframes modalFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.preview-box {
+    width: 100%;
+    max-width: 900px;
+    height: 80vh;
+    max-height: 800px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlide .25s ease;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(20px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.preview-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.preview-iframe {
+    flex: 1;
+    border: none;
+    background: #000;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    margin-top: 80px;
+    padding: 45px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+}
+
+footer strong {
+    color: var(--purple2);
+}
+
+/* =========================================================
+   IDIOMAS, ACCESIBILIDAD Y MEJORAS
+========================================================= */
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    z-index: 10000;
+    padding: 9px 16px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.skip-link:focus { left: 12px; }
+
+:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.logo { color: inherit; text-decoration: none; }
+
+.flag {
+    width: 22px;
+    height: 15px;
+    flex: 0 0 auto;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(128,128,128,.35);
+}
+
+.lang-switch { position: relative; }
+
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--button);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.lang-btn:hover {
+    border-color: var(--purple2);
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(139,92,246,.25);
+}
+
+.lang-btn .caret { font-size: 10px; opacity: .7; transition: transform .2s; }
+.lang-btn[aria-expanded="true"] .caret { transform: rotate(180deg); }
+
+.lang-menu {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    z-index: 6000;
+    min-width: 190px;
+    padding: 6px;
+    list-style: none;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    animation: langPop .18s ease;
+}
+
+@keyframes langPop {
+    from { opacity: 0; transform: translateY(-6px) scale(.97); }
+    to { opacity: 1; transform: none; }
+}
+
+.lang-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.lang-menu a:hover,
+.lang-menu a:focus-visible { background: var(--button); }
+.lang-menu a[aria-current="true"] { background: rgba(124,58,237,.16); font-weight: 700; }
+.lang-menu .check { margin-left: auto; color: var(--purple3); }
+
+.lang-tag {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-bar {
+        max-width: none;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .card-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+/* Toast notification */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+</style>
+</head>
+<body>
+<script>try{if(localStorage.getItem("toolboxTheme")==="light")document.body.classList.add("light")}catch(e){}</script>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<a class="skip-link" href="#grid">Saltar al contenido</a>
+
+<nav aria-label="Principal">
+
+    <a class="logo" href="{{HOME}}" aria-label="TOOLBOX">
+        🧰 TOOL<span>BOX</span>
+    </a>
+
+    <div class="nav-right">
+
+        <a href="#grid" class="nav-link">
+            Comunidad
+        </a>
+
+        <a href="{{HOME}}TOOLBOXAI" class="nav-link">
+            TOOLBOX AI
+        </a>
+
+        <a href="{{HOME}}" class="nav-link">
+            Herramientas
+        </a>
+
+        {{LANG_SWITCH}}
+
+        <button
+            id="themeButton"
+            class="theme"
+            onclick="tema()"
+            type="button"
+            title="Cambiar tema"
+            aria-label="Cambiar tema"
+        >
+            🌙
+        </button>
+
+        <div class="hamburger-menu">
+            <button class="hamburger-btn" aria-expanded="false" aria-controls="hamburgerPanel" aria-label="Menú">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="hamburger-panel" id="hamburgerPanel" role="menu" hidden>
+                <a href="{{HOME}}community.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Comunidad Tools
+                </a>
+                <a href="{{HOME}}TOOLBOXAI" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="20 21 15 16.09 10 21 10 12.09 4 8.59 9 5.09 12 3 15 5.09 20 8.59 20 12.09"/></svg>
+                    TOOLBOX AI
+                </a>
+                <a href="{{HOME}}" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                    Herramientas
+                </a>
+                <hr class="hamburger-divider">
+                <a href="{{HOME}}blog.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Blog / Tutoriales
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     COMMUNITY CONTENT
+========================================================= -->
+
+<main id="comunidad" class="container" role="main">
+
+    <header class="header">
+        <h1>🌐 Comunidad TOOLBOX</h1>
+        <div class="search-bar">
+            <input type="search" id="searchInput" placeholder="Buscar herramientas..." autocomplete="off" aria-label="Buscar herramientas">
+            <button id="searchBtn" type="button" aria-label="Buscar">Buscar</button>
+        </div>
+    </header>
+
+    <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+
+    <div class="grid" id="grid" role="list" aria-label="Herramientas de la comunidad"></div>
+
+    <nav class="pagination" id="pagination" aria-label="Paginación"></nav>
+
+    <div class="empty" id="empty" hidden>No hay herramientas aún. ¡Sé el primero en subir una!</div>
+
+</main>
+
+<!-- Preview Modal -->
+<div class="preview-modal" id="previewModal" hidden role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="preview-box">
+        <div class="preview-header">
+            <span class="preview-title" id="previewTitle"></span>
+            <button class="btn-sm btn-secondary" id="closePreview" aria-label="Cerrar preview">Cerrar</button>
+        </div>
+        <iframe class="preview-iframe" id="previewFrame" sandbox="allow-scripts allow-forms allow-same-origin" referrerpolicy="no-referrer" title="Vista previa de la herramienta"></iframe>
+        <div class="preview-actions">
+            <button class="btn-sm btn-secondary" id="saveTool">Guardar en mi TOOLBOX</button>
+            <button class="btn-sm btn-primary" id="forkTool">Fork / Editar</button>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+    <p>TOOLBOX Comunidad — Herramientas creadas por usuarios, revisadas por IA.</p>
+    <p><a href="{{HOME}}">← Volver a TOOLBOX</a> · <a href="{{HOME}}TOOLBOXAI">TOOLBOX AI</a></p>
+    {{FOOTER_LANGS}}
+</footer>
+
+<script>
+/* =========================================================
+   UTILIDADES
+========================================================= */
+
+const $ = id => document.getElementById(id);
+const API = '{{HOME}}api/community';
+
+let currentPage = 1;
+let currentTag = null;
+let currentQuery = null;
+let totalPages = 1;
+
+function escapeHtml(s) {
+    return String(s)
+        .replace(/&/g, '&')
+        .replace(/</g, '<')
+        .replace(/>/g, '>')
+        .replace(/"/g, '"')
+        .replace(/'/g, '&#039;');
+}
+
+function toast(msg) {
+    const t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--border2);padding:12px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:20000;animation:slideUp .3s ease';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => {
+        t.style.animation = 'slideUp .3s ease reverse';
+        setTimeout(() => t.remove(), 300);
+    }, 3000);
+}
+
+/* =========================================================
+   TEMA
+========================================================= */
+
+function tema() {
+    document.body.classList.toggle("light");
+    const light = document.body.classList.contains("light");
+    try {
+        localStorage.setItem("toolboxTheme", light ? "light" : "dark");
+    } catch (e) {}
+    syncThemeButton();
+}
+
+function syncThemeButton() {
+    const button = document.getElementById("themeButton");
+    if (!button) return;
+    const light = document.body.classList.contains("light");
+    button.innerText = light ? "☀️" : "🌙";
+}
+
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+function initHamburgerMenu() {
+    const btn = document.querySelector(".hamburger-btn");
+    const panel = document.getElementById("hamburgerPanel");
+    if (!btn || !panel) return;
+
+    function closePanel() {
+        btn.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+    }
+
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+        panel.hidden = expanded;
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) {
+            closePanel();
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !panel.hidden) {
+            closePanel();
+            btn.focus();
+        }
+    });
+
+    panel.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", closePanel);
+    });
+}
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+function initLangSwitch() {
+    const btn = document.querySelector('.lang-btn');
+    const menu = document.getElementById('langMenu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        menu.hidden = expanded;
+    });
+
+    document.addEventListener('click', e => {
+        if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !menu.hidden) {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+            btn.focus();
+        }
+    });
+}
+
+/* =========================================================
+   COMMUNITY TOOLS LOGIC
+========================================================= */
+
+async function loadTools() {
+    $('grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">' + t('loading') + '</div>';
+    try {
+        const url = currentQuery
+            ? `${API}/search?q=${encodeURIComponent(currentQuery)}&page=${currentPage}`
+            : `${API}/tools?page=${currentPage}${currentTag ? '&tag=' + encodeURIComponent(currentTag) : ''}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        renderTools(data.items);
+        totalPages = Math.ceil(data.total / data.per_page) || 1;
+        renderPagination();
+        $('empty').hidden = data.items.length > 0;
+    } catch (e) {
+        $('grid').innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--red);padding:40px">${t('error_loading')}: ${e.message}</div>`;
+    }
+}
+
+function renderTools(tools) {
+    if (!tools.length) {
+        $('grid').innerHTML = '';
+        return;
+    }
+    $('grid').innerHTML = tools.map(t => `
+        <article class="card" role="listitem" data-id="${t.id}">
+            <div class="card-header">
+                <div class="card-icon">✦</div>
+                <div>
+                    <div class="card-title">${escapeHtml(t.name)}</div>
+                    <div class="card-desc">${escapeHtml(t.description || t('no_description'))}</div>
+                </div>
+            </div>
+            <div class="card-tags">${(t.tags||[]).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
+            <div class="card-footer">
+                <div class="card-meta">
+                    <span>👁 ${t.views||0}</span>
+                    <span>📥 ${t.downloads||0}</span>
+                    <span>👤 ${escapeHtml(t.author)}</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-sm btn-secondary" data-act="preview">${t('preview')}</button>
+                    <button class="btn-sm btn-primary" data-act="save">${t('save')}</button>
+                </div>
+            </div>
+        </article>
+    `).join('');
+
+    // Attach listeners
+    $('grid').querySelectorAll('[data-act="preview"]').forEach(btn => {
+        btn.addEventListener('click', e => openPreview(e.target.closest('.card').dataset.id));
+    });
+    $('grid').querySelectorAll('[data-act="save"]').forEach(btn => {
+        btn.addEventListener('click', e => saveTool(e.target.closest('.card').dataset.id));
+    });
+}
+
+function renderPagination() {
+    const p = $('pagination');
+    p.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+            const btn = document.createElement('button');
+            btn.className = 'page-btn' + (i === currentPage ? ' active' : '');
+            btn.textContent = i;
+            btn.addEventListener('click', () => {
+                currentPage = i;
+                loadTools();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+            p.appendChild(btn);
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+            const span = document.createElement('span');
+            span.style.cssText = 'padding:8px 14px;color:var(--muted)';
+            span.textContent = '…';
+            p.appendChild(span);
+        }
+    }
+}
+
+async function loadTags() {
+    try {
+        const res = await fetch(`${API}/tags`);
+        const data = await res.json();
+        if (data.ok) {
+            const f = $('filters');
+            f.innerHTML = '<button class="filter-btn active" data-tag="">' + t('all_tags') + '</button>' +
+                data.tags.slice(0, 12).map(([tag, count]) =>
+                    `<button class="filter-btn" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)} <span style="color:var(--muted)">(${count})</span></button>`
+                ).join('');
+            f.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    f.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentTag = btn.dataset.tag || null;
+                    currentPage = 1;
+                    loadTools();
+                });
+            });
+        }
+    } catch (e) {
+        console.error('Error loading tags:', e);
+    }
+}
+
+async function openPreview(toolId) {
+    try {
+        const res = await fetch(`${API}/tools/${toolId}`);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        const tool = data.tool;
+        $('previewTitle').textContent = tool.name;
+
+        // Build sandboxed HTML with CSP
+        const sandboxHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' data: blob:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'">
+  <title>${escapeHtml(tool.name)}</title>
+  <style>
+    body{font-family:system-ui;margin:0;padding:16px;background:#080b12;color:#fff;overflow:auto}
+    *{box-sizing:border-box}
+  </style>
+</head>
+<body>
+  ${tool.code}
+  <script>
+    // Block network APIs
+    const blocked = ['fetch','XMLHttpRequest','WebSocket','EventSource','RTCPeerConnection','navigator.sendBeacon','navigator.share'];
+    blocked.forEach(api => {
+      try { delete window[api]; } catch(e) {}
+      try { delete window.prototype[api]; } catch(e) {}
+    });
+    // localStorage allowed but scoped to this blob: origin
+  <\/script>
+</body>
+</html>`;
+        const blob = new Blob([sandboxHtml], {type: 'text/html'});
+        $('previewFrame').src = URL.createObjectURL(blob);
+        $('previewModal').hidden = false;
+        // Store current tool for save/fork
+        window.currentPreviewTool = tool;
+    } catch (e) {
+        toast(t('error_preview') + ': ' + e.message);
+    }
+}
+
+$('closePreview').addEventListener('click', () => {
+    $('previewModal').hidden = true;
+    if ($('previewFrame').src) {
+        URL.revokeObjectURL($('previewFrame').src);
+    }
+    $('previewFrame').src = '';
+});
+
+function saveTool(toolId) {
+    // Save to localStorage as personal tool
+    fetch(`${API}/tools/${toolId}`)
+        .then(r => r.json())
+        .then(data => {
+            if (!data.ok) return toast('Error: ' + data.error);
+            const tool = data.tool;
+            const saved = JSON.parse(localStorage.getItem('myTools') || '[]');
+            saved.unshift({...tool, savedAt: Date.now()});
+            localStorage.setItem('myTools', JSON.stringify(saved.slice(0, 50)));
+            toast('✅ ' + t('saved_toolbox'));
+        })
+        .catch(e => toast('Error: ' + e.message));
+}
+
+function forkTool() {
+    const tool = window.currentPreviewTool;
+    if (!tool) return;
+    // Copy code to clipboard for editing in TOOLBOX AI
+    navigator.clipboard.writeText(tool.code).then(() => {
+        toast('📋 ' + t('code_copied'));
+    }).catch(() => {
+        toast(t('error_copy'));
+    });
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+let searchDebounce;
+$('searchInput').addEventListener('input', () => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+        currentQuery = $('searchInput').value.trim() || null;
+        currentPage = 1;
+        loadTools();
+    }, 300);
+});
+
+$('searchBtn').addEventListener('click', () => {
+    currentQuery = $('searchInput').value.trim() || null;
+    currentPage = 1;
+    loadTools();
+});
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initHamburgerMenu();
+    initLangSwitch();
+    syncThemeButton();
+    loadTags();
+    loadTools();
+});
+</script>
+
+<script id="i18n-data" type="application/json">{{I18N_JSON}}</script>
+<script>window.I18N = JSON.parse(document.getElementById('i18n-data').textContent); function t(k){return window.I18N[k]||k;}</script>
+</body>
+</html>

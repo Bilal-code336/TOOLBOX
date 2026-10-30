@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="fr" translate="yes">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOOLBOX — Outils en ligne gratuits</title>
+<meta name="description" content="TOOLBOX réunit des outils en ligne gratuits pour étudier, écrire, calculer, travailler avec des images et utiliser l&#x27;intelligence artificielle. Humanisateur de texte, correcteur, minuteur Pomodoro, OCR et bien plus.">
+<link rel="icon" type="image/png" href="/fr/favicon.png">
+<link rel="canonical" href="https://toolbox-zci6.onrender.com/fr/community.html">
+<link rel="alternate" hreflang="es" href="https://toolbox-zci6.onrender.com/">
+<link rel="alternate" hreflang="en" href="https://toolbox-zci6.onrender.com/en/">
+<link rel="alternate" hreflang="fr" href="https://toolbox-zci6.onrender.com/fr/">
+<link rel="alternate" hreflang="ar" href="https://toolbox-zci6.onrender.com/ar/">
+<link rel="alternate" hreflang="x-default" href="https://toolbox-zci6.onrender.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TOOLBOX">
+<meta property="og:title" content="TOOLBOX — Outils en ligne gratuits">
+<meta property="og:description" content="TOOLBOX réunit des outils en ligne gratuits pour étudier, écrire, calculer, travailler avec des images et utiliser l&#x27;intelligence artificielle. Humanisateur de texte, correcteur, minuteur Pomodoro, OCR et bien plus.">
+<meta property="og:url" content="https://toolbox-zci6.onrender.com/fr/community.html">
+<meta property="og:locale" content="fr_FR">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TOOLBOX",
+  "url": "https://toolbox-zci6.onrender.com/",
+  "inLanguage": "fr",
+  "description": "Comunidad TOOLBOX — Herramientas de usuarios creadas y revisadas por IA"
+}
+</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<g id="flag-es"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></g>
+<g id="flag-fr"><rect width="24" height="16" fill="#ED2939"/><rect width="16" height="16" fill="#FFFFFF"/><rect width="8" height="16" fill="#002395"/></g>
+<clipPath id="flag-en-clip"><path d="M12,8 h12 v8 z v8 h-12 z h-12 v-8 z v-8 h12 z"/></clipPath>
+<g id="flag-en"><rect width="24" height="16" fill="#012169"/>
+<path d="M0,0 L24,16 M24,0 L0,16" stroke="#FFFFFF" stroke-width="2.6"/>
+<path d="M0,0 L24,16 M24,0 L0,16" stroke="#C8102E" stroke-width="1.5" clip-path="url(#flag-en-clip)"/>
+<path d="M12,0 V16 M0,8 H24" stroke="#FFFFFF" stroke-width="4.4"/>
+<path d="M12,0 V16 M0,8 H24" stroke="#C8102E" stroke-width="2.6"/></g>
+<g id="flag-ar"><rect width="24" height="16" fill="#006C35"/><text x="12" y="11" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="bold">ﷲ</text></g>
+</defs>
+</svg>
+
+<style>
+/* =========================================================
+   TOOLBOX — ESTILO PRINCIPAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #080b12;
+    --bg2: #0c111c;
+    --nav: rgba(8,11,18,.88);
+
+    --card: #111827;
+    --card2: #0d131f;
+    --panel: #101724;
+
+    --input: #080d16;
+
+    --border: #29344a;
+    --border2: #344158;
+
+    --text: #ffffff;
+    --muted: #8995aa;
+
+    --purple: #7c3aed;
+    --purple2: #8b5cf6;
+    --purple3: #a78bfa;
+
+    --button: #202a3d;
+
+    --green: #22c55e;
+}
+
+/* =========================================================
+   MODO CLARO
+========================================================= */
+
+body.light {
+
+    --bg: #f4f6f9;
+    --bg2: #ffffff;
+    --nav: rgba(255,255,255,.94);
+
+    --card: #ffffff;
+    --card2: #f4f6f8;
+    --panel: #ffffff;
+
+    --input: #f1f3f5;
+
+    --border: #d9dee7;
+    --border2: #c7ced9;
+
+    --text: #111827;
+    --muted: #5f6b7a;
+
+    --button: #e6eaf0;
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(124,58,237,.14),
+            transparent 45%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+button,
+input,
+textarea,
+select {
+
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav {
+
+    height: 70px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: var(--nav);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.logo {
+
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -.7px;
+}
+
+.logo span {
+    color: var(--purple2);
+}
+
+.nav-right {
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.nav-link {
+
+    color: var(--muted);
+
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.nav-link:hover {
+    color: var(--text);
+}
+
+.theme {
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--button);
+
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+.hamburger-menu {
+    position: relative;
+}
+
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 11px;
+    background: var(--button);
+    color: var(--text);
+    padding: 8px;
+    transition: background .2s, transform .2s;
+}
+
+.hamburger-btn:hover {
+    background: var(--purple);
+    transform: translateY(-1px);
+}
+
+.hamburger-btn:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform .3s ease, opacity .3s ease;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.hamburger-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 6000;
+    min-width: 220px;
+    padding: 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    animation: hamburgerPop .2s ease;
+}
+
+@keyframes hamburgerPop {
+    from { opacity: 0; transform: translateY(-8px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.hamburger-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+}
+
+.hamburger-item:hover,
+.hamburger-item:focus-visible {
+    background: var(--button);
+    color: var(--purple3);
+}
+
+.hamburger-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: color .15s;
+}
+
+.hamburger-item:hover .hamburger-icon {
+    color: var(--purple3);
+}
+
+.hamburger-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 6px 8px;
+}
+
+/* =========================================================
+   COMMUNITY PAGE STYLES
+========================================================= */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+}
+
+.search-bar {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    font-size: 15px;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.search-bar button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, .4);
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.filter-btn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--purple);
+    border-color: transparent;
+    color: #fff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139, 92, 246, .5);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.card-title {
+    flex: 1;
+    font-weight: 700;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-desc {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(139, 92, 246, .15);
+    border: 1px solid rgba(139, 92, 246, .3);
+    color: var(--purple3);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.card-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-sm {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    color: #fff;
+    border: none;
+}
+
+.btn-secondary {
+    background: var(--button);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-sm:hover {
+    transform: translateY(-1px);
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.page-btn:hover {
+    border-color: var(--purple);
+    color: var(--purple3);
+}
+
+.page-btn.active {
+    background: var(--purple);
+    border-color: transparent;
+    color: #fff;
+}
+
+/* Preview modal */
+.preview-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .8);
+    backdrop-filter: blur(8px);
+    animation: modalFade .2s ease;
+}
+
+@keyframes modalFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.preview-box {
+    width: 100%;
+    max-width: 900px;
+    height: 80vh;
+    max-height: 800px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlide .25s ease;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: translateY(20px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.preview-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.preview-iframe {
+    flex: 1;
+    border: none;
+    background: #000;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    margin-top: 80px;
+    padding: 45px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+}
+
+footer strong {
+    color: var(--purple2);
+}
+
+/* =========================================================
+   IDIOMAS, ACCESIBILIDAD Y MEJORAS
+========================================================= */
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    z-index: 10000;
+    padding: 9px 16px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.skip-link:focus { left: 12px; }
+
+:focus-visible {
+    outline: 2px solid var(--purple3);
+    outline-offset: 2px;
+}
+
+.logo { color: inherit; text-decoration: none; }
+
+.flag {
+    width: 22px;
+    height: 15px;
+    flex: 0 0 auto;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(128,128,128,.35);
+}
+
+.lang-switch { position: relative; }
+
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--button);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.lang-btn:hover {
+    border-color: var(--purple2);
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(139,92,246,.25);
+}
+
+.lang-btn .caret { font-size: 10px; opacity: .7; transition: transform .2s; }
+.lang-btn[aria-expanded="true"] .caret { transform: rotate(180deg); }
+
+.lang-menu {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    z-index: 6000;
+    min-width: 190px;
+    padding: 6px;
+    list-style: none;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    animation: langPop .18s ease;
+}
+
+@keyframes langPop {
+    from { opacity: 0; transform: translateY(-6px) scale(.97); }
+    to { opacity: 1; transform: none; }
+}
+
+.lang-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.lang-menu a:hover,
+.lang-menu a:focus-visible { background: var(--button); }
+.lang-menu a[aria-current="true"] { background: rgba(124,58,237,.16); font-weight: 700; }
+.lang-menu .check { margin-left: auto; color: var(--purple3); }
+
+.lang-tag {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-bar {
+        max-width: none;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .card-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+/* Toast notification */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+</style>
+</head>
+<body>
+<script>try{if(localStorage.getItem("toolboxTheme")==="light")document.body.classList.add("light")}catch(e){}</script>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<a class="skip-link" href="#grid">Aller au contenu</a>
+
+<nav aria-label="Principal">
+
+    <a class="logo" href="/fr/" aria-label="TOOLBOX">
+        🧰 TOOL<span>BOX</span>
+    </a>
+
+    <div class="nav-right">
+
+        <a href="#grid" class="nav-link">
+            Communauté
+        </a>
+
+        <a href="/fr/TOOLBOXAI" class="nav-link">
+            TOOLBOX AI
+        </a>
+
+        <a href="/fr/" class="nav-link">
+            Outils
+        </a>
+
+        <div class="lang-switch" id="langSwitch"><button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Langue: Français" title="Idioma / Language / Langue"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-fr"/></svg><span>FR</span><span class="caret" aria-hidden="true">▾</span></button><ul class="lang-menu" id="langMenu" hidden><li><a href="/" hreflang="es" lang="es" data-lang="es"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-es"/></svg><span>Español</span></a></li><li><a href="/en/" hreflang="en" lang="en" data-lang="en"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-en"/></svg><span>English</span></a></li><li><a href="/fr/" hreflang="fr" lang="fr" data-lang="fr" aria-current="true"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-fr"/></svg><span>Français</span><span class="check" aria-hidden="true">✓</span></a></li><li><a href="/ar/" hreflang="ar" lang="ar" data-lang="ar"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-ar"/></svg><span>العربية</span></a></li></ul></div>
+
+        <button
+            id="themeButton"
+            class="theme"
+            onclick="tema()"
+            type="button"
+            title="Changer de thème"
+            aria-label="Changer de thème"
+        >
+            🌙
+        </button>
+
+        <div class="hamburger-menu">
+            <button class="hamburger-btn" aria-expanded="false" aria-controls="hamburgerPanel" aria-label="Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="hamburger-panel" id="hamburgerPanel" role="menu" hidden>
+                <a href="/fr/community.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Outils Communauté
+                </a>
+                <a href="/fr/TOOLBOXAI" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="20 21 15 16.09 10 21 10 12.09 4 8.59 9 5.09 12 3 15 5.09 20 8.59 20 12.09"/></svg>
+                    TOOLBOX AI
+                </a>
+                <a href="/fr/" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                    Outils
+                </a>
+                <hr class="hamburger-divider">
+                <a href="/fr/blog.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Blog / Tutoriels
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     COMMUNITY CONTENT
+========================================================= -->
+
+<main id="comunidad" class="container" role="main">
+
+    <header class="header">
+        <h1>🌐 Communauté TOOLBOX</h1>
+        <div class="search-bar">
+            <input type="search" id="searchInput" placeholder="Rechercher des outils..." autocomplete="off" aria-label="Rechercher des outils">
+            <button id="searchBtn" type="button" aria-label="Rechercher">Rechercher</button>
+        </div>
+    </header>
+
+    <div class="filters" id="filters" role="group" aria-label="Filtrer par catégorie"></div>
+
+    <div class="grid" id="grid" role="list" aria-label="Outils de la communauté"></div>
+
+    <nav class="pagination" id="pagination" aria-label="Pagination"></nav>
+
+    <div class="empty" id="empty" hidden>Aucun outil pour l'instant. Soyez le premier à en ajouter un !</div>
+
+</main>
+
+<!-- Preview Modal -->
+<div class="preview-modal" id="previewModal" hidden role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="preview-box">
+        <div class="preview-header">
+            <span class="preview-title" id="previewTitle"></span>
+            <button class="btn-sm btn-secondary" id="closePreview" aria-label="Fermer l&#x27;aperçu">Fermer</button>
+        </div>
+        <iframe class="preview-iframe" id="previewFrame" sandbox="allow-scripts allow-forms allow-same-origin" referrerpolicy="no-referrer" title="Aperçu de l&#x27;outil"></iframe>
+        <div class="preview-actions">
+            <button class="btn-sm btn-secondary" id="saveTool">Enregistrer dans mon TOOLBOX</button>
+            <button class="btn-sm btn-primary" id="forkTool">Fork / Modifier</button>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+    <p>TOOLBOX Communauté — Outils créés par les utilisateurs, examinés par l'IA.</p>
+    <p><a href="/fr/">← Retour à TOOLBOX</a> · <a href="/fr/TOOLBOXAI">TOOLBOX AI</a></p>
+    <div class="footer-langs" aria-label="Idiomas / Languages / Langues"><a href="/" hreflang="es" lang="es"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-es"/></svg><span>Español</span></a><a href="/en/" hreflang="en" lang="en"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-en"/></svg><span>English</span></a><a href="/fr/" hreflang="fr" lang="fr"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-fr"/></svg><span>Français</span></a><a href="/ar/" hreflang="ar" lang="ar"><svg class="flag" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><use href="#flag-ar"/></svg><span>العربية</span></a></div>
+</footer>
+
+<script>
+/* =========================================================
+   UTILIDADES
+========================================================= */
+
+const $ = id => document.getElementById(id);
+const API = '/fr/api/community';
+
+let currentPage = 1;
+let currentTag = null;
+let currentQuery = null;
+let totalPages = 1;
+
+function escapeHtml(s) {
+    return String(s)
+        .replace(/&/g, '&')
+        .replace(/</g, '<')
+        .replace(/>/g, '>')
+        .replace(/"/g, '"')
+        .replace(/'/g, '&#039;');
+}
+
+function toast(msg) {
+    const t = document.createElement('div');
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--border2);padding:12px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:20000;animation:slideUp .3s ease';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => {
+        t.style.animation = 'slideUp .3s ease reverse';
+        setTimeout(() => t.remove(), 300);
+    }, 3000);
+}
+
+/* =========================================================
+   TEMA
+========================================================= */
+
+function tema() {
+    document.body.classList.toggle("light");
+    const light = document.body.classList.contains("light");
+    try {
+        localStorage.setItem("toolboxTheme", light ? "light" : "dark");
+    } catch (e) {}
+    syncThemeButton();
+}
+
+function syncThemeButton() {
+    const button = document.getElementById("themeButton");
+    if (!button) return;
+    const light = document.body.classList.contains("light");
+    button.innerText = light ? "☀️" : "🌙";
+}
+
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+function initHamburgerMenu() {
+    const btn = document.querySelector(".hamburger-btn");
+    const panel = document.getElementById("hamburgerPanel");
+    if (!btn || !panel) return;
+
+    function closePanel() {
+        btn.setAttribute("aria-expanded", "false");
+        panel.hidden = true;
+    }
+
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+        panel.hidden = expanded;
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)) {
+            closePanel();
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !panel.hidden) {
+            closePanel();
+            btn.focus();
+        }
+    });
+
+    panel.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", closePanel);
+    });
+}
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+function initLangSwitch() {
+    const btn = document.querySelector('.lang-btn');
+    const menu = document.getElementById('langMenu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        menu.hidden = expanded;
+    });
+
+    document.addEventListener('click', e => {
+        if (!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !menu.hidden) {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+            btn.focus();
+        }
+    });
+}
+
+/* =========================================================
+   COMMUNITY TOOLS LOGIC
+========================================================= */
+
+async function loadTools() {
+    $('grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">' + t('loading') + '</div>';
+    try {
+        const url = currentQuery
+            ? `${API}/search?q=${encodeURIComponent(currentQuery)}&page=${currentPage}`
+            : `${API}/tools?page=${currentPage}${currentTag ? '&tag=' + encodeURIComponent(currentTag) : ''}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        renderTools(data.items);
+        totalPages = Math.ceil(data.total / data.per_page) || 1;
+        renderPagination();
+        $('empty').hidden = data.items.length > 0;
+    } catch (e) {
+        $('grid').innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--red);padding:40px">${t('error_loading')}: ${e.message}</div>`;
+    }
+}
+
+function renderTools(tools) {
+    if (!tools.length) {
+        $('grid').innerHTML = '';
+        return;
+    }
+    $('grid').innerHTML = tools.map(t => `
+        <article class="card" role="listitem" data-id="${t.id}">
+            <div class="card-header">
+                <div class="card-icon">✦</div>
+                <div>
+                    <div class="card-title">${escapeHtml(t.name)}</div>
+                    <div class="card-desc">${escapeHtml(t.description || t('no_description'))}</div>
+                </div>
+            </div>
+            <div class="card-tags">${(t.tags||[]).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
+            <div class="card-footer">
+                <div class="card-meta">
+                    <span>👁 ${t.views||0}</span>
+                    <span>📥 ${t.downloads||0}</span>
+                    <span>👤 ${escapeHtml(t.author)}</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-sm btn-secondary" data-act="preview">${t('preview')}</button>
+                    <button class="btn-sm btn-primary" data-act="save">${t('save')}</button>
+                </div>
+            </div>
+        </article>
+    `).join('');
+
+    // Attach listeners
+    $('grid').querySelectorAll('[data-act="preview"]').forEach(btn => {
+        btn.addEventListener('click', e => openPreview(e.target.closest('.card').dataset.id));
+    });
+    $('grid').querySelectorAll('[data-act="save"]').forEach(btn => {
+        btn.addEventListener('click', e => saveTool(e.target.closest('.card').dataset.id));
+    });
+}
+
+function renderPagination() {
+    const p = $('pagination');
+    p.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+            const btn = document.createElement('button');
+            btn.className = 'page-btn' + (i === currentPage ? ' active' : '');
+            btn.textContent = i;
+            btn.addEventListener('click', () => {
+                currentPage = i;
+                loadTools();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+            p.appendChild(btn);
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+            const span = document.createElement('span');
+            span.style.cssText = 'padding:8px 14px;color:var(--muted)';
+            span.textContent = '…';
+            p.appendChild(span);
+        }
+    }
+}
+
+async function loadTags() {
+    try {
+        const res = await fetch(`${API}/tags`);
+        const data = await res.json();
+        if (data.ok) {
+            const f = $('filters');
+            f.innerHTML = '<button class="filter-btn active" data-tag="">' + t('all_tags') + '</button>' +
+                data.tags.slice(0, 12).map(([tag, count]) =>
+                    `<button class="filter-btn" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)} <span style="color:var(--muted)">(${count})</span></button>`
+                ).join('');
+            f.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    f.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentTag = btn.dataset.tag || null;
+                    currentPage = 1;
+                    loadTools();
+                });
+            });
+        }
+    } catch (e) {
+        console.error('Error loading tags:', e);
+    }
+}
+
+async function openPreview(toolId) {
+    try {
+        const res = await fetch(`${API}/tools/${toolId}`);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        const tool = data.tool;
+        $('previewTitle').textContent = tool.name;
+
+        // Build sandboxed HTML with CSP
+        const sandboxHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; style-src 'self' 'unsafe-inline' data: blob:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'">
+  <title>${escapeHtml(tool.name)}</title>
+  <style>
+    body{font-family:system-ui;margin:0;padding:16px;background:#080b12;color:#fff;overflow:auto}
+    *{box-sizing:border-box}
+  </style>
+</head>
+<body>
+  ${tool.code}
+  <script>
+    // Block network APIs
+    const blocked = ['fetch','XMLHttpRequest','WebSocket','EventSource','RTCPeerConnection','navigator.sendBeacon','navigator.share'];
+    blocked.forEach(api => {
+      try { delete window[api]; } catch(e) {}
+      try { delete window.prototype[api]; } catch(e) {}
+    });
+    // localStorage allowed but scoped to this blob: origin
+  <\/script>
+</body>
+</html>`;
+        const blob = new Blob([sandboxHtml], {type: 'text/html'});
+        $('previewFrame').src = URL.createObjectURL(blob);
+        $('previewModal').hidden = false;
+        // Store current tool for save/fork
+        window.currentPreviewTool = tool;
+    } catch (e) {
+        toast(t('error_preview') + ': ' + e.message);
+    }
+}
+
+$('closePreview').addEventListener('click', () => {
+    $('previewModal').hidden = true;
+    if ($('previewFrame').src) {
+        URL.revokeObjectURL($('previewFrame').src);
+    }
+    $('previewFrame').src = '';
+});
+
+function saveTool(toolId) {
+    // Save to localStorage as personal tool
+    fetch(`${API}/tools/${toolId}`)
+        .then(r => r.json())
+        .then(data => {
+            if (!data.ok) return toast('Error: ' + data.error);
+            const tool = data.tool;
+            const saved = JSON.parse(localStorage.getItem('myTools') || '[]');
+            saved.unshift({...tool, savedAt: Date.now()});
+            localStorage.setItem('myTools', JSON.stringify(saved.slice(0, 50)));
+            toast('✅ ' + t('saved_toolbox'));
+        })
+        .catch(e => toast('Error: ' + e.message));
+}
+
+function forkTool() {
+    const tool = window.currentPreviewTool;
+    if (!tool) return;
+    // Copy code to clipboard for editing in TOOLBOX AI
+    navigator.clipboard.writeText(tool.code).then(() => {
+        toast('📋 ' + t('code_copied'));
+    }).catch(() => {
+        toast(t('error_copy'));
+    });
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+let searchDebounce;
+$('searchInput').addEventListener('input', () => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+        currentQuery = $('searchInput').value.trim() || null;
+        currentPage = 1;
+        loadTools();
+    }, 300);
+});
+
+$('searchBtn').addEventListener('click', () => {
+    currentQuery = $('searchInput').value.trim() || null;
+    currentPage = 1;
+    loadTools();
+});
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initHamburgerMenu();
+    initLangSwitch();
+    syncThemeButton();
+    loadTags();
+    loadTools();
+});
+</script>
+
+<script id="i18n-data" type="application/json">{"color_copied": "Couleur copiée.", "styler_empty": "Ton texte apparaîtra ici.", "text_copied": "Texte copié.", "pw_select_one": "Sélectionne au moins un type de caractère.", "pw_copied": "Mot de passe copié.", "img_load_first": "Charge d’abord une image.", "err_invalid_response": "Le serveur n’a pas renvoyé de réponse valide.", "err_no_reply": "TOOLBOX AI n’a renvoyé aucune réponse.", "err_connect": "Erreur de connexion à TOOLBOX AI.", "corr_write_first": "Écris d’abord un texte.", "corr_loading": "🤖 Amélioration...", "corr_analyzing": "TOOLBOX AI analyse ton texte...", "corr_button": "✨ Améliorer avec l’IA", "paste_first": "Colle d’abord un texte.", "simp_loading": "🧠 Simplification...", "simp_working": "TOOLBOX AI prépare une explication simple...", "simp_button": "🧠 Rendre facile", "pwm_complete": "⚠️ Remplis les deux mots et le nombre.", "pwm_copied": "✅ Copié !", "pwm_copy_failed": "Impossible de copier automatiquement.", "words_suffix": " mots", "hum_empty": "Le texte réécrit apparaîtra ici.", "copied_ok": "✅ Copié", "hum_longer": "Colle un texte un peu plus long pour obtenir une réécriture utile.", "hum_style_simple": "Utilise une formulation simple, directe et naturelle, dans la même langue que le texte original. Privilégie les mots courants, les phrases claires et une lecture facile. Ne réduis pas la précision et ne supprime aucune information.", "hum_style_pro": "Utilise une rédaction professionnelle et, le cas échéant, académique, dans la même langue que le texte original. Elle doit être précise, claire et sérieuse, sans paraître rigide, trop formelle ou mécanique.", "hum_loading": "🧠 Réécriture...", "hum_analyzing": "Analyse du texte...", "hum_checking": "Vérification du vocabulaire, de la structure, du rythme, des répétitions et de la clarté...", "hum_empty_ai": "L’IA n’a renvoyé aucun texte. Réessaie.", "hum_done": "✅ Texte réécrit. Relis-le avant de l’utiliser.", "hum_status_default": "Conserve le sens et améliore la clarté, le rythme, la variété et le naturel.", "hum_copy_result": "📋 Copier le résultat", "hum_failed": "La réécriture n’a pas pu être terminée.", "hum_button": "✨ Humaniser le texte", "pomo_focus": "C’est l’heure d’étudier / de travailler", "pomo_short": "Pause courte", "pomo_long": "Pause longue", "pomo_pause": "⏸️ Pause", "pomo_start": "▶️ Démarrer", "pomo_t_all": "🍅 Tu as terminé toutes les sessions !", "pomo_m_all": "Tu peux prendre ta pause longue.", "pomo_t_session": "🍅 Session terminée !", "pomo_m_session": "Tu peux te reposer quelques minutes.", "pomo_t_break": "⏰ Pause terminée !", "pomo_m_break": "C’est le moment de retourner étudier ou travailler.", "pomo_t_long": "🌿 Pause longue terminée !", "pomo_m_long": "Tu peux te remettre au travail.", "pomo_session": "Session {n} sur {total}", "ocr_preparing": "Préparation de la reconnaissance...", "ocr_lang": "fra+eng", "ocr_ok": "✅ Texte détecté avec succès.", "ocr_none": "Aucun texte n’a été trouvé dans l’image.", "ocr_fail": "❌ Impossible de reconnaître le texte. Essaie avec une autre image.", "ocr_first": "Détecte d’abord un texte.", "ocr_copied": "✅ Texte copié.", "planner_same_monday": "L’horaire du lundi a été copié sur le reste de la semaine.", "planner_same_all": "Le même horaire a été appliqué à tous les jours.", "planner_clear_confirm": "Veux-tu supprimer les tâches et le plan généré ?", "planner_bad_json": "L’IA a renvoyé une réponse qui n’a pas pu être convertie en plan. Réessaie.", "planner_bad_days": "L’IA n’a pas renvoyé la structure de jours attendue.", "planner_write_first": "Écris d’abord tout ce que tu as à faire.", "planner_activate_day": "Active au moins un jour et définis un créneau disponible.", "planner_time_error": "L’heure de début doit être antérieure à l’heure de fin.", "planner_loading": "🤖 Organisation...", "planner_status_creating": "Création d’un plan réaliste avec tes tâches et tes horaires...", "planner_done": "✅ Semaine organisée avec succès.", "planner_unknown": "Erreur inconnue.", "planner_button": "✨ Créer ma semaine", "planner_rate_limit": "Groq limite temporairement les requêtes. Attends quelques secondes et réessaie. Cette version ne refait plus de tentatives automatiques pour ne pas consommer plus de requêtes.", "planner_title_default": "Ta semaine organisée", "planner_summary_default": "J’ai réparti tes tâches en tenant compte de ton temps disponible et de leurs priorités.", "planner_unavailable": "Indisponible", "planner_undo": "↶ Annuler", "planner_mark_done": "✓ Fait", "planner_load_fail": "Impossible de charger le plan enregistré", "planner_fail": "Le plan n’a pas pu être créé.", "planner_free_word": "libre", "planner_activate": "Activer", "planner_pending_one": "en attente", "planner_pending_many": "en attente", "planner_planned": "planifiées", "planner_free_day": "Jour libre", "planner_free_time": "Temps libre", "day_mon": "Lundi", "day_mon_s": "Lun", "day_tue": "Mardi", "day_tue_s": "Mar", "day_wed": "Mercredi", "day_wed_s": "Mer", "day_thu": "Jeudi", "day_thu_s": "Jeu", "day_fri": "Vendredi", "day_fri_s": "Ven", "day_sat": "Samedi", "day_sat_s": "Sam", "day_sun": "Dimanche", "day_sun_s": "Dim", "Comunidad Tools": "Outils Communauté", "TOOLBOX AI": "TOOLBOX AI", "Menú": "Menu", "Community Tools": "Outils Communauté", "Explora herramientas de la comunidad": "Explorer les outils de la communauté", "Buscar herramientas...": "Rechercher des outils...", "Todas las etiquetas": "Tous les tags", "Subir herramienta": "Ajouter un outil", "Vista previa": "Aperçu", "Código": "Code", "Guardar": "Enregistrer", "Hacer fork": "Fork", "Ver herramienta": "Voir l'outil", "Sin herramientas": "Aucun outil", "Cargando...": "Chargement...", "Error al cargar": "Erreur de chargement", "Subir herramienta a Community Tools": "Ajouter un outil aux Outils Communauté", "Nombre de la herramienta": "Nom de l'outil", "Tu nombre": "Ton nom", "Descripción": "Description", "Etiquetas (separadas por comas)": "Tags (séparés par des virgules)", "Código HTML/JS": "Code HTML/JS", "Vista previa en vivo": "Aperçu en direct", "Cancelar": "Annuler", "Subir y revisar": "Ajouter et examiner", "Revisando con IA...": "Examen par l'IA...", "Herramienta subida. En revisión.": "Outil ajouté. En examen.", "Error al subir": "Erreur d'ajout", "Límite de subidas alcanzado": "Limite d'ajouts atteinte", "Inténtalo más tarde": "Réessaie plus tard", "Inténtalo mañana": "Réessaie demain", "Rellena todos los campos": "Remplis tous les champs", "La herramienta ya existe": "L'outil existe déjà", "Blog / Tutoriales": "Blog / Tutoriels", "Buscar": "Rechercher", "Cambiar tema": "Changer de thème", "Cerrar": "Fermer", "Cerrar preview": "Fermer l'aperçu", "Código copiado al portapapeles. Abre TOOLBOX AI para editar.": "Code copié dans le presse-papiers. Ouvrez TOOLBOX AI pour le modifier.", "Guardado en tu TOOLBOX": "Enregistré dans votre TOOLBOX", "Guardar en mi TOOLBOX": "Enregistrer dans mon TOOLBOX", "Fork / Editar": "Fork / Modifier", "Error cargando preview": "Erreur de chargement de l'aperçu", "Error copiando al portapapeles": "Erreur de copie dans le presse-papiers", "Filtrar por categoría": "Filtrer par catégorie", "Todas": "Tous", "Herramientas": "Outils", "Herramientas de la comunidad": "Outils de la communauté", "Paginación": "Pagination", "No hay herramientas aún. ¡Sé el primero en subir una!": "Aucun outil pour l'instant. Soyez le premier à en ajouter un !", "Sin descripción": "Pas de description", "Probar": "Aperçu", "Saltar al contenido": "Aller au contenu", "Comunidad": "Communauté", "Comunidad TOOLBOX": "Communauté TOOLBOX", "Principal": "Principal", "Vista previa de la herramienta": "Aperçu de l'outil", "← Volver a TOOLBOX": "← Retour à TOOLBOX", "prompt_corrector": "\nTu es le correcteur de textes de TOOLBOX.\n\nCorrige exclusivement le texte fourni par l'utilisateur.\n\nCorrige :\n- L'orthographe\n- Les accents\n- La ponctuation\n- Les majuscules et les minuscules\n- La grammaire\n- Les accords\n- La typographie\n- Les fautes de frappe\n\nRÈGLES IMPORTANTES :\n\n1. Conserve exactement le sens d'origine.\n2. N'ajoute aucune information nouvelle.\n3. Ne salue pas l'utilisateur.\n4. N'explique pas les corrections.\n5. N'ajoute pas d'introductions du type « Voici ».\n6. N'ajoute pas de formule de politesse finale.\n7. Ne fais aucun commentaire.\n8. Renvoie UNIQUEMENT le texte corrigé.\n9. Conserve les paragraphes et le format du texte original autant que possible.\n10. Conserve la langue du texte original.\n\nTEXTE À CORRIGER :\n\n{input}\n        ", "prompt_simplifier": "\nTu es le Simplificateur de textes de TOOLBOX.\n\nTa tâche est de transformer le texte compliqué de l'utilisateur\nen un texte beaucoup plus facile à comprendre.\n\nRÈGLES IMPORTANTES :\n\n1. Explique le même contenu avec des mots simples.\n2. Conserve TOUTES les informations importantes.\n3. N'invente aucune information.\n4. Ne change pas le sens.\n5. Remplace les mots difficiles par des mots faciles.\n6. Découpe les phrases trop longues.\n7. S'il y a des concepts compliqués, explique-les simplement.\n8. Tu peux utiliser des exemples du quotidien quand ils aident à comprendre le concept.\n9. NE salue PAS l'utilisateur.\n10. NE dis PAS « Voici ».\n11. N'explique PAS ce que tu as changé.\n12. NE fais PAS de commentaires à la fin.\n13. Renvoie UNIQUEMENT le texte simplifié.\n14. Conserve les paragraphes et la structure autant que possible.\n15. Écris dans la même langue que le texte original.\n\nTEXTE À SIMPLIFIER :\n\n\n{input}\n        ", "prompt_humanizer": "\nRéécris le texte en toute liberté de rédaction. Je ne veux pas une simple substitution de mots :\nje veux que tu construises une version nouvelle, naturelle et cohérente du texte.\n\nDICTIONNAIRE DE STYLE NATUREL :\n\nÉvite d'abuser de :\n- « Tout d'abord »\n- « Ensuite »\n- « D'autre part »\n- « Par ailleurs »\n- « Il convient de souligner que »\n- « Il est important de noter que »\n- « En ce sens »\n- « Par conséquent »\n- « De cette manière »\n- « En conclusion »\n- « En définitive »\n- « Pour conclure »\n- « Il est essentiel de »\n- « Il faut souligner que »\n- « Il ne fait aucun doute que »\n- « De nos jours »\n- « Tout au long de l'histoire »\n- « Comme mentionné précédemment »\n- « Enfin »\n\nElles ne sont pas interdites. Utilise-les uniquement quand elles conviennent vraiment.\n\nPRÉFÉRENCES DE VOCABULAIRE :\n\nAu lieu de chercher constamment des mots plus sophistiqués :\n- « effectuer » → « faire » quand c'est naturel\n- « réaliser » → « faire » quand le contexte le permet\n- « acquérir » → « obtenir » ou « se procurer » selon le contexte\n- « ultérieurement » → « plus tard »\n- « préalablement » → « avant »\n- « de nombreux » → « beaucoup de » quand la formalité n'est pas nécessaire\n- « approximativement » → « environ » ou « à peu près » seulement dans les contextes informels\n- « en raison du fait que » → « parce que » quand cela ne change pas le ton\n- « afin de » → « pour » quand cela suffit\n- « en relation avec » → « sur » ou « au sujet de » quand cela sonne mieux\n- « mettre en œuvre » → « faire » quand il n'est pas nécessaire de garder un registre formel\n\nIMPORTANT :\nNe fais pas ces substitutions automatiquement. Ce sont des exemples de préférences, pas des règles.\nSi le mot d'origine est la meilleure option, garde-le.\n\nRÈGLES D'ÉCRITURE :\n\n1. Réécris les phrases de zéro quand c'est nécessaire.\n2. Ne conserve pas la structure de l'original par obligation.\n3. Tu peux changer l'ordre des idées dans une explication si cela améliore la lecture.\n4. Tu peux fusionner des phrases.\n5. Tu peux découper des phrases trop longues.\n6. Tu peux changer complètement les connecteurs.\n7. Tu peux supprimer des répétitions.\n8. Tu peux conserver des répétitions quand elles sont naturelles ou nécessaires.\n9. N'essaie pas d'utiliser un synonyme différent à chaque fois qu'un mot apparaît.\n10. Ne donne pas la même longueur à toutes les phrases.\n11. Ne donne pas exactement la même structure à tous les paragraphes.\n12. Ne commence pas toutes les phrases de la même façon.\n13. Ne force pas de connecteurs entre toutes les idées.\n14. Laisse certaines idées directement liées sans ajouter de connecteur artificiel.\n15. Évite les phrases trop parfaites, génériques ou toutes faites.\n16. N'ajoute pas de remplissage.\n17. N'ajoute aucune information nouvelle.\n18. Ne change pas les données, les chiffres, les noms ou les concepts.\n19. Conserve le sens original.\n20. Conserve la langue d'origine.\n\nLIBERTÉ :\n\nTu as la permission de changer pratiquement toute la forme du texte :\nvocabulaire, syntaxe, ordre des phrases, longueur des phrases,\nconnecteurs, structure des paragraphes et manière d'expliquer les idées.\n\nLa seule chose que tu dois conserver, c'est l'information et le sens.\n\nLe résultat doit fonctionner comme un texte indépendant.\nIl ne doit pas ressembler à une version mot à mot de l'original.\n\nTYPE DE TEXTE :\n{estilo}\n\n--- TEXTE ORIGINAL ---\n{input}\n--- FIN DU TEXTE ORIGINAL ---\n\nRenvoie uniquement la nouvelle version du texte.\n\n", "prompt_planner": "Planifie ma semaine. N'utilise pas de Pomodoros.\n\nTÂCHES :\n{tasks}\n\nHORAIRES :\n{availability}\n\nRÈGLES :\n- Respecte exactement les horaires.\n- Donne la priorité aux échéances et aux examens proches.\n- Respecte les durées indiquées ; s'il manque une durée, estime-en une raisonnable.\n- Découpe les tâches longues si nécessaire.\n- Ne remplis pas tout : laisse du temps libre.\n- Ne fais pas se chevaucher les blocs.\n- Si tout ne tient pas, planifie d'abord les priorités et envoie le reste dans pending.\n- Utilise des blocs normaux comme 16:00-17:30.\n- Renvoie UNIQUEMENT du JSON valide, sans Markdown.\n- Écris toutes les valeurs textuelles en français.\n\nFORMAT :\n{\"title\":\"Semaine organisée\",\"summary\":\"bref\",\"days\":[{\"day\":\"Lundi\",\"blocks\":[{\"task\":\"Maths\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"haute\",\"deadline\":\"vendredi\",\"note\":\"\"}]},{\"day\":\"Mardi\",\"blocks\":[]},{\"day\":\"Mercredi\",\"blocks\":[]},{\"day\":\"Jeudi\",\"blocks\":[]},{\"day\":\"Vendredi\",\"blocks\":[]},{\"day\":\"Samedi\",\"blocks\":[]},{\"day\":\"Dimanche\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}", "fav_add": "Ajouter aux favoris", "fav_remove": "Retirer des favoris", "pdf_err_lib": "Le moteur PDF n’a pas pu être chargé. Vérifie ta connexion internet et réessaie.", "pdf_err_encrypted": "« {name} » est protégé par un mot de passe et ne peut pas être traité.", "pdf_err_invalid": "« {name} » n’est pas un PDF valide ou il est endommagé.", "pdf_err_type": "« {name} » n’est pas un fichier compatible.", "pdf_err_big": "« {name} » est trop volumineux (200 Mo maximum).", "pdf_err_image": "L’image « {name} » n’a pas pu être lue.", "pdf_page_one": "{n} page", "pdf_pages_many": "{n} pages", "pdf_remove": "Retirer", "pdf_up": "Monter", "pdf_down": "Descendre", "pdf_need_two": "Ajoute au moins deux PDF pour les fusionner.", "pdf_need_one": "Ajoute d’abord un fichier.", "pdf_processing": "Traitement de {i} sur {n}…", "pdf_reading": "Lecture du fichier…", "pdf_saving": "Enregistrement…", "pdf_done_merge": "✅ PDF fusionnés avec succès.", "pdf_done_split": "✅ PDF divisé en {n} fichiers.", "pdf_done_extract": "✅ Pages extraites avec succès.", "pdf_done_images": "✅ PDF créé avec succès.", "pdf_done_compress": "✅ PDF compressé : de {from} à {to} ({pct} % de moins).", "pdf_compress_bigger": "Le résultat n’est pas plus petit que l’original ({from} → {to}). Ce PDF est déjà bien optimisé.", "pdf_compress_none": "Ce PDF est déjà optimisé : la compression légère le réduit à peine ({from} → {to}). Essaie la compression forte si tu n’as pas besoin de sélectionner le texte.", "pdf_compress_note": "Attention : le texte de ce PDF n’est plus sélectionnable.", "pdf_download_pdf": "💾 Télécharger le PDF", "pdf_download_zip": "💾 Télécharger le ZIP", "pdf_ranges_empty": "Écris les pages que tu veux (par exemple : 1-3, 5).", "pdf_range_invalid": "Je ne comprends pas « {token} ». Utilise des numéros et des plages, comme 1-3, 5.", "pdf_range_out": "La page {n} n’existe pas : le PDF en compte {total}.", "pdf_range_order": "La plage « {token} » est à l’envers. Écris-la du plus petit au plus grand.", "pdf_split_n_invalid": "Indique un nombre de pages valide (1 ou plus).", "pdf_split_ranges_empty": "Écris les plages (par exemple : 1-3 ; 4-6 ; 7).", "pdf_unknown": "Une erreur inattendue s’est produite. Réessaie.", "community_title": "🌐 Communauté TOOLBOX", "community_footer": "TOOLBOX Communauté — Outils créés par la communauté, examinés par l'IA.", "search_aria": "Rechercher des outils", "blog_tutorials": "Blog / Tutoriels", "search": "Rechercher", "search_placeholder": "Rechercher des outils...", "toggle_theme": "Changer de thème", "cancel": "Annuler", "loading": "Chargement...", "close": "Fermer", "close_preview": "Fermer l'aperçu", "community_tools": "Outils Communauté", "community": "Communauté", "community_toolbox": "Communauté TOOLBOX", "code": "Code", "code_html_js": "Code HTML/JS", "code_copied": "Code copié dans le presse-papiers. Ouvrez TOOLBOX AI pour le modifier.", "description": "Description", "error_loading": "Erreur de chargement", "error_upload": "Erreur d'ajout", "error_preview": "Erreur de chargement de l'aperçu", "error_copy": "Erreur de copie dans le presse-papiers", "tags_placeholder": "Tags (séparés par des virgules)", "explore_tools": "Explorer les outils de la communauté", "filter_label": "Filtrer par catégorie", "fork_edit": "Fork / Modifier", "saved_toolbox": "Enregistré dans votre TOOLBOX", "save": "Enregistrer", "save_toolbox": "Enregistrer dans mon TOOLBOX", "make_fork": "Fork", "tool_under_review": "Outil ajouté. En examen.", "tools": "Outils", "tools_community": "Outils de la communauté", "try_tomorrow": "Réessaie demain", "try_later": "Réessaie plus tard", "tool_exists": "L'outil existe déjà", "limit_reached": "Limite d'ajouts atteinte", "menu": "Menu", "empty_state": "Aucun outil pour l'instant. Soyez le premier à en ajouter un !", "tool_name": "Nom de l'outil", "pagination": "Pagination", "main": "Principal", "preview": "Aperçu", "fill_fields": "Remplis tous les champs", "reviewing_ai": "Examen par l'IA...", "skip_content": "Aller au contenu", "no_description": "Pas de description", "no_tools": "Aucun outil", "upload_tool": "Ajouter un outil", "upload_tool_community": "Ajouter un outil aux Outils Communauté", "upload_review": "Ajouter et examiner", "toolbox_ai": "TOOLBOX AI", "all_tags": "Tous", "all_tags_full": "Tous les tags", "your_name": "Ton nom", "view_tool": "Voir l'outil", "preview_short": "Aperçu", "preview_tool": "Aperçu de l'outil", "live_preview": "Aperçu en direct", "back_toolbox": "← Retour à TOOLBOX"}</script>
+<script>window.I18N = JSON.parse(document.getElementById('i18n-data').textContent); function t(k){return window.I18N[k]||k;}</script>
+</body>
+</html>

@@ -239,8 +239,46 @@ for code, cfg in LANGS.items():
     open(path, 'w', encoding='utf-8').write(doc)
     print('OK', cfg['file'], '(%d KB)' % (len(doc.encode('utf-8')) // 1024))
 
+# ---- build community.tpl.html for each language ----
+community_tpl = open(os.path.join(HERE, 'community.tpl.html'), encoding='utf-8').read()
+
+for code, cfg in LANGS.items():
+    meta = dicts[code]['META']
+    doc = community_tpl
+
+    # 1) marca de "página en español" en enlaces que aún no están traducidos
+    tag = '' if code == 'es' else '<span class="lang-tag" title="%s">ES</span>' % htmllib.escape(meta['es_tag_title'])
+    doc = doc.replace('{{ES_TAG}}', tag)
+
+    # 2) traducción de los textos de la página
+    if code != 'es':
+        # translate_style_buttons only for index page (has style buttons)
+        doc, missing = translate_html(doc, code)
+        all_missing[code] = missing
+
+    # 3) marcadores
+    doc = (doc.replace('{{FLAG_SPRITE}}', FLAG_SPRITE)
+              .replace('{{LANG_SWITCH}}', switch_html(code))
+              .replace('{{FOOTER_LANGS}}', footer_langs(code))
+              .replace('{{ALTERNATES}}', alternates())
+              .replace('{{HOME}}', cfg['path'])
+              .replace('{{CANONICAL}}', BASE + cfg['path'] + 'community.html')
+              .replace('{{OG_LOCALE}}', cfg['og'])
+              .replace('{{META_TITLE}}', htmllib.escape(meta['title']))
+              .replace('{{META_DESC}}', htmllib.escape(meta['desc'], quote=True))
+              .replace('{{LD_DESC}}', meta['ld_desc'].replace('"', '\\"'))
+              .replace('{{LANG_JSON}}', js_json(code))
+              .replace('{{I18N_JSON}}', js_json(dicts[code]['JS']))
+              .replace('{{LANG}}', code))
+    assert '{{' not in doc, re.findall(r'\{\{[^}]*\}\}', doc)[:5]
+
+    path = os.path.join(OUT, cfg['path'].strip('/'), 'community.html')
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    open(path, 'w', encoding='utf-8').write(doc)
+    print('OK', path, '(%d KB)' % (len(doc.encode('utf-8')) // 1024))
+
 # ---- sitemap con hreflang ----
-other = ['/TOOLBOXAI', '/blog.html', '/privacidad.html', '/terminos.html', '/cookies.html', '/contacto.html']
+other = ['/TOOLBOXAI', '/blog.html', '/privacidad.html', '/terminos.html', '/cookies.html', '/contacto.html', '/community.html']
 sm = ['<?xml version="1.0" encoding="UTF-8"?>',
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
 for code, cfg in LANGS.items():
