@@ -231,7 +231,7 @@ nav {
 }
 
 /* =========================================================
-   HAMBURGER MENU
+   HAMBURGER MENU — LEFT SIDE, TEXT ONLY
 ========================================================= */
 
 .hamburger-menu {
@@ -239,28 +239,37 @@ nav {
 }
 
 .hamburger-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     border: none;
-    border-radius: 11px;
-    background: var(--button);
+    background: transparent;
     color: var(--text);
-    padding: 8px;
-    transition: background .2s, transform .2s;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    border-radius: 10px;
+    transition: color .2s, background .2s;
 }
 
 .hamburger-btn:hover {
-    background: var(--purple);
-    transform: translateY(-1px);
+    color: var(--purple2);
+    background: rgba(124,58,237,.1);
 }
 
 .hamburger-btn:focus-visible {
     outline: 2px solid var(--purple3);
     outline-offset: 2px;
+}
+
+.hamburger-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 22px;
+    height: 16px;
+    justify-content: center;
 }
 
 .hamburger-line {
@@ -269,11 +278,12 @@ nav {
     height: 2.5px;
     border-radius: 2px;
     background: var(--text);
-    transition: transform .3s ease, opacity .3s ease;
+    transition: transform .3s cubic-bezier(.4,0,.2,1), opacity .3s cubic-bezier(.4,0,.2,1);
+    transform-origin: center;
 }
 
 .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
-    transform: translateY(7.5px) rotate(45deg);
+    transform: translateY(6.75px) rotate(45deg);
 }
 
 .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
@@ -281,12 +291,16 @@ nav {
 }
 
 .hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
-    transform: translateY(-7.5px) rotate(-45deg);
+    transform: translateY(-6.75px) rotate(-45deg);
+}
+
+.hamburger-text {
+    white-space: nowrap;
 }
 
 .hamburger-panel {
     position: absolute;
-    right: 0;
+    left: 0;
     top: calc(100% + 8px);
     z-index: 6000;
     min-width: 220px;
@@ -295,11 +309,11 @@ nav {
     border: 1px solid var(--border2);
     background: var(--panel);
     box-shadow: 0 20px 60px rgba(0,0,0,.4);
-    animation: hamburgerPop .2s ease;
+    animation: hamburgerPop .25s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes hamburgerPop {
-    from { opacity: 0; transform: translateY(-8px) scale(.98); }
+    from { opacity: 0; transform: translateY(-8px) scale(.96); }
     to { opacity: 1; transform: none; }
 }
 
@@ -313,13 +327,14 @@ nav {
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
-    transition: background .15s, color .15s;
+    transition: background .15s, color .15s, transform .15s;
 }
 
 .hamburger-item:hover,
 .hamburger-item:focus-visible {
     background: var(--button);
     color: var(--purple3);
+    transform: translateX(4px);
 }
 
 .hamburger-icon {
@@ -327,17 +342,25 @@ nav {
     height: 22px;
     flex-shrink: 0;
     color: var(--muted);
-    transition: color .15s;
+    transition: color .15s, transform .15s;
 }
 
 .hamburger-item:hover .hamburger-icon {
     color: var(--purple3);
+    transform: scale(1.1);
 }
 
 .hamburger-divider {
     border: none;
     border-top: 1px solid var(--border);
     margin: 6px 8px;
+}
+
+/* Nav layout adjustment for left hamburger */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 /* =========================================================
@@ -394,7 +417,7 @@ nav {
 
 .search-bar button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(124, 58, 237, .4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
 }
 
 .filters {
@@ -580,41 +603,21 @@ nav {
     color: #fff;
 }
 
-/* Preview modal */
-.preview-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, .8);
-    backdrop-filter: blur(8px);
-    animation: modalFade .2s ease;
+/* =========================================================
+   PREVIEW VIEW STYLES
+========================================================= */
+
+.preview-view {
+    display: none;
+    animation: fadeIn .3s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes modalFade {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.preview-view.active {
+    display: block;
 }
 
-.preview-box {
-    width: 100%;
-    max-width: 900px;
-    height: 80vh;
-    max-height: 800px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    animation: modalSlide .25s ease;
-}
-
-@keyframes modalSlide {
-    from { opacity: 0; transform: translateY(20px) scale(.98); }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: none; }
 }
 
@@ -622,26 +625,225 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
 }
 
-.preview-title {
-    font-weight: 700;
-    font-size: 16px;
-}
-
-.preview-iframe {
-    flex: 1;
-    border: none;
-    background: #000;
-}
-
-.preview-actions {
+.preview-header-left {
     display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
-    justify-content: flex-end;
-    padding: 12px 16px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: color .2s, background .2s;
+}
+
+.back-link:hover {
+    color: var(--text);
+    background: var(--button);
+}
+
+.back-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.preview-header h1 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.preview-header-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, background .15s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+
+.btn-secondary {
+    background: var(--button);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+}
+
+.preview-frame-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--input);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 0 1px rgba(255,255,255,.03) inset;
+    animation: previewEnter .5s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes previewEnter {
+    from { opacity: 0; transform: translateY(20px) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.preview-frame {
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    border: none;
+    background: #080b12;
+    display: block;
+}
+
+.preview-frame.loading {
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.preview-frame.loaded {
+    opacity: 1;
+}
+
+.preview-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: var(--input);
+    z-index: 10;
+    transition: opacity .3s ease;
+}
+
+.preview-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--border);
+    border-top-color: var(--purple2);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.preview-info {
+    margin-top: 24px;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    animation: fadeInUp .4s cubic-bezier(.2,.8,.2,1) .1s both;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+}
+
+.preview-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-bottom: 16px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.preview-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.preview-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.preview-tag {
+    padding: 6px 12px;
+    background: rgba(124,58,237,.12);
+    border: 1px solid rgba(139,92,246,.3);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple3);
+    animation: tagPop .3s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.preview-tag:nth-child(1) { animation-delay: .2s; }
+.preview-tag:nth-child(2) { animation-delay: .25s; }
+.preview-tag:nth-child(3) { animation-delay: .3s; }
+.preview-tag:nth-child(4) { animation-delay: .35s; }
+.preview-tag:nth-child(5) { animation-delay: .4s; }
+
+@keyframes tagPop {
+    from { opacity: 0; transform: scale(.8) translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+.preview-description {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 12px;
+    padding-top: 16px;
     border-top: 1px solid var(--border);
 }
 
@@ -717,7 +919,7 @@ footer strong {
 .lang-btn:hover {
     border-color: var(--purple2);
     transform: translateY(-1px);
-    box-shadow: 0 0 18px rgba(139,92,246,.25);
+    box-shadow: 0 6px 20px rgba(0,0,0,.3);
 }
 
 .lang-btn .caret { font-size: 10px; opacity: .7; transition: transform .2s; }
@@ -772,6 +974,49 @@ footer strong {
     vertical-align: middle;
 }
 
+.lang-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    z-index: 9000;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: calc(100% - 28px);
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--panel);
+    box-shadow: 0 18px 50px rgba(0,0,0,.4);
+    font-size: 14px;
+    animation: langPop .3s ease;
+}
+
+.lang-hint a {
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.lang-hint button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: var(--button);
+    color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
 @media (max-width: 600px) {
     .header {
         flex-direction: column;
@@ -787,6 +1032,25 @@ footer strong {
         flex-wrap: wrap;
         gap: 8px;
     }
+    .preview-frame { height: 60vh; min-height: 400px; }
+    .preview-header { flex-direction: column; align-items: stretch; }
+    .preview-header-actions { width: 100%; justify-content: stretch; }
+    .btn { flex: 1; justify-content: center; }
+}
+
+@media (max-width: 700px) {
+    nav { padding: 0 4%; }
+    .nav-link { display: none; }
+    .nav-right { gap: 10px; }
+    .logo { font-size: 22px; }
+    .nav-left { gap: 12px; }
+    .hamburger-text { display: none; }
+    .hamburger-btn { padding: 10px; }
+}
+
+@media (max-width: 600px) {
+    .lang-btn { padding: 0 10px; }
+    .lang-hint { bottom: 86px; }
 }
 
 /* Toast notification */
@@ -803,13 +1067,45 @@ footer strong {
      NAVBAR
 ========================================================= -->
 
-<a class="skip-link" href="#grid">Saltar al contenido</a>
+<a class="skip-link" href="#grid" id="skipLink">Saltar al contenido</a>
 
 <nav aria-label="Principal">
 
-    <a class="logo" href="/" aria-label="TOOLBOX">
-        🧰 TOOL<span>BOX</span>
-    </a>
+    <div class="nav-left">
+        <a class="logo" href="/" aria-label="TOOLBOX">
+            🧰 TOOL<span>BOX</span>
+        </a>
+
+        <div class="hamburger-menu">
+            <button class="hamburger-btn" aria-expanded="false" aria-controls="hamburgerPanel" aria-label="Menú">
+                <span class="hamburger-lines">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+                <span class="hamburger-text">Community Tools</span>
+            </button>
+            <div class="hamburger-panel" id="hamburgerPanel" role="menu" hidden>
+                <a href="/community.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Community Tools
+                </a>
+                <a href="/TOOLBOXAI" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="20 21 15 16.09 10 21 10 12.09 4 8.59 9 5.09 12 3 15 5.09 20 8.59 20 12.09"/></svg>
+                    TOOLBOX AI
+                </a>
+                <a href="/" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                    Herramientas
+                </a>
+                <hr class="hamburger-divider">
+                <a href="/blog.html" class="hamburger-item" role="menuitem">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Blog / Tutoriales
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="nav-right">
 
@@ -838,43 +1134,16 @@ footer strong {
             🌙
         </button>
 
-        <div class="hamburger-menu">
-            <button class="hamburger-btn" aria-expanded="false" aria-controls="hamburgerPanel" aria-label="Menú">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            <div class="hamburger-panel" id="hamburgerPanel" role="menu" hidden>
-                <a href="/community.html" class="hamburger-item" role="menuitem">
-                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    Comunidad Tools
-                </a>
-                <a href="/TOOLBOXAI" class="hamburger-item" role="menuitem">
-                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="20 21 15 16.09 10 21 10 12.09 4 8.59 9 5.09 12 3 15 5.09 20 8.59 20 12.09"/></svg>
-                    TOOLBOX AI
-                </a>
-                <a href="/" class="hamburger-item" role="menuitem">
-                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-                    Herramientas
-                </a>
-                <hr class="hamburger-divider">
-                <a href="/blog.html" class="hamburger-item" role="menuitem">
-                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    Blog / Tutoriales
-                </a>
-            </div>
-        </div>
-
     </div>
 
 </nav>
 
 
 <!-- =========================================================
-     COMMUNITY CONTENT
+     COMMUNITY CONTENT — GALLERY VIEW
 ========================================================= -->
 
-<main id="comunidad" class="container" role="main">
+<main id="galleryView" class="container" role="main" data-view="gallery">
 
     <header class="header">
         <h1>🌐 Comunidad TOOLBOX</h1>
@@ -894,20 +1163,64 @@ footer strong {
 
 </main>
 
-<!-- Preview Modal -->
-<div class="preview-modal" id="previewModal" hidden role="dialog" aria-modal="true" aria-labelledby="previewTitle">
-    <div class="preview-box">
-        <div class="preview-header">
-            <span class="preview-title" id="previewTitle"></span>
-            <button class="btn-sm btn-secondary" id="closePreview" aria-label="Cerrar preview">Cerrar</button>
+<!-- =========================================================
+     COMMUNITY CONTENT — PREVIEW VIEW
+========================================================= -->
+
+<main id="previewView" class="container preview-view" role="main" data-view="preview" aria-labelledby="previewTitle">
+
+    <header class="preview-header">
+        <div class="preview-header-left">
+            <a href="#galleryView" class="back-link" id="backToGallery" aria-label="Volver a Community Tools">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Volver
+            </a>
+            <h1 id="previewTitle"></h1>
         </div>
-        <iframe class="preview-iframe" id="previewFrame" sandbox="allow-scripts allow-forms allow-same-origin" referrerpolicy="no-referrer" title="Vista previa de la herramienta"></iframe>
-        <div class="preview-actions">
-            <button class="btn-sm btn-secondary" id="saveTool">Guardar en mi TOOLBOX</button>
-            <button class="btn-sm btn-primary" id="forkTool">Fork / Editar</button>
+        <div class="preview-header-actions">
+            <button class="btn btn-secondary" id="saveTool" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>Guardar</span>
+            </button>
+            <button class="btn btn-primary" id="forkTool" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M9 5l7 7-7 7"/><path d="M4 21h16"/><path d="M4 15h16"/>
+                </svg>
+                <span>Fork / Editar</span>
+            </button>
         </div>
+    </header>
+
+    <div class="preview-frame-wrapper">
+        <div class="preview-loading" id="previewLoading" role="status" aria-live="polite">
+            <div class="loading-spinner"></div>
+            <span class="loading-text">Cargando vista previa...</span>
+        </div>
+        <iframe
+            class="preview-frame loading"
+            id="previewFrame"
+            sandbox="allow-scripts allow-forms allow-same-origin"
+            referrerpolicy="no-referrer"
+            title="Vista previa de la herramienta"
+            aria-label="Vista previa interactiva de la herramienta">
+        </iframe>
     </div>
-</div>
+
+    <section class="preview-info" aria-label="Información de la herramienta">
+        <div class="preview-meta">
+            <span id="previewViews">👁 <span id="viewsCount">—</span></span>
+            <span id="previewDownloads">📥 <span id="downloadsCount">—</span></span>
+            <span id="previewAuthor">👤 <span id="authorName">—</span></span>
+        </div>
+        <div class="preview-tags" id="previewTags" aria-label="Etiquetas"></div>
+        <p class="preview-description" id="previewDescription"></p>
+    </section>
+
+</main>
 
 <!-- =========================================================
      FOOTER
@@ -931,6 +1244,7 @@ let currentPage = 1;
 let currentTag = null;
 let currentQuery = null;
 let totalPages = 1;
+let currentView = 'gallery'; // 'gallery' or 'preview'
 
 function escapeHtml(s) {
     return String(s)
@@ -1044,6 +1358,31 @@ function initLangSwitch() {
 }
 
 /* =========================================================
+   VIEW SWITCHING
+========================================================= */
+
+function switchView(view) {
+    const galleryView = $('galleryView');
+    const previewView = $('previewView');
+    const skipLink = $('skipLink');
+
+    if (view === 'gallery') {
+        galleryView.hidden = false;
+        previewView.hidden = true;
+        previewView.classList.remove('active');
+        currentView = 'gallery';
+        skipLink.href = '#grid';
+        window.history.pushState({}, '', '/community.html');
+    } else {
+        galleryView.hidden = true;
+        previewView.hidden = false;
+        previewView.classList.add('active');
+        currentView = 'preview';
+        skipLink.href = '#preview';
+    }
+}
+
+/* =========================================================
    COMMUNITY TOOLS LOGIC
 ========================================================= */
 
@@ -1151,16 +1490,48 @@ async function loadTags() {
     }
 }
 
-async function openPreview(toolId) {
+function openPreview(toolId) {
+    // Switch to preview view and load tool
+    switchView('preview');
+    window.history.pushState({toolId}, '', `/community.html?preview=${toolId}`);
+    loadPreview(toolId);
+}
+
+async function loadPreview(toolId) {
     try {
         const res = await fetch(`${API}/tools/${toolId}`);
         const data = await res.json();
         if (!data.ok) throw new Error(data.error);
-        const tool = data.tool;
-        $('previewTitle').textContent = tool.name;
+        renderPreview(data.tool);
+    } catch (e) {
+        toast('Error cargando preview: ' + e.message);
+        setTimeout(() => switchView('gallery'), 2000);
+    }
+}
 
-        // Build sandboxed HTML with CSP
-        const sandboxHtml = `
+function renderPreview(tool) {
+    document.title = `${escapeHtml(tool.name)} — Community Tools`;
+    $('previewTitle').textContent = tool.name;
+
+    // Meta
+    $('#viewsCount').textContent = tool.views || 0;
+    $('#downloadsCount').textContent = tool.downloads || 0;
+    $('#authorName').textContent = escapeHtml(tool.author);
+
+    // Tags
+    const tagsEl = $('#previewTags');
+    tagsEl.innerHTML = (tool.tags || []).map(tag =>
+        `<span class="preview-tag">${escapeHtml(tag)}</span>`
+    ).join('');
+
+    // Description
+    $('#previewDescription').textContent = tool.description || 'Sin descripción';
+
+    // Load iframe
+    const frame = $('#previewFrame');
+    const loading = $('#previewLoading');
+
+    const sandboxHtml = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -1186,23 +1557,24 @@ async function openPreview(toolId) {
   <\/script>
 </body>
 </html>`;
-        const blob = new Blob([sandboxHtml], {type: 'text/html'});
-        $('previewFrame').src = URL.createObjectURL(blob);
-        $('previewModal').hidden = false;
-        // Store current tool for save/fork
-        window.currentPreviewTool = tool;
-    } catch (e) {
-        toast(t('error_preview') + ': ' + e.message);
-    }
-}
 
-$('closePreview').addEventListener('click', () => {
-    $('previewModal').hidden = true;
-    if ($('previewFrame').src) {
-        URL.revokeObjectURL($('previewFrame').src);
-    }
-    $('previewFrame').src = '';
-});
+    const blob = new Blob([sandboxHtml], {type: 'text/html'});
+    frame.src = URL.createObjectURL(blob);
+
+    frame.onload = () => {
+        frame.classList.remove('loading');
+        frame.classList.add('loaded');
+        loading.classList.add('hidden');
+    };
+
+    frame.onerror = () => {
+        loading.classList.add('hidden');
+        loading.innerHTML = '<span style="color:var(--red)">Error cargando la vista previa</span>';
+    };
+
+    // Store current tool for save/fork
+    window.currentPreviewTool = tool;
+}
 
 function saveTool(toolId) {
     // Save to localStorage as personal tool
@@ -1251,6 +1623,18 @@ $('searchBtn').addEventListener('click', () => {
 });
 
 /* =========================================================
+   HANDLE URL PARAMETER FOR PREVIEW
+========================================================= */
+
+function handleUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const previewId = params.get('preview');
+    if (previewId) {
+        openPreview(previewId);
+    }
+}
+
+/* =========================================================
    INIT
 ========================================================= */
 
@@ -1260,7 +1644,46 @@ document.addEventListener("DOMContentLoaded", () => {
     syncThemeButton();
     loadTags();
     loadTools();
+    handleUrlParams();
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.toolId) {
+            // Navigate to preview via history
+            openPreview(e.state.toolId);
+        } else {
+            // Go back to gallery
+            switchView('gallery');
+        }
+    });
+
+    // Back link handler
+    $('#backToGallery').addEventListener('click', (e) => {
+        e.preventDefault();
+        switchView('gallery');
+    });
+
+    // Preview actions
+    $('#saveTool').addEventListener('click', () => {
+        const tool = window.currentPreviewTool;
+        if (!tool) return;
+        const saved = JSON.parse(localStorage.getItem('myTools') || '[]');
+        saved.unshift({...tool, savedAt: Date.now()});
+        localStorage.setItem('myTools', JSON.stringify(saved.slice(0, 50)));
+        toast('✅ Guardado en tu TOOLBOX');
+    });
+
+    $('#forkTool').addEventListener('click', () => {
+        const tool = window.currentPreviewTool;
+        if (!tool) return;
+        navigator.clipboard.writeText(tool.code).then(() => {
+            toast('📋 Código copiado. Abre TOOLBOX AI para editar.');
+        }).catch(() => {
+            toast('Error copiando al portapapeles');
+        });
+    });
 });
+
 </script>
 
 <script id="i18n-data" type="application/json">{"color_copied": "Color copiado.", "styler_empty": "Tu texto aparecerá aquí.", "text_copied": "Texto copiado.", "pw_select_one": "Selecciona al menos un tipo de carácter.", "pw_copied": "Contraseña copiada.", "img_load_first": "Primero carga una imagen.", "err_invalid_response": "El servidor no devolvió una respuesta válida.", "err_no_reply": "TOOLBOX AI no devolvió ninguna respuesta.", "err_connect": "Error conectando con TOOLBOX AI.", "corr_write_first": "Escribe un texto primero.", "corr_loading": "🤖 Mejorando...", "corr_analyzing": "TOOLBOX AI está analizando tu texto...", "corr_button": "✨ Mejorar con IA", "paste_first": "Pega un texto primero.", "simp_loading": "🧠 Simplificando...", "simp_working": "TOOLBOX AI está preparando una explicación sencilla...", "simp_button": "🧠 Hacerlo fácil", "pwm_complete": "⚠️ Completa las dos palabras y el número.", "pwm_copied": "✅ ¡Copiada!", "pwm_copy_failed": "No se pudo copiar automáticamente.", "words_suffix": " palabras", "hum_empty": "Aquí aparecerá el texto reescrito.", "copied_ok": "✅ Copiado", "hum_longer": "Pega un texto un poco más largo para obtener una reescritura útil.", "hum_style_simple": "Usa un español sencillo, directo y natural. Prioriza palabras habituales, frases claras y una lectura fácil. No rebajes la precisión ni elimines información.", "hum_style_pro": "Usa una redacción profesional y, cuando corresponda, académica. Debe ser precisa, clara y seria, pero sin sonar rígida, excesivamente formal o mecánica.", "hum_loading": "🧠 Reescribiendo...", "hum_analyzing": "Analizando el texto...", "hum_checking": "Revisando vocabulario, estructura, ritmo, repeticiones y claridad...", "hum_empty_ai": "La IA no devolvió un texto. Inténtalo de nuevo.", "hum_done": "✅ Texto reescrito. Revísalo antes de utilizarlo.", "hum_status_default": "Mantiene el significado y mejora claridad, ritmo, variedad y naturalidad.", "hum_copy_result": "📋 Copiar resultado", "hum_failed": "No se pudo completar la reescritura.", "hum_button": "✨ Humanizar texto", "pomo_focus": "Momento de estudiar / trabajar", "pomo_short": "Descanso corto", "pomo_long": "Descanso largo", "pomo_pause": "⏸️ Pausar", "pomo_start": "▶️ Empezar", "pomo_t_all": "🍅 ¡Has terminado las sesiones!", "pomo_m_all": "Puedes hacer tu descanso largo.", "pomo_t_session": "🍅 ¡Sesión terminada!", "pomo_m_session": "Puedes descansar unos minutos.", "pomo_t_break": "⏰ ¡Descanso terminado!", "pomo_m_break": "Toca volver a estudiar o trabajar.", "pomo_t_long": "🌿 ¡Descanso largo terminado!", "pomo_m_long": "Puedes ponerte a trabajar de nuevo.", "ocr_preparing": "Preparando reconocimiento...", "ocr_ok": "✅ Texto detectado correctamente.", "ocr_none": "No se ha encontrado texto en la imagen.", "ocr_fail": "❌ No se pudo reconocer el texto. Prueba con otra imagen.", "ocr_first": "Primero detecta algún texto.", "ocr_copied": "✅ Texto copiado.", "planner_same_monday": "Horario del lunes copiado al resto de la semana.", "planner_same_all": "Mismo horario aplicado a todos los días.", "planner_clear_confirm": "¿Quieres borrar las tareas y el plan generado?", "planner_bad_json": "La IA devolvió una respuesta que no se pudo convertir en un plan. Inténtalo de nuevo.", "planner_bad_days": "La IA no devolvió la estructura de días esperada.", "planner_write_first": "Escribe primero todo lo que tienes que hacer.", "planner_activate_day": "Activa al menos un día y define un horario disponible.", "planner_time_error": "La hora de inicio debe ser anterior a la hora de fin.", "planner_loading": "🤖 Organizando...", "planner_status_creating": "Creando un plan realista con tus tareas y horarios...", "planner_done": "✅ Semana organizada correctamente.", "planner_unknown": "Error desconocido.", "planner_button": "✨ Crear mi semana", "planner_rate_limit": "Groq está limitando temporalmente las peticiones. Espera unos segundos y vuelve a intentarlo. Esta versión ya no hace reintentos automáticos para no gastar más peticiones.", "planner_title_default": "Tu semana organizada", "planner_summary_default": "He distribuido tus tareas teniendo en cuenta el tiempo disponible y sus prioridades.", "planner_unavailable": "No disponible", "planner_undo": "↶ Deshacer", "planner_mark_done": "✓ Hecho", "planner_load_fail": "No se pudo cargar el plan guardado", "planner_fail": "No se pudo crear el plan.", "pomo_session": "Sesión {n} de {total}", "ocr_lang": "spa+eng", "day_mon": "Lunes", "day_mon_s": "Lun", "day_tue": "Martes", "day_tue_s": "Mar", "day_wed": "Miércoles", "day_wed_s": "Mié", "day_thu": "Jueves", "day_thu_s": "Jue", "day_fri": "Viernes", "day_fri_s": "Vie", "day_sat": "Sábado", "day_sat_s": "Sáb", "day_sun": "Domingo", "day_sun_s": "Dom", "planner_free_word": "libre", "planner_activate": "Activar", "planner_pending_one": "pendiente", "planner_pending_many": "pendientes", "planner_planned": "planificadas", "planner_free_day": "Día libre", "planner_free_time": "Tiempo libre", "prompt_corrector": "\nEres el corrector de textos de TOOLBOX.\n\nCorrige exclusivamente el texto proporcionado por el usuario.\n\nCorrige:\n- Ortografía\n- Tildes\n- Puntuación\n- Mayúsculas y minúsculas\n- Gramática\n- Concordancia\n- Tipografía\n- Errores de escritura\n\nREGLAS IMPORTANTES:\n\n1. Mantén exactamente el significado original.\n2. No añadas información nueva.\n3. No saludes al usuario.\n4. No expliques las correcciones.\n5. No pongas introducciones como \"Aquí tienes\".\n6. No pongas despedidas.\n7. No hagas comentarios.\n8. Devuelve ÚNICAMENTE el texto corregido.\n9. Conserva los párrafos y el formato del texto original cuando sea posible.\n\nTEXTO A CORREGIR:\n\n{input}\n        ", "prompt_simplifier": "\nEres el Simplificador de Textos de TOOLBOX.\n\nTu tarea es transformar el texto complicado del usuario\nen un texto mucho más fácil de entender.\n\nREGLAS IMPORTANTES:\n\n1. Explica el mismo contenido con palabras sencillas.\n2. Mantén TODA la información importante.\n3. No inventes información.\n4. No cambies el significado.\n5. Sustituye palabras difíciles por palabras fáciles.\n6. Divide las frases demasiado largas.\n7. Si hay conceptos complicados, explícalos de forma sencilla.\n8. Puedes utilizar ejemplos cotidianos cuando ayuden a entender el concepto.\n9. NO saludes al usuario.\n10. NO digas \"Aquí tienes\".\n11. NO expliques lo que has cambiado.\n12. NO hagas comentarios al final.\n13. Devuelve ÚNICAMENTE el texto simplificado.\n14. Mantén los párrafos y la estructura cuando sea posible.\n\nTEXTO A SIMPLIFICAR:\n\n\n{input}\n        ", "prompt_humanizer": "\nReescribe el texto con total libertad de redacción. No quiero una simple sustitución de palabras:\nquiero que construyas una versión nueva, natural y coherente del texto.\n\nDICCIONARIO DE ESTILO NATURAL:\n\nEvita abusar de:\n- \"En primer lugar\"\n- \"En segundo lugar\"\n- \"Por otro lado\"\n- \"Asimismo\"\n- \"Cabe destacar que\"\n- \"Es importante señalar que\"\n- \"En este sentido\"\n- \"Por consiguiente\"\n- \"De este modo\"\n- \"En conclusión\"\n- \"En definitiva\"\n- \"A modo de conclusión\"\n- \"Resulta fundamental\"\n- \"Es necesario destacar\"\n- \"No cabe duda de que\"\n- \"En la actualidad\"\n- \"A lo largo de la historia\"\n- \"Como se ha mencionado anteriormente\"\n- \"Por último\"\n\nNo están prohibidas. Úsalas únicamente cuando realmente encajen.\n\nPREFERENCIAS DE VOCABULARIO:\n\nEn lugar de buscar constantemente palabras más sofisticadas:\n- \"utilizar\" → \"usar\" cuando el contexto lo permita\n- \"realizar\" → \"hacer\" cuando sea natural\n- \"efectuar\" → \"hacer\" o \"llevar a cabo\"\n- \"adquirir\" → \"obtener\" o \"conseguir\" según el contexto\n- \"posteriormente\" → \"después\"\n- \"previamente\" → \"antes\"\n- \"numerosos\" → \"muchos\" cuando no se necesite formalidad\n- \"aproximadamente\" → \"más o menos\" solo en contextos informales\n- \"debido a que\" → \"porque\" cuando no cambie el tono\n- \"con el objetivo de\" → \"para\" cuando sea suficiente\n- \"en relación con\" → \"sobre\" o \"respecto a\" cuando suene mejor\n- \"llevar a cabo\" → \"hacer\" cuando no sea necesario mantener un registro formal\n\nIMPORTANTE:\nNo hagas estas sustituciones automáticamente. Son ejemplos de preferencias, no reglas.\nSi la palabra original es la mejor opción, mantenla.\n\nREGLAS DE ESCRITURA:\n\n1. Reescribe las frases desde cero cuando sea necesario.\n2. No conserves la estructura del original por obligación.\n3. Puedes cambiar el orden de las ideas dentro de una explicación si mejora la lectura.\n4. Puedes fusionar frases.\n5. Puedes dividir frases demasiado largas.\n6. Puedes cambiar completamente los conectores.\n7. Puedes eliminar repeticiones.\n8. Puedes conservar repeticiones cuando sean naturales o necesarias.\n9. No intentes utilizar un sinónimo diferente cada vez que aparece una palabra.\n10. No hagas que todas las frases tengan la misma longitud.\n11. No hagas que todos los párrafos tengan exactamente la misma estructura.\n12. No empieces todas las frases de forma parecida.\n13. No fuerces conectores entre todas las ideas.\n14. Deja que algunas ideas estén directamente relacionadas sin añadir un conector artificial.\n15. Evita frases excesivamente perfectas, genéricas o de plantilla.\n16. No añadas relleno.\n17. No añadas información nueva.\n18. No cambies datos, cifras, nombres o conceptos.\n19. Mantén el significado original.\n20. Mantén el idioma original.\n\nLIBERTAD:\n\nTienes permiso para cambiar prácticamente toda la forma del texto:\nvocabulario, sintaxis, orden de las frases, longitud de las frases,\nconectores, estructura de los párrafos y manera de explicar las ideas.\n\nLo único que debes conservar es la información y el significado.\n\nEl resultado debe funcionar como un texto independiente.\nNo debe parecer una versión palabra-por-palabra del original.\n\nTIPO DE TEXTO:\n{estilo}\n\n--- TEXTO ORIGINAL ---\n{input}\n--- FIN DEL TEXTO ORIGINAL ---\n\nDevuelve únicamente la nueva versión del texto.\n", "prompt_planner": "Planifica mi semana. No uses Pomodoros.\n\nTAREAS:\n{tasks}\n\nHORARIOS:\n{availability}\n\nREGLAS:\n- Respeta exactamente los horarios.\n- Prioriza fechas límite y exámenes cercanos.\n- Respeta las duraciones indicadas; si falta duración, estima una razonable.\n- Divide tareas largas si hace falta.\n- No llenes todo: deja tiempo libre.\n- No solapes bloques.\n- Si no cabe todo, programa primero lo prioritario y manda el resto a pending.\n- Usa bloques normales como 16:00-17:30.\n- Devuelve SOLO JSON válido, sin Markdown.\n\nFORMATO:\n{\"title\":\"Semana organizada\",\"summary\":\"breve\",\"days\":[{\"day\":\"Lunes\",\"blocks\":[{\"task\":\"Matemáticas\",\"start\":\"16:00\",\"end\":\"17:30\",\"priority\":\"alta\",\"deadline\":\"viernes\",\"note\":\"\"}]},{\"day\":\"Martes\",\"blocks\":[]},{\"day\":\"Miércoles\",\"blocks\":[]},{\"day\":\"Jueves\",\"blocks\":[]},{\"day\":\"Viernes\",\"blocks\":[]},{\"day\":\"Sábado\",\"blocks\":[]},{\"day\":\"Domingo\",\"blocks\":[]}],\"insights\":[],\"pending\":[]}", "fav_add": "Añadir a favoritas", "fav_remove": "Quitar de favoritas", "pdf_err_lib": "No se pudo cargar el motor de PDF. Comprueba tu conexión a internet e inténtalo de nuevo.", "pdf_err_encrypted": "«{name}» está protegido con contraseña y no se puede procesar.", "pdf_err_invalid": "«{name}» no es un PDF válido o está dañado.", "pdf_err_type": "«{name}» no es un archivo compatible.", "pdf_err_big": "«{name}» es demasiado grande (máximo 200 MB).", "pdf_err_image": "No se pudo leer la imagen «{name}».", "pdf_page_one": "{n} página", "pdf_pages_many": "{n} páginas", "pdf_remove": "Quitar", "pdf_up": "Subir", "pdf_down": "Bajar", "pdf_need_two": "Añade al menos dos PDF para unirlos.", "pdf_need_one": "Añade primero un archivo.", "pdf_processing": "Procesando {i} de {n}…", "pdf_reading": "Leyendo archivo…", "pdf_saving": "Guardando…", "pdf_done_merge": "✅ PDF unido correctamente.", "pdf_done_split": "✅ PDF dividido en {n} archivos.", "pdf_done_extract": "✅ Páginas extraídas correctamente.", "pdf_done_images": "✅ PDF creado correctamente.", "pdf_done_compress": "✅ PDF comprimido: de {from} a {to} ({pct}% menos).", "pdf_compress_bigger": "El resultado no es más pequeño que el original ({from} → {to}). Este PDF ya está bastante optimizado.", "pdf_compress_none": "Este PDF ya está optimizado: la compresión ligera apenas lo reduce ({from} → {to}). Prueba la compresión fuerte si no necesitas seleccionar el texto.", "pdf_compress_note": "Ten en cuenta que el texto de este PDF ya no se puede seleccionar.", "pdf_download_pdf": "💾 Descargar PDF", "pdf_download_zip": "💾 Descargar ZIP", "pdf_ranges_empty": "Escribe las páginas que quieres (por ejemplo: 1-3, 5).", "pdf_range_invalid": "No entiendo «{token}». Usa números y rangos, como 1-3, 5.", "pdf_range_out": "La página {n} no existe: el PDF tiene {total}.", "pdf_range_order": "El rango «{token}» está al revés. Escríbelo de menor a mayor.", "pdf_split_n_invalid": "Indica un número de páginas válido (1 o más).", "pdf_split_ranges_empty": "Escribe los rangos (por ejemplo: 1-3; 4-6; 7).", "pdf_unknown": "Ha ocurrido un error inesperado. Inténtalo de nuevo.", "Comunidad Tools": "Comunidad Tools", "TOOLBOX AI": "TOOLBOX AI", "Menú": "Menú", "Community Tools": "Comunidad Tools", "Explora herramientas de la comunidad": "Explora herramientas de la comunidad", "Buscar herramientas...": "Buscar herramientas...", "Todas las etiquetas": "Todas las etiquetas", "Subir herramienta": "Subir herramienta", "Vista previa": "Vista previa", "Código": "Código", "Guardar": "Guardar", "Hacer fork": "Hacer fork", "Ver herramienta": "Ver herramienta", "Sin herramientas": "Sin herramientas", "Cargando...": "Cargando...", "Error al cargar": "Error al cargar", "Subir herramienta a Community Tools": "Subir herramienta a Community Tools", "Nombre de la herramienta": "Nombre de la herramienta", "Tu nombre": "Tu nombre", "Descripción": "Descripción", "Etiquetas (separadas por comas)": "Etiquetas (separadas por comas)", "Código HTML/JS": "Código HTML/JS", "Vista previa en vivo": "Vista previa en vivo", "Cancelar": "Cancelar", "Subir y revisar": "Subir y revisar", "Revisando con IA...": "Revisando con IA...", "Herramienta subida. En revisión.": "Herramienta subida. En revisión.", "Error al subir": "Error al subir", "Límite de subidas alcanzado": "Límite de subidas alcanzado", "Inténtalo más tarde": "Inténtalo más tarde", "Inténtalo mañana": "Inténtalo mañana", "Rellena todos los campos": "Rellena todos los campos", "La herramienta ya existe": "La herramienta ya existe", "Saltar al contenido": "Saltar al contenido", "Principal": "Principal", "Comunidad": "Comunidad", "Herramientas": "Herramientas", "Cambiar tema": "Cambiar tema", "Comunidad TOOLBOX": "Comunidad TOOLBOX", "Buscar": "Buscar", "Filtrar por categoría": "Filtrar por categoría", "Todas": "Todas", "Herramientas de la comunidad": "Herramientas de la comunidad", "Paginación": "Paginación", "No hay herramientas aún. ¡Sé el primero en subir una!": "No hay herramientas aún. ¡Sé el primero en subir una!", "Sin descripción": "Sin descripción", "Probar": "Probar", "Cerrar": "Cerrar", "Cerrar preview": "Cerrar preview", "Vista previa de la herramienta": "Vista previa de la herramienta", "Guardar en mi TOOLBOX": "Guardar en mi TOOLBOX", "Fork / Editar": "Fork / Editar", "Error cargando preview": "Error cargando preview", "Error copiando al portapapeles": "Error copiando al portapapeles", "Código copiado al portapapeles. Abre TOOLBOX AI para editar.": "Código copiado al portapapeles. Abre TOOLBOX AI para editar.", "Guardado en tu TOOLBOX": "Guardado en tu TOOLBOX", "Blog / Tutoriales": "Blog / Tutoriales", "← Volver a TOOLBOX": "← Volver a TOOLBOX", "community_title": "🌐 Comunidad TOOLBOX", "community_footer": "TOOLBOX Comunidad — Herramientas creadas por usuarios, revisadas por IA.", "search_aria": "Buscar herramientas", "blog_tutorials": "Blog / Tutoriales", "search": "Buscar", "search_placeholder": "Buscar herramientas...", "toggle_theme": "Cambiar tema", "cancel": "Cancelar", "loading": "Cargando...", "close": "Cerrar", "close_preview": "Cerrar preview", "community_tools": "Comunidad Tools", "community": "Comunidad", "community_toolbox": "Comunidad TOOLBOX", "code": "Código", "code_html_js": "Código HTML/JS", "code_copied": "Código copiado al portapapeles. Abre TOOLBOX AI para editar.", "description": "Descripción", "error_loading": "Error al cargar", "error_upload": "Error al subir", "error_preview": "Error cargando preview", "error_copy": "Error copiando al portapapeles", "tags_placeholder": "Etiquetas (separadas por comas)", "explore_tools": "Explora herramientas de la comunidad", "filter_label": "Filtrar por categoría", "fork_edit": "Fork / Editar", "saved_toolbox": "Guardado en tu TOOLBOX", "save": "Guardar", "save_toolbox": "Guardar en mi TOOLBOX", "make_fork": "Hacer fork", "tool_under_review": "Herramienta subida. En revisión.", "tools": "Herramientas", "tools_community": "Herramientas de la comunidad", "try_tomorrow": "Inténtalo mañana", "try_later": "Inténtalo más tarde", "tool_exists": "La herramienta ya existe", "limit_reached": "Límite de subidas alcanzado", "menu": "Menú", "empty_state": "No hay herramientas aún. ¡Sé el primero en subir una!", "tool_name": "Nombre de la herramienta", "pagination": "Paginación", "main": "Principal", "preview": "Probar", "fill_fields": "Rellena todos los campos", "reviewing_ai": "Revisando con IA...", "skip_content": "Saltar al contenido", "no_description": "Sin descripción", "no_tools": "Sin herramientas", "upload_tool": "Subir herramienta", "upload_tool_community": "Subir herramienta a Community Tools", "upload_review": "Subir y revisar", "toolbox_ai": "TOOLBOX AI", "all_tags": "Todas", "all_tags_full": "Todas las etiquetas", "your_name": "Tu nombre", "view_tool": "Ver herramienta", "preview_short": "Vista previa", "preview_tool": "Vista previa de la herramienta", "live_preview": "Vista previa en vivo", "back_toolbox": "← Volver a TOOLBOX"}</script>

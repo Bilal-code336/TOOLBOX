@@ -239,7 +239,7 @@ for code, cfg in LANGS.items():
     open(path, 'w', encoding='utf-8').write(doc)
     print('OK', cfg['file'], '(%d KB)' % (len(doc.encode('utf-8')) // 1024))
 
-# ---- build community.tpl.html for each language ----
+# ---- build community.tpl.html for each language (unified gallery + preview) ----
 community_tpl = open(os.path.join(HERE, 'community.tpl.html'), encoding='utf-8').read()
 
 for code, cfg in LANGS.items():

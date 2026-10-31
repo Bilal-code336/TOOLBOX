@@ -344,6 +344,12 @@ HTML = {
     '🌐 Comunidad TOOLBOX': '🌐 TOOLBOX Community',
     'TOOLBOX Comunidad — Herramientas creadas por usuarios, revisadas por IA.': 'TOOLBOX Community — Tools created by users, reviewed by AI.',
     'Buscar herramientas': 'Search tools',
+    'Volver': 'Back',
+    'Cargando vista previa...': 'Loading preview...',
+    'Volver a Community Tools': 'Back to Community Tools',
+    'Vista previa interactiva de la herramienta': 'Interactive tool preview',
+    'Información de la herramienta': 'Tool information',
+    'Etiquetas': 'Tags',
 }
 
 JS = {

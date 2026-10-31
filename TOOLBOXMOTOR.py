@@ -34,6 +34,17 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg', 'gif', 'md'}
 
+# Community tools imports
+from community.storage import CommunityStorage
+from community.security_review import SecurityReview
+from community.rate_limit import UploadRateLimiter
+
+# Community tools initialization
+COMMUNITY_DATA_DIR = os.environ.get("COMMUNITY_DATA_DIR", "/var/data/community")
+community_storage = CommunityStorage(COMMUNITY_DATA_DIR)
+security_review = SecurityReview()
+upload_rate_limiter = UploadRateLimiter(per_hour=5, per_day=20)
+
 # ============================================================
 # CONFIGURACIÓN (todo por variables de entorno en Render 👇)
 # ============================================================
@@ -160,6 +171,192 @@ def toolbox_ai():
 @app.route("/TOOLBOXAI.html")
 def toolbox_ai_html():
     return send_from_directory(".", "TOOLBOXAI.html")
+
+
+# ============================================================
+# COMMUNITY TOOLS
+# ============================================================
+
+@app.route("/community")
+def community():
+    return send_from_directory(".", "community.html")
+
+
+@app.route("/community.html")
+def community_html():
+    return send_from_directory(".", "community.html")
+
+
+# ============================================================
+# COMMUNITY TOOLS - IDIOMAS
+# ============================================================
+
+def _pagina_comunidad_idioma(codigo):
+    return lambda: send_from_directory(codigo, "community.html")
+
+
+def _redirigir_comunidad(destino):
+    return lambda: redirect(destino, code=301)
+
+
+for _codigo in IDIOMAS_WEB:
+    app.add_url_rule(f"/{_codigo}/community", f"comunidad_{_codigo}", _pagina_comunidad_idioma(_codigo))
+    app.add_url_rule(f"/{_codigo}/community.html", f"comunidad_{_codigo}_html", _pagina_comunidad_idioma(_codigo))
+
+
+# ============================================================
+# COMMUNITY TOOLS API
+# ============================================================
+
+@app.route("/api/community/tools")
+def community_tools_list():
+    """List community tools with pagination, tag filter, search."""
+    try:
+        page = max(1, int(request.args.get("page", 1)))
+        per_page = min(50, max(1, int(request.args.get("per_page", 12))))
+        tag = request.args.get("tag")
+        search = request.args.get("search")
+
+        result = community_storage.get_tools(page=page, per_page=per_page, tag=tag, search=search)
+
+        safe_tools = []
+        for tool in result["tools"]:
+            safe_tools.append({
+                "id": tool["id"],
+                "name": tool["name"],
+                "description": tool["description"],
+                "tags": tool["tags"],
+                "author": tool["author"],
+                "views": tool.get("views", 0),
+                "forks": tool.get("forks", 0),
+                "created_at": tool.get("created_at", 0)
+            })
+
+        return jsonify({
+            "ok": True,
+            "tools": safe_tools,
+            "total": result["total"],
+            "page": result["page"],
+            "pages": result["pages"],
+            "per_page": result["per_page"]
+        })
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/community/tools/<tool_id>")
+def community_tool_get(tool_id):
+    """Get single tool with full code for sandbox preview."""
+    try:
+        tool = community_storage.get_tool(tool_id)
+        if not tool:
+            return jsonify({"ok": False, "error": "Herramienta no encontrada"}), 404
+
+        if tool.get("status") != "approved":
+            return jsonify({"ok": False, "error": "Herramienta no disponible"}), 404
+
+        return jsonify({
+            "ok": True,
+            "tool": tool
+        })
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/community/tags")
+def community_tags():
+    """Get all tags for filter chips."""
+    try:
+        tags = community_storage.get_tags()
+        return jsonify({"ok": True, "tags": tags})
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/community/upload", methods=["POST"])
+def community_upload():
+    """Upload new community tool with rate limiting and AI security review."""
+    try:
+        ip = ip_cliente()
+
+        allowed, reason = upload_rate_limiter.check_limit(ip)
+        if not allowed:
+            return jsonify({"ok": False, "error": reason}), 429
+
+        data = request.get_json(silent=True) or {}
+        name = (data.get("name") or "").strip()[:100]
+        description = (data.get("description") or "").strip()[:1000]
+        code = data.get("code") or ""
+        tags = data.get("tags") or []
+
+        if not name:
+            return jsonify({"ok": False, "error": "Nombre requerido"}), 400
+        if not code.strip():
+            return jsonify({"ok": False, "error": "Código requerido"}), 400
+        if len(code) > 50000:
+            return jsonify({"ok": False, "error": "Código demasiado largo (máx 50KB)"}), 400
+        if not isinstance(tags, list):
+            return jsonify({"ok": False, "error": "Tags debe ser una lista"}), 400
+
+        tags = [str(t).strip()[:30] for t in tags if str(t).strip()][:10]
+
+        review = security_review.review_tool(code, name, description)
+        if not review["approved"]:
+            return jsonify({
+                "ok": False,
+                "error": "La herramienta no pasó la revisión de seguridad.",
+                "review": review
+            }), 400
+
+        tool_id = community_storage.save_tool({
+            "name": name,
+            "description": description,
+            "code": code,
+            "tags": tags,
+            "author": data.get("author", "Anonymous")[:50]
+        })
+
+        upload_rate_limiter.record_upload(ip)
+
+        return jsonify({
+            "ok": True,
+            "tool_id": tool_id,
+            "message": "Herramienta subida y aprobada. ¡Gracias por contribuir!",
+            "review": review
+        })
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/community/tools/<tool_id>/view", methods=["POST"])
+def community_tool_view(tool_id):
+    """Increment view count."""
+    try:
+        tool = community_storage.get_tool(tool_id)
+        if not tool or tool.get("status") != "approved":
+            return jsonify({"ok": False, "error": "No encontrado"}), 404
+        community_storage.increment_views(tool_id)
+        return jsonify({"ok": True})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/community/tools/<tool_id>/fork", methods=["POST"])
+def community_tool_fork(tool_id):
+    """Increment fork count."""
+    try:
+        tool = community_storage.get_tool(tool_id)
+        if not tool or tool.get("status") != "approved":
+            return jsonify({"ok": False, "error": "No encontrado"}), 404
+        community_storage.increment_forks(tool_id)
+        return jsonify({"ok": True})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
 
 
 # ============================================================
