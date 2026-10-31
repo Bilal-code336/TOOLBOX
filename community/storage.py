@@ -13,7 +13,7 @@ except ImportError:
 class CommunityStorage:
     def __init__(self, data_dir: str = None):
         if data_dir is None:
-            data_dir = os.environ.get("COMMUNITY_DATA_DIR", "/var/data/community")
+            data_dir = os.environ.get("COMMUNITY_DATA_DIR", os.path.join(os.path.dirname(__file__), "..", "data", "community"))
         self.data_dir = Path(data_dir)
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.tools_file = self.data_dir / "tools.json"
@@ -99,6 +99,7 @@ class CommunityStorage:
             "code": tool_data.get("code", ""),
             "tags": tool_data.get("tags", []),
             "author": tool_data.get("author", "Anonymous"),
+            "user_id": tool_data.get("user_id"),
             "created_at": now,
             "updated_at": now,
             "views": 0,
@@ -127,3 +128,41 @@ class CommunityStorage:
                 tool["forks"] = tool.get("forks", 0) + 1
                 self._write_atomic(data)
                 break
+
+    def get_tools_by_user(self, user_id: str, page: int = 1, per_page: int = 12) -> dict:
+        data = self._read()
+        tools = [t for t in data.get("tools", []) if t.get("user_id") == user_id]
+
+        tools.sort(key=lambda t: t.get("created_at", 0), reverse=True)
+
+        total = len(tools)
+        pages = (total + per_page - 1) // per_page
+        start = (page - 1) * per_page
+        end = start + per_page
+
+        return {
+            "tools": tools[start:end],
+            "total": total,
+            "page": page,
+            "pages": pages,
+            "per_page": per_page
+        }
+
+    def delete_tool(self, tool_id: str) -> bool:
+        data = self._read()
+        tools = data.get("tools", [])
+        for i, tool in enumerate(tools):
+            if tool.get("id") == tool_id:
+                tools.pop(i)
+                self._write_atomic(data)
+                return True
+        return False
+
+    def update_tool(self, tool_id: str, updates: dict) -> bool:
+        data = self._read()
+        for tool in data.get("tools", []):
+            if tool.get("id") == tool_id:
+                tool.update(updates)
+                self._write_atomic(data)
+                return True
+        return False

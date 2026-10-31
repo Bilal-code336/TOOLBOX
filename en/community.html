@@ -45,6 +45,8 @@
 </svg>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 /* =========================================================
    TOOLBOX — ESTILO PRINCIPAL
 ========================================================= */
@@ -117,15 +119,17 @@ body.light {
 body {
 
     font-family:
-        Arial,
-        Helvetica,
+        "Inter",
+        "Segoe UI",
+        system-ui,
+        -apple-system,
         sans-serif;
 
     background:
         radial-gradient(
             circle at 50% -20%,
-            rgba(124,58,237,.14),
-            transparent 45%
+            rgba(124,58,237,.06),
+            transparent 50%
         ),
         var(--bg);
 
@@ -720,6 +724,7 @@ nav {
         0 20px 60px rgba(0,0,0,.35),
         0 0 0 1px rgba(255,255,255,.03) inset;
     animation: previewEnter .5s cubic-bezier(.2,.8,.2,1);
+    padding: 12px;
 }
 
 @keyframes previewEnter {

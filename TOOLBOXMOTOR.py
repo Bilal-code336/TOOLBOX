@@ -39,11 +39,23 @@ from community.storage import CommunityStorage
 from community.security_review import SecurityReview
 from community.rate_limit import UploadRateLimiter
 
+# Auth imports
+from auth import AuthStorage, AuthManager, hash_password, verify_password
+
 # Community tools initialization
-COMMUNITY_DATA_DIR = os.environ.get("COMMUNITY_DATA_DIR", "/var/data/community")
+# Default to local data dir for dev; on Render set COMMUNITY_DATA_DIR env var to persistent disk path
+COMMUNITY_DATA_DIR = os.environ.get("COMMUNITY_DATA_DIR", os.path.join(os.path.dirname(__file__), "data", "community"))
 community_storage = CommunityStorage(COMMUNITY_DATA_DIR)
 security_review = SecurityReview()
 upload_rate_limiter = UploadRateLimiter(per_hour=5, per_day=20)
+
+# Auth initialization
+AUTH_DATA_DIR = os.environ.get("AUTH_DATA_DIR", os.path.join(os.path.dirname(__file__), "data", "auth"))
+auth_storage = AuthStorage(AUTH_DATA_DIR)
+auth_manager = AuthManager(auth_storage)
+
+# Secret key for sessions (set in production via env var)
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-change-in-production")
 
 # ============================================================
 # CONFIGURACIÓN (todo por variables de entorno en Render 👇)
@@ -280,6 +292,11 @@ def community_tags():
 def community_upload():
     """Upload new community tool with rate limiting and AI security review."""
     try:
+        # Require authentication
+        user = auth_manager.get_current_user(request)
+        if not user:
+            return jsonify({"ok": False, "error": "Autenticación requerida"}), 401
+
         ip = ip_cliente()
 
         allowed, reason = upload_rate_limiter.check_limit(ip)
@@ -316,9 +333,11 @@ def community_upload():
             "description": description,
             "code": code,
             "tags": tags,
-            "author": data.get("author", "Anonymous")[:50]
+            "author": user["name"][:50],
+            "user_id": user["id"]
         })
 
+        auth_storage.increment_tools_count(user["id"])
         upload_rate_limiter.record_upload(ip)
 
         return jsonify({
@@ -356,6 +375,210 @@ def community_tool_fork(tool_id):
         community_storage.increment_forks(tool_id)
         return jsonify({"ok": True})
     except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+# ============================================================
+# AUTHENTICATION API
+# ============================================================
+
+@app.route("/api/auth/register", methods=["POST"])
+def auth_register():
+    """Register new user."""
+    try:
+        ip = ip_cliente()
+        user_agent = request.headers.get("User-Agent", "")
+        data = request.get_json(silent=True) or {}
+        email = (data.get("email") or "").strip().lower()
+        password = data.get("password") or ""
+        name = (data.get("name") or "").strip()
+
+        if not email or not password or not name:
+            return jsonify({"ok": False, "error": "Email, contraseña y nombre requeridos"}), 400
+
+        if len(password) < 8:
+            return jsonify({"ok": False, "error": "La contraseña debe tener al menos 8 caracteres"}), 400
+
+        result = auth_manager.register(email, password, name, ip, user_agent)
+        if "error" in result:
+            return jsonify({"ok": False, "error": result["error"]}), 400
+
+        response = jsonify({"ok": True, "user": result["user"]})
+        response.set_cookie("session_id", result["session_id"],
+                            httponly=True, secure=True, samesite="Lax", max_age=30*24*3600)
+        return response
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/auth/login", methods=["POST"])
+def auth_login():
+    """Login user."""
+    try:
+        ip = ip_cliente()
+        user_agent = request.headers.get("User-Agent", "")
+        data = request.get_json(silent=True) or {}
+        email = (data.get("email") or "").strip().lower()
+        password = data.get("password") or ""
+
+        if not email or not password:
+            return jsonify({"ok": False, "error": "Email y contraseña requeridos"}), 400
+
+        result = auth_manager.login(email, password, ip, user_agent)
+        if not result:
+            return jsonify({"ok": False, "error": "Credenciales inválidas"}), 401
+
+        response = jsonify({"ok": True, "user": result["user"]})
+        response.set_cookie("session_id", result["session_id"],
+                            httponly=True, secure=True, samesite="Lax", max_age=30*24*3600)
+        return response
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/auth/logout", methods=["POST"])
+def auth_logout():
+    """Logout user."""
+    try:
+        session_id = request.cookies.get("session_id")
+        if session_id:
+            auth_manager.logout(session_id)
+        response = jsonify({"ok": True})
+        response.delete_cookie("session_id")
+        return response
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/auth/me")
+def auth_me():
+    """Get current authenticated user."""
+    try:
+        user = auth_manager.get_current_user(request)
+        if not user:
+            return jsonify({"ok": True, "user": None})
+        return jsonify({"ok": True, "user": user})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+# ============================================================
+# USER DASHBOARD API
+# ============================================================
+
+@app.route("/api/user/tools")
+def user_tools():
+    """Get authenticated user's tools."""
+    try:
+        user = auth_manager.require_auth(request)
+        page = max(1, int(request.args.get("page", 1)))
+        per_page = min(50, max(1, int(request.args.get("per_page", 12))))
+
+        result = community_storage.get_tools_by_user(user["id"], page=page, per_page=per_page)
+
+        safe_tools = []
+        for tool in result["tools"]:
+            safe_tools.append({
+                "id": tool["id"],
+                "name": tool["name"],
+                "description": tool["description"],
+                "tags": tool["tags"],
+                "views": tool.get("views", 0),
+                "forks": tool.get("forks", 0),
+                "status": tool.get("status", "pending_review"),
+                "created_at": tool.get("created_at", 0),
+                "updated_at": tool.get("updated_at", 0)
+            })
+
+        return jsonify({
+            "ok": True,
+            "tools": safe_tools,
+            "total": result["total"],
+            "page": result["page"],
+            "pages": result["pages"],
+            "per_page": result["per_page"]
+        })
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/user/tools/<tool_id>", methods=["DELETE"])
+def user_delete_tool(tool_id):
+    """Delete user's own tool."""
+    try:
+        user = auth_manager.require_auth(request)
+
+        tool = community_storage.get_tool(tool_id)
+        if not tool:
+            return jsonify({"ok": False, "error": "Herramienta no encontrada"}), 404
+
+        if tool.get("user_id") != user["id"]:
+            return jsonify({"ok": False, "error": "No autorizado"}), 403
+
+        community_storage.delete_tool(tool_id)
+        auth_storage.decrement_tools_count(user["id"])
+
+        return jsonify({"ok": True, "message": "Herramienta eliminada"})
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/user/tools/<tool_id>", methods=["PUT"])
+def user_update_tool(tool_id):
+    """Update user's own tool."""
+    try:
+        user = auth_manager.require_auth(request)
+
+        tool = community_storage.get_tool(tool_id)
+        if not tool:
+            return jsonify({"ok": False, "error": "Herramienta no encontrada"}), 404
+
+        if tool.get("user_id") != user["id"]:
+            return jsonify({"ok": False, "error": "No autorizado"}), 403
+
+        data = request.get_json(silent=True) or {}
+        name = (data.get("name") or "").strip()[:100]
+        description = (data.get("description") or "").strip()[:1000]
+        code = data.get("code") or ""
+        tags = data.get("tags") or []
+
+        if not name:
+            return jsonify({"ok": False, "error": "Nombre requerido"}), 400
+        if not code.strip():
+            return jsonify({"ok": False, "error": "Código requerido"}), 400
+        if len(code) > 50000:
+            return jsonify({"ok": False, "error": "Código demasiado largo (máx 50KB)"}), 400
+        if not isinstance(tags, list):
+            return jsonify({"ok": False, "error": "Tags debe ser una lista"}), 400
+
+        tags = [str(t).strip()[:30] for t in tags if str(t).strip()][:10]
+
+        # Re-review code for security
+        review = security_review.review_tool(code, name, description)
+        if not review["approved"]:
+            return jsonify({
+                "ok": False,
+                "error": "La herramienta no pasó la revisión de seguridad.",
+                "review": review
+            }), 400
+
+        community_storage.update_tool(tool_id, {
+            "name": name,
+            "description": description,
+            "code": code,
+            "tags": tags,
+            "updated_at": time.time()
+        })
+
+        return jsonify({"ok": True, "message": "Herramienta actualizada"})
+    except Exception as e:
+        print(traceback.format_exc())
         return jsonify({"ok": False, "error": str(e)}), 500
 
 
